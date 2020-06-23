@@ -1,0 +1,7 @@
+/.metadata/
+
+lib/Debug
+lib/.settings
+
+src/Debug
+src/.settings
