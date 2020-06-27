@@ -7,8 +7,7 @@
 //============================================================================
 
 #include "gtest/gtest.h"
-#include <iostream>
-using namespace std;
+#include "TBelief.cpp"
 
 int main(int argc, char* argv []) {
   ::testing::InitGoogleTest(&argc, argv);
