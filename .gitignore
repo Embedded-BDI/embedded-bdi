@@ -5,3 +5,6 @@ lib/.settings
 
 src/Debug
 src/.settings
+
+test/Debug
+test/.settings
