@@ -38,10 +38,10 @@ bool EventBase::add_event(EventOperator::EventType op, Statement stm){
 }
 
 Event EventBase::get_event(){
-  Event event = this->_pending_events.peek();
+  Event * event = this->_pending_events.peek();
   this->_pending_events.dequeue();
 
-  return event;
+  return *event;
 }
 
 bool EventBase::is_full() {

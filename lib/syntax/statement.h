@@ -19,8 +19,8 @@ public:
 
    virtual ~Statement();
 
-   bool is_equal_to(unsigned char name) const {
-     return (this->_name == name);
+   bool is_equal_to(Statement stm) const {
+     return (this->_name == stm.get_name());
    }
 
    const unsigned char & get_name() const {

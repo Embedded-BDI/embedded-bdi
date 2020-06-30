@@ -26,10 +26,10 @@ public:
   virtual ~CircularBuffer();
 
   void init(int size);
-  void dequeue();
-  void enqueue(X x);
-  X peek();
-  X item(int index);
+  bool dequeue();
+  bool enqueue(X x);
+  X * peek();
+  X * item(int index);
   int size();
   int capacity();
   bool is_empty();
@@ -57,55 +57,53 @@ void CircularBuffer<X>::init(int size)
 
 // Utility function to remove _front element from the queue
 template <class X>
-void CircularBuffer<X>::dequeue()
+bool CircularBuffer<X>::dequeue()
 {
   // check for queue underflow
   if (is_empty())
   {
-    std::cout << "QUEUE ERROR: cannot dequeue empty queue" << std::endl;
-    return;
+    return false;
   }
 
   _front = (_front + 1) % _capacity;
   _count--;
+  return true;
 }
 
 // Utility function to add an item to the end of the queue
 template <class X>
-void CircularBuffer<X>::enqueue(X item)
+bool CircularBuffer<X>::enqueue(X item)
 {
   // check for queue overflow
   if (is_full())
   {
-    std::cout << "QUEUE ERROR: cannot queue full queue" << std::endl;
-    return;
+    return false;
   }
 
   _rear = (_rear + 1) % _capacity;
   _arr[_rear] = item;
   _count++;
+  return true;
 }
 
 // Utility function to return _front element in the queue
 template <class X>
-X CircularBuffer<X>::peek()
+X * CircularBuffer<X>::peek()
 {
   if (is_empty())
   {
-    std::cout << "QUEUE ERROR: cannot peek empty queue" << std::endl;
-    exit(EXIT_FAILURE);
+    return NULL;
   }
-  return _arr[_front];
+  return &_arr[_front];
 }
 
 template <class X>
-X CircularBuffer<X>::item(int index){
-  if (index < 0 || index >= _capacity)
+X * CircularBuffer<X>::item(int index){
+  if (index < 0 || index >= _count)
   {
-    std::cout << "QUEUE ERROR: index out of range";
-    exit(EXIT_FAILURE);
+    return NULL;
   } else {
-    return _arr[index];
+    return &_arr[index];
   }
 }
 

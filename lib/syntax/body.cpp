@@ -12,8 +12,9 @@ Body::Body() {}
 Body::~Body() {}
 
 bool Body::run_body(BeliefBase beliefs, EventBase events) {
-  IBodyInstruction instruction = this->_body.peek();
-  bool result = instruction.run_instruction(beliefs, events);
+  IBodyInstruction * instruction = this->_body.peek();
+
+  bool result = instruction->run_instruction(beliefs, events);
 
   this->_body.dequeue();
 
