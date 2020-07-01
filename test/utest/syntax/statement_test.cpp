@@ -14,11 +14,11 @@ protected:
 
 public:
   TStatement() {
-    stm = new Statement('a');
+    this->stm = new Statement('a');
   }
 
   virtual ~TStatement() {
-    delete stm;
+    delete this->stm;
   }
 };
 

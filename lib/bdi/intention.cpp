@@ -18,7 +18,7 @@ Intention::Intention(Plan plan, int size) {
 Intention::~Intention() {}
 
 void Intention::add_plan(Plan plan) {
-  if (!this->_plans.isFull())
+  if (!this->_plans.is_full())
   {
     this->_plans.push(plan.get_body());
   }

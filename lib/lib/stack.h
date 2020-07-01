@@ -15,9 +15,9 @@
 template <class X>
 class Stack
 {
-  X *arr;
-  int top;
-  int capacity;
+  X * _arr;
+  int _top;
+  int _capacity;
 
 public:
   Stack();
@@ -26,13 +26,13 @@ public:
 
   virtual ~Stack();
 
-  void push(X);
-  X pop();
-  X peek();
+  bool push(X);
+  X * pop();
+  X * peek();
 
   int size();
-  bool isEmpty();
-  bool isFull();
+  bool is_empty();
+  bool is_full();
 };
 
 template <class X>
@@ -40,55 +40,54 @@ Stack<X>::Stack(){}
 
 template <class X>
 Stack<X>::~Stack(){
-  delete[] arr;
+  delete[] _arr;
 }
 
+//
 template <class X>
 void Stack<X>::init(int size)
 {
-  arr = new X[size];
-  capacity = size;
-  top = -1;
+  _arr = new X[size];
+  _capacity = size;
+  _top = -1;
 }
 
 // function to add an element x in the Stack
 template <class X>
-void Stack<X>::push(X item)
+bool Stack<X>::push(X item)
 {
-  if (isFull())
+  if (is_full())
   {
-    std::cout << "Stack ERROR: cannot push to full Stack" << std::endl;
-    exit(EXIT_FAILURE);
+    return false;
   }
 
-  arr[++top] = item;
+  _arr[++_top] = item;
+  return true;
 }
 
 // function to pop top element from the Stack
 template <class X>
-X Stack<X>::pop()
+X * Stack<X>::pop()
 {
   // check for Stack underflow
-  if (isEmpty())
+  if (is_empty())
   {
-    std::cout << "Stack ERROR: cannot pop from empty Stack" << std::endl;
-    exit(EXIT_FAILURE);
+    return NULL;
   }
 
   // decrease Stack size by 1 and (optionally) return the popped element
-  return arr[top--];
+  return &_arr[_top--];
 }
 
 // function to return top element in a Stack
 template <class X>
-X Stack<X>::peek()
+X * Stack<X>::peek()
 {
-  if (!isEmpty())
+  if (!is_empty())
   {
-    return arr[top];
+    return &_arr[_top];
   } else {
-    std::cout << "Stack ERROR: cannot peek empty Stack" << std::endl;
-    exit(EXIT_FAILURE);
+    return NULL;
   }
 }
 
@@ -96,21 +95,21 @@ X Stack<X>::peek()
 template <class X>
 int Stack<X>::size()
 {
-  return top + 1;
+  return _top + 1;
 }
 
 // Utility function to check if the Stack is empty or not
 template <class X>
-bool Stack<X>::isEmpty()
+bool Stack<X>::is_empty()
 {
-  return top == -1;
+  return _top == -1;
 }
 
 // Utility function to check if the Stack is full or not
 template <class X>
-bool Stack<X>::isFull()
+bool Stack<X>::is_full()
 {
-  return top == capacity - 1;
+  return _top == _capacity - 1;
 }
 
 #endif /* LIB_Stack_H_ */

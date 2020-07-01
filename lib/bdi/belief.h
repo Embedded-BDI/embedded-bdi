@@ -13,12 +13,12 @@ class Belief {
 private:
   Statement _statement;
   bool _belief_state;
-  bool (*_update)();
+  bool (*_update)(bool var);
 
 public:
   Belief();
 
-  Belief(Statement stm, bool (*update_function)(), bool belief_state = false);
+  Belief(Statement stm, bool (*update_function)(bool var), bool belief_state = false);
 
   virtual ~Belief();
 
@@ -27,7 +27,11 @@ public:
   void change_state(bool state);
 
   const Statement& get_statement() const {
-    return _statement;
+    return this->_statement;
+  }
+
+  bool get_state() {
+    return this->_belief_state;
   }
 };
 

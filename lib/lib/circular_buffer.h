@@ -26,12 +26,12 @@ public:
   virtual ~CircularBuffer();
 
   void init(int size);
-  bool dequeue();
   bool enqueue(X x);
-  X * peek();
+  bool dequeue();
   X * item(int index);
-  int size();
+  X * peek();
   int capacity();
+  int size();
   bool is_empty();
   bool is_full();
 };
@@ -55,21 +55,6 @@ void CircularBuffer<X>::init(int size)
   _count = 0;
 }
 
-// Utility function to remove _front element from the queue
-template <class X>
-bool CircularBuffer<X>::dequeue()
-{
-  // check for queue underflow
-  if (is_empty())
-  {
-    return false;
-  }
-
-  _front = (_front + 1) % _capacity;
-  _count--;
-  return true;
-}
-
 // Utility function to add an item to the end of the queue
 template <class X>
 bool CircularBuffer<X>::enqueue(X item)
@@ -86,15 +71,19 @@ bool CircularBuffer<X>::enqueue(X item)
   return true;
 }
 
-// Utility function to return _front element in the queue
+// Utility function to remove _front element from the queue
 template <class X>
-X * CircularBuffer<X>::peek()
+bool CircularBuffer<X>::dequeue()
 {
+  // check for queue underflow
   if (is_empty())
   {
-    return NULL;
+    return false;
   }
-  return &_arr[_front];
+
+  _front = (_front + 1) % _capacity;
+  _count--;
+  return true;
 }
 
 template <class X>
@@ -107,11 +96,15 @@ X * CircularBuffer<X>::item(int index){
   }
 }
 
-// Utility function to return the size of the queue
+// Utility function to return _front element in the queue
 template <class X>
-int CircularBuffer<X>::size()
+X * CircularBuffer<X>::peek()
 {
-  return _count;
+  if (is_empty())
+  {
+    return NULL;
+  }
+  return &_arr[_front];
 }
 
 // Utility function to return the size of the queue
@@ -119,6 +112,13 @@ template <class X>
 int CircularBuffer<X>::capacity()
 {
   return _capacity;
+}
+
+// Utility function to return the size of the queue
+template <class X>
+int CircularBuffer<X>::size()
+{
+  return _count;
 }
 
 // Utility function to check if the queue is empty or not
