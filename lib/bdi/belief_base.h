@@ -15,8 +15,7 @@
 
 class BeliefBase {
 private:
-  CircularBuffer<Belief> _belief_base;
-  int _size;
+  CircularBuffer<Belief> * _belief_base;
 
 public:
 //  BeliefBase();
@@ -25,12 +24,14 @@ public:
 
   virtual ~BeliefBase();
 
-  void update(EventBase event_base);
+  void add_belief(Belief belief);
+
+  void update(EventBase * event_base);
 
   void change_belief_state(Statement stm, bool state);
 
   const int& get_size() const {
-    return this->_size;
+    return _belief_base->capacity();
   }};
 
 #endif /* CLASSES_BELIEFBASE_H_ */

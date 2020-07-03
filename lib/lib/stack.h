@@ -40,7 +40,7 @@ Stack<X>::Stack(){}
 
 template <class X>
 Stack<X>::~Stack(){
-  delete[] _arr;
+  delete [] _arr;
 }
 
 //

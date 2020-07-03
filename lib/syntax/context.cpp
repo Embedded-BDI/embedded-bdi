@@ -13,7 +13,7 @@ Context::Context() {
 }
 
 //Context::Context(CircularBuffer<ILiteral> ctx){
-//  this->_context = ctx;
+//  _context = ctx;
 //}
 
 Context::~Context() {

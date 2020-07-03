@@ -10,17 +10,17 @@
 IntentionBase::IntentionBase() {} // @suppress("Class members should be properly initialized")
 
 IntentionBase::IntentionBase(int buffer_size, int stack_size) {
-  this->_buffer_size = buffer_size;
-  this->_stack_size = stack_size;
+  _buffer_size = buffer_size;
+  _stack_size = stack_size;
 }
 
 IntentionBase::~IntentionBase() {}
 
 void IntentionBase::add_intention(Plan plan) {
-  if (!this->_intention_base.is_full())
+  if (!_intention_base.is_full())
   {
-    Intention intention(plan, this->_stack_size);
-    this->_intention_base.enqueue(intention);
+    Intention intention(plan, _stack_size);
+    _intention_base.enqueue(intention);
   }
 }
 

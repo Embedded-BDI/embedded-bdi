@@ -10,17 +10,17 @@
 Intention::Intention() {} // @suppress("Class members should be properly initialized")
 
 Intention::Intention(Plan plan, int size) {
-  this->_size = size;
-  this->_plans.init(size);
-  this->_plans.push(plan.get_body());
+  _size = size;
+  _plans.init(size);
+  _plans.push(plan.get_body());
 }
 
 Intention::~Intention() {}
 
 void Intention::add_plan(Plan plan) {
-  if (!this->_plans.is_full())
+  if (!_plans.is_full())
   {
-    this->_plans.push(plan.get_body());
+    _plans.push(plan.get_body());
   }
 }
 

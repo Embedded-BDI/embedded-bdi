@@ -26,12 +26,12 @@ public:
 
   void change_state(bool state);
 
-  const Statement& get_statement() const {
-    return this->_statement;
+  const Statement & get_statement() const {
+    return _statement;
   }
 
   bool get_state() {
-    return this->_belief_state;
+    return _belief_state;
   }
 };
 

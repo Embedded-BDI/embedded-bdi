@@ -13,10 +13,10 @@ Plan::Plan() {
 }
 
 Plan::Plan(EventOperator op, Statement statement, Context context, Body body){
-   this->_operator = op;
-   this->_statement = statement;
-   this->_context = context;
-   this->_body = body;
+   _operator = op;
+   _statement = statement;
+   _context = context;
+   _body = body;
 }
 
 Plan::~Plan() {
@@ -24,10 +24,10 @@ Plan::~Plan() {
 }
 
 bool Plan::run_body(BeliefBase beliefs, EventBase events) {
-  return this->_body.run_body(beliefs, events);
+  return _body.run_body(beliefs, events);
 }
 
 Plan Plan::clone() {
-  Plan plan(this->_operator, this->_statement, this->_context, this->_body);
+  Plan plan(_operator, _statement, _context, _body);
   return plan;
 }

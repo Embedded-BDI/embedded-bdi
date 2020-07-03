@@ -33,15 +33,15 @@ public:
   Plan clone();
 
   Body get_body() const {
-     return this->_body;
+     return _body;
   }
 
   Context get_context() const {
-     return this->_context;
+     return _context;
   }
 
   Statement get_event() const {
-     return this->_statement;
+     return _statement;
   }
 };
 

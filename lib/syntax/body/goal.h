@@ -21,20 +21,22 @@ private:
 public:
   Goal();
 
-  Goal(EventOperator::EventType op, Statement stm);
+  Goal(Statement stm, EventOperator::EventType event_type, BeliefBase * belief_base, EventBase * event_base);
 
   virtual ~Goal();
 
-  bool run_instruction(BeliefBase belief_base, EventBase event_base) override;
+  bool run_instruction() override;
 
-  IBodyInstruction::BodyType get_BodyType() override;
+  IBodyInstruction::BodyType get_BodyType() {
+    return _type;
+  }
 
   const EventOperator::EventType & get_operator() const {
-     return this->_operator;
+     return _operator;
   }
 
   const Statement & get_statement() const {
-     return this->_statement;
+     return _statement;
   }
 };
 

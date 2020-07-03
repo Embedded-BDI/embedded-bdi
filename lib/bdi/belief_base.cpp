@@ -10,31 +10,40 @@
 //BeliefBase::BeliefBase() {}
 
 BeliefBase::BeliefBase(int size) {
-  this->_belief_base.init(size);
-  this->_size = size;
+  _belief_base = new CircularBuffer<Belief>();
+  _belief_base->init(size);
 }
 
-BeliefBase::~BeliefBase() {}
+BeliefBase::~BeliefBase() {
+  delete _belief_base;
+}
 
-void BeliefBase::update(EventBase event_base){
-  for (int i=0; i < this->_size; i++)
+void BeliefBase::add_belief(Belief belief) {
+  if (!_belief_base->is_full())
   {
-    if (this->_belief_base.item(i)->update_belief())
+    _belief_base->enqueue(belief);
+  }
+}
+
+void BeliefBase::update(EventBase * event_base) {
+  for (int i=0; i < _belief_base->size(); i++)
+  {
+    if (_belief_base->item(i)->update_belief())
     {
-      if (!event_base.is_full())
+      if (!event_base->is_full())
       {
-        event_base.add_event(EventOperator::BELIEF_ADDITION, this->_belief_base.item(i)->get_statement());
+        event_base->add_event(EventOperator::BELIEF_ADDITION, _belief_base->item(i)->get_statement());
       }
     }
   }
 }
 
 void BeliefBase::change_belief_state(Statement stm, bool state) {
-  for (int i=0; i < this->_size; i++)
+  for (int i=0; i < _belief_base->size(); i++)
   {
-    if (this->_belief_base.item(i)->get_statement().is_equal_to(stm.get_name()))
+    if (_belief_base->item(i)->get_statement().is_equal_to(stm.get_name()))
     {
-      this->_belief_base.item(i)->change_state(state);
+      _belief_base->item(i)->change_state(state);
       break;
     }
   }

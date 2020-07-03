@@ -10,15 +10,18 @@
 
 class TCircularBuffer : public ::testing::Test {
 protected:
-  CircularBuffer<int> buffer;
+  CircularBuffer<int> * buffer;
   int size = 4;                                 // size must be 2 or higher
 
 public:
   TCircularBuffer() {
-    buffer.init(this->size);
+    buffer = new CircularBuffer<int>();
+    buffer->init(size);
   }
 
-  virtual ~TCircularBuffer() {}
+  virtual ~TCircularBuffer() {
+    delete buffer;
+  }
 };
 
 /*
@@ -27,9 +30,9 @@ public:
 TEST_F(TCircularBuffer, enqueue) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(buffer.enqueue(i));
+    EXPECT_TRUE(buffer->enqueue(i));
   }
-  EXPECT_FALSE(buffer.enqueue(size));
+  EXPECT_FALSE(buffer->enqueue(size));
 }
 
 /*
@@ -38,13 +41,13 @@ TEST_F(TCircularBuffer, enqueue) {
 TEST_F(TCircularBuffer, dequeue) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(buffer.enqueue(i));
+    EXPECT_TRUE(buffer->enqueue(i));
   }
   for(int i = size-1; i >= 0; i--)
   {
-    EXPECT_TRUE(buffer.dequeue());
+    EXPECT_TRUE(buffer->dequeue());
   }
-  EXPECT_FALSE(buffer.dequeue());
+  EXPECT_FALSE(buffer->dequeue());
 }
 
 /*
@@ -53,35 +56,35 @@ TEST_F(TCircularBuffer, dequeue) {
 TEST_F(TCircularBuffer, item) {
   for(int i = 0; i < size-1; i++)
   {
-    EXPECT_TRUE(buffer.enqueue(i));
+    EXPECT_TRUE(buffer->enqueue(i));
   }
   for(int i = 0; i < size-1; i++)
   {
-    EXPECT_EQ(i, *buffer.item(i));
+    EXPECT_EQ(i, *buffer->item(i));
   }
-  EXPECT_EQ(NULL, buffer.item(size));
-  EXPECT_EQ(NULL, buffer.item(size-1));
+  EXPECT_EQ(NULL, buffer->item(size));
+  EXPECT_EQ(NULL, buffer->item(size-1));
 }
 
 /*
  * Test enqueue some elements and peek to confirm values
  */
 TEST_F(TCircularBuffer, peek) {
-  EXPECT_TRUE(buffer.enqueue(0));
-  EXPECT_EQ(0, *buffer.peek());
-  EXPECT_TRUE(buffer.enqueue(1));
-  EXPECT_EQ(0, *buffer.peek());
-  EXPECT_TRUE(buffer.dequeue());
-  EXPECT_EQ(1, *buffer.peek());
-  EXPECT_TRUE(buffer.dequeue());
-  EXPECT_EQ(NULL, buffer.peek());
+  EXPECT_TRUE(buffer->enqueue(0));
+  EXPECT_EQ(0, *buffer->peek());
+  EXPECT_TRUE(buffer->enqueue(1));
+  EXPECT_EQ(0, *buffer->peek());
+  EXPECT_TRUE(buffer->dequeue());
+  EXPECT_EQ(1, *buffer->peek());
+  EXPECT_TRUE(buffer->dequeue());
+  EXPECT_EQ(NULL, buffer->peek());
 }
 
 /*
  * Test if capacity is correct
  */
 TEST_F(TCircularBuffer, capacity){
-  EXPECT_EQ(size, buffer.capacity());
+  EXPECT_EQ(size, buffer->capacity());
 }
 
 /*
@@ -90,8 +93,8 @@ TEST_F(TCircularBuffer, capacity){
 TEST_F(TCircularBuffer, size){
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(buffer.enqueue(i));
-    EXPECT_EQ(i+1, buffer.size());
+    EXPECT_TRUE(buffer->enqueue(i));
+    EXPECT_EQ(i+1, buffer->size());
   }
 }
 
@@ -99,11 +102,11 @@ TEST_F(TCircularBuffer, size){
  * Test if queue is empty on multiple cases
  */
 TEST_F(TCircularBuffer, is_empty) {
-  EXPECT_TRUE(buffer.is_empty());
+  EXPECT_TRUE(buffer->is_empty());
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(buffer.enqueue(i));
-    EXPECT_FALSE(buffer.is_empty());
+    EXPECT_TRUE(buffer->enqueue(i));
+    EXPECT_FALSE(buffer->is_empty());
   }
 }
 
@@ -113,8 +116,8 @@ TEST_F(TCircularBuffer, is_empty) {
 TEST_F(TCircularBuffer, is_full) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_FALSE(buffer.is_full());
-    EXPECT_TRUE(buffer.enqueue(i));
+    EXPECT_FALSE(buffer->is_full());
+    EXPECT_TRUE(buffer->enqueue(i));
   }
-  EXPECT_TRUE(buffer.is_full());
+  EXPECT_TRUE(buffer->is_full());
 }

@@ -21,13 +21,15 @@ private:
 public:
   BeliefOperation();
 
-  BeliefOperation(Statement statement, EventOperator::EventType event_type);
+  BeliefOperation(Statement stm, EventOperator::EventType event_type, BeliefBase * belief_base, EventBase * event_base);
 
   virtual ~BeliefOperation();
 
-  bool run_instruction(BeliefBase belief_base, EventBase event_base) override;
+  bool run_instruction() override;
 
-  IBodyInstruction::BodyType get_BodyType() override;
+  IBodyInstruction::BodyType get_BodyType() {
+    return _type;
+  }
 };
 
 #endif /* SYNTAX_BODY_BELIEF_OPERATION_H_ */

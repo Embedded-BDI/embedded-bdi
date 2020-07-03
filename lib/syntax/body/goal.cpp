@@ -9,17 +9,17 @@
 
 Goal::Goal() {} // @suppress("Class members should be properly initialized")
 
-Goal::Goal(EventOperator::EventType op, Statement stm) {
-  this->_operator = op;
-  this->_statement = stm;
+Goal::Goal(Statement stm, EventOperator::EventType event_type, BeliefBase * belief_base, EventBase * event_base) {
+  _operator = event_type;
+  _statement = stm;
+  _belief_base = belief_base;
+  _event_base = event_base;
 }
 
 Goal::~Goal() {}
 
-bool Goal::run_instruction(BeliefBase belief_base, EventBase event_base) {
-  return event_base.add_event(this->_operator, this->_statement);
+bool Goal::run_instruction() {
+  return _event_base->add_event(_operator, _statement);
 }
 
-IBodyInstruction::BodyType Goal::get_BodyType() {
-  return this->_type;
-}
+

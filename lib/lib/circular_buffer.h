@@ -42,7 +42,7 @@ CircularBuffer<X>::CircularBuffer(){} // @suppress("Class members should be prop
 template <class X>
 CircularBuffer<X>::~CircularBuffer()
 {
-   delete _arr;
+   delete [] _arr;
 }
 
 template <class X>

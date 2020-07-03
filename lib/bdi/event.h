@@ -24,11 +24,11 @@ public:
    virtual ~Event();
 
    const EventOperator::EventType & get_operator() const {
-      return this->_operator;
+      return _operator;
    }
 
    const Statement & get_statement() const {
-      return this->_statement;
+      return _statement;
    }
 };
 

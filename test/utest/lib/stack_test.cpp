@@ -10,15 +10,18 @@
 
 class TStack : public ::testing::Test {
 protected:
-  Stack<int> stack;
+  Stack<int> * stack;
   int size = 4;                                 // size must be 2 or higher
 
 public:
   TStack() {
-    stack.init(this->size);
+    stack = new Stack<int>();
+    stack->init(this->size);
   }
 
-  virtual ~TStack() {}
+  virtual ~TStack() {
+    delete stack;
+  }
 };
 
 /*
@@ -27,9 +30,9 @@ public:
 TEST_F(TStack, push) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(stack.push(i));
+    EXPECT_TRUE(stack->push(i));
   }
-  EXPECT_FALSE(stack.push(0));
+  EXPECT_FALSE(stack->push(0));
 }
 
 /*
@@ -38,13 +41,13 @@ TEST_F(TStack, push) {
 TEST_F(TStack, pop) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(stack.push(i));
+    EXPECT_TRUE(stack->push(i));
   }
   for(int i = size-1; i >= 0; i--)
   {
-    EXPECT_EQ(i, *stack.pop());
+    EXPECT_EQ(i, *stack->pop());
   }
-  EXPECT_EQ(NULL, stack.pop());
+  EXPECT_EQ(NULL, stack->pop());
 }
 
 /*
@@ -53,13 +56,13 @@ TEST_F(TStack, pop) {
 TEST_F(TStack, peek) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(stack.push(i));
-    EXPECT_EQ(i, *stack.peek());
+    EXPECT_TRUE(stack->push(i));
+    EXPECT_EQ(i, *stack->peek());
   }
   for(int i = size-1; i >= 0; i--)
   {
-    EXPECT_EQ(i, *stack.peek());
-    EXPECT_EQ(i, *stack.pop());
+    EXPECT_EQ(i, *stack->peek());
+    EXPECT_EQ(i, *stack->pop());
   }
 }
 
@@ -69,8 +72,8 @@ TEST_F(TStack, peek) {
 TEST_F(TStack, size) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(stack.push(i));
-    EXPECT_EQ(i+1, stack.size());
+    EXPECT_TRUE(stack->push(i));
+    EXPECT_EQ(i+1, stack->size());
   }
 }
 
@@ -78,11 +81,11 @@ TEST_F(TStack, size) {
  * Test if stack is empty on multiple cases
  */
 TEST_F(TStack, is_empty) {
-  EXPECT_TRUE(stack.is_empty());
+  EXPECT_TRUE(stack->is_empty());
   for(int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(stack.push(i));
-    EXPECT_FALSE(stack.is_empty());
+    EXPECT_TRUE(stack->push(i));
+    EXPECT_FALSE(stack->is_empty());
   }
 }
 
@@ -92,8 +95,8 @@ TEST_F(TStack, is_empty) {
 TEST_F(TStack, is_full) {
   for(int i = 0; i < size; i++)
   {
-    EXPECT_FALSE(stack.is_full());
-    EXPECT_TRUE(stack.push(i));
+    EXPECT_FALSE(stack->is_full());
+    EXPECT_TRUE(stack->push(i));
   }
-  EXPECT_TRUE(stack.is_full());
+  EXPECT_TRUE(stack->is_full());
 }

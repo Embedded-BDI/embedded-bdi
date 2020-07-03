@@ -14,20 +14,22 @@
 
 class Action : public Statement, IBodyInstruction {
 private:
-  bool (*_take_action)();
+  bool (*_take_action)(BeliefBase * belief_base);
   Statement _statement;
   IBodyInstruction::BodyType _type = IBodyInstruction::ACTION;
 
 public:
   Action();
 
-  Action(Statement statement, bool (*take_action_function)());
+  Action(Statement stm, bool (*take_action_function)(BeliefBase * belief_base), BeliefBase * belief_base, EventBase * event_base);
 
   virtual ~Action();
 
-  bool run_instruction(BeliefBase belief_base, EventBase event_base) override;
+  bool run_instruction() override;
 
-  IBodyInstruction::BodyType get_BodyType() override;
+  IBodyInstruction::BodyType get_BodyType() {
+    return _type;
+  }
 };
 
 #endif /* SYNTAX_ACTION_H_ */

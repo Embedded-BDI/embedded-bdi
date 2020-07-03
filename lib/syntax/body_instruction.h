@@ -12,6 +12,10 @@
 #include "../bdi/event_base.h"
 
 class IBodyInstruction {
+protected:
+  BeliefBase * _belief_base;
+  EventBase * _event_base;
+
 public:
   enum BodyType { ACTION, GOAL, BELIEF };
 
@@ -19,7 +23,7 @@ public:
 
   virtual ~IBodyInstruction();
 
-  virtual bool run_instruction(BeliefBase belief_base, EventBase event_base) { return true; }
+  virtual bool run_instruction() { return true; }
 
   virtual IBodyInstruction::BodyType get_BodyType() { return  BodyType::ACTION; }
 };
