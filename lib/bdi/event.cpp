@@ -9,7 +9,7 @@
 
 Event::Event() {} // @suppress("Class members should be properly initialized")
 
-Event::Event(EventOperator::EventType op, Statement stm){
+Event::Event(EventOperator op, Statement stm){
    _operator = op;
    _statement = stm;
 }

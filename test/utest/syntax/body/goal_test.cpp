@@ -22,7 +22,7 @@ public:
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
 
-    goal = new Goal(stm, EventOperator::EventType::GOAL_ADDITION, bb, eb);
+    goal = new Goal(stm, EventOperator::GOAL_ADDITION, bb, eb);
   }
 
   virtual ~TGoal() {
@@ -48,14 +48,14 @@ TEST_F(TGoal, run_instruction) {
  * Test body type return
  */
 TEST_F(TGoal, get_BodyType) {
-  EXPECT_EQ(IBodyInstruction::BodyType::GOAL, goal->get_BodyType());
+  EXPECT_EQ(BodyType::GOAL, goal->get_BodyType());
 }
 
 /*
  * Test operator return
  */
 TEST_F(TGoal, get_operator) {
-  EXPECT_EQ(EventOperator::EventType::GOAL_ADDITION, goal->get_operator());
+  EXPECT_EQ(EventOperator::GOAL_ADDITION, goal->get_operator());
 }
 
 /*

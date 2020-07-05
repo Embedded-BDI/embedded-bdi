@@ -20,9 +20,7 @@ class Stack
   int _capacity;
 
 public:
-  Stack();
-
-  void init(int size); // constructor
+  Stack(int size);
 
   virtual ~Stack();
 
@@ -36,20 +34,15 @@ public:
 };
 
 template <class X>
-Stack<X>::Stack(){}
+Stack<X>::Stack(int size){
+  _arr = new X[size];
+  _capacity = size;
+  _top = -1;
+}
 
 template <class X>
 Stack<X>::~Stack(){
   delete [] _arr;
-}
-
-//
-template <class X>
-void Stack<X>::init(int size)
-{
-  _arr = new X[size];
-  _capacity = size;
-  _top = -1;
 }
 
 // function to add an element x in the Stack

@@ -15,16 +15,15 @@
 
 class PlanBase {
 private:
-  CircularBuffer<Plan> _plans;
+  CircularBuffer<Plan> * _plan_base;
+  BeliefBase * _belief_base;
 
 public:
-  PlanBase();
+  PlanBase(int size, BeliefBase * beliefs);
 
   virtual ~PlanBase();
 
-  CircularBuffer<Plan> revise(BeliefBase beliefs, Event event);
-
-  Plan select();
+  Plan * revise(Event * event);
 };
 
 #endif /* BDI_PLAN_BASE_H_ */

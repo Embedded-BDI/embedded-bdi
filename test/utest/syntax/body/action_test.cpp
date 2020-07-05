@@ -57,6 +57,6 @@ TEST_F(TAction, run_instruction) {
  * Test body type return
  */
 TEST_F(TAction, get_body_type) {
-  EXPECT_EQ(IBodyInstruction::ACTION, action_true->get_BodyType());
-  EXPECT_EQ(IBodyInstruction::ACTION, action_false->get_BodyType());
+  EXPECT_EQ(BodyType::ACTION, action_true->get_BodyType());
+  EXPECT_EQ(BodyType::ACTION, action_false->get_BodyType());
 }

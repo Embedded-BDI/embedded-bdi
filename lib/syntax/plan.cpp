@@ -26,8 +26,3 @@ Plan::~Plan() {
 bool Plan::run_body(BeliefBase beliefs, EventBase events) {
   return _body.run_body(beliefs, events);
 }
-
-Plan Plan::clone() {
-  Plan plan(_operator, _statement, _context, _body);
-  return plan;
-}

@@ -7,15 +7,13 @@
 
 #include "plan_base.h"
 
-PlanBase::PlanBase() {
-  // TODO Auto-generated constructor stub
-
+PlanBase::PlanBase(int size, BeliefBase * beliefs) {
+  _belief_base = beliefs;
+  _plan_base = new CircularBuffer<Plan>(size);
 }
 
 PlanBase::~PlanBase() {
-  // TODO Auto-generated destructor stub
+  delete _plan_base;
 }
 
-CircularBuffer<Plan> PlanBase::revise(BeliefBase beliefs, Event event){} // @suppress("No return")
-
-Plan PlanBase::select() {}
+Plan * PlanBase::revise(Event * event){} // @suppress("No return")

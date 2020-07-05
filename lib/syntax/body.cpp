@@ -12,15 +12,15 @@ Body::Body() {}
 Body::~Body() {}
 
 bool Body::run_body(BeliefBase beliefs, EventBase events) {
-  IBodyInstruction * instruction = _body.peek();
+  IBodyInstruction * instruction = _body->peek();
 
   bool result = instruction->run_instruction();
 
-  _body.dequeue();
+  _body->dequeue();
 
   return result;
 }
 
 bool Body::is_finished() {
-  return _body.size() == 0;
+  return _body->size() == 0;
 }

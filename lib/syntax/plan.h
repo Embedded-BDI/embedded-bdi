@@ -11,7 +11,7 @@
 #include "../bdi/event_base.h"
 #include "body.h"
 #include "context.h"
-#include "event_operator.h"
+//#include "event_operator.h"
 #include "statement.h"
 
 class Plan {
@@ -29,8 +29,6 @@ public:
   virtual ~Plan();
 
   bool run_body(BeliefBase beliefs, EventBase events);
-
-  Plan clone();
 
   Body get_body() const {
      return _body;

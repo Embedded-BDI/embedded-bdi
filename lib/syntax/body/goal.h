@@ -9,29 +9,28 @@
 #define SYNTAX_GOAL_H_
 
 #include "../body_instruction.h"
-#include "../event_operator.h"
 #include "../statement.h"
 
 class Goal : IBodyInstruction {
 private:
-  EventOperator::EventType _operator;
+  EventOperator _operator;
   Statement _statement;
-  IBodyInstruction::BodyType _type = IBodyInstruction::GOAL;
+  BodyType _type = BodyType::GOAL;
 
 public:
   Goal();
 
-  Goal(Statement stm, EventOperator::EventType event_type, BeliefBase * belief_base, EventBase * event_base);
+  Goal(Statement stm, EventOperator event_type, BeliefBase * belief_base, EventBase * event_base);
 
   virtual ~Goal();
 
   bool run_instruction() override;
 
-  IBodyInstruction::BodyType get_BodyType() {
+  BodyType get_BodyType() {
     return _type;
   }
 
-  const EventOperator::EventType & get_operator() const {
+  const EventOperator & get_operator() const {
      return _operator;
   }
 

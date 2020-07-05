@@ -15,8 +15,7 @@ protected:
 
 public:
   TStack() {
-    stack = new Stack<int>();
-    stack->init(this->size);
+    stack = new Stack<int>(size);
   }
 
   virtual ~TStack() {

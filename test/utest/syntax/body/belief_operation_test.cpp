@@ -22,7 +22,7 @@ public:
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
 
-    belief_operation = new BeliefOperation(stm, EventOperator::EventType::BELIEF_ADDITION, bb, eb);
+    belief_operation = new BeliefOperation(stm, EventOperator::BELIEF_ADDITION, bb, eb);
   }
 
   virtual ~TBeliefOperation() {
@@ -48,5 +48,5 @@ TEST_F(TBeliefOperation, run_instruction) {
  * Test body type return
  */
 TEST_F(TBeliefOperation, get_BodyTyoe) {
-  EXPECT_EQ(IBodyInstruction::BodyType::BELIEF, belief_operation->get_BodyType());
+  EXPECT_EQ(BodyType::BELIEF, belief_operation->get_BodyType());
 }

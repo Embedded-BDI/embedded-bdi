@@ -8,22 +8,22 @@
 #ifndef SYNTAX_EVENT_H_
 #define SYNTAX_EVENT_H_
 
-#include "../syntax/event_operator.h"
+#include "../lib/enum_types.h"
 #include "../syntax/statement.h"
 
 class Event {
 private:
-   EventOperator::EventType _operator;
+   EventOperator _operator;
    Statement _statement;
 
 public:
    Event();
 
-   Event(EventOperator::EventType op, Statement stm);
+   Event(EventOperator op, Statement stm);
 
    virtual ~Event();
 
-   const EventOperator::EventType & get_operator() const {
+   const EventOperator & get_operator() const {
       return _operator;
    }
 

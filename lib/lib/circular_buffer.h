@@ -22,7 +22,7 @@ class CircularBuffer
   int _count;    // current size of the queue
 
 public:
-  CircularBuffer();    // constructor
+  CircularBuffer(int size);    // constructor
   virtual ~CircularBuffer();
 
   void init(int size);
@@ -37,22 +37,18 @@ public:
 };
 
 template <class X>
-CircularBuffer<X>::CircularBuffer(){} // @suppress("Class members should be properly initialized")
-
-template <class X>
-CircularBuffer<X>::~CircularBuffer()
-{
-   delete [] _arr;
-}
-
-template <class X>
-void CircularBuffer<X>::init(int size)
-{
+CircularBuffer<X>::CircularBuffer(int size){
   _arr = new X[size];
   _capacity = size;
   _front = 0;
   _rear = -1;
   _count = 0;
+}
+
+template <class X>
+CircularBuffer<X>::~CircularBuffer()
+{
+   delete [] _arr;
 }
 
 // Utility function to add an item to the end of the queue

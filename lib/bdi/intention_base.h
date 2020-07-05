@@ -16,20 +16,21 @@
 
 class IntentionBase {
 private:
-  CircularBuffer<Intention> _intention_base;
+  CircularBuffer<Intention> * _intention_base;
+  BeliefBase * _belief_base;
+  EventBase * _event_base;
   int _buffer_size;
-  int _stack_size;
 
 public:
   IntentionBase();
 
-  IntentionBase(int buffer_size, int stack_size);
+  IntentionBase(int buffer_size, int stack_size, BeliefBase * beliefs, EventBase * events);
 
   virtual ~IntentionBase();
 
-  void add_intention(Plan plan);
+  void add_intention(Plan * plan);
 
-  void run_intention_base(BeliefBase beliefs, EventBase events);
+  void run_intention_base();
 };
 
 #endif /* BDI_INTENTION_BASE_H_ */

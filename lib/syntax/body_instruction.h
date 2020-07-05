@@ -17,15 +17,13 @@ protected:
   EventBase * _event_base;
 
 public:
-  enum BodyType { ACTION, GOAL, BELIEF };
+  IBodyInstruction() {};
 
-  IBodyInstruction();
-
-  virtual ~IBodyInstruction();
+  virtual ~IBodyInstruction() {};
 
   virtual bool run_instruction() { return true; }
 
-  virtual IBodyInstruction::BodyType get_BodyType() { return  BodyType::ACTION; }
+  virtual BodyType get_BodyType() { return  BodyType::ACTION; }
 };
 
 #endif /* SYNTAX_BODY_INSTRUCTION_H_ */

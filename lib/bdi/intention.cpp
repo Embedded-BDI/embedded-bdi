@@ -11,19 +11,28 @@ Intention::Intention() {} // @suppress("Class members should be properly initial
 
 Intention::Intention(Plan plan, int size) {
   _size = size;
-  _plans.init(size);
-  _plans.push(plan.get_body());
+  _plans = new Stack<Plan>(size);
+  _suspended = false;
 }
 
-Intention::~Intention() {}
-
-void Intention::add_plan(Plan plan) {
-  if (!_plans.is_full())
-  {
-    _plans.push(plan.get_body());
-  }
+Intention::~Intention() {
+  delete _plans;
 }
+
+void Intention::add_plan(Plan * plan) {}
 
 bool Intention::run_intention(BeliefBase beliefs, EventBase events) { return true; }
+
+void Intention::suspend() {
+  _suspended = true;
+}
+
+void Intention::unsuspend() {
+  _suspended = false;
+}
+
+bool Intention::is_suspended() {
+  return _suspended;
+}
 
 bool Intention::is_finished() const{ return true; }

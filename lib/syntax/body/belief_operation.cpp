@@ -9,7 +9,7 @@
 
 BeliefOperation::BeliefOperation() {}
 
-BeliefOperation::BeliefOperation(Statement stm, EventOperator::EventType event_type, BeliefBase * belief_base, EventBase * event_base) {
+BeliefOperation::BeliefOperation(Statement stm, EventOperator event_type, BeliefBase * belief_base, EventBase * event_base) {
   _statement = stm;
   _operator = event_type;
   _belief_base = belief_base;

@@ -15,8 +15,7 @@ protected:
 
 public:
   TCircularBuffer() {
-    buffer = new CircularBuffer<int>();
-    buffer->init(size);
+    buffer = new CircularBuffer<int>(size);
   }
 
   virtual ~TCircularBuffer() {

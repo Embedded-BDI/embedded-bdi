@@ -14,7 +14,7 @@
 #include "../lib/circular_buffer.h"
 
 class Body {
-  CircularBuffer<IBodyInstruction> _body;
+  CircularBuffer<IBodyInstruction> * _body;
 
 public:
   Body();

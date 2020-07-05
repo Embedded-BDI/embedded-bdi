@@ -16,7 +16,7 @@ class Action : public Statement, IBodyInstruction {
 private:
   bool (*_take_action)(BeliefBase * belief_base);
   Statement _statement;
-  IBodyInstruction::BodyType _type = IBodyInstruction::ACTION;
+  BodyType _type = BodyType::ACTION;
 
 public:
   Action();
@@ -27,7 +27,7 @@ public:
 
   bool run_instruction() override;
 
-  IBodyInstruction::BodyType get_BodyType() {
+  BodyType get_BodyType() {
     return _type;
   }
 };

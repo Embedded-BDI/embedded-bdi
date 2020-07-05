@@ -7,21 +7,21 @@
 
 #include "belief_base.h"
 
-//BeliefBase::BeliefBase() {}
-
 BeliefBase::BeliefBase(int size) {
-  _belief_base = new CircularBuffer<Belief>();
-  _belief_base->init(size);
+  _belief_base = new CircularBuffer<Belief>(size);
 }
 
 BeliefBase::~BeliefBase() {
   delete _belief_base;
 }
 
-void BeliefBase::add_belief(Belief belief) {
+bool BeliefBase::add_belief(Belief belief) {
   if (!_belief_base->is_full())
   {
     _belief_base->enqueue(belief);
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -32,19 +32,31 @@ void BeliefBase::update(EventBase * event_base) {
     {
       if (!event_base->is_full())
       {
-        event_base->add_event(EventOperator::BELIEF_ADDITION, _belief_base->item(i)->get_statement());
+        if (_belief_base->item(i)->get_state())
+        {
+          // Add Event for BELIEF_ADDITION if belief is changed to true
+          event_base->add_event(
+            EventOperator::BELIEF_ADDITION, _belief_base->item(i)->get_statement()
+          );
+        } else {
+          // Add Event for BELIEF_DELETION if belief is changed to false
+          event_base->add_event(
+            EventOperator::BELIEF_DELETION, _belief_base->item(i)->get_statement()
+          );
+        }
       }
     }
   }
 }
 
-void BeliefBase::change_belief_state(Statement stm, bool state) {
+bool BeliefBase::change_belief_state(Statement stm, bool state) {
   for (int i=0; i < _belief_base->size(); i++)
   {
     if (_belief_base->item(i)->get_statement().is_equal_to(stm.get_name()))
     {
       _belief_base->item(i)->change_state(state);
-      break;
+      return true;
     }
   }
+  return false;
 }

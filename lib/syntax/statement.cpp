@@ -14,7 +14,3 @@ Statement::Statement(unsigned char name) { // @suppress("Class members should be
 }
 
 Statement::~Statement() {}
-
-//bool Statement::is_equal_to(unsigned char name) {
-//  return (_name == name);
-//}

@@ -15,8 +15,9 @@
 
 class Intention {
 private:
-  Stack<Body> _plans;
+  Stack<Plan> * _plans;
   int _size;
+  bool _suspended;
 
 public:
   Intention();
@@ -25,11 +26,17 @@ public:
 
   virtual ~Intention();
 
-  void add_plan(Plan plan);
+  void add_plan(Plan * plan);
 
   bool stack_plan(Plan plan);
 
   bool run_intention(BeliefBase beliefs, EventBase events);
+
+  void suspend();
+
+  void unsuspend();
+
+  bool is_suspended();
 
   bool is_finished() const;
 };

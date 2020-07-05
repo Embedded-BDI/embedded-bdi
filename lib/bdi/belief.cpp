@@ -26,13 +26,6 @@ bool Belief::update_belief() {
   } else {
     return false;
   }
-//  if (_belief_state != 0)
-//  {
-//    _belief_state = _update();
-//    return _belief_state;
-//  } else {
-//    return false;
-//  }
 }
 
 void Belief::change_state(bool state) {

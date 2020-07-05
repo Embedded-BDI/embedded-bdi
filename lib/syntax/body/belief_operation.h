@@ -8,26 +8,25 @@
 #ifndef SYNTAX_BODY_BELIEF_OPERATION_H_
 #define SYNTAX_BODY_BELIEF_OPERATION_H_
 
-#include "../event_operator.h"
 #include "../body_instruction.h"
 #include "../statement.h"
 
 class BeliefOperation : IBodyInstruction {
 private:
-  EventOperator::EventType _operator;
+  EventOperator _operator;
   Statement _statement;
-  IBodyInstruction::BodyType _type = IBodyInstruction::BodyType::BELIEF;
+  BodyType _type = BodyType::BELIEF;
 
 public:
   BeliefOperation();
 
-  BeliefOperation(Statement stm, EventOperator::EventType event_type, BeliefBase * belief_base, EventBase * event_base);
+  BeliefOperation(Statement stm, EventOperator event_type, BeliefBase * belief_base, EventBase * event_base);
 
   virtual ~BeliefOperation();
 
   bool run_instruction() override;
 
-  IBodyInstruction::BodyType get_BodyType() {
+  BodyType get_BodyType() {
     return _type;
   }
 };
