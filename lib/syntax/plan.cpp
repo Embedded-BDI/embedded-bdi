@@ -7,12 +7,10 @@
 
 #include "plan.h"
 
-Plan::Plan() {
-  // TODO Auto-generated constructor stub
+Plan::Plan() {}
 
-}
-
-Plan::Plan(EventOperator op, Statement statement, Context context, Body body){
+Plan::Plan(EventOperator op, Statement statement, Context context, Body body)
+{
    _operator = op;
    _statement = statement;
    _context = context;
@@ -23,6 +21,7 @@ Plan::~Plan() {
   // TODO Auto-generated destructor stub
 }
 
-bool Plan::run_body(BeliefBase beliefs, EventBase events) {
+bool Plan::run_body(BeliefBase beliefs, EventBase events)
+{
   return _body.run_body(beliefs, events);
 }

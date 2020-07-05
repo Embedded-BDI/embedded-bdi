@@ -34,14 +34,16 @@ public:
 };
 
 template <class X>
-Stack<X>::Stack(int size){
+Stack<X>::Stack(int size)
+{
   _arr = new X[size];
   _capacity = size;
   _top = -1;
 }
 
 template <class X>
-Stack<X>::~Stack(){
+Stack<X>::~Stack()
+{
   delete [] _arr;
 }
 

@@ -8,17 +8,20 @@
 #include "gtest/gtest.h"
 #include "lib/circular_buffer.h"
 
-class TCircularBuffer : public ::testing::Test {
+class TCircularBuffer : public ::testing::Test
+{
 protected:
   CircularBuffer<int> * buffer;
   int size = 4;                                 // size must be 2 or higher
 
 public:
-  TCircularBuffer() {
+  TCircularBuffer()
+  {
     buffer = new CircularBuffer<int>(size);
   }
 
-  virtual ~TCircularBuffer() {
+  virtual ~TCircularBuffer()
+  {
     delete buffer;
   }
 };
@@ -26,7 +29,8 @@ public:
 /*
  * Test enqueue elements until queue is full
  */
-TEST_F(TCircularBuffer, enqueue) {
+TEST_F(TCircularBuffer, enqueue)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
@@ -37,7 +41,8 @@ TEST_F(TCircularBuffer, enqueue) {
 /*
  * Test enqueue and dequeue elements and confirm that queue is empty
  */
-TEST_F(TCircularBuffer, dequeue) {
+TEST_F(TCircularBuffer, dequeue)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
@@ -52,7 +57,8 @@ TEST_F(TCircularBuffer, dequeue) {
 /*
  * Test enqueue some elements and query by index to confirm values
  */
-TEST_F(TCircularBuffer, item) {
+TEST_F(TCircularBuffer, item)
+{
   for(int i = 0; i < size-1; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
@@ -68,7 +74,8 @@ TEST_F(TCircularBuffer, item) {
 /*
  * Test enqueue some elements and peek to confirm values
  */
-TEST_F(TCircularBuffer, peek) {
+TEST_F(TCircularBuffer, peek)
+{
   EXPECT_TRUE(buffer->enqueue(0));
   EXPECT_EQ(0, *buffer->peek());
   EXPECT_TRUE(buffer->enqueue(1));
@@ -82,14 +89,16 @@ TEST_F(TCircularBuffer, peek) {
 /*
  * Test if capacity is correct
  */
-TEST_F(TCircularBuffer, capacity){
+TEST_F(TCircularBuffer, capacity)
+{
   EXPECT_EQ(size, buffer->capacity());
 }
 
 /*
  * Test if size is changed correctly
  */
-TEST_F(TCircularBuffer, size){
+TEST_F(TCircularBuffer, size)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
@@ -100,7 +109,8 @@ TEST_F(TCircularBuffer, size){
 /*
  * Test if queue is empty on multiple cases
  */
-TEST_F(TCircularBuffer, is_empty) {
+TEST_F(TCircularBuffer, is_empty)
+{
   EXPECT_TRUE(buffer->is_empty());
   for(int i = 0; i < size; i++)
   {
@@ -112,7 +122,8 @@ TEST_F(TCircularBuffer, is_empty) {
 /*
  * Test if queue is full on multiple cases
  */
-TEST_F(TCircularBuffer, is_full) {
+TEST_F(TCircularBuffer, is_full)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_FALSE(buffer->is_full());

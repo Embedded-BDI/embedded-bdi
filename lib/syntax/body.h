@@ -13,7 +13,8 @@
 #include "../bdi/event_base.h"
 #include "../lib/circular_buffer.h"
 
-class Body {
+class Body
+{
   CircularBuffer<IBodyInstruction> * _body;
 
 public:

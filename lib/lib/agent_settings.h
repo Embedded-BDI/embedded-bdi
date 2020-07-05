@@ -8,7 +8,8 @@
 #ifndef LIB_AGENT_SETTINGS_H_
 #define LIB_AGENT_SETTINGS_H_
 
-class AgentSettings {
+class AgentSettings
+{
 private:
   int _plan_body_size;
   int _belief_base_size;
@@ -29,23 +30,28 @@ public:
 
   virtual ~AgentSettings();
 
-  int getBeliefBaseSize() const {
+  int getBeliefBaseSize() const
+  {
     return _belief_base_size;
   }
 
-  int getEventQueueSize() const {
+  int getEventQueueSize() const
+  {
     return _event_queue_size;
   }
 
-  int getIntentionQueueSize() const {
+  int getIntentionQueueSize() const
+  {
     return _intention_queue_size;
   }
 
-  int getIntentionStackSize() const {
+  int getIntentionStackSize() const
+  {
     return _intention_stack_size;
   }
 
-  int getPlanBodySize() const {
+  int getPlanBodySize() const
+  {
     return _plan_body_size;
   }
 };

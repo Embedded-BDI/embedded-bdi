@@ -12,7 +12,8 @@
 #include "../../bdi/event_base.h"
 #include "../statement.h"
 
-class Action : public Statement, IBodyInstruction {
+class Action : public Statement, IBodyInstruction
+{
 private:
   bool (*_take_action)(BeliefBase * belief_base);
   Statement _statement;
@@ -27,7 +28,8 @@ public:
 
   bool run_instruction() override;
 
-  BodyType get_BodyType() {
+  BodyType get_BodyType() override
+  {
     return _type;
   }
 };

@@ -13,7 +13,8 @@
 #include "../lib/circular_buffer.h"
 #include "../syntax/plan.h"
 
-class PlanBase {
+class PlanBase
+{
 private:
   CircularBuffer<Plan> * _plan_base;
   BeliefBase * _belief_base;

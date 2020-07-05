@@ -8,7 +8,8 @@
 #include "gtest/gtest.h"
 #include "syntax/body/belief_operation.h"
 
-class TBeliefOperation : public ::testing::Test {
+class TBeliefOperation : public ::testing::Test
+{
 protected:
   BeliefOperation * belief_operation;
   int belief_base_size = 2;
@@ -17,7 +18,8 @@ protected:
   EventBase * eb;
 
 public:
-  TBeliefOperation() {
+  TBeliefOperation()
+  {
     Statement stm('a');
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
@@ -25,7 +27,8 @@ public:
     belief_operation = new BeliefOperation(stm, EventOperator::BELIEF_ADDITION, bb, eb);
   }
 
-  virtual ~TBeliefOperation() {
+  virtual ~TBeliefOperation()
+  {
     delete belief_operation;
     delete bb;
     delete eb;
@@ -35,7 +38,8 @@ public:
 /*
  * Test run instruction return
  */
-TEST_F(TBeliefOperation, run_instruction) {
+TEST_F(TBeliefOperation, run_instruction)
+{
   for (int i = 0; i < event_base_size; i++)
   {
     EXPECT_TRUE(belief_operation->run_instruction());
@@ -47,6 +51,7 @@ TEST_F(TBeliefOperation, run_instruction) {
 /*
  * Test body type return
  */
-TEST_F(TBeliefOperation, get_BodyTyoe) {
+TEST_F(TBeliefOperation, get_BodyType)
+{
   EXPECT_EQ(BodyType::BELIEF, belief_operation->get_BodyType());
 }

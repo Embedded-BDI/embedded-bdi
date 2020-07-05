@@ -8,10 +8,11 @@
 #ifndef SYNTAX_EVENT_H_
 #define SYNTAX_EVENT_H_
 
-#include "../lib/enum_types.h"
 #include "../syntax/statement.h"
+#include "../lib/enum_types.h"
 
-class Event {
+class Event
+{
 private:
    EventOperator _operator;
    Statement _statement;
@@ -23,11 +24,13 @@ public:
 
    virtual ~Event();
 
-   const EventOperator & get_operator() const {
+   const EventOperator & get_operator() const
+   {
       return _operator;
    }
 
-   const Statement & get_statement() const {
+   const Statement & get_statement() const
+   {
       return _statement;
    }
 };

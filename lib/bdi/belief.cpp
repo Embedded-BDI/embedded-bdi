@@ -9,7 +9,8 @@
 
 Belief::Belief() {}
 
-Belief::Belief(Statement stm, bool (*update_function)(bool var), bool belief_state) {
+Belief::Belief(Statement stm, bool (*update_function)(bool var), bool belief_state)
+{
   _statement = stm;
   _belief_state = belief_state;
   _update = update_function;
@@ -17,7 +18,8 @@ Belief::Belief(Statement stm, bool (*update_function)(bool var), bool belief_sta
 
 Belief::~Belief() {}
 
-bool Belief::update_belief() {
+bool Belief::update_belief()
+{
   bool var = _update(_belief_state);
   if (var)
   {
@@ -28,6 +30,7 @@ bool Belief::update_belief() {
   }
 }
 
-void Belief::change_state(bool state) {
+void Belief::change_state(bool state)
+{
   _belief_state = state;
 }

@@ -7,13 +7,18 @@
 
 #include "plan_base.h"
 
-PlanBase::PlanBase(int size, BeliefBase * beliefs) {
+PlanBase::PlanBase(int size, BeliefBase * beliefs)
+{
   _belief_base = beliefs;
   _plan_base = new CircularBuffer<Plan>(size);
 }
 
-PlanBase::~PlanBase() {
+PlanBase::~PlanBase()
+{
   delete _plan_base;
 }
 
-Plan * PlanBase::revise(Event * event){} // @suppress("No return")
+Plan * PlanBase::revise(Event * event)
+{
+  return NULL;
+}

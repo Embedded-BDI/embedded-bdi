@@ -11,17 +11,31 @@
 #include "event.h"
 #include "../lib/circular_buffer.h"
 
-class EventBase {
+class EventBase
+{
 private:
   CircularBuffer<Event> * _pending_events;
 
 public:
+  /*
+   * EventBase's constructor
+   * @param size Size of EventBase buffer
+   */
   EventBase(int size);
 
   virtual ~EventBase();
 
+  /*
+   * Adds event to _pending_events buffer
+   * @param event Event to be added
+   * @return Returns true if event is added or false otherwise
+   */
   bool add_event(Event event);
 
+  /*
+   * Creates an event using op and stm and adds event to _pending_events buffer
+   * @param event Event to be added
+   */
   bool add_event(EventOperator op, Statement stm);
 
   Event * get_event();

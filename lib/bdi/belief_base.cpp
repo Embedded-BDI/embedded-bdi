@@ -7,15 +7,18 @@
 
 #include "belief_base.h"
 
-BeliefBase::BeliefBase(int size) {
+BeliefBase::BeliefBase(int size)
+{
   _belief_base = new CircularBuffer<Belief>(size);
 }
 
-BeliefBase::~BeliefBase() {
+BeliefBase::~BeliefBase()
+{
   delete _belief_base;
 }
 
-bool BeliefBase::add_belief(Belief belief) {
+bool BeliefBase::add_belief(Belief belief)
+{
   if (!_belief_base->is_full())
   {
     _belief_base->enqueue(belief);
@@ -25,7 +28,8 @@ bool BeliefBase::add_belief(Belief belief) {
   }
 }
 
-void BeliefBase::update(EventBase * event_base) {
+void BeliefBase::update(EventBase * event_base)
+{
   for (int i=0; i < _belief_base->size(); i++)
   {
     if (_belief_base->item(i)->update_belief())
@@ -49,7 +53,8 @@ void BeliefBase::update(EventBase * event_base) {
   }
 }
 
-bool BeliefBase::change_belief_state(Statement stm, bool state) {
+bool BeliefBase::change_belief_state(Statement stm, bool state)
+{
   for (int i=0; i < _belief_base->size(); i++)
   {
     if (_belief_base->item(i)->get_statement().is_equal_to(stm.get_name()))

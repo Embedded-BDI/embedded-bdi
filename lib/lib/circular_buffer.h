@@ -37,7 +37,8 @@ public:
 };
 
 template <class X>
-CircularBuffer<X>::CircularBuffer(int size){
+CircularBuffer<X>::CircularBuffer(int size)
+{
   _arr = new X[size];
   _capacity = size;
   _front = 0;

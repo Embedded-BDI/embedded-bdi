@@ -8,17 +8,20 @@
 #include "gtest/gtest.h"
 #include "lib/stack.h"
 
-class TStack : public ::testing::Test {
+class TStack : public ::testing::Test
+{
 protected:
   Stack<int> * stack;
   int size = 4;                                 // size must be 2 or higher
 
 public:
-  TStack() {
+  TStack()
+  {
     stack = new Stack<int>(size);
   }
 
-  virtual ~TStack() {
+  virtual ~TStack()
+  {
     delete stack;
   }
 };
@@ -26,7 +29,8 @@ public:
 /*
  * Test push elements and confirm that stack is full
  */
-TEST_F(TStack, push) {
+TEST_F(TStack, push)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_TRUE(stack->push(i));
@@ -37,7 +41,8 @@ TEST_F(TStack, push) {
 /*
  * Test pop elements and confirm that stack is empty
  */
-TEST_F(TStack, pop) {
+TEST_F(TStack, pop)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_TRUE(stack->push(i));
@@ -52,7 +57,8 @@ TEST_F(TStack, pop) {
 /*
  * Test peeking elements and compare with expected elements
  */
-TEST_F(TStack, peek) {
+TEST_F(TStack, peek)
+{
   for(int i = 0; i < size; i++)
   {
     EXPECT_TRUE(stack->push(i));

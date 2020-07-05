@@ -8,7 +8,8 @@
 #ifndef SYNTAX_STATEMENT_H_
 #define SYNTAX_STATEMENT_H_
 
-class Statement {
+class Statement
+{
 private:
    unsigned char _name;
 
@@ -19,11 +20,13 @@ public:
 
    virtual ~Statement();
 
-   bool is_equal_to(Statement stm) const {
+   bool is_equal_to(Statement stm) const
+   {
      return (_name == stm.get_name());
    }
 
-   const unsigned char & get_name() const {
+   const unsigned char & get_name() const
+   {
       return _name;
    }
 };

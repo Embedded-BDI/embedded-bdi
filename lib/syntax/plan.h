@@ -11,10 +11,9 @@
 #include "../bdi/event_base.h"
 #include "body.h"
 #include "context.h"
-//#include "event_operator.h"
-#include "statement.h"
 
-class Plan {
+class Plan
+{
 private:
   EventOperator _operator;
   Statement _statement;
@@ -30,15 +29,18 @@ public:
 
   bool run_body(BeliefBase beliefs, EventBase events);
 
-  Body get_body() const {
+  Body get_body() const
+  {
      return _body;
   }
 
-  Context get_context() const {
+  Context get_context() const
+  {
      return _context;
   }
 
-  Statement get_event() const {
+  Statement get_event() const
+  {
      return _statement;
   }
 };

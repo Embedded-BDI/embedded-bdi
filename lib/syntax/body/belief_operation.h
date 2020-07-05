@@ -11,7 +11,8 @@
 #include "../body_instruction.h"
 #include "../statement.h"
 
-class BeliefOperation : IBodyInstruction {
+class BeliefOperation : IBodyInstruction
+{
 private:
   EventOperator _operator;
   Statement _statement;
@@ -26,7 +27,8 @@ public:
 
   bool run_instruction() override;
 
-  BodyType get_BodyType() {
+  BodyType get_BodyType() override
+  {
     return _type;
   }
 };

@@ -11,7 +11,8 @@ Body::Body() {}
 
 Body::~Body() {}
 
-bool Body::run_body(BeliefBase beliefs, EventBase events) {
+bool Body::run_body(BeliefBase beliefs, EventBase events)
+{
   IBodyInstruction * instruction = _body->peek();
 
   bool result = instruction->run_instruction();
@@ -21,6 +22,7 @@ bool Body::run_body(BeliefBase beliefs, EventBase events) {
   return result;
 }
 
-bool Body::is_finished() {
+bool Body::is_finished()
+{
   return _body->size() == 0;
 }

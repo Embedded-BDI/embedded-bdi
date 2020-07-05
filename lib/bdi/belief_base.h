@@ -13,14 +13,15 @@
 #include "event_base.h"
 #include "../lib/circular_buffer.h"
 
-class BeliefBase {
+class BeliefBase
+{
 private:
   CircularBuffer<Belief> * _belief_base;
 
 public:
   /*
-   * Belief's constructor
-   * @param size Size of BeliefBase's buffer
+   * BeliefBase's constructor
+   * @param size Size of BeliefBase buffer
    */
   BeliefBase(int size);
 
@@ -48,7 +49,8 @@ public:
    */
   bool change_belief_state(Statement stm, bool state);
 
-  const int& get_size() {
+  const int get_size()
+  {
     return _belief_base->capacity();
   }};
 

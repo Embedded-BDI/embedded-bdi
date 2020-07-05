@@ -8,17 +8,20 @@
 #include "gtest/gtest.h"
 #include "bdi/event.h"
 
-class TEvent : public ::testing::Test {
+class TEvent : public ::testing::Test
+{
 protected:
   Event * event;
 
 public:
-  TEvent() {
+  TEvent()
+  {
     Statement stm('a');
     event = new Event(EventOperator::BELIEF_ADDITION, stm);
   }
 
-  virtual ~TEvent() {
+  virtual ~TEvent()
+  {
     delete this->event;
   }
 };
@@ -26,14 +29,16 @@ public:
 /*
  * Test if operator is stored correctly
  */
-TEST_F(TEvent, get_operator) {
+TEST_F(TEvent, get_operator)
+{
   EXPECT_EQ(EventOperator::BELIEF_ADDITION, event->get_operator());
 }
 
 /*
  * Test if statement is stored correctly
  */
-TEST_F(TEvent, get_statement) {
+TEST_F(TEvent, get_statement)
+{
   Statement stm('a');
   EXPECT_EQ('a',event->get_statement().get_name());
   EXPECT_TRUE(event->get_statement().is_equal_to(stm));

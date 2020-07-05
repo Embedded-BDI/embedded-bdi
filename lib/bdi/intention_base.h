@@ -14,7 +14,8 @@
 #include "../lib/circular_buffer.h"
 #include "../syntax/plan.h"
 
-class IntentionBase {
+class IntentionBase
+{
 private:
   CircularBuffer<Intention> * _intention_base;
   BeliefBase * _belief_base;

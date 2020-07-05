@@ -8,7 +8,8 @@
 #include "gtest/gtest.h"
 #include "syntax/body/goal.h"
 
-class TGoal : public ::testing::Test {
+class TGoal : public ::testing::Test
+{
 protected:
   Goal * goal;
   int belief_base_size = 2;
@@ -17,7 +18,8 @@ protected:
   EventBase * eb;
 
 public:
-  TGoal() {
+  TGoal()
+  {
     Statement stm('a');
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
@@ -25,7 +27,8 @@ public:
     goal = new Goal(stm, EventOperator::GOAL_ADDITION, bb, eb);
   }
 
-  virtual ~TGoal() {
+  virtual ~TGoal()
+  {
     delete goal;
     delete bb;
     delete eb;
@@ -35,7 +38,8 @@ public:
 /*
  * Test run instruction return
  */
-TEST_F(TGoal, run_instruction) {
+TEST_F(TGoal, run_instruction)
+{
   for (int i = 0; i < event_base_size; i ++)
   {
     EXPECT_TRUE(goal->run_instruction());
@@ -47,21 +51,24 @@ TEST_F(TGoal, run_instruction) {
 /*
  * Test body type return
  */
-TEST_F(TGoal, get_BodyType) {
+TEST_F(TGoal, get_BodyType)
+{
   EXPECT_EQ(BodyType::GOAL, goal->get_BodyType());
 }
 
 /*
  * Test operator return
  */
-TEST_F(TGoal, get_operator) {
+TEST_F(TGoal, get_operator)
+{
   EXPECT_EQ(EventOperator::GOAL_ADDITION, goal->get_operator());
 }
 
 /*
  * Test statement return
  */
-TEST_F(TGoal, get_statement) {
+TEST_F(TGoal, get_statement)
+{
   Statement stm('a');
   EXPECT_TRUE(goal->get_statement().is_equal_to(stm));
 }

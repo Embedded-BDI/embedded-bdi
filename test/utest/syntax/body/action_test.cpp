@@ -8,15 +8,18 @@
 #include "gtest/gtest.h"
 #include "syntax/body/action.h"
 
-bool take_action_true(BeliefBase * belief_base) {
+bool take_action_true(BeliefBase * belief_base)
+{
   return true;
 }
 
-bool take_action_false(BeliefBase * belief_base) {
+bool take_action_false(BeliefBase * belief_base)
+{
   return false;
 }
 
-class TAction : public ::testing::Test {
+class TAction : public ::testing::Test
+{
 protected:
   Action * action_true;
   Action * action_false;
@@ -26,7 +29,8 @@ protected:
   EventBase * eb;
 
 public:
-  TAction() {
+  TAction()
+  {
     Statement stm_a('a');
     Statement stm_b('b');
 
@@ -37,7 +41,8 @@ public:
     this->action_false = new Action(stm_b, take_action_false, bb, eb);
   }
 
-  virtual ~TAction() {
+  virtual ~TAction()
+  {
     delete this->action_true;
     delete this->action_false;
     delete this->bb;
@@ -48,7 +53,8 @@ public:
 /*
  * Test run instruction return
  */
-TEST_F(TAction, run_instruction) {
+TEST_F(TAction, run_instruction)
+{
   EXPECT_TRUE(action_true->run_instruction());
   EXPECT_FALSE(action_false->run_instruction());
 }
@@ -56,7 +62,8 @@ TEST_F(TAction, run_instruction) {
 /*
  * Test body type return
  */
-TEST_F(TAction, get_body_type) {
+TEST_F(TAction, get_body_type)
+{
   EXPECT_EQ(BodyType::ACTION, action_true->get_BodyType());
   EXPECT_EQ(BodyType::ACTION, action_false->get_BodyType());
 }

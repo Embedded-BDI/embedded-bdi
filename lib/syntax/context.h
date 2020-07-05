@@ -11,7 +11,8 @@
 #include "../bdi/belief_base.h"
 #include "../lib/circular_buffer.h"
 
-class Context {
+class Context
+{
 //  CircularBuffer<ILiteral> _context;
 
 public:

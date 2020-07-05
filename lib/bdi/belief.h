@@ -7,9 +7,11 @@
 
 #ifndef BDI_BELIEF_H_
 #define BDI_BELIEF_H_
+
 #include "../syntax/statement.h"
 
-class Belief {
+class Belief
+{
 private:
   Statement _statement;
   bool _belief_state;
@@ -43,11 +45,13 @@ public:
    */
   void change_state(bool state);
 
-  const Statement & get_statement() const {
+  const Statement & get_statement() const
+  {
     return _statement;
   }
 
-  const bool & get_state() {
+  const bool & get_state()
+  {
     return _belief_state;
   }
 };

@@ -15,7 +15,8 @@ using namespace std;
 
 bool compile_test = true;
 
-int main() {
+int main()
+{
   int bb_size = 4;
   int eb_size = 4;
   int pb_size = 4;

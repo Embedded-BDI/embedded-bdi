@@ -11,7 +11,8 @@
 #include "../body_instruction.h"
 #include "../statement.h"
 
-class Goal : IBodyInstruction {
+class Goal : IBodyInstruction
+{
 private:
   EventOperator _operator;
   Statement _statement;
@@ -26,15 +27,18 @@ public:
 
   bool run_instruction() override;
 
-  BodyType get_BodyType() {
+  BodyType get_BodyType() override
+  {
     return _type;
   }
 
-  const EventOperator & get_operator() const {
+  const EventOperator & get_operator() const
+  {
      return _operator;
   }
 
-  const Statement & get_statement() const {
+  const Statement & get_statement() const
+  {
      return _statement;
   }
 };

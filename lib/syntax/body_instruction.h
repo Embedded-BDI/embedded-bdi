@@ -11,7 +11,8 @@
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
 
-class IBodyInstruction {
+class IBodyInstruction
+{
 protected:
   BeliefBase * _belief_base;
   EventBase * _event_base;
