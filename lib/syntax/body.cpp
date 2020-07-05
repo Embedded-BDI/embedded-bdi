@@ -13,13 +13,14 @@ Body::~Body() {}
 
 bool Body::run_body(BeliefBase beliefs, EventBase events)
 {
-  IBodyInstruction * instruction = _body->peek();
-
-  bool result = instruction->run_instruction();
-
-  _body->dequeue();
-
-  return result;
+//  IBodyInstruction * instruction = _body->peek();
+//
+//  bool result = instruction->run_instruction(bb, eb);
+//
+//  _body->dequeue();
+//
+//  return result;
+  return true;
 }
 
 bool Body::is_finished()

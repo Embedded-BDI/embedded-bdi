@@ -8,9 +8,6 @@
 #ifndef LIB_Stack_H_
 #define LIB_Stack_H_
 
-#include <iostream>
-#include <stdlib.h>
-
 // Class for Stack
 template <class X>
 class Stack

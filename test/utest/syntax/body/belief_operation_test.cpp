@@ -12,24 +12,27 @@ class TBeliefOperation : public ::testing::Test
 {
 protected:
   BeliefOperation * belief_operation;
-  int belief_base_size = 2;
-  int event_base_size = 2;
+  Statement * stm;
   BeliefBase * bb;
   EventBase * eb;
+  int belief_base_size = 2;
+  int event_base_size = 2;
 
 public:
   TBeliefOperation()
   {
-    Statement stm('a');
+    stm = new Statement('a');
+
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
 
-    belief_operation = new BeliefOperation(stm, EventOperator::BELIEF_ADDITION, bb, eb);
+    belief_operation = new BeliefOperation(*stm, EventOperator::BELIEF_ADDITION);
   }
 
   virtual ~TBeliefOperation()
   {
     delete belief_operation;
+    delete stm;
     delete bb;
     delete eb;
   }
@@ -42,10 +45,14 @@ TEST_F(TBeliefOperation, run_instruction)
 {
   for (int i = 0; i < event_base_size; i++)
   {
-    EXPECT_TRUE(belief_operation->run_instruction());
+    EXPECT_TRUE(belief_operation->run_instruction(bb, eb));
   }
   EXPECT_TRUE(eb->is_full());
-  EXPECT_FALSE(belief_operation->run_instruction());
+  EXPECT_FALSE(belief_operation->run_instruction(bb, eb));
+  for (int i = 0; i < event_base_size; i++)
+  {
+    EXPECT_TRUE(stm->is_equal_to(eb->get_event()->get_statement()));
+  }
 }
 
 /*

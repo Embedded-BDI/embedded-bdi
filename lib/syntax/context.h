@@ -22,6 +22,9 @@ public:
 
   virtual ~Context();
 
+  /*
+   * Checks if context is valid and therefore wrapping plan can be run
+   */
   bool is_valid (BeliefBase beliefs);
 };
 

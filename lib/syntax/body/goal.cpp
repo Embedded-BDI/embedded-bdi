@@ -9,19 +9,17 @@
 
 Goal::Goal() {} // @suppress("Class members should be properly initialized")
 
-Goal::Goal(Statement stm, EventOperator event_type, BeliefBase * belief_base, EventBase * event_base)
+Goal::Goal(Statement stm, EventOperator event_type)
 {
   _operator = event_type;
   _statement = stm;
-  _belief_base = belief_base;
-  _event_base = event_base;
 }
 
 Goal::~Goal() {}
 
-bool Goal::run_instruction()
+bool Goal::run_instruction(BeliefBase * belief_base, EventBase * event_base)
 {
-  return _event_base->add_event(_operator, _statement);
+  return event_base->add_event(_operator, _statement);
 }
 
 

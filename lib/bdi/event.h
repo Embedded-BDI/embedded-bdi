@@ -9,7 +9,7 @@
 #define SYNTAX_EVENT_H_
 
 #include "../syntax/statement.h"
-#include "../lib/enum_types.h"
+#include "../syntax/event_operator.h"
 
 class Event
 {

@@ -23,10 +23,10 @@ class TAction : public ::testing::Test
 protected:
   Action * action_true;
   Action * action_false;
-  int belief_base_size = 2;
-  int event_base_size = 2;
   BeliefBase * bb;
   EventBase * eb;
+  int belief_base_size = 2;
+  int event_base_size = 2;
 
 public:
   TAction()
@@ -37,16 +37,16 @@ public:
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
 
-    this->action_true = new Action(stm_a, take_action_true, bb, eb);
-    this->action_false = new Action(stm_b, take_action_false, bb, eb);
+    this->action_true = new Action(stm_a, take_action_true);
+    this->action_false = new Action(stm_b, take_action_false);
   }
 
   virtual ~TAction()
   {
-    delete this->action_true;
-    delete this->action_false;
-    delete this->bb;
-    delete this->eb;
+    delete action_true;
+    delete action_false;
+    delete bb;
+    delete eb;
   }
 };
 
@@ -55,8 +55,8 @@ public:
  */
 TEST_F(TAction, run_instruction)
 {
-  EXPECT_TRUE(action_true->run_instruction());
-  EXPECT_FALSE(action_false->run_instruction());
+  EXPECT_TRUE(action_true->run_instruction(bb, eb));
+  EXPECT_FALSE(action_false->run_instruction(bb, eb));
 }
 
 /*

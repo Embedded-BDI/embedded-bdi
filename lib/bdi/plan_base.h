@@ -20,10 +20,20 @@ private:
   BeliefBase * _belief_base;
 
 public:
+  /*
+   * PlanBase constructor
+   * @param size Size of _plan_base buffer
+   * @param beliefs Agent's BeliefBase
+   */
   PlanBase(int size, BeliefBase * beliefs);
 
   virtual ~PlanBase();
 
+  /*
+   * Revise and select applicable plan to treat event
+   * @param event Event to be processed
+   * @result Pointer to applicable plan, NULL otherwise
+   */
   Plan * revise(Event * event);
 };
 

@@ -38,6 +38,10 @@ public:
    */
   bool add_event(EventOperator op, Statement stm);
 
+  /*
+   * Removes event from _pending_events and returns pointer to removed object
+   * @return Pointer to first element from _pending_events
+   */
   Event * get_event();
 
   bool is_full();
