@@ -8,3 +8,5 @@ src/.settings
 
 test/Debug
 test/.settings
+
+build/
