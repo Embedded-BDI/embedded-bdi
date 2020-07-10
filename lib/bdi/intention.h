@@ -15,10 +15,12 @@
 class Intention
 {
 private:
-  Stack<Plan> * _plans;         // NAP EH UMA STACK NORMAL, EH PRA SER POINTEIROS
+  Stack<Plan> * _plans;         // NAO EH UMA STACK NORMAL, EH PRA SER POINTEIROS
+                                // ** var - POINTER TO POINTER pode ser uma solucao
   Stack<int> * _plan_index;
   int _size;
   bool _suspended;
+  EventID * _suspended_by;
 
 public:
   Intention();
@@ -52,7 +54,7 @@ public:
    * ran on run_intention is added to the EventBase and no further instructions
    * can be run without processing the event first
    */
-  void suspend();
+  void suspend(EventID * event_id);
 
   /*
    * Unsuspend intention so instructions can be run

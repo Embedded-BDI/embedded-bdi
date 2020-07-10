@@ -7,9 +7,8 @@
 
 #include "plan_base.h"
 
-PlanBase::PlanBase(int size, BeliefBase * beliefs)
+PlanBase::PlanBase(int size)
 {
-  _belief_base = beliefs;
   _plan_base = new CircularBuffer<Plan>(size);
 }
 
@@ -18,7 +17,18 @@ PlanBase::~PlanBase()
   delete _plan_base;
 }
 
-Plan * PlanBase::revise(Event * event)
+bool PlanBase::add_plan(Plan plan)
+{
+  if (!_plan_base->is_full())
+  {
+    _plan_base->enqueue(plan);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
 {
   return NULL;
 }

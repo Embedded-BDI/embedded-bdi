@@ -58,5 +58,5 @@ TEST_F(TBelief, get_statement)
 {
   Statement stm('a');
   EXPECT_EQ('a',belief->get_statement().get_name());
-  EXPECT_TRUE(belief->get_statement().is_equal_to(stm));
+  EXPECT_TRUE(belief->get_statement().is_equal(stm));
 }

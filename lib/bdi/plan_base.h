@@ -17,24 +17,29 @@ class PlanBase
 {
 private:
   CircularBuffer<Plan> * _plan_base;
-  BeliefBase * _belief_base;
 
 public:
   /*
    * PlanBase constructor
    * @param size Size of _plan_base buffer
-   * @param beliefs Agent's BeliefBase
    */
-  PlanBase(int size, BeliefBase * beliefs);
+  PlanBase(int size);
 
   virtual ~PlanBase();
+
+  /*
+   * Adds plan to plan base
+   * @param plan Plan to be added
+   * @return true is plan is added, false otherwise
+   */
+  bool add_plan(Plan plan);
 
   /*
    * Revise and select applicable plan to treat event
    * @param event Event to be processed
    * @result Pointer to applicable plan, NULL otherwise
    */
-  Plan * revise(Event * event);
+  Plan * revise(Event * event, BeliefBase * belief_base);
 };
 
 #endif /* BDI_PLAN_BASE_H_ */

@@ -25,7 +25,7 @@ int main()
 
   BeliefBase beliefs(bb_size);
   EventBase events(eb_size);
-  PlanBase plans(pb_size, &beliefs);
+  PlanBase plans(pb_size);
   IntentionBase intentions(ib_queue_size, ib_stack_size, &beliefs, &events);
 
   Event * event_to_process;
@@ -39,7 +39,7 @@ int main()
       event_to_process = events.get_event();
       if(event_to_process)
       {
-        plan_to_act = plans.revise(event_to_process);
+        plan_to_act = plans.revise(event_to_process, &beliefs);
         if (plan_to_act) {
           intentions.add_intention(plan_to_act);
         }

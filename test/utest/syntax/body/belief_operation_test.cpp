@@ -51,7 +51,7 @@ TEST_F(TBeliefOperation, run_instruction)
   EXPECT_FALSE(belief_operation->run_instruction(bb, eb));
   for (int i = 0; i < event_base_size; i++)
   {
-    EXPECT_TRUE(stm->is_equal_to(eb->get_event()->get_statement()));
+    EXPECT_TRUE(stm->is_equal(eb->get_event()->get_statement()));
   }
 }
 

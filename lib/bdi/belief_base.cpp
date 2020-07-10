@@ -57,7 +57,7 @@ bool BeliefBase::change_belief_state(Statement stm, bool state)
 {
   for (int i=0; i < _belief_base->size(); i++)
   {
-    if (_belief_base->item(i)->get_statement().is_equal_to(stm.get_name()))
+    if (_belief_base->item(i)->get_statement().is_equal(stm.get_name()))
     {
       _belief_base->item(i)->change_state(state);
       return true;

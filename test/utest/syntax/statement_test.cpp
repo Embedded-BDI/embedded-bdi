@@ -39,5 +39,5 @@ TEST_F(TStatement, get_name)
 TEST_F(TStatement, is_equal_to)
 {
   Statement equal('a');
-  EXPECT_TRUE(stm->is_equal_to(equal));
+  EXPECT_TRUE(stm->is_equal(equal));
 }

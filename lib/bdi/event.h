@@ -8,6 +8,7 @@
 #ifndef SYNTAX_EVENT_H_
 #define SYNTAX_EVENT_H_
 
+#include "../lib/event_id.h"
 #include "../syntax/statement.h"
 #include "../syntax/event_operator.h"
 
@@ -16,6 +17,7 @@ class Event
 private:
    EventOperator _operator;
    Statement _statement;
+   EventID _id;
 
 public:
    Event();

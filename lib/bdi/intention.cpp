@@ -11,11 +11,12 @@ Intention::Intention() {} // @suppress("Class members should be properly initial
 
 Intention::Intention(Plan * plan, int size)
 {
-  _suspended = false;
   _size = size;
   _plan_index = new Stack<int>(size);
   _plans = new Stack<Plan>(size);
   _plans->push(*plan);
+  _suspended = false;
+  _suspended_by = NULL;
 }
 
 Intention::~Intention()
@@ -34,14 +35,16 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
   return true;
 }
 
-void Intention::suspend()
+void Intention::suspend(EventID * event_id)
 {
   _suspended = true;
+  _suspended_by = event_id;
 }
 
 void Intention::unsuspend()
 {
   _suspended = false;
+  _suspended_by = NULL;
 }
 
 bool Intention::is_suspended() const

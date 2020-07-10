@@ -20,7 +20,7 @@ public:
 
    virtual ~Statement();
 
-   bool is_equal_to(Statement stm) const
+   bool is_equal(Statement stm) const
    {
      return (_name == stm.get_name());
    }
