@@ -11,24 +11,23 @@
 class Statement
 {
 private:
-   unsigned char _name;
+  unsigned char _name;
 
 public:
-   Statement();
+  Statement();
 
-   Statement(unsigned char name);
+  Statement(unsigned char name);
 
-   virtual ~Statement();
+  virtual ~Statement();
 
-   bool is_equal(Statement stm) const
-   {
-     return (_name == stm.get_name());
-   }
+  bool is_equal(Statement stm) const;
 
-   const unsigned char & get_name() const
-   {
-      return _name;
-   }
+  bool is_equal(Statement * stm) const;
+
+  const unsigned char & get_name() const
+  {
+    return _name;
+  }
 };
 
 #endif /* SYNTAX_STATEMENT_H_ */

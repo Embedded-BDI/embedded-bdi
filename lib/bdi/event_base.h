@@ -40,9 +40,17 @@ public:
 
   /*
    * Removes event from _pending_events and returns pointer to removed object
-   * @return Pointer to first element from _pending_events
+   * @return Pointer to first element from _pending_events. If _pending_events
+   * has no elements, the return will be a NULL pointer
    */
   Event * get_event();
+
+  /*
+   * Check if event exists in EventBase given event_ud
+   * @param event_id EventID to be checked
+   * @return true if event with event_id exists in EventBase, false otherwise
+   */
+  bool event_exists(EventID * event_id);
 
   bool is_full();
 

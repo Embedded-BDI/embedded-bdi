@@ -25,7 +25,7 @@ public:
   /*
    * Checks if context is valid and therefore wrapping plan can be run
    */
-  bool is_valid (BeliefBase beliefs);
+  bool is_valid (BeliefBase * beliefs);
 };
 
 #endif /* SYNTAX_CONTEXT_H_ */

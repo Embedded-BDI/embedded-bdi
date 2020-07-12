@@ -47,9 +47,19 @@ void Intention::unsuspend()
   _suspended_by = NULL;
 }
 
-bool Intention::is_suspended() const
+bool Intention::is_suspended(EventBase * events)
 {
-  return _suspended;
+  if (_suspended)
+  {
+    if (events->event_exists(_suspended_by))
+    {
+      return true;
+    } else {
+      unsuspend();
+      return false;
+    }
+  }
+  return false;
 }
 
 bool Intention::is_finished() const

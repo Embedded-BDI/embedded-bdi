@@ -11,12 +11,12 @@
 
 /*
  * Event types:
- *  - Addition of belief to belief base
- *  - Deletion of belief from belief base
- *  - Addition of (sub)goal
- *  - Deletion of (sub)goal
- *  - Addition of test (sub)goal
- *  - Deletion of test (sub)goal
+ *  +   Addition of belief to belief base
+ *  -   Deletion of belief from belief base
+ *  +!  Addition of (sub)goal
+ *  -!  Deletion of (sub)goal
+ *  +?! Addition of test (sub)goal
+ *  +?- Deletion of test (sub)goal
  */
 enum class EventOperator : unsigned char
 {

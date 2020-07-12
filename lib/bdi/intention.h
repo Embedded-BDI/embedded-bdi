@@ -61,7 +61,13 @@ public:
    */
   void unsuspend();
 
-  bool is_suspended() const;
+  /*
+   * Check if invention is suspended
+   * @param events EventBase
+   * @return true if Intention is suspended and _suspended_by still exists
+   * in EventBase, false otherwise
+   */
+  bool is_suspended(EventBase * events);
 
   bool is_finished() const;
 };

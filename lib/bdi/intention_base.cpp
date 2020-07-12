@@ -29,3 +29,7 @@ void IntentionBase::add_intention(Plan * plan)
 }
 
 void IntentionBase::run_intention_base() {}
+
+bool IntentionBase::is_empty() {
+  return _intention_base->is_empty();
+}

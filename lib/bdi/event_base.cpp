@@ -48,6 +48,19 @@ Event * EventBase::get_event()
   return event;
 }
 
+bool EventBase::event_exists(EventID * event_id)
+{
+  for (int i = 0; i < _pending_events->size(); i++)
+  {
+    if (event_id->is_equal(_pending_events->item(i)->get_event_id()))
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+
 bool EventBase::is_full()
 {
   return _pending_events->is_full();

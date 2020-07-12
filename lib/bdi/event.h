@@ -15,26 +15,31 @@
 class Event
 {
 private:
-   EventOperator _operator;
-   Statement _statement;
-   EventID _id;
+  EventOperator _operator;
+  Statement _statement;
+  EventID _id;
 
 public:
-   Event();
+  Event();
 
-   Event(EventOperator op, Statement stm);
+  Event(EventOperator op, Statement stm);
 
-   virtual ~Event();
+  virtual ~Event();
 
-   const EventOperator & get_operator() const
-   {
-      return _operator;
-   }
+  EventOperator & get_operator()
+  {
+    return _operator;
+  }
 
-   const Statement & get_statement() const
-   {
-      return _statement;
-   }
+  Statement & get_statement()
+  {
+    return _statement;
+  }
+
+  const EventID & get_event_id() const
+  {
+    return _id;
+  }
 };
 
 

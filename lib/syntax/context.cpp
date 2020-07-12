@@ -20,7 +20,7 @@ Context::~Context() {
   // TODO Auto-generated destructor stub
 }
 
-bool Context::is_valid (BeliefBase beliefs)
+bool Context::is_valid (BeliefBase * beliefs)
 {
    return true;
 }

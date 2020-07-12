@@ -33,7 +33,10 @@ int main()
 
   while(true)
   {
+    // Update beliefs
     beliefs.update(&events);
+
+    // Checks if there are events to be processed
     if (!events.is_empty())
     {
       event_to_process = events.get_event();
@@ -45,7 +48,12 @@ int main()
         }
       }
     }
-    intentions.run_intention_base();
+
+    // Runs intention in case there are any
+    if (!intentions.is_empty())
+    {
+      intentions.run_intention_base();
+    }
 
     if (compile_test == true)
     {

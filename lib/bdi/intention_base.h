@@ -46,6 +46,8 @@ public:
    * Run an instruction from first intention stored in _intention_base
    */
   void run_intention_base();
+
+  bool is_empty();
 };
 
 #endif /* BDI_INTENTION_BASE_H_ */

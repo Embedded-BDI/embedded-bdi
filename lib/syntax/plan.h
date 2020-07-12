@@ -29,20 +29,27 @@ public:
 
   bool run_body(BeliefBase beliefs, EventBase events);
 
-  Body get_body() const
+  EventOperator * get_operator ()
   {
-     return _body;
+    return &_operator;
   }
 
-  Context get_context() const
+  Statement * get_statement()
   {
-     return _context;
+     return &_statement;
   }
 
-  Statement get_event() const
+  Context * get_context()
   {
-     return _statement;
+     return &_context;
   }
+
+  Body * get_body()
+  {
+     return &_body;
+  }
+
+
 };
 
 #endif /* BDI_PLAN_H_ */

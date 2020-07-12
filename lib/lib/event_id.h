@@ -25,7 +25,7 @@ public:
 
   virtual ~EventID();
 
-  bool is_equal(EventID * event_id);
+  bool is_equal(EventID event_id);
 };
 
 #endif /* LIB_EVENT_ID_CPP_ */
