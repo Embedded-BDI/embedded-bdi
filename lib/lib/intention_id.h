@@ -1,19 +1,19 @@
 /*
- * event_id.h
+ * intention_id.h
  *
  *  Created on: Jul 10, 2020
  *      Author: Matuzalem Muller
  */
 
-#ifndef LIB_EVENT_ID_H_
-#define LIB_EVENT_ID_H_
+#ifndef LIB_INTENTION_ID_H_
+#define LIB_INTENTION_ID_H_
 
 /*
- * Represents Event Unique Identifier
+ * Represents Intention Unique Identifier
  * Class can be modified to use other control and data representation such as
  * UUID for better handling of events
  */
-class EventID
+class IntentionID
 {
 private:
   int _id;
@@ -22,11 +22,11 @@ protected:
   static int id;
 
 public:
-  EventID();
+  IntentionID();
 
-  virtual ~EventID();
+  virtual ~IntentionID();
 
-  bool is_equal(EventID event_id);
+  bool is_equal(IntentionID intention_id);
 
   const int get_id() const
   {
@@ -35,9 +35,9 @@ public:
 
   int get_control_id()
   {
-    return EventID::id;
+    return IntentionID::id;
   }
 };
 
-#endif /* LIB_EVENT_ID_H_ */
+#endif /* LIB_INTENTION_ID_H_ */
 

@@ -19,13 +19,7 @@ BeliefBase::~BeliefBase()
 
 bool BeliefBase::add_belief(Belief belief)
 {
-  if (!_belief_base->is_full())
-  {
-    _belief_base->enqueue(belief);
-    return true;
-  } else {
-    return false;
-  }
+  return _belief_base->enqueue(belief);
 }
 
 void BeliefBase::update(EventBase * event_base)
@@ -61,6 +55,18 @@ bool BeliefBase::change_belief_state(Statement stm, bool state)
     {
       _belief_base->item(i)->change_state(state);
       return true;
+    }
+  }
+  return false;
+}
+
+bool BeliefBase::get_belief_state(Statement stm)
+{
+  for (int i=0; i < _belief_base->size(); i++)
+  {
+    if (_belief_base->item(i)->get_statement().is_equal(stm.get_name()))
+    {
+      return _belief_base->item(i)->get_state();
     }
   }
   return false;

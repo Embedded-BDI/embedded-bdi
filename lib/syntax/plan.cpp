@@ -9,19 +9,18 @@
 
 Plan::Plan() {}
 
-Plan::Plan(EventOperator op, Statement statement, Context context, Body body)
+Plan::Plan(EventOperator op, Statement stm, Context context, Body body)
 {
    _operator = op;
-   _statement = statement;
+   _statement = stm;
    _context = context;
    _body = body;
 }
 
-Plan::~Plan() {
-  // TODO Auto-generated destructor stub
-}
+Plan::~Plan() {}
 
-bool Plan::run_body(BeliefBase beliefs, EventBase events)
+BodyReturn Plan::run_body(int index, BeliefBase * beliefs, EventBase * events)
 {
-  return _body.run_body(beliefs, events);
+  BodyReturn result = _body.run_body(index, beliefs, events);
+  return result;
 }

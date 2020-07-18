@@ -10,17 +10,16 @@
 
 #include "belief_base.h"
 #include "../lib/stack.h"
-#include "../syntax/plan.h"
+#include "instantiated_plan.h"
 
 class Intention
 {
 private:
-  Stack<Plan> * _plans;         // NAO EH UMA STACK NORMAL, EH PRA SER POINTEIROS
-                                // ** var - POINTER TO POINTER pode ser uma solucao
-  Stack<int> * _plan_index;
+  Stack<InstantiatedPlan> * _plans;
   int _size;
   bool _suspended;
   EventID * _suspended_by;
+  IntentionID _id;
 
 public:
   Intention();

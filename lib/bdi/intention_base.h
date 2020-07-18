@@ -21,6 +21,7 @@ private:
   BeliefBase * _belief_base;
   EventBase * _event_base;
   int _buffer_size;
+  int _stack_size;
 
 public:
   IntentionBase();

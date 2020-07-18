@@ -8,7 +8,7 @@
 #ifndef SYNTAX_BODY_BELIEF_OPERATION_H_
 #define SYNTAX_BODY_BELIEF_OPERATION_H_
 
-#include "../body_instruction.h"
+#include "body_instruction.h"
 #include "../statement.h"
 
 class BeliefOperation : IBodyInstruction
@@ -38,7 +38,7 @@ public:
    * successfully, return is true. Otherwise, return is false and intention
    * should likely be dropped
    */
-  bool run_instruction(BeliefBase * belief_base, EventBase * event_base) override;
+  BodyReturn run_instruction(BeliefBase * belief_base, EventBase * event_base) override;
 
   BodyType get_BodyType() override
   {

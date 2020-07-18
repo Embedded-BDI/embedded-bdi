@@ -45,6 +45,8 @@ public:
    */
   Event * get_event();
 
+  Event * last_event();
+
   /*
    * Check if event exists in EventBase given event_ud
    * @param event_id EventID to be checked

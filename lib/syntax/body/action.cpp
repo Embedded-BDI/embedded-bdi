@@ -17,7 +17,10 @@ Action::Action(Statement stm, bool (*take_action_function)(BeliefBase * belief_b
 
 Action::~Action() {}
 
-bool Action::run_instruction(BeliefBase * belief_base, EventBase * event_base)
+BodyReturn Action::run_instruction(BeliefBase * belief_base, EventBase * event_base)
 {
-  return _take_action(belief_base);
+  bool value = _take_action(belief_base);
+  BodyReturn result(_type, value, NULL);
+
+  return result;
 }

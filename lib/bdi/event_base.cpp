@@ -43,16 +43,26 @@ bool EventBase::add_event(EventOperator op, Statement stm)
 Event * EventBase::get_event()
 {
   Event * event = _pending_events->peek();
-  _pending_events->dequeue();
+
+  if (!_pending_events->is_empty())
+  {
+    _pending_events->dequeue();
+  }
 
   return event;
 }
+
+Event * EventBase::last_event()
+{
+  return _pending_events->item(_pending_events->size()-1);
+}
+
 
 bool EventBase::event_exists(EventID * event_id)
 {
   for (int i = 0; i < _pending_events->size(); i++)
   {
-    if (event_id->is_equal(_pending_events->item(i)->get_event_id()))
+    if (event_id->is_equal(*_pending_events->item(i)->get_event_id()))
     {
       return true;
     }

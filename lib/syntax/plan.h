@@ -23,11 +23,11 @@ private:
 public:
   Plan();
 
-  Plan(EventOperator op, Statement statement, Context context, Body body);
+  Plan(EventOperator op, Statement stm, Context context, Body body);
 
   virtual ~Plan();
 
-  bool run_body(BeliefBase beliefs, EventBase events);
+  BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
 
   EventOperator * get_operator ()
   {
@@ -48,8 +48,6 @@ public:
   {
      return &_body;
   }
-
-
 };
 
 #endif /* BDI_PLAN_H_ */

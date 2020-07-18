@@ -17,9 +17,16 @@ Goal::Goal(Statement stm, EventOperator event_type)
 
 Goal::~Goal() {}
 
-bool Goal::run_instruction(BeliefBase * belief_base, EventBase * event_base)
+BodyReturn Goal::run_instruction(BeliefBase * belief_base, EventBase * event_base)
 {
-  return event_base->add_event(_operator, _statement);
+  if (event_base->add_event(_operator, _statement))
+  {
+    BodyReturn result(_type, true, event_base->last_event()->get_event_id());
+    return result;
+  } else {
+    BodyReturn result(_type, false, NULL);
+    return result;
+  }
 }
 
 

@@ -26,19 +26,19 @@ public:
 
   virtual ~Event();
 
-  EventOperator & get_operator()
+  const EventOperator & get_operator() const
   {
     return _operator;
   }
 
-  Statement & get_statement()
+  const Statement & get_statement() const
   {
     return _statement;
   }
 
-  const EventID & get_event_id() const
+  EventID * get_event_id()
   {
-    return _id;
+    return &_id;
   }
 };
 

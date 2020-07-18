@@ -55,6 +55,8 @@ int main()
       intentions.run_intention_base();
     }
 
+    // TRATAR EVENTO QUE FAZ PLAN ENTRAR EM STACK
+
     if (compile_test == true)
     {
       std::cout << "Compilation successful!" << std::endl;

@@ -12,17 +12,16 @@ Intention::Intention() {} // @suppress("Class members should be properly initial
 Intention::Intention(Plan * plan, int size)
 {
   _size = size;
-  _plan_index = new Stack<int>(size);
-  _plans = new Stack<Plan>(size);
-  _plans->push(*plan);
   _suspended = false;
   _suspended_by = NULL;
+  _plans = new Stack<InstantiatedPlan>(size);
+  InstantiatedPlan inst_plan(plan, _id);
+  _plans->push(inst_plan);
 }
 
 Intention::~Intention()
 {
   delete _plans;
-  delete _plan_index;
 }
 
 bool stack_plan(Plan * plan)
@@ -32,7 +31,18 @@ bool stack_plan(Plan * plan)
 
 bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
 {
-  return true;
+  BodyReturn value = _plans->peek()->run_plan(beliefs, events);
+  if (value.get_value() && _plans->peek()->is_finished())
+  {
+    _plans->pop();
+
+    if (value.get_event())
+    {
+      _suspended_by = value.get_event();
+      _suspended = true;
+    }
+  }
+  return value.get_value();
 }
 
 void Intention::suspend(EventID * event_id)
@@ -64,5 +74,5 @@ bool Intention::is_suspended(EventBase * events)
 
 bool Intention::is_finished() const
 {
-  return true;
+  return _plans->is_empty();
 }

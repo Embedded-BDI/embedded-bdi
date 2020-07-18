@@ -40,6 +40,6 @@ TEST_F(TEvent, get_operator)
 TEST_F(TEvent, get_statement)
 {
   Statement stm('a');
-  EXPECT_EQ('a',event->get_statement().get_name());
+  EXPECT_EQ('a', event->get_statement().get_name());
   EXPECT_TRUE(event->get_statement().is_equal(stm));
 }

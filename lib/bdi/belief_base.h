@@ -49,6 +49,13 @@ public:
    */
   bool change_belief_state(Statement stm, bool state);
 
+  /*
+   * Get state of belief that matches the given statement
+   * @param stm Statement to match belief's statement
+   * @return belief's value. False if belief does not exist in BeliefBase
+   */
+  bool get_belief_state(Statement stm);
+
   const int get_size()
   {
     return _belief_base->capacity();

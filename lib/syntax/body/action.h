@@ -8,7 +8,7 @@
 #ifndef SYNTAX_ACTION_H_
 #define SYNTAX_ACTION_H_
 
-#include "../body_instruction.h"
+#include "body_instruction.h"
 #include "../statement.h"
 
 class Action : public Statement, IBodyInstruction
@@ -37,7 +37,7 @@ public:
    * @return based on _take_action function logic. Recommended is true for
    * action successful, false otherwise
    */
-  bool run_instruction(BeliefBase * belief_base, EventBase * event_base) override;
+  BodyReturn run_instruction(BeliefBase * belief_base, EventBase * event_base) override;
 
   BodyType get_BodyType() override
   {

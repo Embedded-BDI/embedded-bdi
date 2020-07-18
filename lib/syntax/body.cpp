@@ -11,19 +11,23 @@ Body::Body() {}
 
 Body::~Body() {}
 
-bool Body::run_body(BeliefBase beliefs, EventBase events)
+BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 {
-//  IBodyInstruction * instruction = _body->peek();
-//
-//  bool result = instruction->run_instruction(bb, eb);
-//
-//  _body->dequeue();
-//
-//  return result;
+  if (index >= _body->size())
+  {
+    BodyReturn result(BodyType::ACTION, false, NULL);
+  }
+
+  BodyReturn result = _body->item(index)->run_instruction(beliefs, events);
+  return result;
+}
+
+bool Body::add_instruction(IBodyInstruction instruction)
+{
   return true;
 }
 
-bool Body::is_finished()
+int Body::size()
 {
-  return _body->size() == 0;
+  return _body->size();
 }
