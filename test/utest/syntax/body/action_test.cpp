@@ -8,14 +8,14 @@
 #include "gtest/gtest.h"
 #include "syntax/body/action.h"
 
-void take_action_1(BeliefBase * belief_base)
+bool take_action_true(BeliefBase * belief_base)
 {
-  int i = 1;
+  return true;
 }
 
-void take_action_2(BeliefBase * belief_base)
+bool take_action_false(BeliefBase * belief_base)
 {
-  int i = 2;
+  return false;
 }
 
 class TAction : public ::testing::Test
@@ -37,8 +37,8 @@ public:
     bb = new BeliefBase(belief_base_size);
     eb = new EventBase(event_base_size);
 
-    this->action_true = new Action(stm_a, take_action_1);
-    this->action_false = new Action(stm_b, take_action_2);
+    this->action_true = new Action(stm_a, take_action_true);
+    this->action_false = new Action(stm_b, take_action_false);
   }
 
   virtual ~TAction()
@@ -55,8 +55,17 @@ public:
  */
 TEST_F(TAction, run_instruction)
 {
-  EXPECT_FALSE(action_true->run_instruction(bb, eb));
-  EXPECT_FALSE(action_false->run_instruction(bb, eb));
+  BodyReturn result_true = action_true->run_instruction(bb, eb);
+  BodyReturn result_false = action_false->run_instruction(bb, eb);
+
+  EXPECT_EQ(BodyType::ACTION, result_true.get_type());
+  EXPECT_EQ(BodyType::ACTION, result_false.get_type());
+
+  EXPECT_TRUE(result_true.get_value());
+  EXPECT_FALSE(result_false.get_value());
+
+  EXPECT_EQ(NULL, result_true.get_event());
+  EXPECT_EQ(NULL, result_false.get_event());
 }
 
 /*

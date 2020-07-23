@@ -43,12 +43,21 @@ public:
  */
 TEST_F(TGoal, run_instruction)
 {
-  for (int i = 0; i < event_base_size; i ++)
+  BodyReturn result;
+
+  for (int i = 0; i < event_base_size; i++)
   {
-    EXPECT_TRUE(goal->run_instruction(bb, eb));
+    result = goal->run_instruction(bb, eb);
+    EXPECT_EQ(BodyType::GOAL, result.get_type());
+    EXPECT_TRUE(result.get_value());
+    EXPECT_TRUE(NULL != result.get_event());
   }
+
   EXPECT_TRUE(eb->is_full());
-  EXPECT_FALSE(goal->run_instruction(bb, eb));
+
+  result = goal->run_instruction(bb, eb);
+  EXPECT_FALSE(result.get_value());
+
   for (int i = 0; i < event_base_size; i++)
   {
     EXPECT_TRUE(stm->is_equal(eb->get_event()->get_statement()));

@@ -43,3 +43,12 @@ TEST_F(TEvent, get_statement)
   EXPECT_EQ('a', event->get_statement().get_name());
   EXPECT_TRUE(event->get_statement().is_equal(stm));
 }
+
+/*
+ * Confirm that EventID is not null and its value
+ */
+TEST_F(TEvent, get_event_id)
+{
+  EXPECT_TRUE(NULL != event->get_event_id());
+  EXPECT_EQ(event->get_event_id()->get_control_id()-1, event->get_event_id()->get_id());
+}

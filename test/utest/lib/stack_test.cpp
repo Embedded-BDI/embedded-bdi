@@ -75,10 +75,10 @@ TEST_F(TStack, peek)
  * Test if size is changed correctly
  */
 TEST_F(TStack, size) {
-  for(int i = 0; i < size; i++)
+  for(int i = 1; i <= size; i++)
   {
     EXPECT_TRUE(stack->push(i));
-    EXPECT_EQ(i+1, stack->size());
+    EXPECT_EQ(i, stack->size());
   }
 }
 
