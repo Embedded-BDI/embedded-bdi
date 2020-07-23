@@ -16,8 +16,3 @@ ContextCondition::ContextCondition(Statement stm, bool is_true)
 }
 
 ContextCondition::~ContextCondition() {}
-
-bool ContextCondition::get_value()
-{
-  return _is_true;
-}

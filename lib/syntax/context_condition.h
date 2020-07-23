@@ -23,8 +23,6 @@ public:
 
   virtual ~ContextCondition();
 
-  bool get_value();
-
   bool is_true() const
   {
     return _is_true;
