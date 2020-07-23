@@ -14,7 +14,7 @@ class ContextCondition
 {
 private:
   Statement _statement;
-  bool _negation;
+  bool _is_true;
 
 public:
   ContextCondition();
@@ -25,9 +25,9 @@ public:
 
   bool get_value();
 
-  bool is_negation() const
+  bool is_true() const
   {
-    return _negation;
+    return _is_true;
   }
 
   const Statement & get_statement() const

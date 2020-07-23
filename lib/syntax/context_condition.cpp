@@ -9,15 +9,15 @@
 
 ContextCondition::ContextCondition() {}
 
-ContextCondition::ContextCondition(Statement stm, bool negation)
+ContextCondition::ContextCondition(Statement stm, bool is_true)
 {
   _statement = stm;
-  _negation = negation;
+  _is_true = is_true;
 }
 
 ContextCondition::~ContextCondition() {}
 
 bool ContextCondition::get_value()
 {
-  return !_negation;
+  return _is_true;
 }

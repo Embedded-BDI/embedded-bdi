@@ -28,8 +28,9 @@ bool Context::is_valid(BeliefBase * beliefs)
 {
   for (int i = 0; i < _context->size(); i++)
   {
-    if((beliefs->get_belief_state(_context->item(i)->get_statement())) &&
-        !(_context->item(i)->is_negation()))
+    // If any belief has different value than expected, return false
+    if((beliefs->get_belief_state(_context->item(i)->get_statement())) !=
+       (_context->item(i)->is_true()))
     {
       return false;
     }
