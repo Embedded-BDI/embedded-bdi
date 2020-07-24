@@ -50,7 +50,7 @@ public:
     return _statement;
   }
 
-  const bool & get_state()
+  bool & get_state()
   {
     return _belief_state;
   }

@@ -20,7 +20,7 @@ public:
     buffer = new CircularBuffer<int>(size);
   }
 
-  virtual ~TCircularBuffer()
+  ~TCircularBuffer()
   {
     delete buffer;
   }

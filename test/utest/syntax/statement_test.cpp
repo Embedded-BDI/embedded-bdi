@@ -19,7 +19,7 @@ public:
     this->stm = new Statement('a');
   }
 
-  virtual ~TStatement()
+  ~TStatement()
   {
     delete this->stm;
   }

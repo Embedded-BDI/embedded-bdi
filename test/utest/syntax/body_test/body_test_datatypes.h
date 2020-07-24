@@ -41,7 +41,7 @@ public:
     }
   }
 
-  virtual ~InstructionExample()
+  ~InstructionExample()
   {
     delete _belief_base;
     delete _event_base;

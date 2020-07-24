@@ -8,7 +8,7 @@
 #ifndef SYNTAX_BODY_H_
 #define SYNTAX_BODY_H_
 
-#include "body/body_instruction.h"
+#include "body_instruction.h"
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
 #include "../lib/circular_buffer.h"

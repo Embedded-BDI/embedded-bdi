@@ -6,7 +6,7 @@
  */
 
 #include "gtest/gtest.h"
-#include "syntax/body/body_instruction.h"
+#include "syntax/body_instruction.h"
 
 bool take_action(BeliefBase * belief_base)
 {
@@ -21,29 +21,27 @@ protected:
   BodyInstruction * goal;
   BeliefBase * belief_base;
   EventBase * event_base;
-  int size = 2;
-  char alphabet[2] = {'a', 'b'};
+  int bases_size = 2;
 
 public:
   TBodyInstruction()
   {
-    belief_base = new BeliefBase(size);
-    event_base = new EventBase(size);
+    belief_base = new BeliefBase(bases_size);
+    event_base = new EventBase(bases_size);
 
-    for (int i = 0; i < size; i++)
-    {
-      Statement stm(alphabet[i]);
-      Belief belief(stm, NULL, false);
-      belief_base->add_belief(belief);
-    }
+    Statement stm_a('a');
+    Statement stm_b('b');
+    Belief belief_a(stm_a, NULL, false);
+    Belief belief_b(stm_b, NULL, false);
+    belief_base->add_belief(belief_a);
+    belief_base->add_belief(belief_b);
 
-    Statement stm(alphabet[0]);
-    action = new BodyInstruction(BodyType::ACTION, stm, take_action);
-    belief_operation = new BodyInstruction(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
-    goal = new BodyInstruction(BodyType::GOAL, stm, EventOperator::GOAL_ADDITION);
+    action = new BodyInstruction(BodyType::ACTION, stm_a, take_action);
+    belief_operation = new BodyInstruction(BodyType::BELIEF, stm_a, EventOperator::BELIEF_ADDITION);
+    goal = new BodyInstruction(BodyType::GOAL, stm_a, EventOperator::GOAL_ADDITION);
   }
 
-  virtual ~TBodyInstruction()
+  ~TBodyInstruction()
   {
     delete action;
     delete belief_operation;
@@ -69,7 +67,7 @@ TEST_F(TBodyInstruction, run_instruction)
   EXPECT_TRUE(NULL != belief_operation_result.get_event());
   EXPECT_TRUE(NULL != goal_result.get_event());
 
-  Statement stm(alphabet[0]);
+  Statement stm('a');
   EXPECT_TRUE(belief_base->get_belief_state(stm));
 
   EXPECT_TRUE(event_base->is_full());

@@ -15,13 +15,10 @@ protected:
   BeliefBase * belief_base;
   Context * context;
   std::vector<ContextCondition> cxt_c;
-  int size = 1;                                      // min size = 1
-                                                     // max size = 26
-  char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f',
-                       'g', 'h', 'i', 'j', 'k', 'l',
-                       'm', 'n', 'o', 'p', 'q', 'r',
-                       's', 't', 'u', 'v', 'w', 'x',
-                       'y', 'z'};
+  ContextCondition * cond_1;
+  ContextCondition * cond_2;
+  ContextCondition * cond_3;
+  int size = 3;
 
 public:
   TContext()
@@ -29,31 +26,24 @@ public:
     context = new Context(size);
     belief_base = new BeliefBase(size);
 
-    // Adds belief to BeliefBase with true value
-    // Adds statement to ContextCondition with expected value as true
-    for (int i = 0; i < size-1; i++)
-    {
-      Statement stm(alphabet[i]);
+    Statement stm_a('a');
+    Statement stm_b('b');
+    Statement stm_c('c');
 
-      ContextCondition ctx(stm, true);
-      cxt_c.push_back(ctx);
+    cond_1 = new ContextCondition(stm_a, true);
+    cond_2 = new ContextCondition(stm_b, true);
+    cond_3 = new ContextCondition(stm_c, false);
 
-      Belief belief(stm, NULL, true);
-      belief_base->add_belief(belief);
-    }
+    Belief belief_a(stm_a, NULL, true);
+    Belief belief_b(stm_b, NULL, true);
+    Belief belief_c(stm_c, NULL, false);
 
-    // Adds belief to BeliefBase with false value
-        // Adds statement to ContextCondition with expected value as false
-    Statement stm(alphabet[size-1]);
-
-    ContextCondition ctx(stm, false);
-    cxt_c.push_back(ctx);
-
-    Belief belief(stm, NULL, false);
-    belief_base->add_belief(belief);
+    belief_base->add_belief(belief_a);
+    belief_base->add_belief(belief_b);
+    belief_base->add_belief(belief_c);
   }
 
-  virtual ~TContext()
+  ~TContext()
   {
     delete context;
   }
@@ -64,11 +54,10 @@ public:
  */
 TEST_F(TContext, add_belief)
 {
-  for (int i = 0; i < size; i++)
-  {
-    EXPECT_TRUE(context->add_belief(cxt_c.at(i)));
-  }
-  EXPECT_FALSE(context->add_belief(cxt_c.at(size-1)));
+  EXPECT_TRUE(context->add_belief(*cond_1));
+  EXPECT_TRUE(context->add_belief(*cond_2));
+  EXPECT_TRUE(context->add_belief(*cond_3));
+  EXPECT_FALSE(context->add_belief(*cond_1));
 }
 
 /*
@@ -76,9 +65,9 @@ TEST_F(TContext, add_belief)
  */
 TEST_F(TContext, is_valid)
 {
-  for (int i = 0; i < size; i++)
-  {
-    EXPECT_TRUE(context->add_belief(cxt_c.at(i)));
-  }
+  context->add_belief(*cond_1);
+  context->add_belief(*cond_2);
+  context->add_belief(*cond_3);
+
   EXPECT_TRUE(context->is_valid(belief_base));
 }

@@ -7,7 +7,8 @@
 
 #include "gtest/gtest.h"
 #include "syntax/body.h"
-#include "instructions.h"
+
+#include "body_test_datatypes.h"
 
 
 class TBody : public ::testing::Test
@@ -15,7 +16,7 @@ class TBody : public ::testing::Test
 protected:
   Body * body;
   InstructionExample * instructions;
-  int size = 4;                                 // recommended is 4 or higher
+  int size = 4;                                 // between 4 and 26
 
 public:
   TBody()
@@ -24,7 +25,7 @@ public:
     instructions = new InstructionExample(size);
   }
 
-  virtual ~TBody()
+  ~TBody()
   {
     delete body;
     delete instructions;

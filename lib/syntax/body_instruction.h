@@ -10,8 +10,8 @@
 
 #include "body_type.h"
 #include "body_return.h"
-#include "../../bdi/belief_base.h"
-#include "../../bdi/event_base.h"
+#include "../bdi/belief_base.h"
+#include "../bdi/event_base.h"
 #include <iostream>
 
 /*

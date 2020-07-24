@@ -23,7 +23,7 @@ public:
     context_condition_false = new ContextCondition(stm_b, false);
   }
 
-  virtual ~TContextCondition()
+  ~TContextCondition()
   {
     delete context_condition_true;
     delete context_condition_false;

@@ -22,7 +22,7 @@ public:
     id_2 = new EventID();
   }
 
-  virtual ~TEventID()
+  ~TEventID()
   {
     delete id_2;
   }

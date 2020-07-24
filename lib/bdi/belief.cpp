@@ -6,6 +6,7 @@
  */
 
 #include "belief.h"
+#include <iostream>
 
 Belief::Belief() {}
 
@@ -20,14 +21,20 @@ Belief::~Belief() {}
 
 bool Belief::update_belief()
 {
-  bool var = _update(_belief_state);
-  if (var)
+  if (_update)
   {
-    _belief_state = !_belief_state;
-    return true;
-  } else {
-    return false;
+    bool current_value = _belief_state;
+    _belief_state = _update(_belief_state);
+    if (_belief_state != current_value)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
+  return false;
 }
 
 void Belief::change_state(bool state)

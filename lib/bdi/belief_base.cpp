@@ -6,6 +6,7 @@
  */
 
 #include "belief_base.h"
+//#include <iostream>
 
 BeliefBase::BeliefBase(int size)
 {
@@ -64,7 +65,8 @@ bool BeliefBase::get_belief_state(Statement stm)
 {
   for (int i=0; i < _belief_base->size(); i++)
   {
-    if (_belief_base->item(i)->get_statement().is_equal(stm.get_name()))
+//    std::cout << _belief_base->item(i)->get_statement().get_name() << " " << _belief_base->item(i)->get_state() << std::endl;
+    if (_belief_base->item(i)->get_statement().is_equal(stm))
     {
       return _belief_base->item(i)->get_state();
     }

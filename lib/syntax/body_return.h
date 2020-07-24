@@ -2,14 +2,14 @@
  * body_return.h
  *
  *  Created on: Jul 17, 2020
- *      Author: matuzalem
+ *      Author: Matuzalem Muller
  */
 
 #ifndef SYNTAX_BODY_BODY_RETURN_H_
 #define SYNTAX_BODY_BODY_RETURN_H_
 
 #include "body_type.h"
-#include "../../bdi/event.h"
+#include "../bdi/event.h"
 
 class BodyReturn
 {

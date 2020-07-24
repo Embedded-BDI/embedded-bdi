@@ -20,7 +20,7 @@ public:
     event = new Event(EventOperator::BELIEF_ADDITION, stm);
   }
 
-  virtual ~TEvent()
+  ~TEvent()
   {
     delete this->event;
   }

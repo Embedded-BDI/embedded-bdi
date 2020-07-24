@@ -8,7 +8,7 @@
 #include "gtest/gtest.h"
 #include "bdi/belief.h"
 
-bool always_true(bool var)
+bool always_opposite(bool var)
 {
   return !var;
 }
@@ -22,10 +22,10 @@ public:
   TBelief()
   {
     Statement stm('a');
-    this->belief = new Belief(stm, always_true, false);
+    this->belief = new Belief(stm, always_opposite, false);
   }
 
-  virtual ~TBelief()
+  ~TBelief()
   {
     delete this->belief;
   }
@@ -37,7 +37,7 @@ public:
 TEST_F(TBelief, update_belief)
 {
   EXPECT_TRUE(belief->update_belief());
-  EXPECT_FALSE(belief->update_belief());
+  EXPECT_TRUE(belief->update_belief());
 }
 
 /*

@@ -20,7 +20,7 @@ public:
     stack = new Stack<int>(size);
   }
 
-  virtual ~TStack()
+  ~TStack()
   {
     delete stack;
   }

@@ -58,7 +58,7 @@ public:
 
   const int get_size()
   {
-    return _belief_base->capacity();
+    return _belief_base->size();
   }};
 
 #endif /* CLASSES_BELIEFBASE_H_ */
