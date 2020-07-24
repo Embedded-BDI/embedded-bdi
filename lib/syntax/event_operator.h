@@ -8,7 +8,6 @@
 #ifndef SYNTAX_EVENT_OPERATOR_H_
 #define SYNTAX_EVENT_OPERATOR_H_
 
-
 /*
  * Event types:
  *  +   Addition of belief to belief base

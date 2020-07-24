@@ -15,16 +15,18 @@
 
 class Body
 {
-  CircularBuffer<IBodyInstruction> * _body;
+  CircularBuffer<BodyInstruction> * _body;
 
 public:
   Body();
+
+  Body(int size);
 
   virtual ~Body();
 
   BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
 
-  bool add_instruction(IBodyInstruction instruction);
+  bool add_instruction(BodyInstruction instruction);
 
   int size();
 };

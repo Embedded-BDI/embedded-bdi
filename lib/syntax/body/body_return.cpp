@@ -6,6 +6,7 @@
  */
 
 #include "body_return.h"
+#include <iostream>
 
 BodyReturn::BodyReturn() {}
 
