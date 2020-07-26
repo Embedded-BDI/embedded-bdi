@@ -14,6 +14,7 @@ class TContext : public ::testing::Test
 protected:
   BeliefBase * belief_base;
   Context * context;
+  Context * context_empty;
   std::vector<ContextCondition> cxt_c;
   ContextCondition * cond_1;
   ContextCondition * cond_2;
@@ -24,6 +25,7 @@ public:
   TContext()
   {
     context = new Context(size);
+    context_empty = new Context(size);
     belief_base = new BeliefBase(size);
 
     Statement stm_a('a');
@@ -46,6 +48,7 @@ public:
   ~TContext()
   {
     delete context;
+    delete context_empty;
   }
 };
 

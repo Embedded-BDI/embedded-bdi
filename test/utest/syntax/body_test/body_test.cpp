@@ -7,28 +7,26 @@
 
 #include "gtest/gtest.h"
 #include "syntax/body.h"
-
-#include "body_test_datatypes.h"
-
+#include "test_body_data.h"
 
 class TBody : public ::testing::Test
 {
 protected:
   Body * body;
-  InstructionExample * instructions;
+  TestBodyData * test_data;
   int size = 4;                                 // between 4 and 26
 
 public:
   TBody()
   {
     body = new Body(size);
-    instructions = new InstructionExample(size);
+    test_data = new TestBodyData(size);
   }
 
   ~TBody()
   {
     delete body;
-    delete instructions;
+    delete test_data;
   }
 };
 
@@ -36,9 +34,9 @@ TEST_F(TBody, add_instruction)
 {
   for (int i = 0; i < size; i++)
   {
-    EXPECT_TRUE(body->add_instruction(instructions->get_action_false()));
+    EXPECT_TRUE(body->add_instruction(test_data->get_action_false()));
   }
-  EXPECT_FALSE(body->add_instruction(instructions->get_action_false()));
+  EXPECT_FALSE(body->add_instruction(test_data->get_action_false()));
 }
 
 TEST_F(TBody, run_body)
@@ -47,25 +45,27 @@ TEST_F(TBody, run_body)
   {
     if (i % 4 == 0)
     {
-      body->add_instruction(instructions->get_action_false());
+      body->add_instruction(test_data->get_action_false());
     }
     if (i % 4 == 1)
     {
-      body->add_instruction(instructions->get_action_true());
+      body->add_instruction(test_data->get_action_true());
     }
     if (i % 4 == 2)
     {
-      body->add_instruction(instructions->get_belief_operation());
+      body->add_instruction(test_data->get_belief_operation());
     }
     if (i % 4 == 3)
     {
-      body->add_instruction(instructions->get_goal());
+      body->add_instruction(test_data->get_goal());
     }
   }
 
   for (int i = 0; i < size; i++)
   {
-    BodyReturn result = body->run_body(i, instructions->get_belief_base(), instructions->get_event_base());
+    BodyReturn result = body->run_body(i,
+                                       test_data->get_belief_base(),
+                                       test_data->get_event_base());
 
     if (i % 4 == 0)
     {

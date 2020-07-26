@@ -25,10 +25,11 @@ BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator eve
 
 BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase * event_base)
 {
+  BodyReturn result;
   if (_type == BodyType::ACTION)
   {
     bool value = _take_action(belief_base);
-    BodyReturn result(BodyType::ACTION, value, NULL);
+    result = BodyReturn(BodyType::ACTION, value, NULL);
 
     return result;
   }
@@ -44,12 +45,12 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
       {
         belief_base->change_belief_state(_statement, false);
       }
-      BodyReturn result(BodyType::BELIEF, true, event_base->last_event()->get_event_id());
+      result = BodyReturn(BodyType::BELIEF, true, event_base->last_event()->get_event_id());
       return result;
     }
     else
     {
-      BodyReturn result(BodyType::BELIEF, false, NULL);
+      result = BodyReturn(BodyType::BELIEF, false, NULL);
       return result;
     }
   }
@@ -57,12 +58,12 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
   {
     if (event_base->add_event(_operator, _statement))
     {
-      BodyReturn result(BodyType::GOAL, true, event_base->last_event()->get_event_id());
+      result = BodyReturn(BodyType::GOAL, true, event_base->last_event()->get_event_id());
       return result;
     }
     else
     {
-      BodyReturn result(BodyType::GOAL, false, NULL);
+      result = BodyReturn(BodyType::GOAL, false, NULL);
       return result;
     }
   }

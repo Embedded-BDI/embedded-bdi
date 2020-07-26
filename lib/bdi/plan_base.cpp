@@ -41,11 +41,14 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
     {
       for (int i = 0; i < _plan_base->size(); i++)
       {
-        if (event->get_statement().is_equal(_plan_base->item(i)->get_statement()))
+        if (event->get_operator() == _plan_base->item(i)->get_operator())
         {
-          if (_plan_base->item(i)->get_context()->is_valid(belief_base))
+          if (event->get_statement().is_equal(_plan_base->item(i)->get_statement()))
           {
-            return _plan_base->item(i);
+            if (_plan_base->item(i)->get_context()->is_valid(belief_base))
+            {
+              return _plan_base->item(i);
+            }
           }
         }
       }

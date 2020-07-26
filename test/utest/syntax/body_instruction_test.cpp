@@ -7,11 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "syntax/body_instruction.h"
-
-bool take_action(BeliefBase * belief_base)
-{
-  return true;
-}
+#include "../data/test_data.h"
 
 class TBodyInstruction : public ::testing::Test
 {
@@ -36,7 +32,7 @@ public:
     belief_base->add_belief(belief_a);
     belief_base->add_belief(belief_b);
 
-    action = new BodyInstruction(BodyType::ACTION, stm_a, take_action);
+    action = new BodyInstruction(BodyType::ACTION, stm_a, function_action_true);
     belief_operation = new BodyInstruction(BodyType::BELIEF, stm_a, EventOperator::BELIEF_ADDITION);
     goal = new BodyInstruction(BodyType::GOAL, stm_a, EventOperator::GOAL_ADDITION);
   }

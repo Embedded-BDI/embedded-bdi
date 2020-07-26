@@ -16,37 +16,37 @@ class Plan
 {
 private:
   EventOperator _operator;
-  Statement _statement;
-  Context _context;
-  Body _body;
+  Statement * _statement;
+  Context * _context;
+  Body * _body;
 
 public:
   Plan();
 
-  Plan(EventOperator op, Statement stm, Context context, Body body);
+  Plan(EventOperator op, Statement * stm, Context * context, Body * body);
 
   virtual ~Plan();
 
   BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
 
-  EventOperator * get_operator ()
+  const EventOperator & get_operator() const
   {
-    return &_operator;
+    return _operator;
   }
 
   Statement * get_statement()
   {
-     return &_statement;
+     return _statement;
   }
 
   Context * get_context()
   {
-     return &_context;
+     return _context;
   }
 
   Body * get_body()
   {
-     return &_body;
+     return _body;
   }
 };
 

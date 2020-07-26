@@ -6,18 +6,10 @@
  */
 
 #include "bdi/belief_base.h"
+#include "syntax/body_instruction.h"
+#include "../../data/test_data.h"
 
-bool function_action_true(BeliefBase * beliefs)
-{
-  return true;
-}
-
-bool function_action_false(BeliefBase * beliefs)
-{
-  return false;
-}
-
-class InstructionExample {
+class TestBodyData {
 private:
   BeliefBase * _belief_base;
   EventBase * _event_base;
@@ -28,7 +20,7 @@ private:
                        'y', 'z'};
 
 public:
-  InstructionExample(int size)
+  TestBodyData(int size)
   {
     _belief_base = new BeliefBase(size);
     _event_base = new EventBase(size);
@@ -41,7 +33,7 @@ public:
     }
   }
 
-  ~InstructionExample()
+  ~TestBodyData()
   {
     delete _belief_base;
     delete _event_base;
