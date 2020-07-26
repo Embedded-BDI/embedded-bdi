@@ -15,7 +15,7 @@
 
 class TestPlanData {
 private:
-  Statement * stm;
+  Statement stm;
   BeliefBase * belief_base_empty;
   BeliefBase * belief_base_full;
   EventBase * event_base_empty;
@@ -28,14 +28,14 @@ private:
 public:
   TestPlanData(int body_size, int belief_base_size, int event_base_size)
   {
-    stm = new Statement('a');
+    stm = Statement('a');
 
     // Creates BeliefBases
     belief_base_empty = new BeliefBase(belief_base_size);
     belief_base_full = new BeliefBase(belief_base_size);
     for (int i = 0; i < belief_base_size; i++)
     {
-      Belief belief(*stm, NULL);
+      Belief belief(stm, NULL);
       belief_base_full->add_belief(belief);
     }
 
@@ -44,14 +44,13 @@ public:
     event_base_full = new EventBase(event_base_size);
     for (int i = 0; i < event_base_size; i++)
     {
-      Event event(EventOperator::GOAL_ADDITION, *stm);
-      event_base_full->add_event(event);
+      event_base_full->add_event(EventOperator::GOAL_ADDITION, stm);
     }
 
     // Creates valid plan
     BodyInstruction instruction;
     body_valid = new Body(body_size);
-    instruction = BodyInstruction(BodyType::ACTION, *stm, function_action_true);
+    instruction = BodyInstruction(BodyType::ACTION, stm, function_action_true);
     for (int i = 0; i < body_size; i++)
     {
       body_valid->add_instruction(instruction);
@@ -59,7 +58,7 @@ public:
 
     // Creates plan that fails due to failure in action
     body_action_fails = new Body(body_size);
-    instruction = BodyInstruction(BodyType::ACTION, *stm, function_action_false);
+    instruction = BodyInstruction(BodyType::ACTION, stm, function_action_false);
     for (int i = 0; i < body_size; i++)
     {
       body_action_fails->add_instruction(instruction);
@@ -67,7 +66,7 @@ public:
 
     // Creates plan that fails due to full EventBase and belief event cannot be created
     body_belief_fails = new Body(body_size);
-    instruction = BodyInstruction(BodyType::BELIEF, *stm, EventOperator::BELIEF_ADDITION);
+    instruction = BodyInstruction(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
       body_belief_fails->add_instruction(instruction);
@@ -75,7 +74,7 @@ public:
 
     // Creates plan that fails due to full EventBase and goal event cannot be created
     body_goal_fails = new Body(body_size);
-    instruction = BodyInstruction(BodyType::GOAL, *stm, EventOperator::GOAL_ADDITION);
+    instruction = BodyInstruction(BodyType::GOAL, stm, EventOperator::GOAL_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
       body_goal_fails->add_instruction(instruction);
@@ -84,7 +83,6 @@ public:
 
   ~TestPlanData()
   {
-    delete stm;
     delete belief_base_empty;
     delete belief_base_full;
     delete event_base_empty;
@@ -135,7 +133,7 @@ public:
     return body_valid;
   }
 
-  Statement * get_stm()
+  Statement get_stm()
   {
     return stm;
   }

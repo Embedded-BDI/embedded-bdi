@@ -40,6 +40,11 @@ public:
    * @result Pointer to applicable plan, NULL otherwise
    */
   Plan * revise(Event * event, BeliefBase * belief_base);
+
+  int get_size()
+  {
+    return _plan_base->size();
+  }
 };
 
 #endif /* BDI_PLAN_BASE_H_ */

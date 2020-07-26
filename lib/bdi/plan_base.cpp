@@ -19,13 +19,7 @@ PlanBase::~PlanBase()
 
 bool PlanBase::add_plan(Plan plan)
 {
-  if (!_plan_base->is_full())
-  {
-    _plan_base->enqueue(plan);
-    return true;
-  } else {
-    return false;
-  }
+  return _plan_base->enqueue(plan);
 }
 
 Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)

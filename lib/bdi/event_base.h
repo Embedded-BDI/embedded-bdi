@@ -26,31 +26,28 @@ public:
   virtual ~EventBase();
 
   /*
-   * Adds event to _pending_events buffer
-   * @param event Event to be added
-   * @return Returns true if event is added or false otherwise
-   */
-  bool add_event(Event event);
-
-  /*
-   * Creates an event using op and stm and adds event to _pending_events buffer
-   * @param event Event to be added
+   * Creates an event using op and stm and adds event to BeliefBase
+   * @param event Event to be added to _pending_events buffer
    */
   bool add_event(EventOperator op, Statement stm);
 
   /*
-   * Removes event from _pending_events and returns pointer to removed object
+   * Removes event from EventBase and returns pointer to removed object
    * @return Pointer to first element from _pending_events. If _pending_events
    * has no elements, the return will be a NULL pointer
    */
   Event * get_event();
 
+  /*
+   * Returns last event added to EventBase
+   * @return Pointer to last event added to _pending_events
+   */
   Event * last_event();
 
   /*
-   * Check if event exists in EventBase given event_ud
+   * Check if event exists in EventBase given event_id
    * @param event_id EventID to be checked
-   * @return true if event with event_id exists in EventBase, false otherwise
+   * @return True if event exists in _pending_events, false otherwise
    */
   bool event_exists(EventID * event_id);
 

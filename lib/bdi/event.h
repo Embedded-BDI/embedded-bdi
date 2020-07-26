@@ -22,6 +22,11 @@ private:
 public:
   Event();
 
+  /*
+   * Event constructor
+   * @param op Event's EventOperator
+   * @param stm Event's statement
+   */
   Event(EventOperator op, Statement stm);
 
   virtual ~Event();
@@ -36,6 +41,10 @@ public:
     return _statement;
   }
 
+  /*
+   * Unique ID given to event
+   * @return returns pointer to EventID
+   */
   EventID * get_event_id()
   {
     return &_id;

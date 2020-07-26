@@ -16,14 +16,14 @@ class Plan
 {
 private:
   EventOperator _operator;
-  Statement * _statement;
+  Statement _statement;
   Context * _context;
   Body * _body;
 
 public:
   Plan();
 
-  Plan(EventOperator op, Statement * stm, Context * context, Body * body);
+  Plan(EventOperator op, Statement stm, Context * context, Body * body);
 
   virtual ~Plan();
 
@@ -36,7 +36,7 @@ public:
 
   Statement * get_statement()
   {
-     return _statement;
+     return &_statement;
   }
 
   Context * get_context()

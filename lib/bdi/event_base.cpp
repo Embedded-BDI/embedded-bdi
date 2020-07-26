@@ -17,17 +17,6 @@ EventBase::~EventBase()
   delete _pending_events;
 }
 
-bool EventBase::add_event(Event event)
-{
-  if (!_pending_events->is_full())
-  {
-    _pending_events->enqueue(event);
-    return true;
-  } else {
-    return false;
-  }
-}
-
 bool EventBase::add_event(EventOperator op, Statement stm)
 {
   if (!_pending_events->is_full())

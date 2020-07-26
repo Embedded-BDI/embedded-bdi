@@ -31,10 +31,9 @@ public:
   TPlan()
   {
     test_data = new TestPlanData(body_size,
-                                      belief_base_size,
-                                      event_base_size);
+                                 belief_base_size,
+                                 event_base_size);
 
-    // Creates common types
     event_operator = EventOperator::GOAL_ADDITION;
     context_valid = new Context(context_size);
 
@@ -46,21 +45,21 @@ public:
 
     // Plan that fails due to failure in action
     plan_action = new Plan(event_operator,
-                                 test_data->get_stm(),
-                                 context_valid,
-                                 test_data->get_body_action_fails());
+                           test_data->get_stm(),
+                           context_valid,
+                           test_data->get_body_action_fails());
 
     // Plan that fails due to full EventBase and belief event cannot be created
     plan_belief = new Plan(event_operator,
-                                 test_data->get_stm(),
-                                 context_valid,
-                                 test_data->get_body_belief_fails());
+                           test_data->get_stm(),
+                           context_valid,
+                           test_data->get_body_belief_fails());
 
     // Plan that fails due to full EventBase and goal event cannot be created
     plan_goal = new Plan(event_operator,
-                               test_data->get_stm(),
-                               context_valid,
-                               test_data->get_body_goal_fails());
+                         test_data->get_stm(),
+                         context_valid,
+                         test_data->get_body_goal_fails());
   }
 
   ~TPlan()

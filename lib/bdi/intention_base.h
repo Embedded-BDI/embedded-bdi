@@ -44,7 +44,9 @@ public:
   void add_intention(Plan * plan);
 
   /*
-   * Run an instruction from first intention stored in _intention_base
+   * Run instruction from the intention stored in the front of _intention_base
+   * After instruction is run, the intention is placed at the end of
+   * _intention_base if it has not finished
    */
   void run_intention_base();
 

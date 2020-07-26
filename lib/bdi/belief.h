@@ -16,8 +16,7 @@ private:
   Statement _statement;
   bool _belief_state;
   // Function to update Agent's belief
-  // @param var Parameter to be passed to update function. Usually
-  // _belief_state
+  // @param var Current value of _belief_state
   bool (*_update)(bool var);
 
 public:
@@ -26,7 +25,7 @@ public:
   /*
    * Belief constructor
    * @param stm Agent's statement
-   * @param update_function Function to update Agent's belief
+   * @param update_function Function to update _belief_state
    * @param belief_state Agent's belief state. Default is false
    */
   Belief(Statement stm, bool (*update_function)(bool var), bool belief_state = false);
@@ -41,7 +40,7 @@ public:
 
   /*
    * Change Belief's _belief_state
-   * @param state State to be assigned to _belief_state
+   * @param state Value to be assigned to _belief_state
    */
   void change_state(bool state);
 
