@@ -50,6 +50,10 @@ public:
    */
   void run_intention_base();
 
+  /*
+   * Returns if IntentionBase is empty based on _intention_base size
+   * @return True if empty, false otherwise
+   */
   bool is_empty();
 };
 

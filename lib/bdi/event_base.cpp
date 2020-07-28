@@ -43,7 +43,14 @@ Event * EventBase::get_event()
 
 Event * EventBase::last_event()
 {
-  return _pending_events->item(_pending_events->size()-1);
+  if (_pending_events->is_empty())
+  {
+    return NULL;
+  }
+  else
+  {
+    return _pending_events->item(_pending_events->size()-1);
+  }
 }
 
 

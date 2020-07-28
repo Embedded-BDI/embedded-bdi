@@ -7,7 +7,8 @@
 
 #include "gtest/gtest.h"
 #include "syntax/context.h"
-#include <vector>
+
+#define SIZES 3
 
 class TContext : public ::testing::Test
 {
@@ -15,18 +16,16 @@ protected:
   BeliefBase * belief_base;
   Context * context;
   Context * context_empty;
-  std::vector<ContextCondition> cxt_c;
   ContextCondition * cond_1;
   ContextCondition * cond_2;
   ContextCondition * cond_3;
-  int size = 3;
 
 public:
   TContext()
   {
-    context = new Context(size);
-    context_empty = new Context(size);
-    belief_base = new BeliefBase(size);
+    context = new Context(SIZES);
+    context_empty = new Context(SIZES);
+    belief_base = new BeliefBase(SIZES);
 
     Statement stm_a('a');
     Statement stm_b('b');

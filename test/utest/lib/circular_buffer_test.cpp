@@ -8,16 +8,17 @@
 #include "gtest/gtest.h"
 #include "lib/circular_buffer.h"
 
+#define BUFFER_SIZE 4
+
 class TCircularBuffer : public ::testing::Test
 {
 protected:
   CircularBuffer<int> * buffer;
-  int size = 4;                                 // size must be 2 or higher
 
 public:
   TCircularBuffer()
   {
-    buffer = new CircularBuffer<int>(size);
+    buffer = new CircularBuffer<int>(BUFFER_SIZE);
   }
 
   ~TCircularBuffer()
@@ -31,11 +32,11 @@ public:
  */
 TEST_F(TCircularBuffer, enqueue)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < BUFFER_SIZE; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
   }
-  EXPECT_FALSE(buffer->enqueue(size));
+  EXPECT_FALSE(buffer->enqueue(BUFFER_SIZE));
 }
 
 /*
@@ -43,11 +44,11 @@ TEST_F(TCircularBuffer, enqueue)
  */
 TEST_F(TCircularBuffer, dequeue)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < BUFFER_SIZE; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
   }
-  for(int i = size-1; i >= 0; i--)
+  for(int i = BUFFER_SIZE-1; i >= 0; i--)
   {
     EXPECT_TRUE(buffer->dequeue());
   }
@@ -59,16 +60,16 @@ TEST_F(TCircularBuffer, dequeue)
  */
 TEST_F(TCircularBuffer, item)
 {
-  for(int i = 0; i < size-1; i++)
+  for(int i = 0; i < BUFFER_SIZE-1; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
   }
-  for(int i = 0; i < size-1; i++)
+  for(int i = 0; i < BUFFER_SIZE-1; i++)
   {
     EXPECT_EQ(i, *buffer->item(i));
   }
-  EXPECT_EQ(NULL, buffer->item(size));
-  EXPECT_EQ(NULL, buffer->item(size-1));
+  EXPECT_EQ(NULL, buffer->item(BUFFER_SIZE));
+  EXPECT_EQ(NULL, buffer->item(BUFFER_SIZE-1));
 }
 
 /*
@@ -91,15 +92,15 @@ TEST_F(TCircularBuffer, peek)
  */
 TEST_F(TCircularBuffer, capacity)
 {
-  EXPECT_EQ(size, buffer->capacity());
+  EXPECT_EQ(BUFFER_SIZE, buffer->capacity());
 }
 
 /*
- * Test if size is changed correctly
+ * Test if BUFFER_SIZE is changed correctly
  */
-TEST_F(TCircularBuffer, size)
+TEST_F(TCircularBuffer, BUFFER_SIZE)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < BUFFER_SIZE; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
     EXPECT_EQ(i+1, buffer->size());
@@ -112,7 +113,7 @@ TEST_F(TCircularBuffer, size)
 TEST_F(TCircularBuffer, is_empty)
 {
   EXPECT_TRUE(buffer->is_empty());
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < BUFFER_SIZE; i++)
   {
     EXPECT_TRUE(buffer->enqueue(i));
     EXPECT_FALSE(buffer->is_empty());
@@ -124,7 +125,7 @@ TEST_F(TCircularBuffer, is_empty)
  */
 TEST_F(TCircularBuffer, is_full)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < BUFFER_SIZE; i++)
   {
     EXPECT_FALSE(buffer->is_full());
     EXPECT_TRUE(buffer->enqueue(i));

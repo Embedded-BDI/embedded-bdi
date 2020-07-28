@@ -20,12 +20,26 @@ class Body
 public:
   Body();
 
+  /*
+   * Body constructor
+   * @param size Size of _body
+   */
   Body(int size);
 
   virtual ~Body();
 
+  /*
+   * Run instruction from body at specific position
+   * @param index Position in body of instruction to be run
+   * @param beliefs Agent's BeliefBase
+   * @param events Agent's EventBase
+   */
   BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
 
+  /*
+   * Adds instruction to body
+   * @param instruction Instruction to add
+   */
   bool add_instruction(BodyInstruction instruction);
 
   int size();

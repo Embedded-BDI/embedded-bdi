@@ -11,7 +11,7 @@
 #include "bdi/belief_base.h"
 #include "syntax/body.h"
 #include "syntax/context.h"
-#include "../../data/test_data.h"
+#include "../../common_test_functions.h"
 
 class TestPlanData {
 private:
@@ -44,13 +44,16 @@ public:
     event_base_full = new EventBase(event_base_size);
     for (int i = 0; i < event_base_size; i++)
     {
-      event_base_full->add_event(EventOperator::GOAL_ADDITION, stm);
+      event_base_full->add_event(EventOperator::GOAL_ADDITION,
+                                 stm);
     }
 
     // Creates valid plan
     BodyInstruction instruction;
     body_valid = new Body(body_size);
-    instruction = BodyInstruction(BodyType::ACTION, stm, function_action_true);
+    instruction = BodyInstruction(BodyType::ACTION,
+                                  stm,
+                                  return_true_beliefbase);
     for (int i = 0; i < body_size; i++)
     {
       body_valid->add_instruction(instruction);
@@ -58,7 +61,9 @@ public:
 
     // Creates plan that fails due to failure in action
     body_action_fails = new Body(body_size);
-    instruction = BodyInstruction(BodyType::ACTION, stm, function_action_false);
+    instruction = BodyInstruction(BodyType::ACTION,
+                                  stm,
+                                  return_false_beliefbase);
     for (int i = 0; i < body_size; i++)
     {
       body_action_fails->add_instruction(instruction);
@@ -66,7 +71,9 @@ public:
 
     // Creates plan that fails due to full EventBase and belief event cannot be created
     body_belief_fails = new Body(body_size);
-    instruction = BodyInstruction(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
+    instruction = BodyInstruction(BodyType::BELIEF,
+                                  stm,
+                                  EventOperator::BELIEF_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
       body_belief_fails->add_instruction(instruction);
@@ -74,7 +81,9 @@ public:
 
     // Creates plan that fails due to full EventBase and goal event cannot be created
     body_goal_fails = new Body(body_size);
-    instruction = BodyInstruction(BodyType::GOAL, stm, EventOperator::GOAL_ADDITION);
+    instruction = BodyInstruction(BodyType::GOAL,
+                                  stm,
+                                  EventOperator::GOAL_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
       body_goal_fails->add_instruction(instruction);

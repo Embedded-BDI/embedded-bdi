@@ -8,16 +8,17 @@
 #include "gtest/gtest.h"
 #include "lib/stack.h"
 
+#define STACK_SIZE 4
+
 class TStack : public ::testing::Test
 {
 protected:
   Stack<int> * stack;
-  int size = 4;                                 // size must be 2 or higher
 
 public:
   TStack()
   {
-    stack = new Stack<int>(size);
+    stack = new Stack<int>(STACK_SIZE);
   }
 
   ~TStack()
@@ -31,7 +32,7 @@ public:
  */
 TEST_F(TStack, push)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < STACK_SIZE; i++)
   {
     EXPECT_TRUE(stack->push(i));
   }
@@ -43,11 +44,11 @@ TEST_F(TStack, push)
  */
 TEST_F(TStack, pop)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < STACK_SIZE; i++)
   {
     EXPECT_TRUE(stack->push(i));
   }
-  for(int i = size-1; i >= 0; i--)
+  for(int i = STACK_SIZE-1; i >= 0; i--)
   {
     EXPECT_EQ(i, *stack->pop());
   }
@@ -59,12 +60,12 @@ TEST_F(TStack, pop)
  */
 TEST_F(TStack, peek)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < STACK_SIZE; i++)
   {
     EXPECT_TRUE(stack->push(i));
     EXPECT_EQ(i, *stack->peek());
   }
-  for(int i = size-1; i >= 0; i--)
+  for(int i = STACK_SIZE-1; i >= 0; i--)
   {
     EXPECT_EQ(i, *stack->peek());
     EXPECT_EQ(i, *stack->pop());
@@ -72,10 +73,10 @@ TEST_F(TStack, peek)
 }
 
 /*
- * Test if size is changed correctly
+ * Test if STACK_SIZE is changed correctly
  */
-TEST_F(TStack, size) {
-  for(int i = 1; i <= size; i++)
+TEST_F(TStack, STACK_SIZE) {
+  for(int i = 1; i <= STACK_SIZE; i++)
   {
     EXPECT_TRUE(stack->push(i));
     EXPECT_EQ(i, stack->size());
@@ -87,7 +88,7 @@ TEST_F(TStack, size) {
  */
 TEST_F(TStack, is_empty) {
   EXPECT_TRUE(stack->is_empty());
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < STACK_SIZE; i++)
   {
     EXPECT_TRUE(stack->push(i));
     EXPECT_FALSE(stack->is_empty());
@@ -98,7 +99,7 @@ TEST_F(TStack, is_empty) {
  * Test if stack is full on multiple cases
  */
 TEST_F(TStack, is_full) {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < STACK_SIZE; i++)
   {
     EXPECT_FALSE(stack->is_full());
     EXPECT_TRUE(stack->push(i));

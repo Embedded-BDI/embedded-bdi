@@ -8,7 +8,6 @@
 #include "gtest/gtest.h"
 #include "syntax/body_return.h"
 
-
 class TBodyReturn : public ::testing::Test
 {
 protected:

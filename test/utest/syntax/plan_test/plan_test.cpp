@@ -9,12 +9,18 @@
 #include "syntax/plan.h"
 #include "test_plan_data.h"
 
+#define CONTEXT_SIZE 1
+#define BELIEF_BASE_SIZE 1
+#define EVENT_BASE_SIZE 2
+#define BODY_SIZE 2
+
 class TPlan : public ::testing::Test
 {
 protected:
   TestPlanData * test_data;
 
   EventOperator event_operator;
+  Statement stm;
   Context * context_valid;
 
   Plan * plan_valid;
@@ -22,42 +28,38 @@ protected:
   Plan * plan_belief;
   Plan * plan_goal;
 
-  const int context_size = 1;
-  const int body_size = 2;
-  const int event_base_size = 2;    // must be equal to body_size
-  const int belief_base_size = 1;
-
 public:
   TPlan()
   {
-    test_data = new TestPlanData(body_size,
-                                 belief_base_size,
-                                 event_base_size);
+    test_data = new TestPlanData(BODY_SIZE,
+                                 BELIEF_BASE_SIZE,
+                                 EVENT_BASE_SIZE);
+    stm = test_data->get_stm();
 
     event_operator = EventOperator::GOAL_ADDITION;
-    context_valid = new Context(context_size);
+    context_valid = new Context(CONTEXT_SIZE);
 
     // Valid plan
     plan_valid = new Plan(event_operator,
-                          test_data->get_stm(),
+                          stm,
                           context_valid,
                           test_data->get_body_valid());
 
     // Plan that fails due to failure in action
     plan_action = new Plan(event_operator,
-                           test_data->get_stm(),
+                           stm,
                            context_valid,
                            test_data->get_body_action_fails());
 
     // Plan that fails due to full EventBase and belief event cannot be created
     plan_belief = new Plan(event_operator,
-                           test_data->get_stm(),
+                           stm,
                            context_valid,
                            test_data->get_body_belief_fails());
 
     // Plan that fails due to full EventBase and goal event cannot be created
     plan_goal = new Plan(event_operator,
-                         test_data->get_stm(),
+                         stm,
                          context_valid,
                          test_data->get_body_goal_fails());
   }
@@ -77,7 +79,7 @@ TEST_F(TPlan, get_operator) {
 }
 
 TEST_F(TPlan, get_statement) {
-  EXPECT_TRUE(plan_valid->get_statement()->is_equal(test_data->get_stm()));
+  EXPECT_TRUE(plan_valid->get_statement()->is_equal(stm));
 }
 
 TEST_F(TPlan, get_context) {

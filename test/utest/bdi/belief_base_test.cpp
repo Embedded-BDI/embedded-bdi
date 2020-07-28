@@ -7,29 +7,21 @@
 
 #include "gtest/gtest.h"
 #include "bdi/belief_base.h"
+#include "../common_test_functions.h"
 
-bool update_belief_true(bool var)
-{
-  return true;
-}
-
-bool update_belief_false(bool var)
-{
-  return false;
-}
+#define BELIEF_BASE_SIZE 3
 
 class TBeliefBase : public ::testing::Test
 {
 protected:
   BeliefBase * belief_base;
   EventBase * event_base;
-  int size = 3;
 
 public:
   TBeliefBase()
   {
-    belief_base = new BeliefBase(size);
-    event_base = new EventBase(size);
+    belief_base = new BeliefBase(BELIEF_BASE_SIZE);
+    event_base = new EventBase(BELIEF_BASE_SIZE);
   }
 
   ~TBeliefBase()
@@ -45,8 +37,8 @@ TEST_F(TBeliefBase, add_belief)
   Statement stm_b('b');
   Statement stm_c('c');
 
-  Belief belief_a(stm_a, update_belief_true, false);
-  Belief belief_b(stm_b, update_belief_false, true);
+  Belief belief_a(stm_a, return_true_bool, false);
+  Belief belief_b(stm_b, return_false_bool, true);
   Belief belief_c(stm_c, NULL, false);
 
   EXPECT_TRUE(belief_base->add_belief(belief_a));
@@ -61,8 +53,8 @@ TEST_F(TBeliefBase, get_belief_state)
   Statement stm_b('b');
   Statement stm_c('c');
 
-  Belief belief_a(stm_a, update_belief_true, false);
-  Belief belief_b(stm_b, update_belief_false, true);
+  Belief belief_a(stm_a, return_true_bool, false);
+  Belief belief_b(stm_b, return_false_bool, true);
   Belief belief_c(stm_c, NULL, false);
 
   belief_base->add_belief(belief_a);
@@ -80,8 +72,8 @@ TEST_F(TBeliefBase, update)
   Statement stm_b('b');
   Statement stm_c('c');
 
-  Belief belief_a(stm_a, update_belief_true, false);
-  Belief belief_b(stm_b, update_belief_false, true);
+  Belief belief_a(stm_a, return_true_bool, false);
+  Belief belief_b(stm_b, return_false_bool, true);
   Belief belief_c(stm_c, NULL, false);
 
   belief_base->add_belief(belief_a);
@@ -103,7 +95,7 @@ TEST_F(TBeliefBase, change_belief_state)
   Statement stm_b('b');
   Statement stm_c('c');
 
-  Belief belief_a(stm_a, update_belief_true, false);
+  Belief belief_a(stm_a, return_true_bool, false);
   Belief belief_b(stm_b, NULL, true);
 
   belief_base->add_belief(belief_a);
@@ -123,7 +115,7 @@ TEST_F(TBeliefBase, get_size)
   Statement stm_a('a');
   Statement stm_b('b');
 
-  Belief belief_a(stm_a, update_belief_true, false);
+  Belief belief_a(stm_a, return_true_bool, false);
   Belief belief_b(stm_b, NULL, true);
 
   belief_base->add_belief(belief_a);

@@ -7,17 +7,12 @@
 
 #include "bdi/belief_base.h"
 #include "syntax/body_instruction.h"
-#include "../../data/test_data.h"
+#include "../../common_test_functions.h"
 
 class TestBodyData {
 private:
   BeliefBase * _belief_base;
   EventBase * _event_base;
-  char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f',
-                       'g', 'h', 'i', 'j', 'k', 'l',
-                       'm', 'n', 'o', 'p', 'q', 'r',
-                       's', 't', 'u', 'v', 'w', 'x',
-                       'y', 'z'};
 
 public:
   TestBodyData(int size)
@@ -25,10 +20,10 @@ public:
     _belief_base = new BeliefBase(size);
     _event_base = new EventBase(size);
 
+    Statement stm('a');
+    Belief belief(stm, NULL, true);
     for (int i = 0; i < size; i++)
     {
-      Statement stm(alphabet[i]);
-      Belief belief(stm, NULL, true);
       _belief_base->add_belief(belief);
     }
   }
@@ -52,22 +47,22 @@ public:
   BodyInstruction get_action_true()
   {
     Statement stm('a');
-    BodyInstruction action(BodyType::ACTION, stm, function_action_true);
+    BodyInstruction action(BodyType::ACTION, stm, return_true_beliefbase);
     return action;
   }
 
   BodyInstruction get_action_false()
   {
     Statement stm('a');
-    BodyInstruction action(BodyType::ACTION, stm, function_action_false);
+    BodyInstruction action(BodyType::ACTION, stm, return_false_beliefbase);
     return action;
   }
 
   BodyInstruction get_belief_operation()
   {
     Statement stm('a');
-    BodyInstruction belief(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
-    return belief;
+    BodyInstruction bf(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
+    return bf;
   }
 
   BodyInstruction get_goal()

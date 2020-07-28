@@ -26,6 +26,10 @@ public:
 
   virtual ~EventID();
 
+  /*
+   * Compares given ID with _id
+   * @return True if event_id is equal to _id, false otherwise
+   */
   bool is_equal(EventID event_id);
 
   const int get_id() const
@@ -33,6 +37,10 @@ public:
     return _id;
   }
 
+  /*
+   * Returns EventID's main counter
+   * @return id
+   */
   int get_control_id()
   {
     return EventID::id;

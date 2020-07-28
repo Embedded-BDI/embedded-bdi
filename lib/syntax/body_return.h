@@ -21,6 +21,18 @@ private:
 public:
   BodyReturn();
 
+  /*
+   * BodyReturn constructor. For each BodyType:
+   *  * Action: type is BodyType::ACTION
+   *            _value is true if action is successful, false otherwise
+   *            event is NULL
+   *  * Belief: type is BodyType::BELIEF
+   *            _value is true if event is added to EventBase, false otherwise
+   *            event is pointer to EventID of event created for instruction
+   *  * Goal: type is BodyType::GOAL
+   *          _value is true if event is added to EventBase, false otherwise
+   *          event is pointer to EventID of event created for instruction
+   */
   BodyReturn(BodyType type, bool value, EventID * event);
 
   virtual ~BodyReturn();

@@ -9,18 +9,19 @@
 #include "syntax/body.h"
 #include "test_body_data.h"
 
+#define BODY_SIZE 4
+
 class TBody : public ::testing::Test
 {
 protected:
   Body * body;
   TestBodyData * test_data;
-  int size = 4;                                 // between 4 and 26
 
 public:
   TBody()
   {
-    body = new Body(size);
-    test_data = new TestBodyData(size);
+    body = new Body(BODY_SIZE);
+    test_data = new TestBodyData(BODY_SIZE);
   }
 
   ~TBody()
@@ -32,7 +33,7 @@ public:
 
 TEST_F(TBody, add_instruction)
 {
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < BODY_SIZE; i++)
   {
     EXPECT_TRUE(body->add_instruction(test_data->get_action_false()));
   }
@@ -41,7 +42,7 @@ TEST_F(TBody, add_instruction)
 
 TEST_F(TBody, run_body)
 {
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < BODY_SIZE; i++)
   {
     if (i % 4 == 0)
     {
@@ -61,7 +62,7 @@ TEST_F(TBody, run_body)
     }
   }
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < BODY_SIZE; i++)
   {
     BodyReturn result = body->run_body(i,
                                        test_data->get_belief_base(),
