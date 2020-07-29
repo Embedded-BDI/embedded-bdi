@@ -9,18 +9,28 @@
 
 InstantiatedPlan::InstantiatedPlan() {}
 
-InstantiatedPlan::InstantiatedPlan(Plan * plan, IntentionID id)
+InstantiatedPlan::InstantiatedPlan(Plan * plan, IntentionID * id)
 {
   _plan = plan;
-  _id = &id;
+  _id = id;
 }
 
 InstantiatedPlan::~InstantiatedPlan() {}
 
 BodyReturn InstantiatedPlan::run_plan(BeliefBase * beliefs, EventBase * events)
 {
-  BodyReturn result = _plan->run_body(_index, beliefs, events);
-  _index++;
+  BodyReturn result;
+
+  if (_index < _plan->get_body()->size())
+  {
+    result = _plan->run_body(_index, beliefs, events);
+    _index++;
+  }
+  else
+  {
+    result = BodyReturn(BodyType::ACTION, false, NULL);
+  }
+
   return result;
 }
 

@@ -21,6 +21,5 @@ Plan::~Plan() {}
 
 BodyReturn Plan::run_body(int index, BeliefBase * beliefs, EventBase * events)
 {
-  BodyReturn result = _body->run_body(index, beliefs, events);
-  return result;
+  return _body->run_body(index, beliefs, events);;
 }

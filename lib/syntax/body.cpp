@@ -21,13 +21,17 @@ Body::~Body()
 
 BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 {
+  BodyReturn result;
+
   if (index >= _body->size())
   {
-    BodyReturn result(BodyType::ACTION, false, NULL);
-    return result;
+    result = BodyReturn(BodyType::ACTION, false, NULL);
+  }
+  else
+  {
+    result = _body->item(index)->run_instruction(beliefs, events);
   }
 
-  BodyReturn result = _body->item(index)->run_instruction(beliefs, events);
   return result;
 }
 

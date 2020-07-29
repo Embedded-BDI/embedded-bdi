@@ -123,10 +123,10 @@ TEST_F(TEventBase, event_exists)
   event_base->add_event(EventOperator::GOAL_ADDITION, stm_c);
   Event * event_c = event_base->last_event();
 
-  Event event_nonnexisting(EventOperator::BELIEF_ADDITION, stm_d);
+  Event event_nonexisting(EventOperator::BELIEF_ADDITION, stm_d);
 
   EXPECT_TRUE(event_base->event_exists(event_a->get_event_id()));
   EXPECT_TRUE(event_base->event_exists(event_b->get_event_id()));
   EXPECT_TRUE(event_base->event_exists(event_c->get_event_id()));
-  EXPECT_FALSE(event_base->event_exists(event_nonnexisting.get_event_id()));
+  EXPECT_FALSE(event_base->event_exists(event_nonexisting.get_event_id()));
 }

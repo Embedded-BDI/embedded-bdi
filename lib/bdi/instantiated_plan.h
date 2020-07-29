@@ -26,7 +26,7 @@ public:
    * @param plan Pointer to plan
    * @param id IntentionId id
    */
-  InstantiatedPlan(Plan * plan, IntentionID id);
+  InstantiatedPlan(Plan * plan, IntentionID * id);
 
   virtual ~InstantiatedPlan();
 
