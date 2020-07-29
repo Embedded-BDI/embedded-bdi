@@ -34,11 +34,11 @@ void IntentionBase::run_intention_base()
   if (!_intention_base->is_empty())
   {
     Intention * intention = _intention_base->peek();
-    intention->run_intention(_belief_base, _event_base);
+    bool result = intention->run_intention(_belief_base, _event_base);
 
     _intention_base->dequeue();
 
-    if (!intention->is_finished())
+    if (!intention->is_finished() && result)
     {
       _intention_base->enqueue(*intention);
     }

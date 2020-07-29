@@ -24,24 +24,45 @@ Intention::~Intention()
   delete _plans;
 }
 
-bool stack_plan(Plan * plan)
+bool Intention::stack_plan(Plan * plan)
 {
-  return true;
+  if (!plan)
+  {
+    return false;
+  }
+
+  InstantiatedPlan inst_plan(plan, &_id);
+  return _plans->push(inst_plan);
 }
 
 bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
 {
+  if (!_plans->peek())
+  {
+    return false;
+  }
+
   BodyReturn value = _plans->peek()->run_plan(beliefs, events);
+
+  if(!value.get_value())
+  {
+    while (!_plans->is_empty())
+    {
+      _plans->pop();
+    }
+    return value.get_value();
+  }
+
   if (value.get_value() && _plans->peek()->is_finished())
   {
     _plans->pop();
-
     if (value.get_event())
     {
       _suspended_by = value.get_event();
       _suspended = true;
     }
   }
+
   return value.get_value();
 }
 
@@ -59,16 +80,19 @@ void Intention::unsuspend()
 
 bool Intention::is_suspended(EventBase * events)
 {
-  if (_suspended)
+  if (_suspended && events)
   {
     if (events->event_exists(_suspended_by))
     {
       return true;
-    } else {
-      unsuspend();
+    }
+    else
+    {
+      this->unsuspend();
       return false;
     }
   }
+
   return false;
 }
 

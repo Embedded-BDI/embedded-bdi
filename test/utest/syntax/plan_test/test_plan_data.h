@@ -49,11 +49,11 @@ public:
     }
 
     // Creates valid plan
-    BodyInstruction instruction;
+    BodyInstruction instruction(BodyType::ACTION,
+                                stm,
+                                return_true_beliefbase);
     body_valid = new Body(body_size);
-    instruction = BodyInstruction(BodyType::ACTION,
-                                  stm,
-                                  return_true_beliefbase);
+
     for (int i = 0; i < body_size; i++)
     {
       body_valid->add_instruction(instruction);
