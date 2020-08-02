@@ -21,6 +21,17 @@ private:
   EventID * _suspended_by;
   IntentionID _id;
 
+  /*
+   * Suspend intention. Intentions should be suspended when the instruction
+   * ran on run_intention is added to the EventBase and no further instructions
+   * can be run without processing the event first
+   */
+  void suspend(EventID * event_id);
+
+  /*
+   * Unsuspend intention so instructions can be run
+   */
+  void unsuspend();
 public:
   Intention();
 
@@ -47,18 +58,6 @@ public:
    * @param events Agent's EventBase
    */
   bool run_intention(BeliefBase * beliefs, EventBase * events);
-
-  /*
-   * Suspend intention. Intentions should be suspended when the instruction
-   * ran on run_intention is added to the EventBase and no further instructions
-   * can be run without processing the event first
-   */
-  void suspend(EventID * event_id);
-
-  /*
-   * Unsuspend intention so instructions can be run
-   */
-  void unsuspend();
 
   /*
    * Check if invention is suspended

@@ -53,14 +53,15 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     return value.get_value();
   }
 
-  if (value.get_value() && _plans->peek()->is_finished())
+  if (value.get_value())
+  {
+    _suspended_by = value.get_event();
+    _suspended = true;
+  }
+
+  if(_plans->peek()->is_finished())
   {
     _plans->pop();
-    if (value.get_event())
-    {
-      _suspended_by = value.get_event();
-      _suspended = true;
-    }
   }
 
   return value.get_value();
