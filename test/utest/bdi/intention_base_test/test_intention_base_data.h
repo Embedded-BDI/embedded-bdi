@@ -1,17 +1,17 @@
 /*
- * test_intention_data.h
+ * test_intention_base_data.h
  *
- *  Created on: Jul 29, 2020
+ *  Created on: Aug 4, 2020
  *      Author: Matuzalem Muller
  */
 
-#ifndef UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_
-#define UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_
+#ifndef UTEST_BDI_INTENTION_BASE_TEST_TEST_INTENTION_BASE_DATA_H_
+#define UTEST_BDI_INTENTION_BASE_TEST_TEST_INTENTION_BASE_DATA_H_
 
 #include "syntax/plan.h"
 #include "../../common_test_functions.h"
 
-class TestIntentionData {
+class TestIntentionBaseData {
 private:
   BeliefBase * belief_base;
   EventBase * event_base_empty;
@@ -25,7 +25,7 @@ private:
   Plan * plan_belief;
 
 public:
-  TestIntentionData(int body_size, int bases_size)
+  TestIntentionBaseData(int body_size, int bases_size)
   {
     stm = Statement('a');
 
@@ -82,7 +82,7 @@ public:
                                   EventOperator::BELIEF_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
-    	body_belief->add_instruction(instruction);
+      body_belief->add_instruction(instruction);
     }
 
     plan_belief = new Plan(EventOperator::BELIEF_ADDITION,
@@ -91,7 +91,7 @@ public:
                            body_belief);
   }
 
-  ~TestIntentionData()
+  ~TestIntentionBaseData()
   {
     delete event_base_empty;
     delete belief_base;
@@ -134,4 +134,4 @@ public:
   }
 };
 
-#endif /* UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_ */
+#endif /* UTEST_BDI_INTENTION_BASE_TEST_TEST_INTENTION_BASE_DATA_H_ */

@@ -26,7 +26,7 @@ int main()
   BeliefBase beliefs(bb_size);
   EventBase events(eb_size);
   PlanBase plans(pb_size);
-  IntentionBase intentions(ib_queue_size, ib_stack_size, &beliefs, &events);
+  IntentionBase intentions(ib_queue_size, ib_stack_size);
 
   Event * event_to_process;
   Plan * plan_to_act;
@@ -52,10 +52,8 @@ int main()
     // Runs intention in case there are any
     if (!intentions.is_empty())
     {
-      intentions.run_intention_base();
+      intentions.run_intention_base(&beliefs, &events);
     }
-
-    // TRATAR EVENTO QUE FAZ PLAN ENTRAR EM STACK
 
     if (compile_test == true)
     {

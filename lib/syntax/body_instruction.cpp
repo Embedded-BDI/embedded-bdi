@@ -23,6 +23,7 @@ BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator eve
   _operator = event_operator;
 }
 
+// Add handling of belief that is not in beliefbase
 BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase * event_base)
 {
   BodyReturn result;

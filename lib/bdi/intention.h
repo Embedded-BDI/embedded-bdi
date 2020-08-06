@@ -19,7 +19,6 @@ private:
   int _size;
   bool _suspended;
   EventID * _suspended_by;
-  IntentionID _id;
 
   /*
    * Suspend intention. Intentions should be suspended when the instruction
@@ -56,6 +55,7 @@ public:
    * Run one instruction from plan from the top of _plans stack
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
+   * @return
    */
   bool run_intention(BeliefBase * beliefs, EventBase * events);
 

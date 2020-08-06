@@ -14,14 +14,16 @@
 #include "../lib/circular_buffer.h"
 #include "../syntax/plan.h"
 
+#include <vector>
+
 class IntentionBase
 {
 private:
   CircularBuffer<Intention> * _intention_base;
-  BeliefBase * _belief_base;
-  EventBase * _event_base;
-  int _buffer_size;
   int _stack_size;
+
+//  std::vector<Intention> _intention_base;
+//  int _buffer_size;
 
 public:
   IntentionBase();
@@ -33,7 +35,7 @@ public:
    * @param Pointer to Agent's BeliefBase
    * @param Pointer to Agent's EventBase
    */
-  IntentionBase(int buffer_size, int stack_size, BeliefBase * beliefs, EventBase * events);
+  IntentionBase(int buffer_size, int stack_size);
 
   virtual ~IntentionBase();
 
@@ -43,12 +45,14 @@ public:
    */
   void add_intention(Plan * plan);
 
+//  void add_intention(Intention intention);
+
   /*
    * Run instruction from the intention stored in the front of _intention_base
    * After instruction is run, the intention is placed at the end of
    * _intention_base if it has not finished
    */
-  void run_intention_base();
+  void run_intention_base(BeliefBase * beliefs, EventBase * events);
 
   /*
    * Returns if IntentionBase is empty based on _intention_base size

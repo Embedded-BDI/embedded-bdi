@@ -9,10 +9,9 @@
 
 InstantiatedPlan::InstantiatedPlan() {}
 
-InstantiatedPlan::InstantiatedPlan(Plan * plan, IntentionID * id)
+InstantiatedPlan::InstantiatedPlan(Plan * plan)
 {
   _plan = plan;
-  _id = id;
 }
 
 InstantiatedPlan::~InstantiatedPlan() {}

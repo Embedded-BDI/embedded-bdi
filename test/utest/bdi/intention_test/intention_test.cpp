@@ -9,7 +9,7 @@
 #include "bdi/intention.h"
 #include "test_intention_data.h"
 
-#define INTENTION_SIZE 3
+#define INTENTION_STACK_SIZE 3
 #define BODY_SIZE 2
 #define BASES_SIZE 3
 
@@ -34,11 +34,11 @@ public:
     plan_belief = test_data->get_plan_belief();
 
     intention_action_successul = new Intention(plan_action_successful,
-                                               INTENTION_SIZE);
+                                               INTENTION_STACK_SIZE);
     intention_action_fails = new Intention(plan_action_fails,
-                                           INTENTION_SIZE);
+                                           INTENTION_STACK_SIZE);
     intention_belief = new Intention(plan_belief,
-                                     INTENTION_SIZE);
+                                     INTENTION_STACK_SIZE);
   }
 
   ~TIntention()
@@ -54,7 +54,7 @@ TEST_F(TIntention, stack_plan)
 {
   EXPECT_FALSE(intention_action_successul->stack_plan(NULL));
 
-  for (int i = 0; i < INTENTION_SIZE-1; i++)
+  for (int i = 0; i < INTENTION_STACK_SIZE-1; i++)
   {
     EXPECT_TRUE(intention_action_successul->stack_plan(plan_action_successful));
   }
@@ -64,13 +64,13 @@ TEST_F(TIntention, stack_plan)
 
 TEST_F(TIntention, run_intention)
 {
-  for (int i = 0; i < INTENTION_SIZE-1; i++)
+  for (int i = 0; i < INTENTION_STACK_SIZE-1; i++)
   {
     intention_action_successul->stack_plan(plan_action_successful);
     intention_action_fails->stack_plan(plan_action_fails);
   }
 
-  for (int i = 0; i < (INTENTION_SIZE * BODY_SIZE); i++)
+  for (int i = 0; i < (INTENTION_STACK_SIZE * BODY_SIZE); i++)
   {
     EXPECT_TRUE(intention_action_successul->run_intention(NULL, NULL));
     EXPECT_FALSE(intention_action_fails->run_intention(NULL, NULL));
@@ -81,7 +81,7 @@ TEST_F(TIntention, run_intention)
 
 TEST_F(TIntention, is_finished)
 {
-  for (int i = 0; i < INTENTION_SIZE-1; i++)
+  for (int i = 0; i < INTENTION_STACK_SIZE-1; i++)
   {
     EXPECT_FALSE(intention_action_successul->is_finished());
     EXPECT_FALSE(intention_action_fails->is_finished());
@@ -89,7 +89,7 @@ TEST_F(TIntention, is_finished)
     intention_action_fails->stack_plan(plan_action_fails);
   }
 
-  for (int i = 0; i < (INTENTION_SIZE * BODY_SIZE); i++)
+  for (int i = 0; i < (INTENTION_STACK_SIZE * BODY_SIZE); i++)
   {
     EXPECT_FALSE(intention_action_successul->is_finished());
     intention_action_successul->run_intention(NULL, NULL);
@@ -104,12 +104,8 @@ TEST_F(TIntention, is_finished)
 
 TEST_F(TIntention, is_suspended)
 {
-  EventBase * eb = new EventBase(BASES_SIZE);
-  BeliefBase * bb = new BeliefBase(BASES_SIZE);
-
-  Belief belief(test_data->get_statement(), NULL);
-
-  bb->add_belief(belief);
+  EventBase * eb = test_data->get_event_base_empty() ;
+  BeliefBase * bb = test_data->get_belief_base();
 
   for (int i = 0; i < BODY_SIZE; i++)
   {
@@ -119,4 +115,10 @@ TEST_F(TIntention, is_suspended)
     eb->get_event();
     EXPECT_FALSE(intention_belief->is_suspended(eb));
   }
+}
+
+TEST_F(TIntention, destructor)
+{
+  Intention * intention = new Intention(plan_action_fails, INTENTION_STACK_SIZE);
+  delete intention;
 }

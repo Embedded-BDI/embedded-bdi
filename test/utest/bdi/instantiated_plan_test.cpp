@@ -57,9 +57,7 @@ public:
 
     Plan * plan = new Plan(EventOperator::BELIEF_ADDITION, stm_plan, ctx, body);
 
-    IntentionID * intention_id = new IntentionID();
-
-    inst_plan = new InstantiatedPlan(plan, intention_id);
+    inst_plan = new InstantiatedPlan(plan);
   }
 
   ~TInstantiatedPlan()

@@ -6,45 +6,96 @@
  */
 
 #include "intention_base.h"
+#include <iostream>
 
 IntentionBase::IntentionBase() {} // @suppress("Class members should be properly initialized")
 
-IntentionBase::IntentionBase(int buffer_size, int stack_size, BeliefBase * beliefs, EventBase * events)
+IntentionBase::IntentionBase(int buffer_size, int stack_size)
 {
-  _buffer_size = buffer_size;
+//  _stack_size = stack_size;
+//  _buffer_size = buffer_size;
+
   _stack_size = stack_size;
-  _belief_base = beliefs;
-  _event_base = events;
-  _intention_base = new CircularBuffer<Intention>(_buffer_size);
+  _intention_base = new CircularBuffer<Intention>(buffer_size);
+
 }
 
-IntentionBase::~IntentionBase() {}
+IntentionBase::~IntentionBase()
+{
+  delete _intention_base;
+}
+
+//void IntentionBase::add_intention(Intention intention)
+//{
+//  if (_intention_base.size() <= _buffer_size)
+//    _intention_base.push_back(intention);
+//}
 
 void IntentionBase::add_intention(Plan * plan)
 {
-  if (plan && !_intention_base->is_full())
+  if (plan == NULL || _intention_base->is_full())
   {
-    Intention intention(plan, _stack_size);
-    _intention_base->enqueue(intention);
+    return;
   }
+
+  Intention * intention = new Intention(plan, _stack_size);
+  _intention_base->enqueue(*intention);
+
+//  if ((plan == NULL) || (!_intention_base.size() > _buffer_size))
+//  {
+//    return;
+//  }
+//
+//  Intention intention(plan, _stack_size);
+//  _intention_base.push_back(intention);
 }
 
-void IntentionBase::run_intention_base()
+void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
 {
-  if (!_intention_base->is_empty())
+  if (_intention_base->is_empty())
+  {
+    return;
+  }
+
+  if (!_intention_base->peek()->run_intention(beliefs, events))
   {
     Intention * intention = _intention_base->peek();
-    bool result = intention->run_intention(_belief_base, _event_base);
-
     _intention_base->dequeue();
-
-    if (!intention->is_finished() && result)
+    delete intention;
+  }
+  else
+  {
+    if (_intention_base->peek()->is_finished())
     {
-      _intention_base->enqueue(*intention);
+      Intention * intention = _intention_base->peek();
+      _intention_base->dequeue();
+      delete intention;
+    }
+    else
+    {
+      _intention_base->rotate();
     }
   }
+
+//  if (_intention_base.size() == 0)
+//  {
+//    return;
+//  }
+//
+//  if (!_intention_base.front().run_intention(beliefs, events))
+//  {
+//    _intention_base.erase(_intention_base.begin());
+//  }
+//  else
+//  {
+//    if (_intention_base.front().is_finished())
+//    {
+//      _intention_base.erase(_intention_base.begin());
+//    }
+//  }
 }
 
 bool IntentionBase::is_empty() {
+//  return (_intention_base.size() == 0);
   return _intention_base->is_empty();
 }

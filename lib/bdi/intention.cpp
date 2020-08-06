@@ -15,7 +15,7 @@ Intention::Intention(Plan * plan, int size)
   _suspended = false;
   _suspended_by = NULL;
   _plans = new Stack<InstantiatedPlan>(size);
-  InstantiatedPlan inst_plan(plan, &_id);
+  InstantiatedPlan inst_plan(plan);
   _plans->push(inst_plan);
 }
 
@@ -31,7 +31,7 @@ bool Intention::stack_plan(Plan * plan)
     return false;
   }
 
-  InstantiatedPlan inst_plan(plan, &_id);
+  InstantiatedPlan inst_plan(plan);
   return _plans->push(inst_plan);
 }
 

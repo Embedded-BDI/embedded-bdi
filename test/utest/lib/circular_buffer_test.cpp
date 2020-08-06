@@ -7,6 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "lib/circular_buffer.h"
+#include <iostream>
 
 #define BUFFER_SIZE 4
 
