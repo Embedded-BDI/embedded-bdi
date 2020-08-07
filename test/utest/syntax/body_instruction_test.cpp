@@ -29,8 +29,8 @@ public:
 
     Statement stm_a('a');
     Statement stm_b('b');
-    Belief belief_a(stm_a, NULL, false);
-    Belief belief_b(stm_b, NULL, false);
+    Belief belief_a(stm_a, nullptr, false);
+    Belief belief_b(stm_b, nullptr, false);
     bb->add_belief(belief_a);
     bb->add_belief(belief_b);
 
@@ -80,10 +80,10 @@ TEST_F(TBodyInstruction, run_instruction)
   EXPECT_EQ(BodyType::BELIEF, belief_op_result.get_type());
   EXPECT_EQ(BodyType::GOAL, goal_result.get_type());
 
-  EXPECT_TRUE(NULL == action_true_result.get_event());
-  EXPECT_TRUE(NULL == action_false_result.get_event());
-  EXPECT_TRUE(NULL != belief_op_result.get_event());
-  EXPECT_TRUE(NULL != goal_result.get_event());
+  EXPECT_TRUE(nullptr == action_true_result.get_event());
+  EXPECT_TRUE(nullptr == action_false_result.get_event());
+  EXPECT_TRUE(nullptr != belief_op_result.get_event());
+  EXPECT_TRUE(nullptr != goal_result.get_event());
 
   Statement stm('a');
   EXPECT_TRUE(bb->get_belief_state(stm));

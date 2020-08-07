@@ -52,7 +52,7 @@ TEST_F(TStack, pop)
   {
     EXPECT_EQ(i, *stack->pop());
   }
-  EXPECT_EQ(NULL, stack->pop());
+  EXPECT_EQ(nullptr, stack->pop());
 }
 
 /*

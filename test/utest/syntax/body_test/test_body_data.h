@@ -21,7 +21,7 @@ public:
     _event_base = new EventBase(size);
 
     Statement stm('a');
-    Belief belief(stm, NULL, true);
+    Belief belief(stm, nullptr, true);
     for (int i = 0; i < size; i++)
     {
       _belief_base->add_belief(belief);

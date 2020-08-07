@@ -69,8 +69,8 @@ TEST_F(TCircularBuffer, item)
   {
     EXPECT_EQ(i, *buffer->item(i));
   }
-  EXPECT_EQ(NULL, buffer->item(BUFFER_SIZE));
-  EXPECT_EQ(NULL, buffer->item(BUFFER_SIZE-1));
+  EXPECT_EQ(nullptr, buffer->item(BUFFER_SIZE));
+  EXPECT_EQ(nullptr, buffer->item(BUFFER_SIZE-1));
 }
 
 /*
@@ -85,7 +85,7 @@ TEST_F(TCircularBuffer, peek)
   EXPECT_TRUE(buffer->dequeue());
   EXPECT_EQ(1, *buffer->peek());
   EXPECT_TRUE(buffer->dequeue());
-  EXPECT_EQ(NULL, buffer->peek());
+  EXPECT_EQ(nullptr, buffer->peek());
 }
 
 /*

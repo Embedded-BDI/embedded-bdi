@@ -35,9 +35,9 @@ public:
     cond_2 = new ContextCondition(stm_b, true);
     cond_3 = new ContextCondition(stm_c, false);
 
-    Belief belief_a(stm_a, NULL, true);
-    Belief belief_b(stm_b, NULL, true);
-    Belief belief_c(stm_c, NULL, false);
+    Belief belief_a(stm_a, nullptr, true);
+    Belief belief_b(stm_b, nullptr, true);
+    Belief belief_c(stm_c, nullptr, false);
 
     belief_base->add_belief(belief_a);
     belief_base->add_belief(belief_b);

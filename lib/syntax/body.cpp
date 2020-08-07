@@ -22,7 +22,7 @@ BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 
   if (index >= _body.size())
   {
-    result = BodyReturn(BodyType::ACTION, false, NULL);
+    result = BodyReturn(BodyType::ACTION, false, nullptr);
   }
   else
   {

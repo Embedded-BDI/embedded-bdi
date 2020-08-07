@@ -27,7 +27,7 @@ BodyReturn InstantiatedPlan::run_plan(BeliefBase * beliefs, EventBase * events)
   }
   else
   {
-    result = BodyReturn(BodyType::ACTION, false, NULL);
+    result = BodyReturn(BodyType::ACTION, false, nullptr);
   }
 
   return result;

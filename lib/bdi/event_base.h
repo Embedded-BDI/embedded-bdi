@@ -34,7 +34,7 @@ public:
   /*
    * Removes event from EventBase and returns pointer to removed object
    * @return Pointer to first element from _pending_events. If _pending_events
-   * has no elements, the return will be a NULL pointer
+   * has no elements, the return will be a nullptr pointer
    */
   Event * get_event();
 

@@ -64,7 +64,7 @@ X * Stack<X>::pop()
   // check for Stack underflow
   if (is_empty())
   {
-    return NULL;
+    return nullptr;
   }
 
   // decrease Stack size by 1 and (optionally) return the popped element
@@ -79,7 +79,7 @@ X * Stack<X>::peek()
   {
     return &_arr[_top];
   } else {
-    return NULL;
+    return nullptr;
   }
 }
 

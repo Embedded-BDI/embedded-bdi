@@ -13,7 +13,7 @@ Intention::Intention(Plan * plan, int size)
 {
   _size = size;
   _suspended = false;
-  _suspended_by = NULL;
+  _suspended_by = nullptr;
   _plans.reserve(size);
   InstantiatedPlan inst_plan(plan);
   _plans.push_back(inst_plan);
@@ -74,7 +74,7 @@ void Intention::suspend(EventID * event_id)
 void Intention::unsuspend()
 {
   _suspended = false;
-  _suspended_by = NULL;
+  _suspended_by = nullptr;
 }
 
 bool Intention::is_suspended(EventBase * events)

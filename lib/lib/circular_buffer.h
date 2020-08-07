@@ -88,7 +88,7 @@ template <class X>
 X * CircularBuffer<X>::item(int index){
   if (index < 0 || index >= _count)
   {
-    return NULL;
+    return nullptr;
   } else {
     return &_arr[index];
   }
@@ -100,7 +100,7 @@ X * CircularBuffer<X>::peek()
 {
   if (is_empty())
   {
-    return NULL;
+    return nullptr;
   }
   return &_arr[_front];
 }

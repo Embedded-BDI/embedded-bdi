@@ -31,7 +31,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
   if (_type == BodyType::ACTION)
   {
     bool value = _take_action(belief_base);
-    result = BodyReturn(BodyType::ACTION, value, NULL);
+    result = BodyReturn(BodyType::ACTION, value, nullptr);
   }
   else if (_type == BodyType::BELIEF)
   {
@@ -49,7 +49,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
     }
     else
     {
-      result = BodyReturn(BodyType::BELIEF, false, NULL);
+      result = BodyReturn(BodyType::BELIEF, false, nullptr);
     }
   }
   else
@@ -60,7 +60,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
     }
     else
     {
-      result = BodyReturn(BodyType::GOAL, false, NULL);
+      result = BodyReturn(BodyType::GOAL, false, nullptr);
     }
   }
 

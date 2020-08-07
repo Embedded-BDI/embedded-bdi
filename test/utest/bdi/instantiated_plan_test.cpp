@@ -78,19 +78,19 @@ TEST_F(TInstantiatedPlan, run_plan_empty_event_base)
 
   EXPECT_EQ(BodyType::ACTION, action.get_type());
   EXPECT_TRUE(action.get_value());
-  EXPECT_TRUE(NULL == action.get_event());
+  EXPECT_TRUE(nullptr == action.get_event());
 
   EXPECT_EQ(BodyType::BELIEF, belief.get_type());
   EXPECT_TRUE(belief.get_value());
-  EXPECT_TRUE(NULL != belief.get_event());
+  EXPECT_TRUE(nullptr != belief.get_event());
 
   EXPECT_EQ(BodyType::GOAL, goal.get_type());
   EXPECT_TRUE(goal.get_value());
-  EXPECT_TRUE(NULL != goal.get_event());
+  EXPECT_TRUE(nullptr != goal.get_event());
 
   EXPECT_EQ(BodyType::ACTION, invalid.get_type());
   EXPECT_FALSE(invalid.get_value());
-  EXPECT_TRUE(NULL == invalid.get_event());
+  EXPECT_TRUE(nullptr == invalid.get_event());
 }
 
 TEST_F(TInstantiatedPlan, run_plan_full_event_base)
@@ -102,19 +102,19 @@ TEST_F(TInstantiatedPlan, run_plan_full_event_base)
 
   EXPECT_EQ(BodyType::ACTION, action.get_type());
   EXPECT_TRUE(action.get_value());
-  EXPECT_TRUE(NULL == action.get_event());
+  EXPECT_TRUE(nullptr == action.get_event());
 
   EXPECT_EQ(BodyType::BELIEF, belief.get_type());
   EXPECT_FALSE(belief.get_value());
-  EXPECT_TRUE(NULL == belief.get_event());
+  EXPECT_TRUE(nullptr == belief.get_event());
 
   EXPECT_EQ(BodyType::GOAL, goal.get_type());
   EXPECT_FALSE(goal.get_value());
-  EXPECT_TRUE(NULL == goal.get_event());
+  EXPECT_TRUE(nullptr == goal.get_event());
 
   EXPECT_EQ(BodyType::ACTION, invalid.get_type());
   EXPECT_FALSE(invalid.get_value());
-  EXPECT_TRUE(NULL == invalid.get_event());
+  EXPECT_TRUE(nullptr == invalid.get_event());
 }
 
 TEST_F(TInstantiatedPlan, is_finished)

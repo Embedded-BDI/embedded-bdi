@@ -53,7 +53,7 @@ TEST_F(TIntentionBase, is_empty)
   for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE); i++)
   {
     EXPECT_FALSE(intention_base->is_empty());
-    intention_base->run_intention_base(NULL, NULL);
+    intention_base->run_intention_base(nullptr, nullptr);
   }
 
   EXPECT_TRUE(intention_base->is_empty());

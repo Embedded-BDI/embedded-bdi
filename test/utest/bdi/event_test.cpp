@@ -49,6 +49,6 @@ TEST_F(TEvent, get_statement)
  */
 TEST_F(TEvent, get_event_id)
 {
-  EXPECT_TRUE(NULL != event->get_event_id());
+  EXPECT_TRUE(nullptr != event->get_event_id());
   EXPECT_EQ(event->get_event_id()->get_control_id()-1, event->get_event_id()->get_id());
 }

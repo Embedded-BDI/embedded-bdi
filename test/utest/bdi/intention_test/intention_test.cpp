@@ -52,7 +52,7 @@ public:
 
 TEST_F(TIntention, stack_plan)
 {
-  EXPECT_FALSE(intention_action_successul->stack_plan(NULL));
+  EXPECT_FALSE(intention_action_successul->stack_plan(nullptr));
 
   for (int i = 0; i < INTENTION_STACK_SIZE-1; i++)
   {
@@ -72,11 +72,11 @@ TEST_F(TIntention, run_intention)
 
   for (int i = 0; i < (INTENTION_STACK_SIZE * BODY_SIZE); i++)
   {
-    EXPECT_TRUE(intention_action_successul->run_intention(NULL, NULL));
-    EXPECT_FALSE(intention_action_fails->run_intention(NULL, NULL));
+    EXPECT_TRUE(intention_action_successul->run_intention(nullptr, nullptr));
+    EXPECT_FALSE(intention_action_fails->run_intention(nullptr, nullptr));
   }
 
-  EXPECT_FALSE(intention_action_successul->run_intention(NULL, NULL));
+  EXPECT_FALSE(intention_action_successul->run_intention(nullptr, nullptr));
 }
 
 TEST_F(TIntention, is_finished)
@@ -92,30 +92,30 @@ TEST_F(TIntention, is_finished)
   for (int i = 0; i < (INTENTION_STACK_SIZE * BODY_SIZE); i++)
   {
     EXPECT_FALSE(intention_action_successul->is_finished());
-    intention_action_successul->run_intention(NULL, NULL);
-    intention_action_fails->run_intention(NULL, NULL);
+    intention_action_successul->run_intention(nullptr, nullptr);
+    intention_action_fails->run_intention(nullptr, nullptr);
     EXPECT_TRUE(intention_action_fails->is_finished());
   }
 
   EXPECT_TRUE(intention_action_successul->is_finished());
-  EXPECT_FALSE(intention_action_successul->run_intention(NULL, NULL));
+  EXPECT_FALSE(intention_action_successul->run_intention(nullptr, nullptr));
   EXPECT_TRUE(intention_action_successul->is_finished());
 }
 
-//TEST_F(TIntention, is_suspended)
-//{
-//  EventBase * eb = test_data->get_event_base_empty() ;
-//  BeliefBase * bb = test_data->get_belief_base();
-//
-//  for (int i = 0; i < BODY_SIZE; i++)
-//  {
-//    intention_belief->run_intention(bb, eb);
-//    EXPECT_TRUE(intention_belief->is_suspended(eb));
-//
-//    eb->get_event();
-//    EXPECT_FALSE(intention_belief->is_suspended(eb));
-//  }
-//}
+TEST_F(TIntention, is_suspended)
+{
+  EventBase * eb = test_data->get_event_base_empty() ;
+  BeliefBase * bb = test_data->get_belief_base();
+
+  for (int i = 0; i < BODY_SIZE; i++)
+  {
+    intention_belief->run_intention(bb, eb);
+    EXPECT_TRUE(intention_belief->is_suspended(eb));
+
+    eb->get_event();
+    EXPECT_FALSE(intention_belief->is_suspended(eb));
+  }
+}
 
 TEST_F(TIntention, destructor)
 {

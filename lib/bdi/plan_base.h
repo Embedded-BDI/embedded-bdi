@@ -37,7 +37,7 @@ public:
   /*
    * Revise and select applicable plan to treat event
    * @param event Event to be processed
-   * @result Pointer to applicable plan, NULL otherwise
+   * @result Pointer to applicable plan, nullptr otherwise
    */
   Plan * revise(Event * event, BeliefBase * belief_base);
 
