@@ -20,8 +20,6 @@ private:
   bool _is_true;
 
 public:
-  ContextCondition();
-
   /*
    * ContextCondition constructor
    * @param stm Statement to be compared with belief from BeliefBase

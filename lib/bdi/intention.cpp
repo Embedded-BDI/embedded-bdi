@@ -7,8 +7,6 @@
 
 #include "intention.h"
 
-Intention::Intention() {} // @suppress("Class members should be properly initialized")
-
 Intention::Intention(Plan * plan, int size)
 {
   _size = size;

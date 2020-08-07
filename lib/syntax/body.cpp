@@ -7,8 +7,6 @@
 
 #include "body.h"
 
-Body::Body() {}
-
 Body::Body(int size)
 {
   _body.reserve(size);

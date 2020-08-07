@@ -7,19 +7,19 @@
 
 #include "body_instruction.h"
 
-BodyInstruction::BodyInstruction() {}; // @suppress("Class members should be properly initialized")
-
-BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool (*take_action)(BeliefBase * belief_base)) // @suppress("Class members should be properly initialized")
+BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool (*take_action)(BeliefBase * belief_base))
 {
   _type = type;
   _statement = stm;
   _take_action = take_action;
+  _operator = EventOperator::BELIEF_ADDITION;
 }
 
-BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator event_operator) // @suppress("Class members should be properly initialized")
+BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator event_operator)
 {
   _type = type;
   _statement = stm;
+  _take_action = nullptr;
   _operator = event_operator;
 }
 

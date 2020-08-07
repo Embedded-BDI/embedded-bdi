@@ -20,8 +20,6 @@ private:
   EventID _id;
 
 public:
-  Event();
-
   /*
    * Event constructor
    * @param op Event's EventOperator

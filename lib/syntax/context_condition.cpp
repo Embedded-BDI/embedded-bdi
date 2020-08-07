@@ -7,8 +7,6 @@
 
 #include "context_condition.h"
 
-ContextCondition::ContextCondition() {} // @suppress("Class members should be properly initialized")
-
 ContextCondition::ContextCondition(Statement stm, bool is_true)
 {
   _statement = stm;

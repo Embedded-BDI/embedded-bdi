@@ -7,7 +7,12 @@
 
 #include "body_return.h"
 
-BodyReturn::BodyReturn() {} // @suppress("Class members should be properly initialized")
+BodyReturn::BodyReturn()
+{
+  _type = BodyType::ACTION;
+  _value = false;
+  _event = nullptr;
+}
 
 BodyReturn::BodyReturn(BodyType type, bool value, EventID * event)
 {

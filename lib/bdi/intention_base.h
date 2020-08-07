@@ -22,8 +22,6 @@ private:
   int _stack_size;
 
 public:
-  IntentionBase();
-
   /*
    * IntentionBase constructor
    * @param buffer_size Size of the buffer where the intentions are stored

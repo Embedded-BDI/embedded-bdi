@@ -7,8 +7,6 @@
 
 #include "event.h"
 
-Event::Event() {} // @suppress("Class members should be properly initialized")
-
 Event::Event(EventOperator op, Statement stm)
 {
    _operator = op;

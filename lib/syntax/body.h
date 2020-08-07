@@ -18,8 +18,6 @@ class Body
   std::vector <BodyInstruction> _body;
 
 public:
-  Body();
-
   /*
    * Body constructor
    * @param size Size of _body

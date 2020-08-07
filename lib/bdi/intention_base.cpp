@@ -7,8 +7,6 @@
 
 #include "intention_base.h"
 
-IntentionBase::IntentionBase() {} // @suppress("Class members should be properly initialized")
-
 IntentionBase::IntentionBase(int buffer_size, int stack_size)
 {
   _buffer_size = buffer_size;

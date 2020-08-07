@@ -17,8 +17,6 @@ class Context
   std::vector <ContextCondition> _context;
 
 public:
-  Context();
-
   Context(int size);
 
   virtual ~Context();

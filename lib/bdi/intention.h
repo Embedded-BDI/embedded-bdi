@@ -32,8 +32,6 @@ private:
    */
   void unsuspend();
 public:
-  Intention();
-
   /*
    * Intention constructor
    * @param plan Pointer to plan to be instantiated as intention

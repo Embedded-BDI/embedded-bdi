@@ -7,8 +7,6 @@
 
 #include "belief.h"
 
-Belief::Belief() {} // @suppress("Class members should be properly initialized")
-
 Belief::Belief(Statement stm, bool (*update_function)(bool var), bool belief_state)
 {
   _statement = stm;

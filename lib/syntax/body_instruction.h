@@ -27,8 +27,6 @@ private:
   BodyType _type;
 
 public:
-  BodyInstruction();
-
   /*
    * Constructor for Actions
    * @param type Type of body instruction

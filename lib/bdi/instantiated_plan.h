@@ -17,8 +17,6 @@ private:
   int _index = 0;
 
 public:
-  InstantiatedPlan();
-
   /*
    * InstantiatedPlan constructor
    * @param plan Pointer to plan

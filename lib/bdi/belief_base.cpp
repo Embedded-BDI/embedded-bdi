@@ -55,7 +55,6 @@ void BeliefBase::update(EventBase * event_base)
 
 bool BeliefBase::change_belief_state(Statement stm, bool state)
 {
-
   for(std::vector<Belief>::iterator it = _belief_base.begin(); it != _belief_base.end(); ++it)
   {
     if (it->get_statement().is_equal(stm.get_name()))

@@ -7,8 +7,6 @@
 
 #include "instantiated_plan.h"
 
-InstantiatedPlan::InstantiatedPlan() {} // @suppress("Class members should be properly initialized")
-
 InstantiatedPlan::InstantiatedPlan(Plan * plan)
 {
   _plan = plan;

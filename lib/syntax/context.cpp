@@ -7,8 +7,6 @@
 
 #include "context.h"
 
-Context::Context() {}
-
 Context::Context(int size)
 {
   _context.reserve(size);
