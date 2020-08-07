@@ -36,15 +36,15 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
         (event->get_operator() == EventOperator::TEST_GOAL_ADDITION)  ||
         (event->get_operator() == EventOperator::TEST_GOAL_DELETION))
     {
-      for (int i = 0; i < _plan_base.size(); i++)
+      for(std::vector<Plan>::iterator it = _plan_base.begin(); it != _plan_base.end(); ++it)
       {
-        if (event->get_operator() == _plan_base.at(i).get_operator())
+        if (event->get_operator() == it->get_operator())
         {
-          if (event->get_statement().is_equal(_plan_base.at(i).get_statement()))
+          if (event->get_statement().is_equal(it->get_statement()))
           {
-            if (_plan_base.at(i).get_context()->is_valid(belief_base))
+            if (it->get_context()->is_valid(belief_base))
             {
-              return &_plan_base.at(i);
+              return &*it;
             }
           }
         }
