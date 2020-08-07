@@ -30,7 +30,7 @@ public:
    * Compares given ID with _id
    * @return True if event_id is equal to _id, false otherwise
    */
-  bool is_equal(EventID event_id);
+  bool is_equal(EventID * event_id);
 
   const int get_id() const
   {

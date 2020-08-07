@@ -65,7 +65,9 @@ TEST_F(TEventBase, get_event)
   Statement stm_b('b');
   Statement stm_c('c');
 
-  EXPECT_TRUE(NULL == event_base->get_event());
+  Event * event = event_base->get_event();
+
+  EXPECT_TRUE(NULL == event);
 
   event_base->add_event(EventOperator::BELIEF_ADDITION, stm_a);
   event_base->add_event(EventOperator::BELIEF_DELETION, stm_b);
@@ -88,6 +90,12 @@ TEST_F(TEventBase, get_event)
   EXPECT_TRUE(stm_a.is_equal(event_a->get_statement()));
   EXPECT_TRUE(stm_b.is_equal(event_b->get_statement()));
   EXPECT_TRUE(stm_c.is_equal(event_c->get_statement()));
+
+  delete event;
+  delete event_a;
+  delete event_b;
+  delete event_c;
+  delete event_null;
 }
 
 TEST_F(TEventBase, last_event)

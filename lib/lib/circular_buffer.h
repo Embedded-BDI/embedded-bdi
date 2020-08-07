@@ -8,7 +8,6 @@
 #ifndef LIB_CIRCULAR_BUFFER_H_
 #define LIB_CIRCULAR_BUFFER_H_
 
-#include <iostream>
 #include <stdlib.h>
 
 
@@ -104,48 +103,6 @@ X * CircularBuffer<X>::peek()
     return NULL;
   }
   return &_arr[_front];
-}
-
-template <class X>
-void CircularBuffer<X>::rotate()
-{
-  if (_count < 2)
-  {
-    return;
-  }
-  else
-  {
-
-    X aux[_count];
-
-    for (int i = 0; i < _count-1; i++)
-    {
-      aux[i] = _arr[i+1];
-    }
-
-    aux[_count-1] = _arr[0];
-
-    delete [] _arr;
-
-    _arr = new X[_capacity];
-
-    for (int i = 0; i < _count-1; i++)
-    {
-      _arr[i] = aux[i];
-    }
-
-//    X * aux = new X[_capacity];
-//
-//    for (int i = 0; i < _count-1; i++)
-//    {
-//      aux[i] = _arr[i+1];
-//    }
-//
-//    aux[_count-1] = _arr[0];
-//
-//    delete [] _arr;
-//    _arr = aux;
-  }
 }
 
 // Utility function to return the size of the queue

@@ -46,6 +46,7 @@ int main()
         if (plan_to_act) {
           intentions.add_intention(plan_to_act);
         }
+        delete event_to_process;
       }
     }
 

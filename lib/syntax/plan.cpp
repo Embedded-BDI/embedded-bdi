@@ -7,7 +7,7 @@
 
 #include "plan.h"
 
-Plan::Plan() {}
+Plan::Plan() {} // @suppress("Class members should be properly initialized")
 
 Plan::Plan(EventOperator op, Statement stm, Context * context, Body * body)
 {

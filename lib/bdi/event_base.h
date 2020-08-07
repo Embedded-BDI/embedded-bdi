@@ -9,12 +9,12 @@
 #define BDI_EVENT_BASE_H_
 
 #include "event.h"
-#include "../lib/circular_buffer.h"
+#include <vector>
 
 class EventBase
 {
 private:
-  CircularBuffer<Event> * _pending_events;
+  std::vector <Event> _pending_events;
 
 public:
   /*

@@ -6,9 +6,8 @@
  */
 
 #include "body_return.h"
-#include <iostream>
 
-BodyReturn::BodyReturn() {}
+BodyReturn::BodyReturn() {} // @suppress("Class members should be properly initialized")
 
 BodyReturn::BodyReturn(BodyType type, bool value, EventID * event)
 {

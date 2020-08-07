@@ -9,38 +9,44 @@
 
 BeliefBase::BeliefBase(int size)
 {
-  _belief_base = new CircularBuffer<Belief>(size);
+  _belief_base.reserve(size);
 }
 
-BeliefBase::~BeliefBase()
-{
-  delete _belief_base;
-}
+BeliefBase::~BeliefBase() {}
 
 bool BeliefBase::add_belief(Belief belief)
 {
-  return _belief_base->enqueue(belief);
+  if (_belief_base.size() == _belief_base.capacity())
+  {
+    return false;
+  }
+
+  _belief_base.push_back(belief);
+  return true;
 }
 
 void BeliefBase::update(EventBase * event_base)
 {
-  for (int i=0; i < _belief_base->size(); i++)
+  if (event_base)
   {
-    if (_belief_base->item(i)->update_belief())
+    for (int i = 0; i < _belief_base.size(); i++)
     {
-      if (!event_base->is_full())
+      if (_belief_base.at(i).update_belief())
       {
-        if (_belief_base->item(i)->get_state())
+        if (!event_base->is_full())
         {
-          // Add Event for BELIEF_ADDITION if belief is changed to true
-          event_base->add_event(
-            EventOperator::BELIEF_ADDITION, _belief_base->item(i)->get_statement()
-          );
-        } else {
-          // Add Event for BELIEF_DELETION if belief is changed to false
-          event_base->add_event(
-            EventOperator::BELIEF_DELETION, _belief_base->item(i)->get_statement()
-          );
+          if (_belief_base.at(i).get_state())
+          {
+            // Add Event for BELIEF_ADDITION if belief is changed to true
+            event_base->add_event(
+              EventOperator::BELIEF_ADDITION, _belief_base.at(i).get_statement()
+            );
+          } else {
+            // Add Event for BELIEF_DELETION if belief is changed to false
+            event_base->add_event(
+              EventOperator::BELIEF_DELETION, _belief_base.at(i).get_statement()
+            );
+          }
         }
       }
     }
@@ -49,11 +55,11 @@ void BeliefBase::update(EventBase * event_base)
 
 bool BeliefBase::change_belief_state(Statement stm, bool state)
 {
-  for (int i=0; i < _belief_base->size(); i++)
+  for (int i = 0; i < _belief_base.size(); i++)
   {
-    if (_belief_base->item(i)->get_statement().is_equal(stm.get_name()))
+    if (_belief_base.at(i).get_statement().is_equal(stm.get_name()))
     {
-      _belief_base->item(i)->change_state(state);
+      _belief_base.at(i).change_state(state);
       return true;
     }
   }
@@ -62,11 +68,11 @@ bool BeliefBase::change_belief_state(Statement stm, bool state)
 
 bool BeliefBase::get_belief_state(Statement stm)
 {
-  for (int i=0; i < _belief_base->size(); i++)
+  for (int i = 0; i < _belief_base.size(); i++)
   {
-    if (_belief_base->item(i)->get_statement().is_equal(stm))
+    if (_belief_base.at(i).get_statement().is_equal(stm))
     {
-      return _belief_base->item(i)->get_state();
+      return _belief_base.at(i).get_state();
     }
   }
   return false;
@@ -74,6 +80,6 @@ bool BeliefBase::get_belief_state(Statement stm)
 
 const int BeliefBase::get_size()
 {
-  return _belief_base->size();
+  return _belief_base.size();
 }
 

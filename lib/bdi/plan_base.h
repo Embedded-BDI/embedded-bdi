@@ -10,13 +10,13 @@
 
 #include "belief_base.h"
 #include "event.h"
-#include "../lib/circular_buffer.h"
 #include "../syntax/plan.h"
+#include <vector>
 
 class PlanBase
 {
 private:
-  CircularBuffer<Plan> * _plan_base;
+  std::vector <Plan> _plan_base;
 
 public:
   /*
@@ -43,7 +43,7 @@ public:
 
   int get_size()
   {
-    return _plan_base->size();
+    return _plan_base.size();
   }
 };
 

@@ -41,5 +41,5 @@ TEST_F(TEventID, get_id)
  */
 TEST_F(TEventID, is_equal)
 {
-  EXPECT_TRUE(id_1_clone->is_equal(id_1));
+  EXPECT_TRUE(id_1.is_equal(id_1_clone));
 }

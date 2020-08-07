@@ -6,9 +6,8 @@
  */
 
 #include "belief.h"
-#include <iostream>
 
-Belief::Belief() {}
+Belief::Belief() {} // @suppress("Class members should be properly initialized")
 
 Belief::Belief(Statement stm, bool (*update_function)(bool var), bool belief_state)
 {
@@ -34,6 +33,7 @@ bool Belief::update_belief()
       return false;
     }
   }
+
   return false;
 }
 

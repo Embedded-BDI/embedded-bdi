@@ -6,59 +6,56 @@
  */
 
 #include "event_base.h"
+#include <iostream>
 
 EventBase::EventBase(int size)
 {
-  _pending_events = new CircularBuffer<Event>(size);
+  _pending_events.reserve(size);
 }
 
-EventBase::~EventBase()
-{
-  delete _pending_events;
-}
+EventBase::~EventBase() {}
 
 bool EventBase::add_event(EventOperator op, Statement stm)
 {
-  if (!_pending_events->is_full())
+  if (_pending_events.size() == _pending_events.capacity())
   {
-    Event event(op,stm);
-    _pending_events->enqueue(event);
-    return true;
-  } else {
     return false;
   }
+
+  Event event(op,stm);
+  _pending_events.insert(_pending_events.begin(), event);
+  return true;
 }
 
 Event * EventBase::get_event()
 {
-  Event * event = _pending_events->peek();
-
-  if (!_pending_events->is_empty())
+  if (_pending_events.size() == 0)
   {
-    _pending_events->dequeue();
+    return nullptr;
   }
 
+  Event * event = new Event(_pending_events.back());
+  _pending_events.pop_back();
   return event;
 }
 
 Event * EventBase::last_event()
 {
-  if (_pending_events->is_empty())
+  if (_pending_events.size() == 0)
   {
-    return NULL;
+    return nullptr;
   }
   else
   {
-    return _pending_events->item(_pending_events->size()-1);
+    return &_pending_events.front();
   }
 }
 
-
 bool EventBase::event_exists(EventID * event_id)
 {
-  for (int i = 0; i < _pending_events->size(); i++)
+  for (int i = 0; i < _pending_events.size(); i++)
   {
-    if (event_id->is_equal(*_pending_events->item(i)->get_event_id()))
+    if (event_id->is_equal(_pending_events.at(i).get_event_id()))
     {
       return true;
     }
@@ -66,13 +63,12 @@ bool EventBase::event_exists(EventID * event_id)
   return false;
 }
 
-
 bool EventBase::is_full()
 {
-  return _pending_events->is_full();
+  return (_pending_events.size() == _pending_events.capacity());
 }
 
 bool EventBase::is_empty()
 {
-  return _pending_events->is_empty();
+  return (_pending_events.size() == 0);
 }

@@ -12,7 +12,6 @@
 #include "body_return.h"
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
-#include <iostream>
 
 /*
  * Body instructions can be belief operations, goal operations (adopt/drop

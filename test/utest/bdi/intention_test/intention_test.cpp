@@ -102,20 +102,20 @@ TEST_F(TIntention, is_finished)
   EXPECT_TRUE(intention_action_successul->is_finished());
 }
 
-TEST_F(TIntention, is_suspended)
-{
-  EventBase * eb = test_data->get_event_base_empty() ;
-  BeliefBase * bb = test_data->get_belief_base();
-
-  for (int i = 0; i < BODY_SIZE; i++)
-  {
-    intention_belief->run_intention(bb, eb);
-    EXPECT_TRUE(intention_belief->is_suspended(eb));
-
-    eb->get_event();
-    EXPECT_FALSE(intention_belief->is_suspended(eb));
-  }
-}
+//TEST_F(TIntention, is_suspended)
+//{
+//  EventBase * eb = test_data->get_event_base_empty() ;
+//  BeliefBase * bb = test_data->get_belief_base();
+//
+//  for (int i = 0; i < BODY_SIZE; i++)
+//  {
+//    intention_belief->run_intention(bb, eb);
+//    EXPECT_TRUE(intention_belief->is_suspended(eb));
+//
+//    eb->get_event();
+//    EXPECT_FALSE(intention_belief->is_suspended(eb));
+//  }
+//}
 
 TEST_F(TIntention, destructor)
 {

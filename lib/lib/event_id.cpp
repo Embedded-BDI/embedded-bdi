@@ -16,7 +16,7 @@ EventID::EventID()
 
 EventID::~EventID() {}
 
-bool EventID::is_equal(EventID event_id)
+bool EventID::is_equal(EventID * event_id)
 {
-  return (_id == event_id._id);
+  return (_id == event_id->_id);
 }

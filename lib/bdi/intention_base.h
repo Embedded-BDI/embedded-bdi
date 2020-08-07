@@ -11,19 +11,15 @@
 #include "belief_base.h"
 #include "event_base.h"
 #include "intention.h"
-#include "../lib/circular_buffer.h"
 #include "../syntax/plan.h"
-
 #include <vector>
 
 class IntentionBase
 {
 private:
-  CircularBuffer<Intention> * _intention_base;
+  std::vector<Intention> _intention_base;
+  int _buffer_size;
   int _stack_size;
-
-//  std::vector<Intention> _intention_base;
-//  int _buffer_size;
 
 public:
   IntentionBase();

@@ -9,13 +9,13 @@
 #define BDI_INTENTION_H_
 
 #include "belief_base.h"
-#include "../lib/stack.h"
 #include "instantiated_plan.h"
+#include <vector>
 
 class Intention
 {
 private:
-  Stack<InstantiatedPlan> * _plans;
+  std::vector <InstantiatedPlan> _plans;
   int _size;
   bool _suspended;
   EventID * _suspended_by;
