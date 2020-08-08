@@ -8,7 +8,6 @@
 #include "gtest/gtest.h"
 #include "bdi/intention_base.h"
 #include "test_intention_base_data.h"
-#include <iostream>
 
 #define PLAN_BODY_SIZE 2
 #define BASES_SIZE 3

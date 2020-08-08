@@ -6,7 +6,6 @@
  */
 
 #include "event_base.h"
-#include <iostream>
 
 EventBase::EventBase(int size)
 {

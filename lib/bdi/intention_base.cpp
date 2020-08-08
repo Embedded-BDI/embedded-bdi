@@ -24,8 +24,8 @@ void IntentionBase::add_intention(Plan * plan)
     return;
   }
 
-  Intention * intention = new Intention(plan, _stack_size);
-  _intention_base.insert(_intention_base.begin(), *intention);
+  Intention intention(plan, _stack_size);
+  _intention_base.insert(_intention_base.begin(), intention);
 }
 
 void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
@@ -47,8 +47,9 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
     }
     else
     {
-      _intention_base.push_back(_intention_base.front());
+      Intention intention(_intention_base.front());
       _intention_base.erase(_intention_base.begin());
+      _intention_base.push_back(intention);
     }
   }
 }

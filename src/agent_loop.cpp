@@ -5,20 +5,19 @@
  *      Author: Matuzalem Muller
  */
 
-#include <iostream>
 #include "../lib/bdi/belief_base.h"
 #include "../lib/bdi/event_base.h"
 #include "../lib/bdi/plan_base.h"
 #include "../lib/bdi/intention_base.h"
 
-using namespace std;
+//#include "example/plan_example.h"
 
 bool compile_test = true;
 
 int main()
 {
   int bb_size = 4;
-  int eb_size = 4;
+  int eb_size = 15;
   int pb_size = 4;
   int ib_queue_size = 4;
   int ib_stack_size = 2;
@@ -27,6 +26,9 @@ int main()
   EventBase events(eb_size);
   PlanBase plans(pb_size);
   IntentionBase intentions(ib_queue_size, ib_stack_size);
+
+//  TestPlan test(2, 2);
+//  plans.add_plan(*test.get_plan_action_successful());
 
   Event * event_to_process;
   Plan * plan_to_act;
@@ -46,8 +48,9 @@ int main()
         if (plan_to_act) {
           intentions.add_intention(plan_to_act);
         }
-        delete event_to_process;
       }
+      delete event_to_process;
+      event_to_process = nullptr;
     }
 
     // Runs intention in case there are any
@@ -56,9 +59,10 @@ int main()
       intentions.run_intention_base(&beliefs, &events);
     }
 
+    //    events.add_event(EventOperator::BELIEF_ADDITION, test.get_statement());
+
     if (compile_test == true)
     {
-      std::cout << "Compilation successful!" << std::endl;
       break;
     }
   }
