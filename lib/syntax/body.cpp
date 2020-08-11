@@ -7,29 +7,24 @@
 
 #include "body.h"
 
-Body::Body() {}
-
 Body::Body(int size)
 {
-  _body = new CircularBuffer<BodyInstruction>(size);
+  _body.reserve(size);
 }
 
-Body::~Body()
-{
-  delete _body;
-}
+Body::~Body() {}
 
 BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 {
   BodyReturn result;
 
-  if (index >= _body->size())
+  if (index >= _body.size())
   {
-    result = BodyReturn(BodyType::ACTION, false, NULL);
+    result = BodyReturn(BodyType::ACTION, false, nullptr);
   }
   else
   {
-    result = _body->item(index)->run_instruction(beliefs, events);
+    result = _body.at(index).run_instruction(beliefs, events);
   }
 
   return result;
@@ -37,10 +32,16 @@ BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 
 bool Body::add_instruction(BodyInstruction instruction)
 {
-  return _body->enqueue(instruction);
+  if (_body.size() == _body.capacity())
+  {
+    return false;
+  }
+
+  _body.push_back(instruction);
+  return true;
 }
 
 int Body::size()
 {
-  return _body->size();
+  return _body.size();
 }

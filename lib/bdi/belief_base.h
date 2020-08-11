@@ -11,12 +11,12 @@
 #include "belief.h"
 #include "event.h"
 #include "event_base.h"
-#include "../lib/circular_buffer.h"
+#include <vector>
 
 class BeliefBase
 {
 private:
-  CircularBuffer<Belief> * _belief_base;
+  std::vector <Belief> _belief_base;
 
 public:
   /*

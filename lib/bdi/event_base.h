@@ -9,12 +9,12 @@
 #define BDI_EVENT_BASE_H_
 
 #include "event.h"
-#include "../lib/circular_buffer.h"
+#include <vector>
 
 class EventBase
 {
 private:
-  CircularBuffer<Event> * _pending_events;
+  std::vector <Event> _pending_events;
 
 public:
   /*
@@ -34,7 +34,7 @@ public:
   /*
    * Removes event from EventBase and returns pointer to removed object
    * @return Pointer to first element from _pending_events. If _pending_events
-   * has no elements, the return will be a NULL pointer
+   * has no elements, the return will be a nullptr pointer
    */
   Event * get_event();
 

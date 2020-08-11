@@ -65,7 +65,9 @@ TEST_F(TEventBase, get_event)
   Statement stm_b('b');
   Statement stm_c('c');
 
-  EXPECT_TRUE(NULL == event_base->get_event());
+  Event * event = event_base->get_event();
+
+  EXPECT_TRUE(nullptr == event);
 
   event_base->add_event(EventOperator::BELIEF_ADDITION, stm_a);
   event_base->add_event(EventOperator::BELIEF_DELETION, stm_b);
@@ -76,10 +78,10 @@ TEST_F(TEventBase, get_event)
   Event * event_c = event_base->get_event();
   Event * event_null = event_base->get_event();
 
-  EXPECT_TRUE(NULL != event_a);
-  EXPECT_TRUE(NULL != event_b);
-  EXPECT_TRUE(NULL != event_c);
-  EXPECT_TRUE(NULL == event_null);
+  EXPECT_TRUE(nullptr != event_a);
+  EXPECT_TRUE(nullptr != event_b);
+  EXPECT_TRUE(nullptr != event_c);
+  EXPECT_TRUE(nullptr == event_null);
 
   EXPECT_EQ(EventOperator::BELIEF_ADDITION, event_a->get_operator());
   EXPECT_EQ(EventOperator::BELIEF_DELETION, event_b->get_operator());
@@ -88,6 +90,12 @@ TEST_F(TEventBase, get_event)
   EXPECT_TRUE(stm_a.is_equal(event_a->get_statement()));
   EXPECT_TRUE(stm_b.is_equal(event_b->get_statement()));
   EXPECT_TRUE(stm_c.is_equal(event_c->get_statement()));
+
+  delete event;
+  delete event_a;
+  delete event_b;
+  delete event_c;
+  delete event_null;
 }
 
 TEST_F(TEventBase, last_event)
@@ -95,14 +103,14 @@ TEST_F(TEventBase, last_event)
   Statement stm_a('a');
   Statement stm_b('b');
 
-  EXPECT_TRUE(NULL == event_base->last_event());
+  EXPECT_TRUE(nullptr == event_base->last_event());
 
   event_base->add_event(EventOperator::BELIEF_ADDITION, stm_a);
   event_base->add_event(EventOperator::BELIEF_DELETION, stm_b);
 
   Event * event_b = event_base->last_event();
 
-  EXPECT_TRUE(NULL != event_b);
+  EXPECT_TRUE(nullptr != event_b);
   EXPECT_EQ(EventOperator::BELIEF_DELETION, event_b->get_operator());
   EXPECT_TRUE(stm_b.is_equal(event_b->get_statement()));
 }

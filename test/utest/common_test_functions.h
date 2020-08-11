@@ -5,14 +5,14 @@
  *      Author: Matuzalem Muller
  */
 
-#include "bdi/belief_base.h"
+//#include "bdi/belief_base.h"
 
-inline bool return_true_beliefbase(BeliefBase * beliefs)
+inline bool return_true_beliefbase(bool var)
 {
   return true;
 }
 
-inline bool return_false_beliefbase(BeliefBase * beliefs)
+inline bool return_false_beliefbase(bool var)
 {
   return false;
 }

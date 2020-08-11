@@ -31,7 +31,7 @@ public:
 TEST_F(TPlanBase, add_plan)
 {
   Statement stm('a');
-  Plan plan(EventOperator::BELIEF_ADDITION, stm, NULL, NULL);
+  Plan plan(EventOperator::BELIEF_ADDITION, stm, nullptr, nullptr);
 
   for (int i = 0; i < PLAN_BASE_SIZE; i++)
   {
@@ -47,8 +47,8 @@ TEST_F(TPlanBase, revise)
   Statement stm_b('b');
 
   BeliefBase belief_base(2);
-  Belief belief_a(stm_a, NULL, false);
-  Belief belief_b(stm_b, NULL, false);
+  Belief belief_a(stm_a, nullptr, false);
+  Belief belief_b(stm_b, nullptr, false);
   belief_base.add_belief(belief_a);
   belief_base.add_belief(belief_b);
 
@@ -63,15 +63,15 @@ TEST_F(TPlanBase, revise)
   Plan plan_context_invalid(EventOperator::BELIEF_ADDITION,
                             stm_a,
                             &context_invalid,
-                            NULL);
+                            nullptr);
   Plan plan_valid(EventOperator::BELIEF_ADDITION,
                   stm_a,
                   &context_valid,
-                  NULL);
+                  nullptr);
 
   plan_base->add_plan(plan_context_invalid);
   plan_base->add_plan(plan_valid);
 
-  EXPECT_TRUE(NULL == plan_base->revise(&event_without_plans, &belief_base));
-  EXPECT_TRUE(NULL != plan_base->revise(&event_valid, &belief_base));
+  EXPECT_TRUE(nullptr == plan_base->revise(&event_without_plans, &belief_base));
+  EXPECT_TRUE(nullptr != plan_base->revise(&event_valid, &belief_base));
 }

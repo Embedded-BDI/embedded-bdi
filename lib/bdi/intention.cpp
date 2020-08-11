@@ -7,48 +7,44 @@
 
 #include "intention.h"
 
-Intention::Intention() {} // @suppress("Class members should be properly initialized")
-
 Intention::Intention(Plan * plan, int size)
 {
   _size = size;
   _suspended = false;
-  _suspended_by = NULL;
-  _plans = new Stack<InstantiatedPlan>(size);
+  _suspended_by = nullptr;
+  _plans.reserve(size);
   InstantiatedPlan inst_plan(plan);
-  _plans->push(inst_plan);
+  _plans.push_back(inst_plan);
 }
 
-Intention::~Intention()
-{
-  delete _plans;
-}
+Intention::~Intention() {}
 
 bool Intention::stack_plan(Plan * plan)
 {
-  if (!plan)
+  if (!plan || (_plans.size() == _plans.capacity()))
   {
     return false;
   }
 
   InstantiatedPlan inst_plan(plan);
-  return _plans->push(inst_plan);
+  _plans.push_back(inst_plan);
+  return true;
 }
 
 bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
 {
-  if (!_plans->peek())
+  if (_plans.size() == 0)
   {
     return false;
   }
 
-  BodyReturn value = _plans->peek()->run_plan(beliefs, events);
+  BodyReturn value = _plans.back().run_plan(beliefs, events);
 
   if(!value.get_value())
   {
-    while (!_plans->is_empty())
+    while (_plans.size() > 0)
     {
-      _plans->pop();
+      _plans.pop_back();
     }
     return value.get_value();
   }
@@ -59,9 +55,9 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     _suspended = true;
   }
 
-  if(_plans->peek()->is_finished())
+  if(_plans.back().is_finished())
   {
-    _plans->pop();
+    _plans.pop_back();
   }
 
   return value.get_value();
@@ -76,7 +72,7 @@ void Intention::suspend(EventID * event_id)
 void Intention::unsuspend()
 {
   _suspended = false;
-  _suspended_by = NULL;
+  _suspended_by = nullptr;
 }
 
 bool Intention::is_suspended(EventBase * events)
@@ -99,5 +95,5 @@ bool Intention::is_suspended(EventBase * events)
 
 bool Intention::is_finished() const
 {
-  return _plans->is_empty();
+  return (_plans.size() == 0);
 }

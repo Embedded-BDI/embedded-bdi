@@ -11,15 +11,13 @@
 #include "body_instruction.h"
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
-#include "../lib/circular_buffer.h"
+#include <vector>
 
 class Body
 {
-  CircularBuffer<BodyInstruction> * _body;
+  std::vector <BodyInstruction> _body;
 
 public:
-  Body();
-
   /*
    * Body constructor
    * @param size Size of _body

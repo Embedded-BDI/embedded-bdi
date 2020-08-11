@@ -8,7 +8,6 @@
 #include "gtest/gtest.h"
 #include "bdi/intention_base.h"
 #include "test_intention_base_data.h"
-#include <iostream>
 
 #define PLAN_BODY_SIZE 2
 #define BASES_SIZE 3
@@ -40,20 +39,36 @@ public:
   }
 };
 
-//TEST_F(TIntentionBase, is_empty)
-//{
-//  EXPECT_TRUE(intention_base->is_empty());
-//
-//  for (int i = 0; i < BASES_SIZE; i++)
-//  {
-//    intention_base->add_intention(plan_action_successful);
-//    EXPECT_FALSE(intention_base->is_empty());
-//  }
-//
-//  for (int i = 0; i < (BASES_SIZE); i++)
-//  {
-//    intention_base->run_intention_base(NULL, NULL);
-//    EXPECT_FALSE(intention_base->is_empty());
-//  }
-//  EXPECT_TRUE(intention_base->is_empty());
-//}
+TEST_F(TIntentionBase, run_intention_base)
+{
+  EXPECT_NO_FATAL_FAILURE(intention_base->run_intention_base(NULL, NULL));
+
+  for (int i = 0; i < BASES_SIZE; i++)
+  {
+    intention_base->add_intention(plan_action_successful);
+  }
+
+  for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE * 2); i++)
+  {
+    EXPECT_NO_FATAL_FAILURE(intention_base->run_intention_base(NULL, NULL));
+  }
+}
+
+TEST_F(TIntentionBase, is_empty)
+{
+  EXPECT_TRUE(intention_base->is_empty());
+
+  for (int i = 0; i < BASES_SIZE; i++)
+  {
+    intention_base->add_intention(plan_action_successful);
+    EXPECT_FALSE(intention_base->is_empty());
+  }
+
+  for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE); i++)
+  {
+    EXPECT_FALSE(intention_base->is_empty());
+    intention_base->run_intention_base(nullptr, nullptr);
+  }
+
+  EXPECT_TRUE(intention_base->is_empty());
+}

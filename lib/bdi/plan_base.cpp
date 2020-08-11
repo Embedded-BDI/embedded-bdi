@@ -9,17 +9,20 @@
 
 PlanBase::PlanBase(int size)
 {
-  _plan_base = new CircularBuffer<Plan>(size);
+  _plan_base.reserve(size);
 }
 
-PlanBase::~PlanBase()
-{
-  delete _plan_base;
-}
+PlanBase::~PlanBase() {}
 
 bool PlanBase::add_plan(Plan plan)
 {
-  return _plan_base->enqueue(plan);
+  if (_plan_base.size() == _plan_base.capacity())
+  {
+    return false;
+  }
+
+  _plan_base.push_back(plan);
+  return true;
 }
 
 Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
@@ -33,15 +36,15 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
         (event->get_operator() == EventOperator::TEST_GOAL_ADDITION)  ||
         (event->get_operator() == EventOperator::TEST_GOAL_DELETION))
     {
-      for (int i = 0; i < _plan_base->size(); i++)
+      for(std::vector<Plan>::iterator it = _plan_base.begin(); it != _plan_base.end(); ++it)
       {
-        if (event->get_operator() == _plan_base->item(i)->get_operator())
+        if (event->get_operator() == it->get_operator())
         {
-          if (event->get_statement().is_equal(_plan_base->item(i)->get_statement()))
+          if (event->get_statement().is_equal(it->get_statement()))
           {
-            if (_plan_base->item(i)->get_context()->is_valid(belief_base))
+            if (it->get_context()->is_valid(belief_base))
             {
-              return _plan_base->item(i);
+              return &*it;
             }
           }
         }
@@ -49,5 +52,5 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
     }
   }
 
-  return NULL;
+  return nullptr;
 }

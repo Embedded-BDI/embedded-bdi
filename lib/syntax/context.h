@@ -10,15 +10,13 @@
 
 #include "context_condition.h"
 #include "../bdi/belief_base.h"
-#include "../lib/circular_buffer.h"
+#include <vector>
 
 class Context
 {
-  CircularBuffer<ContextCondition> * _context;
+  std::vector <ContextCondition> _context;
 
 public:
-  Context();
-
   Context(int size);
 
   virtual ~Context();

@@ -20,12 +20,10 @@ private:
   bool _is_true;
 
 public:
-  ContextCondition();
-
   /*
    * ContextCondition constructor
    * @param stm Statement to be compared with belief from BeliefBase
-   * @para negatior Whether the statement should be considered true or false
+   * @para negation Whether the statement should be considered true or false
    */
   ContextCondition(Statement stm, bool negation);
 

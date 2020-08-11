@@ -6,9 +6,13 @@
  */
 
 #include "body_return.h"
-#include <iostream>
 
-BodyReturn::BodyReturn() {}
+BodyReturn::BodyReturn()
+{
+  _type = BodyType::ACTION;
+  _value = false;
+  _event = nullptr;
+}
 
 BodyReturn::BodyReturn(BodyType type, bool value, EventID * event)
 {

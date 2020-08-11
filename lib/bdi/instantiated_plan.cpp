@@ -7,8 +7,6 @@
 
 #include "instantiated_plan.h"
 
-InstantiatedPlan::InstantiatedPlan() {}
-
 InstantiatedPlan::InstantiatedPlan(Plan * plan)
 {
   _plan = plan;
@@ -27,7 +25,7 @@ BodyReturn InstantiatedPlan::run_plan(BeliefBase * beliefs, EventBase * events)
   }
   else
   {
-    result = BodyReturn(BodyType::ACTION, false, NULL);
+    result = BodyReturn(BodyType::ACTION, false, nullptr);
   }
 
   return result;

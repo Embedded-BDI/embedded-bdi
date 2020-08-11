@@ -7,8 +7,6 @@
 
 #include "plan.h"
 
-Plan::Plan() {}
-
 Plan::Plan(EventOperator op, Statement stm, Context * context, Body * body)
 {
   _operator = op;

@@ -10,13 +10,13 @@
 
 #include "belief_base.h"
 #include "event.h"
-#include "../lib/circular_buffer.h"
 #include "../syntax/plan.h"
+#include <vector>
 
 class PlanBase
 {
 private:
-  CircularBuffer<Plan> * _plan_base;
+  std::vector <Plan> _plan_base;
 
 public:
   /*
@@ -37,13 +37,13 @@ public:
   /*
    * Revise and select applicable plan to treat event
    * @param event Event to be processed
-   * @result Pointer to applicable plan, NULL otherwise
+   * @result Pointer to applicable plan, nullptr otherwise
    */
   Plan * revise(Event * event, BeliefBase * belief_base);
 
   int get_size()
   {
-    return _plan_base->size();
+    return _plan_base.size();
   }
 };
 

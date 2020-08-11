@@ -12,7 +12,6 @@
 #include "body_return.h"
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
-#include <iostream>
 
 /*
  * Body instructions can be belief operations, goal operations (adopt/drop
@@ -22,21 +21,19 @@
 class BodyInstruction
 {
 private:
-  bool (*_take_action)(BeliefBase * belief_base);
+  bool (*_take_action)(bool var);
   Statement _statement;
   EventOperator _operator;
   BodyType _type;
 
 public:
-  BodyInstruction();
-
   /*
    * Constructor for Actions
    * @param type Type of body instruction
    * @param stm Statement that represents the plan name
    * @param take_action Function that acts in the environment
    */
-  BodyInstruction(BodyType type, Statement stm, bool (*take_action)(BeliefBase * belief_base));
+  BodyInstruction(BodyType type, Statement stm, bool (*take_action)(bool var));
 
   /*
    * Constructor for Belief and Goal events

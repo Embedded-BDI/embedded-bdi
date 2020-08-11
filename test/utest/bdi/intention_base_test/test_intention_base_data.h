@@ -34,7 +34,7 @@ public:
     event_base_empty = new EventBase(bases_size);
     belief_base = new BeliefBase(bases_size);
 
-    Belief belief(stm, NULL);
+    Belief belief(stm, nullptr);
 
     belief_base->add_belief(belief);
 

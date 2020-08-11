@@ -25,7 +25,7 @@ public:
    * BodyReturn constructor. For each BodyType:
    *  * Action: type is BodyType::ACTION
    *            _value is true if action is successful, false otherwise
-   *            event is NULL
+   *            event is nullptr
    *  * Belief: type is BodyType::BELIEF
    *            _value is true if event is added to EventBase, false otherwise
    *            event is pointer to EventID of event created for instruction

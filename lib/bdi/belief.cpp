@@ -6,9 +6,6 @@
  */
 
 #include "belief.h"
-#include <iostream>
-
-Belief::Belief() {}
 
 Belief::Belief(Statement stm, bool (*update_function)(bool var), bool belief_state)
 {
@@ -34,6 +31,7 @@ bool Belief::update_belief()
       return false;
     }
   }
+
   return false;
 }
 

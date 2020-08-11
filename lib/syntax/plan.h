@@ -21,8 +21,6 @@ private:
   Body * _body;
 
 public:
-  Plan();
-
   /*
    * Plan constructor
    * @param op Triggering event operator

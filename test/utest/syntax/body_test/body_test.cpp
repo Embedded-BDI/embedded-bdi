@@ -71,25 +71,25 @@ TEST_F(TBody, run_body)
     if (i % 4 == 0)
     {
       EXPECT_EQ(BodyType::ACTION, result.get_type());
-      EXPECT_TRUE(NULL == result.get_event());
+      EXPECT_TRUE(nullptr == result.get_event());
       EXPECT_FALSE(result.get_value());
     }
     else if (i % 4 == 1)
     {
       EXPECT_EQ(BodyType::ACTION, result.get_type());
-      EXPECT_TRUE(NULL == result.get_event());
+      EXPECT_TRUE(nullptr == result.get_event());
       EXPECT_TRUE(result.get_value());
     }
     else if (i % 4 == 2)
     {
       EXPECT_EQ(BodyType::BELIEF, result.get_type());
-      EXPECT_TRUE(NULL != result.get_event());
+      EXPECT_TRUE(nullptr != result.get_event());
       EXPECT_TRUE(result.get_value());
     }
     else if (i % 4 == 3)
     {
       EXPECT_EQ(BodyType::GOAL, result.get_type());
-      EXPECT_TRUE(NULL != result.get_event());
+      EXPECT_TRUE(nullptr != result.get_event());
       EXPECT_TRUE(result.get_value());
     }
   }

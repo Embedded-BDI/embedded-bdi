@@ -7,7 +7,10 @@
 
 #include "statement.h"
 
-Statement::Statement() {} // @suppress("Class members should be properly initialized")
+Statement::Statement()
+{
+  _name = '\0';
+}
 
 Statement::Statement(unsigned char name)
 {

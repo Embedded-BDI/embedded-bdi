@@ -39,7 +39,7 @@ TEST_F(TBeliefBase, add_belief)
 
   Belief belief_a(stm_a, return_true_bool, false);
   Belief belief_b(stm_b, return_false_bool, true);
-  Belief belief_c(stm_c, NULL, false);
+  Belief belief_c(stm_c, nullptr, false);
 
   EXPECT_TRUE(belief_base->add_belief(belief_a));
   EXPECT_TRUE(belief_base->add_belief(belief_b));
@@ -55,7 +55,7 @@ TEST_F(TBeliefBase, get_belief_state)
 
   Belief belief_a(stm_a, return_true_bool, false);
   Belief belief_b(stm_b, return_false_bool, true);
-  Belief belief_c(stm_c, NULL, false);
+  Belief belief_c(stm_c, nullptr, false);
 
   belief_base->add_belief(belief_a);
   belief_base->add_belief(belief_b);
@@ -74,7 +74,7 @@ TEST_F(TBeliefBase, update)
 
   Belief belief_a(stm_a, return_true_bool, false);
   Belief belief_b(stm_b, return_false_bool, true);
-  Belief belief_c(stm_c, NULL, false);
+  Belief belief_c(stm_c, nullptr, false);
 
   belief_base->add_belief(belief_a);
   belief_base->add_belief(belief_b);
@@ -96,7 +96,7 @@ TEST_F(TBeliefBase, change_belief_state)
   Statement stm_c('c');
 
   Belief belief_a(stm_a, return_true_bool, false);
-  Belief belief_b(stm_b, NULL, true);
+  Belief belief_b(stm_b, nullptr, true);
 
   belief_base->add_belief(belief_a);
   belief_base->add_belief(belief_b);
@@ -116,7 +116,7 @@ TEST_F(TBeliefBase, get_size)
   Statement stm_b('b');
 
   Belief belief_a(stm_a, return_true_bool, false);
-  Belief belief_b(stm_b, NULL, true);
+  Belief belief_b(stm_b, nullptr, true);
 
   belief_base->add_belief(belief_a);
   EXPECT_EQ(1, belief_base->get_size());

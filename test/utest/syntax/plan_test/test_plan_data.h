@@ -35,7 +35,7 @@ public:
     belief_base_full = new BeliefBase(belief_base_size);
     for (int i = 0; i < belief_base_size; i++)
     {
-      Belief belief(stm, NULL);
+      Belief belief(stm, nullptr);
       belief_base_full->add_belief(belief);
     }
 

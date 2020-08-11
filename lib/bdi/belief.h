@@ -20,8 +20,6 @@ private:
   bool (*_update)(bool var);
 
 public:
-  Belief();
-
   /*
    * Belief constructor
    * @param stm Agent's statement
