@@ -7,7 +7,7 @@
 
 #include "body_instruction.h"
 
-BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool (*take_action)(BeliefBase * belief_base))
+BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool (*take_action)(bool var))
 {
   _type = type;
   _statement = stm;
