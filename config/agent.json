@@ -11,11 +11,11 @@
     ],
     "event":[
        {
-          "event_operator":"belief_addition",
-          "statement":"crazy_event"
+          "event_operator":"BELIEF_ADDITION",
+          "statement":"statement_1"
        },
        {
-          "event_operator":"belief_deletion",
+          "event_operator":"BELIEF_DELETION",
           "statement":"duper_event"
        }
     ],

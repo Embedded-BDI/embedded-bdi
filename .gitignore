@@ -1,5 +1,7 @@
+# Eclipse IDE workspace folder
 /.metadata/
 
+# Eclipse IDE generated folders for each project
 lib/Debug
 lib/.settings
 
@@ -9,4 +11,8 @@ src/.settings
 test/Debug
 test/.settings
 
+# Cmake build folder
 build/
+
+# Header file with agent configuration and data
+config/configuration.h
