@@ -21,17 +21,17 @@
     ],
     "plan":[
        {
-          "event_operator":"belief_addition",
-          "statement":"crazy_event",
+          "event_operator":"BELIEF_ADDITION",
+          "statement":"statement_1",
           "context":[
              {
                 "context_condition":[
                    {
-                      "statement":"belief_1",
+                      "statement":"statement_1",
                       "is_true":"true"
                    },
                    {
-                      "statement":"belief_2",
+                      "statement":"statement_2",
                       "is_true":"false"
                    }
                 ]
@@ -42,12 +42,12 @@
                 "instruction":[
                    {
                       "statement":"add_goal",
-                      "operator":"goal_addition",
+                      "operator":"GOAL_ADDITION",
                       "body_type":"goal"
                    },
                    {
                       "statement":"do_action",
-                      "body_type":"action"
+                      "body_type":"ACTION"
                    }
                 ]
              }

@@ -8,6 +8,10 @@ update_beliefs_list = []    # list of update belief functions
 actions_list = []           # list of action functions
 functions_file = 'functions.h'
 output_file = 'configuration.h'
+ctx_cond_counter = 0
+ctx_counter = 0
+stm_counter = 0
+body_counter = 0
 
 #
 # Clear output file
@@ -34,25 +38,23 @@ if len(find_action_functions) != len(set(find_action_functions)):
 for line in find_update_functions: 
   function_names = re.search('bool(.*)\(boolvar\)', line)
   update_beliefs_list.append(function_names.group(1))
-  # print(update_beliefs_list)
 
 for line in find_action_functions:
   function_names = re.search('bool(.*)\(boolvar\)', line)
   actions_list.append(function_names.group(1))
-  # print(actions_list)
-
 
 #
 # Loads JSON file and processes agent settings
 #
 
 # Write start of file
-text = "#include \"../lib/bdi/belief_base.h\"\n"                  + \
-       "#include \"../lib/bdi/event_base.h\"\n"                   + \
-       "#include \"../lib/bdi/intention.h\"\n"                    + \
-       "#include \"" + functions_file + "\"\n\n"                  + \
-       "class AgentSettings\n{\npublic:\n  AgentSettings() {}\n"  + \
-       "  ~AgentSettings() {}\n\n"                                + \
+text = "#include \"../lib/bdi/belief_base.h\"\n"                            + \
+       "#include \"../lib/bdi/event_base.h\"\n"                             + \
+       "#include \"../lib/bdi/plan_base.h\"\n"                              + \
+       "#include \"../lib/bdi/intention_base.h\"\n"                         + \
+       "#include \"" + functions_file + "\"\n\n"                            + \
+       "class AgentSettings\n{\npublic:\n  AgentSettings() {}\n"            + \
+       "  ~AgentSettings() {}\n\n"                                          + \
        "  BeliefBase get_belief_base()\n  {\n"
 
 with open(output_file, 'a+') as file:
@@ -61,7 +63,6 @@ with open(output_file, 'a+') as file:
 # Belief
 with open('agent.json') as json_file:
     data = json.load(json_file)
-    # print(data)
 
 text = "    BeliefBase belief_base(" + str(len(data['belief'])) + ");\n\n"
 with open(output_file, 'a+') as file:
@@ -116,18 +117,86 @@ for event in data['event']:
   text = "    event_base.add_event(EventOperator::"                         + \
          event['event_operator'] + ", " + str(stm_dict[event['statement']]) + \
          ");\n"
-         
   text = text.replace("\'", "")
 
   with open(output_file, 'a+') as file:
     file.write(text)
 
-text = "\n    return event_base;\n  }\n"
+text = "\n    return event_base;\n  }\n\n"
 with open(output_file, 'a+') as file:
     file.write(text)
 
 # Plan
+text= "  PlanBase get_plan_base()\n  {\n"
+with open(output_file, 'a+') as file:
+    file.write(text)
 
+text = "    PlanBase plan_base(" + str(len(data['plan'])) + ");\n\n"
+with open(output_file, 'a+') as file:
+    file.write(text)
+
+for plan in data['plan']:
+  if len(stm_dict) >= CHAR_SIZE:
+    print("Number of statements exceeds max: " + str(CHAR_SIZE))
+    exit(1)
+
+  if plan['statement'] not in stm_dict:
+    stm_dict[plan['statement']] = len(stm_dict)
+
+  text = "    Statement stm_" + str(stm_counter) + "("                      + \
+         str(stm_dict[plan['statement']]) + ");\n\n"
+  text = text.replace("\'", "")
+  with open(output_file, 'a+') as file:
+    file.write(text)
+  stm_counter += 1
+
+  for context in plan['context']:
+    text = "    Context context_" + str(ctx_counter) + "("                  + \
+           str(len(context['context_condition'])) + ");\n\n"
+    text = text.replace("\'", "")
+    with open(output_file, 'a+') as file:
+      file.write(text)
+
+    for ctx_cond in context['context_condition']:
+      if ctx_cond['statement'] not in stm_dict:
+        print("Belief from context does not exist in Agent's Belief Base")
+        exit(1)
+      text = "    Statement stm_" + str(stm_dict[ctx_cond['statement']])    + \
+             "(" + str(stm_dict[ctx_cond['statement']]) + ");\n"
+      text = text.replace("\'", "")
+      with open(output_file, 'a+') as file:
+        file.write(text)
+      text = "    ContextCondition cond_" + str(ctx_cond_counter) + "("     + \
+             "stm_" + str(stm_dict[ctx_cond['statement']]) + ", "           + \
+             ctx_cond['is_true'] + ");\n"
+      text = text.replace("\'", "")
+      with open(output_file, 'a+') as file:
+        file.write(text)
+      
+      text = "    context_" + str(ctx_counter) + ".add_belief(cond_"        + \
+             str(ctx_cond_counter) + ");\n\n" 
+      text = text.replace("\'", "")
+      with open(output_file, 'a+') as file:
+        file.write(text)
+      ctx_cond_counter += 1
+
+  
+  for body in plan['body']:
+    text = "    Body body_" + str(body_counter) + "("                       + \
+           str(len(body['instruction'])) + ");\n\n"
+    text = text.replace("\'", "")
+    with open(output_file, 'a+') as file:
+      file.write(text)
+    body_counter += 1
+
+    for instruction in body['instruction']: 
+      if instruction['body_type'] == 'ACTION':
+        # check if action function exists
+        # check if statement can be allocated
+
+text = "\n    return plan_base;\n  }\n"
+with open(output_file, 'a+') as file:
+  file.write(text)
 
 # Add characters at the end of the class
 with open(output_file, 'a+') as file:
