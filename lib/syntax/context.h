@@ -26,7 +26,7 @@ public:
    * @param value ContextCondition to be added
    * @return true if value is added to buffer, false otherwise
    */
-  bool add_belief(ContextCondition value);
+  bool add_context(ContextCondition value);
 
   /*
    * Checks if context is valid

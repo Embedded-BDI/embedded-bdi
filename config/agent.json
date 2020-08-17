@@ -43,7 +43,7 @@
                    {
                       "statement":"add_goal",
                       "operator":"GOAL_ADDITION",
-                      "body_type":"goal"
+                      "body_type":"GOAL"
                    },
                    {
                       "statement":"do_action",
@@ -52,6 +52,38 @@
                 ]
              }
           ]
+       }, {
+         "event_operator":"BELIEF_ADDITION",
+         "statement":"statement_1",
+         "context":[
+            {
+               "context_condition":[
+                  {
+                     "statement":"statement_1",
+                     "is_true":"true"
+                  },
+                  {
+                     "statement":"statement_2",
+                     "is_true":"false"
+                  }
+               ]
+            }
+         ],
+         "body":[
+            {
+               "instruction":[
+                  {
+                     "statement":"add_goal",
+                     "operator":"GOAL_ADDITION",
+                     "body_type":"GOAL"
+                  },
+                  {
+                     "statement":"do_action",
+                     "body_type":"ACTION"
+                  }
+               ]
+            }
+         ]
        }
     ]
  }

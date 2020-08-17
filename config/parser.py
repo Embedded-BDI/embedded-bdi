@@ -12,6 +12,7 @@ ctx_cond_counter = 0
 ctx_counter = 0
 stm_counter = 0
 body_counter = 0
+instruction_counter = 0
 
 #
 # Clear output file
@@ -161,9 +162,10 @@ for plan in data['plan']:
       if ctx_cond['statement'] not in stm_dict:
         print("Belief from context does not exist in Agent's Belief Base")
         exit(1)
-      text = "    Statement stm_" + str(stm_dict[ctx_cond['statement']])    + \
+      text = "    Statement stm_" + str(stm_counter)                        + \
              "(" + str(stm_dict[ctx_cond['statement']]) + ");\n"
       text = text.replace("\'", "")
+      stm_counter += 1
       with open(output_file, 'a+') as file:
         file.write(text)
       text = "    ContextCondition cond_" + str(ctx_cond_counter) + "("     + \
@@ -173,7 +175,7 @@ for plan in data['plan']:
       with open(output_file, 'a+') as file:
         file.write(text)
       
-      text = "    context_" + str(ctx_counter) + ".add_belief(cond_"        + \
+      text = "    context_" + str(ctx_counter) + ".add_context(cond_"       + \
              str(ctx_cond_counter) + ");\n\n" 
       text = text.replace("\'", "")
       with open(output_file, 'a+') as file:
@@ -187,12 +189,57 @@ for plan in data['plan']:
     text = text.replace("\'", "")
     with open(output_file, 'a+') as file:
       file.write(text)
-    body_counter += 1
 
     for instruction in body['instruction']: 
       if instruction['body_type'] == 'ACTION':
-        # check if action function exists
-        # check if statement can be allocated
+          function_name = "action_" + instruction['statement']
+          if actions_list.count(function_name) < 1:
+            print("Missing function for action: " + instruction['statement'])
+            exit(1)
+
+          if instruction['statement'] not in stm_dict:
+            stm_dict[instruction['statement']] = len(stm_dict)
+
+          text = "    Statement stm_" + str(stm_counter) + "("              + \
+                str(stm_dict[instruction['statement']]) + ");\n"
+          text = text.replace("\'", "")
+          with open(output_file, 'a+') as file:
+            file.write(text)
+            
+          text = "    BodyInstruction inst_" + str(instruction_counter)     + \
+                 "(BodyType::" + instruction['body_type'] + ", "            + \
+                 "stm_" + str(stm_counter) + ", "    + \
+                 function_name + ");\n"
+          text = text.replace("\'", "")
+          with open(output_file, 'a+') as file:
+            file.write(text)
+          stm_counter += 1
+      else:
+        if instruction['statement'] not in stm_dict:
+          stm_dict[instruction['statement']] = len(stm_dict)
+
+        text = "    Statement stm_" + str(stm_counter) + "("                + \
+              str(stm_dict[instruction['statement']]) + ");\n"
+        text = text.replace("\'", "")
+        with open(output_file, 'a+') as file:
+          file.write(text)
+          
+        text = "    BodyInstruction inst_" + str(instruction_counter)       + \
+                "(BodyType::" + instruction['body_type'] + ", "             + \
+                "stm_" + str(stm_counter) + ", "    + \
+                "EventOperator::" + instruction['operator'] + ");\n"
+        text = text.replace("\'", "")
+        with open(output_file, 'a+') as file:
+          file.write(text)
+        stm_counter += 1
+      
+      text = "    body_" + str(body_counter) + ".add_instruction(inst_"     + \
+             str(instruction_counter) + ");\n\n"
+      text = text.replace("\'", "")
+      with open(output_file, 'a+') as file:
+        file.write(text)
+  body_counter += 1
+
 
 text = "\n    return plan_base;\n  }\n"
 with open(output_file, 'a+') as file:
