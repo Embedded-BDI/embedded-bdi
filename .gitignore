@@ -11,8 +11,21 @@ src/.settings
 test/Debug
 test/.settings
 
+###################################################
+
 # Cmake build folder
 build/
 
-# Header file with agent configuration and data
+###################################################
+
+# AgentSpeak translator
+### Python
 config/configuration.h
+
+### Java
+*.out
+
+###################################################
+
+# OSX
+.DS_Store
