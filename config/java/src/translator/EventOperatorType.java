@@ -1,6 +1,7 @@
 package translator;
 
-public enum EventOperatorType {
+public enum EventOperatorType
+{
   BELIEF_ADDITION,      // +
   BELIEF_DELETION,      // -
   GOAL_ADDITION,        // +!

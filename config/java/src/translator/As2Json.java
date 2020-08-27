@@ -2,10 +2,7 @@ package translator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 
 import jason.asSemantics.Agent;
 import jason.asSyntax.Literal;
@@ -19,8 +16,8 @@ public class As2Json
 {
   public static void main(String[] args)
   {
-    // new As2Json().run("config/java/agentspeak.asl");     // for VS Code 
-    new As2Json().run("agentspeak.asl");
+    new As2Json().run("config/java/agentspeak.asl");     // for VS Code 
+    // new As2Json().run("agentspeak.asl");
   }
 
   void run(String file)
@@ -34,12 +31,12 @@ public class As2Json
       ag.initAg();
       parser.agent(ag);
 
-      // write down the translation
-      // BufferedWriter out = new BufferedWriter(new FileWriter(file+".out"));
-
       HashMap<String, Boolean> beliefs = this.getBeliefs(ag);
-      HashMap<String, String> events = this.getEvents(ag);
+      HashMap<String, EventOperatorType> events = this.getEvents(ag);
       ArrayList<PlanSkeleton> plans = this.getPlans(ag);
+
+      HeaderCreator write_to_file = new HeaderCreator(beliefs, events, plans, 10, 10, 4);
+      write_to_file.write_header();
     }
     catch (Exception e)
     {
@@ -80,7 +77,8 @@ public class As2Json
       {
         String s_context = plan.getContext().toString().replaceAll("[()&]", "");
         String[] context_list = s_context.split("\\s+");
-        for (int i = 0; i < context_list.length; i++) {
+        for (int i = 0; i < context_list.length; i++)
+        {
           if (!beliefs.containsKey(context_list[i]))
           {
             beliefs.put(context_list[i], false);
@@ -112,37 +110,41 @@ public class As2Json
       }
     }
 
-    System.out.format("\n%20s%20s\n", "BELIEF NAME", "VALUE");
-    for (String belief: beliefs.keySet()) {
-      System.out.format("%20s%20s\n", belief, beliefs.get(belief));
+    for (String belief: beliefs.keySet())
+    {
+      System.out.println("\n---\n\nBELIEF:\nName:\n\t" + belief);
+      System.out.println("Value:\n\t" + beliefs.get(belief));
     }
 
     return beliefs;
   }
 
   // Capture all initial events
-  private HashMap<String, String> getEvents(Agent ag)
+  private HashMap<String, EventOperatorType> getEvents(Agent ag)
   {
-    HashMap<String, String> events = new HashMap<String, String>();
+    HashMap<String, EventOperatorType> events = new HashMap<String, EventOperatorType>();
     
     for (Literal lit : ag.getInitialGoals())
     {
-      events.put(lit.toString(), "ADD_BELIEF");
+      events.put(lit.toString(), EventOperatorType.GOAL_ADDITION);
     }
 
-    System.out.format("\n%20s%20s\n", "EVENT NAME", "OPERATOR");
-    for (String event: events.keySet()) {
-      System.out.format("%20s%20s\n", event, events.get(event));
+    for (String event: events.keySet())
+    {
+      System.out.println("\n---\n\nEVENT:\nName:\n\t" + event);
+      System.out.println("Value:\n\t" + events.get(event));
     }
 
     return events;
   }
 
   // Parse all plan to individual objects that can be easily parsed to C++ code
-  private ArrayList<PlanSkeleton> getPlans(Agent ag) {
+  private ArrayList<PlanSkeleton> getPlans(Agent ag)
+  {
     ArrayList<PlanSkeleton> plans = new ArrayList<PlanSkeleton>();
 
-    for (Plan plan : ag.getPL()) {
+    for (Plan plan : ag.getPL())
+    {
       PlanSkeleton plan_s = new PlanSkeleton();
 
       // Parse plan operator
@@ -182,7 +184,9 @@ public class As2Json
         for (int i = 0; i < context_list.length; i++) {
           plan_s.addContext(context_list[i]);
         }
-      } catch (Exception e) {
+      }
+      catch (Exception e)
+      {
         // System.out.println("No Context for Plan: " + p.getTrigger().toString());
       }
 
@@ -229,7 +233,7 @@ public class As2Json
 
     for (PlanSkeleton plan : plans)
     {
-      System.out.println("\n\nPLAN:");
+      System.out.println("\n---\n\nPLAN:");
       System.out.println("Operator:\n\t" + plan.getOperator());
       System.out.println("Statement:\n\t" + plan.getStatement());
       System.out.println("Context:");
