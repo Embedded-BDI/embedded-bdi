@@ -56,10 +56,10 @@ public:
  */
 TEST_F(TContext, add_belief)
 {
-  EXPECT_TRUE(context->add_belief(*cond_1));
-  EXPECT_TRUE(context->add_belief(*cond_2));
-  EXPECT_TRUE(context->add_belief(*cond_3));
-  EXPECT_FALSE(context->add_belief(*cond_1));
+  EXPECT_TRUE(context->add_context(*cond_1));
+  EXPECT_TRUE(context->add_context(*cond_2));
+  EXPECT_TRUE(context->add_context(*cond_3));
+  EXPECT_FALSE(context->add_context(*cond_1));
 }
 
 /*
@@ -67,9 +67,9 @@ TEST_F(TContext, add_belief)
  */
 TEST_F(TContext, is_valid)
 {
-  context->add_belief(*cond_1);
-  context->add_belief(*cond_2);
-  context->add_belief(*cond_3);
+  context->add_context(*cond_1);
+  context->add_context(*cond_2);
+  context->add_context(*cond_3);
 
   EXPECT_TRUE(context->is_valid(belief_base));
 }

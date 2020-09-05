@@ -17,6 +17,7 @@ class PlanBase
 {
 private:
   std::vector <Plan> _plan_base;
+  int _size;
 
 public:
   /*

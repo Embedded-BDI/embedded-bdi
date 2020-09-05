@@ -58,7 +58,7 @@ TEST_F(TPlanBase, revise)
   Context context_valid(0);
   Context context_invalid(1);
   ContextCondition ctx(stm_a, true);
-  context_invalid.add_belief(ctx);
+  context_invalid.add_context(ctx);
 
   Plan plan_context_invalid(EventOperator::BELIEF_ADDITION,
                             stm_a,

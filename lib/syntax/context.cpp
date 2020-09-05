@@ -14,7 +14,7 @@ Context::Context(int size)
 
 Context::~Context() {}
 
-bool Context::add_belief(ContextCondition value)
+bool Context::add_context(ContextCondition value)
 {
   if (_context.size() == _context.capacity())
   {

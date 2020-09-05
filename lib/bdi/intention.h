@@ -31,6 +31,8 @@ private:
    * Unsuspend intention so instructions can be run
    */
   void unsuspend();
+
+  bool is_suspended();
 public:
   /*
    * Intention constructor
@@ -63,9 +65,11 @@ public:
    * @return true if Intention is suspended and _suspended_by still exists
    * in EventBase, false otherwise
    */
-  bool is_suspended(EventBase * events);
+  bool is_suspended_by(Event * event);
 
   bool is_finished() const;
+
+  EventID * event();
 };
 
 #endif /* BDI_INTENTION_H_ */

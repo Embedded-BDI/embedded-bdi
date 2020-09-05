@@ -9,6 +9,7 @@
 
 EventBase::EventBase(int size)
 {
+  _size = size;
   _pending_events.reserve(size);
 }
 
@@ -16,7 +17,7 @@ EventBase::~EventBase() {}
 
 bool EventBase::add_event(EventOperator op, Statement stm)
 {
-  if (_pending_events.size() == _pending_events.capacity())
+  if (this->is_full())
   {
     return false;
   }
@@ -28,7 +29,7 @@ bool EventBase::add_event(EventOperator op, Statement stm)
 
 Event * EventBase::get_event()
 {
-  if (_pending_events.size() == 0)
+  if (this->is_empty())
   {
     return nullptr;
   }
@@ -40,7 +41,7 @@ Event * EventBase::get_event()
 
 Event * EventBase::last_event()
 {
-  if (_pending_events.size() == 0)
+  if (this->is_empty())
   {
     return nullptr;
   }
@@ -64,7 +65,7 @@ bool EventBase::event_exists(EventID * event_id)
 
 bool EventBase::is_full()
 {
-  return (_pending_events.size() == _pending_events.capacity());
+  return (_pending_events.size() == _size);
 }
 
 bool EventBase::is_empty()
