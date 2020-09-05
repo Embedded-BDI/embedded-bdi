@@ -21,25 +21,30 @@ Intention::~Intention() {}
 
 bool Intention::stack_plan(Plan * plan)
 {
-  if (!plan || (_plans.size() == _plans.capacity()))
+  if (!plan || (_plans.size() == _size))
   {
     return false;
   }
 
   InstantiatedPlan inst_plan(plan);
   _plans.push_back(inst_plan);
+
+  this->unsuspend();
+
   return true;
 }
 
 bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
 {
-  if (_plans.size() == 0)
+  if (_plans.size() == 0 || this->is_suspended())
   {
     return false;
   }
 
   BodyReturn value = _plans.back().run_plan(beliefs, events);
 
+  // If instruction execution fails, remove all InstantiatedPlans from the plan
+  // stack and return false
   if(!value.get_value())
   {
     while (_plans.size() > 0)
@@ -48,16 +53,20 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     }
     return value.get_value();
   }
-
-  if (value.get_value())
+  else
   {
-    _suspended_by = value.get_event();
-    _suspended = true;
-  }
+    if (value.get_event())
+    {
+      this->suspend(value.get_event());
+    }
+    else
+    {
+      if (_plans.back().is_finished())
+      {
+        _plans.pop_back();
+      }
 
-  if(_plans.back().is_finished())
-  {
-    _plans.pop_back();
+    }
   }
 
   return value.get_value();
@@ -75,18 +84,17 @@ void Intention::unsuspend()
   _suspended_by = nullptr;
 }
 
-bool Intention::is_suspended(EventBase * events)
+bool Intention::is_suspended_by(Event * event)
 {
-  if (_suspended && events)
+  if (!_suspended || !event)
   {
-    if (events->event_exists(_suspended_by))
+    return false;
+  }
+  else
+  {
+    if (this->_suspended_by->is_equal(event->get_event_id()))
     {
       return true;
-    }
-    else
-    {
-      this->unsuspend();
-      return false;
     }
   }
 
@@ -96,4 +104,14 @@ bool Intention::is_suspended(EventBase * events)
 bool Intention::is_finished() const
 {
   return (_plans.size() == 0);
+}
+
+bool Intention::is_suspended()
+{
+  return _suspended;
+}
+
+EventID * Intention::event()
+{
+  return _suspended_by;
 }

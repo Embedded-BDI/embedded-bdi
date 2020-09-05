@@ -39,7 +39,7 @@ public:
    */
   void add_intention(Plan * plan);
 
-//  void add_intention(Intention intention);
+  bool stack_plan(Plan * plan, Event * event);
 
   /*
    * Run instruction from the intention stored in the front of _intention_base
@@ -47,6 +47,7 @@ public:
    * _intention_base if it has not finished
    */
   void run_intention_base(BeliefBase * beliefs, EventBase * events);
+
 
   /*
    * Returns if IntentionBase is empty based on _intention_base size

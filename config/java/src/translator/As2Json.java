@@ -16,8 +16,8 @@ public class As2Json
 {
   public static void main(String[] args)
   {
-    new As2Json().run("config/java/agentspeak.asl");     // for VS Code 
-    // new As2Json().run("agentspeak.asl");
+    // new As2Json().run("config/java/agentspeak.asl");     // for VS Code 
+    new As2Json().run("agentspeak.asl");
   }
 
   void run(String file)
@@ -32,7 +32,7 @@ public class As2Json
       parser.agent(ag);
 
       HashMap<String, Boolean> beliefs = this.getBeliefs(ag);
-      HashMap<String, EventOperatorType> events = this.getEvents(ag);
+      ArrayList<String> events = this.getEvents(ag);
       ArrayList<PlanSkeleton> plans = this.getPlans(ag);
 
       HeaderCreator write_to_file = new HeaderCreator(beliefs, events, plans, 10, 10, 4);
@@ -119,20 +119,20 @@ public class As2Json
     return beliefs;
   }
 
+  // REPLACE BY ARRAY OF TUPLES
   // Capture all initial events
-  private HashMap<String, EventOperatorType> getEvents(Agent ag)
+  private ArrayList<String> getEvents(Agent ag)
   {
-    HashMap<String, EventOperatorType> events = new HashMap<String, EventOperatorType>();
+    ArrayList<String> events = new ArrayList<String>();
     
     for (Literal lit : ag.getInitialGoals())
     {
-      events.put(lit.toString(), EventOperatorType.GOAL_ADDITION);
+      events.add(lit.toString());
     }
 
-    for (String event: events.keySet())
+    for (String event: events)
     {
       System.out.println("\n---\n\nEVENT:\nName:\n\t" + event);
-      System.out.println("Value:\n\t" + events.get(event));
     }
 
     return events;

@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class HeaderCreator
 {
   private HashMap<String, Boolean> beliefs;
-  private HashMap<String, EventOperatorType> events;
+  private ArrayList<String> events;
   private ArrayList<PlanSkeleton> plans;
   private int event_base_size;
   private int intention_base_size;
@@ -19,12 +19,14 @@ public class HeaderCreator
   private HashMap <String, Integer> stm_map;
   private ArrayList<String> belief_functions;
   private ArrayList<String> action_functions;
-  private final String output_file = "config/java/configuration.h";
-  private final String function_file = "config/java/functions.h";
+  // private final String output_file = "config/java/configuration.h";
+  // private final String function_file = "config/java/functions.h";
+  private final String output_file = "configuration.h";
+  private final String function_file = "functions.h";
 
   public HeaderCreator (
                         HashMap<String, Boolean> beliefs,
-                        HashMap<String, EventOperatorType> events,
+                        ArrayList<String> events,
                         ArrayList<PlanSkeleton> plans,
                         int event_base_size,
                         int intention_base_size,
@@ -53,7 +55,8 @@ public class HeaderCreator
       BufferedWriter out = new BufferedWriter(new FileWriter(output_file));
 
       // Include headers and start class declaration
-      String text = "#include \"../../lib/bdi/belief_base.h\"\n"               +
+      String text = "#ifndef CONFIGURATION_H_\n#define CONFIGURATION_H_\n\n"   +
+                    "#include \"../../lib/bdi/belief_base.h\"\n"               +
                     "#include \"../../lib/bdi/event_base.h\"\n"                +
                     "#include \"../../lib/bdi/plan_base.h\"\n"                 +
                     "#include \"../../lib/bdi/intention_base.h\"\n"            +
@@ -96,13 +99,13 @@ public class HeaderCreator
       }
 
       // Creation of events
-      for (String event : events.keySet())
+      for (String event : events)
       {
         text = "\n    //-----------------------------------------------------" +
                "---------------------\n\n";
         out.append(text);
 
-        text = "    event_base->add_event(EventOperator::" + events.get(event) +
+        text = "    event_base->add_event(EventOperator::GOAL_ADDITION"        +
                ", " + stm_map.get(event) + ");\n";
         out.append(text);
       }
@@ -176,7 +179,8 @@ public class HeaderCreator
              " belief_base;\n  }\n\n  EventBase * get_event_base()\n  {\n    " +
              "return event_base;\n  }\n\n  PlanBase * get_plan_base()\n  {\n " +
              "   return plan_base;\n  }\n\n  IntentionBase * get_intention_ba" +
-             "se()\n  {\n    return intention_base;\n  }\n};";
+             "se()\n  {\n    return intention_base;\n  }\n};\n\n#endif /*"     +
+             "CONFIGURATION_H_ */";
       out.append(text);
       out.close();
 
@@ -211,7 +215,7 @@ public class HeaderCreator
         {
           if (body.getType() == BodyInstruction.BodyType.ACTION)
           {
-            if (funcs.indexOf("boolaction_"+ body.getStatement() + "(boolvar)") != -1) {
+            if (funcs.indexOf(body.getStatement() + "(boolvar)") != -1) {
               action_functions.add(body.getStatement());
             }
             else
@@ -236,7 +240,7 @@ public class HeaderCreator
       stm_map.put(belief, stm_map.size());
     }
 
-    for (String event : events.keySet())
+    for (String event : events)
     {
       if (!stm_map.containsKey(event))
       {

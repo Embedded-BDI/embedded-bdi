@@ -15,6 +15,7 @@ class EventBase
 {
 private:
   std::vector <Event> _pending_events;
+  int _size;
 
 public:
   /*

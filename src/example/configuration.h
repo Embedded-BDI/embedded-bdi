@@ -223,4 +223,4 @@ public:
   }
 };
 
-#endif /*CONFIGURATION_H_ */
+#endif /* CONFIGURATION_H_ */

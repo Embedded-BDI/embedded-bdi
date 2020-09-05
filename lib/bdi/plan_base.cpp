@@ -9,6 +9,7 @@
 
 PlanBase::PlanBase(int size)
 {
+  _size = size;
   _plan_base.reserve(size);
 }
 
@@ -16,7 +17,7 @@ PlanBase::~PlanBase() {}
 
 bool PlanBase::add_plan(Plan plan)
 {
-  if (_plan_base.size() == _plan_base.capacity())
+  if (_plan_base.size() == _size)
   {
     return false;
   }
