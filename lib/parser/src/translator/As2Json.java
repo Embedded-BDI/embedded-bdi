@@ -16,17 +16,16 @@ public class As2Json
 {
   public static void main(String[] args)
   {
-    // new As2Json().run("config/java/agentspeak.asl");     // for VS Code 
-    new As2Json().run("agentspeak.asl");
+    new As2Json().run(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]));
   }
 
-  void run(String file)
+  void run(String agentspeak_file, String function_file, String output_file, int event_base_size, int intention_base_size, int intention_stack_size)
   {
     try
     {
-      Config.get().setProperty(Config.START_WEB_MI,"false");
+      Config.get().setProperty(Config.START_WEB_MI, "false");
 
-      as2j parser = new as2j(new FileInputStream(file));
+      as2j parser = new as2j(new FileInputStream(agentspeak_file));
       Agent ag = new Agent();
       ag.initAg();
       parser.agent(ag);
@@ -35,7 +34,7 @@ public class As2Json
       ArrayList<String> events = this.getEvents(ag);
       ArrayList<PlanSkeleton> plans = this.getPlans(ag);
 
-      HeaderCreator write_to_file = new HeaderCreator(beliefs, events, plans, 10, 10, 4);
+      HeaderCreator write_to_file = new HeaderCreator(beliefs, events, plans, event_base_size, intention_base_size, intention_stack_size, function_file, output_file);
       write_to_file.write_header();
     }
     catch (Exception e)

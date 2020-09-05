@@ -19,10 +19,8 @@ public class HeaderCreator
   private HashMap <String, Integer> stm_map;
   private ArrayList<String> belief_functions;
   private ArrayList<String> action_functions;
-  // private final String output_file = "config/java/configuration.h";
-  // private final String function_file = "config/java/functions.h";
-  private final String output_file = "configuration.h";
-  private final String function_file = "functions.h";
+  private String output_file;
+  private String function_file;
 
   public HeaderCreator (
                         HashMap<String, Boolean> beliefs,
@@ -30,7 +28,9 @@ public class HeaderCreator
                         ArrayList<PlanSkeleton> plans,
                         int event_base_size,
                         int intention_base_size,
-                        int intention_stack_size
+                        int intention_stack_size,
+                        String function_file,
+                        String output_file
                         )
   {
     this.beliefs = beliefs;
@@ -43,6 +43,8 @@ public class HeaderCreator
     this.stm_map = new HashMap <String, Integer>();
     this.belief_functions = new ArrayList<String>();
     this.action_functions = new ArrayList<String>();
+    this.output_file = output_file;
+    this.function_file = function_file;
   }
 
   public void write_header()
@@ -60,7 +62,7 @@ public class HeaderCreator
                     "#include \"../../lib/bdi/event_base.h\"\n"                +
                     "#include \"../../lib/bdi/plan_base.h\"\n"                 +
                     "#include \"../../lib/bdi/intention_base.h\"\n"            +
-                    "#include \"functions.h\"\n\n"                             +
+                    "#include \"../../" + function_file + "\"\n\n"             +
                     "class AgentSettings\n{\nprivate:\n"                       +
                     "  BeliefBase * belief_base;\n  EventBase * event_base;\n" +
                     "  PlanBase * plan_base;\n"                                +

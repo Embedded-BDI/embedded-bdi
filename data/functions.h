@@ -18,7 +18,7 @@ bool action_action_2(bool var)
 bool action_action_3(bool var)
 {
   std::cout << "Action 3" << std::endl;
-  return false;
+  return true;
 }
 
 bool action_action_4(bool var)
