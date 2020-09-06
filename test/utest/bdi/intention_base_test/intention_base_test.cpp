@@ -45,7 +45,7 @@ TEST_F(TIntentionBase, run_intention_base)
 
   for (int i = 0; i < BASES_SIZE; i++)
   {
-    intention_base->add_intention(plan_action_successful);
+    intention_base->add_intention(plan_action_successful, NULL);
   }
 
   for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE * 2); i++)
@@ -60,7 +60,7 @@ TEST_F(TIntentionBase, is_empty)
 
   for (int i = 0; i < BASES_SIZE; i++)
   {
-    intention_base->add_intention(plan_action_successful);
+    intention_base->add_intention(plan_action_successful, NULL);
     EXPECT_FALSE(intention_base->is_empty());
   }
 

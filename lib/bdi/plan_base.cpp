@@ -17,7 +17,7 @@ PlanBase::~PlanBase() {}
 
 bool PlanBase::add_plan(Plan plan)
 {
-  if (_plan_base.size() == _size)
+  if (this->is_full())
   {
     return false;
   }
@@ -37,7 +37,11 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
         (event->get_operator() == EventOperator::TEST_GOAL_ADDITION)  ||
         (event->get_operator() == EventOperator::TEST_GOAL_DELETION))
     {
-      for(std::vector<Plan>::iterator it = _plan_base.begin(); it != _plan_base.end(); ++it)
+      for(
+          std::vector<Plan>::iterator it = _plan_base.begin();
+          it != _plan_base.end();
+          ++it
+          )
       {
         if (event->get_operator() == it->get_operator())
         {
@@ -54,4 +58,9 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
   }
 
   return nullptr;
+}
+
+bool PlanBase::is_full()
+{
+  return (_plan_base.size() == _size);
 }

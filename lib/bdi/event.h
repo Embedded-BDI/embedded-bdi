@@ -17,13 +17,14 @@ class Event
 private:
   EventOperator _operator;
   Statement _statement;
+  /// Event identifier
   EventID _id;
 
 public:
-  /*
+  /**
    * Event constructor
    * @param op Event's EventOperator
-   * @param stm Event's statement
+   * @param stm Event's Statement
    */
   Event(EventOperator op, Statement stm);
 
@@ -39,8 +40,8 @@ public:
     return _statement;
   }
 
-  /*
-   * Unique ID given to event
+  /**
+   * Unique ID given to Event
    * @return returns pointer to EventID
    */
   EventID * get_event_id()

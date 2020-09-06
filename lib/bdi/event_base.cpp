@@ -53,7 +53,11 @@ Event * EventBase::last_event()
 
 bool EventBase::event_exists(EventID * event_id)
 {
-  for(std::vector<Event>::iterator it = _pending_events.begin(); it != _pending_events.end(); ++it)
+  for(
+      std::vector<Event>::iterator it = _pending_events.begin();
+      it != _pending_events.end();
+      ++it
+      )
   {
     if (event_id->is_equal(it->get_event_id()))
     {

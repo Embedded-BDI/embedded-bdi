@@ -14,11 +14,13 @@
 class EventBase
 {
 private:
+  /// Vector of Events
   std::vector <Event> _pending_events;
+  /// Max size of _belief_base vector
   int _size;
 
 public:
-  /*
+  /**
    * EventBase's constructor
    * @param size Size of EventBase buffer
    */
@@ -26,34 +28,43 @@ public:
 
   virtual ~EventBase();
 
-  /*
-   * Creates an event using op and stm and adds event to BeliefBase
-   * @param event Event to be added to _pending_events buffer
+  /**
+   * Creates an Event using op and stm and adds Event _pending_events
+   * @param op EventOperator of Event to be added to _pending_events
+   * @param stm Statement of Event to be added to _pending_events
    */
   bool add_event(EventOperator op, Statement stm);
 
-  /*
-   * Removes event from EventBase and returns pointer to removed object
+  /**
+   * Removes Event from _pending_events and returns pointer to removed Event
    * @return Pointer to first element from _pending_events. If _pending_events
-   * has no elements, the return will be a nullptr pointer
+   * has no elements, return is nullptr
    */
   Event * get_event();
 
-  /*
-   * Returns last event added to EventBase
-   * @return Pointer to last event added to _pending_events
+  /**
+   * Returns last Event added to EventBase
+   * @return Pointer to last Event added to _pending_events
    */
   Event * last_event();
 
-  /*
-   * Check if event exists in EventBase given event_id
+  /**
+   * Check if Event exists in EventBase given event_id
    * @param event_id EventID to be checked
-   * @return True if event exists in _pending_events, false otherwise
+   * @return True if Event exists in _pending_events, false otherwise
    */
   bool event_exists(EventID * event_id);
 
+  /**
+   * Returns if EventBase is full based on _pending_events size
+   * @return true if EventBase is full, false otherwise
+   */
   bool is_full();
 
+  /**
+   * Returns if EventBase is empty based on _pending_events size
+   * @return true if EventBase is empty, false otherwise
+   */
   bool is_empty();
 };
 

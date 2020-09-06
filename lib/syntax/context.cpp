@@ -9,6 +9,7 @@
 
 Context::Context(int size)
 {
+  _size = size;
   _context.reserve(size);
 }
 
@@ -16,7 +17,7 @@ Context::~Context() {}
 
 bool Context::add_context(ContextCondition value)
 {
-  if (_context.size() == _context.capacity())
+  if (_context.size() == _size)
   {
     return false;
   }
@@ -27,11 +28,15 @@ bool Context::add_context(ContextCondition value)
 
 bool Context::is_valid(BeliefBase * beliefs)
 {
-  for(std::vector<ContextCondition>::iterator it = _context.begin(); it != _context.end(); ++it)
+  for (
+      std::vector<ContextCondition>::iterator it = _context.begin();
+      it != _context.end();
+      ++it
+      )
   {
     // If any belief has different value than expected, return false
-    if((beliefs->get_belief_state(it->get_statement())) !=
-       (it->is_true()))
+    if ((beliefs->get_belief_state(it->get_statement())) !=
+        (it->is_true()))
     {
       return false;
     }

@@ -21,10 +21,10 @@ private:
   Body * _body;
 
 public:
-  /*
+  /**
    * Plan constructor
-   * @param op Triggering event operator
-   * @param stm Triggering event statement/name
+   * @param op Triggering EventOperator
+   * @param stm Triggering Event Statement/name
    * @param context Context
    * @param body Body with instructions
    */
@@ -32,9 +32,9 @@ public:
 
   virtual ~Plan();
 
-  /*
-   * Run instruction from plan body at specific position
-   * @param index Position in body of instruction to be run
+  /**
+   * Run instruction from Plan Body at specific index
+   * @param index Position in Body of BodyInstruction to be executed
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */

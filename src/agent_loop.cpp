@@ -37,16 +37,28 @@ int main()
       if(event_to_process)
       {
         plan_to_act = plans->revise(event_to_process, beliefs);
-        if (!intentions->stack_plan(plan_to_act, event_to_process))
-        {
-          if (plan_to_act) {
-            intentions->add_intention(plan_to_act);
-          }
+        if (plan_to_act) {
+          intentions->add_intention(plan_to_act, event_to_process);
         }
       }
       delete event_to_process;
       event_to_process = nullptr;
     }
+
+    // Remove unnecessary methods
+
+    // Write documentation
+
+    // Create class for queue
+    // - push_back
+    // - push_front
+    // - rotate
+
+    // Create scheduler class
+
+    // Mode stack_plan inside run_intention
+
+    // Check if is_full, is_empty, is_finished and size methods are required
 
     // Runs intention in case there are any
     if (!intentions->is_empty())

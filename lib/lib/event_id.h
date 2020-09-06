@@ -8,7 +8,7 @@
 #ifndef LIB_EVENT_ID_H_
 #define LIB_EVENT_ID_H_
 
-/*
+/**
  * Represents Event Unique Identifier
  * Class can be modified to use other control and data representation such as
  * UUID for better handling of events
@@ -16,6 +16,7 @@
 class EventID
 {
 private:
+  /// Unique Event identifier
   int _id;
 
 protected:
@@ -26,9 +27,9 @@ public:
 
   virtual ~EventID();
 
-  /*
-   * Compares given ID with _id
-   * @return True if event_id is equal to _id, false otherwise
+  /**
+   * Compares given ID with object _id
+   * @return True if event_id is equal to object _id, false otherwise
    */
   bool is_equal(EventID * event_id);
 
@@ -37,7 +38,7 @@ public:
     return _id;
   }
 
-  /*
+  /**
    * Returns EventID's main counter
    * @return id
    */

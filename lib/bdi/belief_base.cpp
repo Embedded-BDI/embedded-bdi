@@ -9,6 +9,7 @@
 
 BeliefBase::BeliefBase(int size)
 {
+  _size = size;
   _belief_base.reserve(size);
 }
 
@@ -16,7 +17,7 @@ BeliefBase::~BeliefBase() {}
 
 bool BeliefBase::add_belief(Belief belief)
 {
-  if (_belief_base.size() == _belief_base.capacity())
+  if (_belief_base.size() == _size)
   {
     return false;
   }
@@ -29,7 +30,10 @@ void BeliefBase::update(EventBase * event_base)
 {
   if (event_base)
   {
-    for(std::vector<Belief>::iterator it = _belief_base.begin(); it != _belief_base.end(); ++it)
+    for(
+        std::vector<Belief>::iterator it = _belief_base.begin();
+        it != _belief_base.end(); ++it
+        )
     {
       if (it->update_belief())
       {
@@ -55,7 +59,11 @@ void BeliefBase::update(EventBase * event_base)
 
 bool BeliefBase::change_belief_state(Statement stm, bool state)
 {
-  for(std::vector<Belief>::iterator it = _belief_base.begin(); it != _belief_base.end(); ++it)
+  for(
+      std::vector<Belief>::iterator it = _belief_base.begin();
+      it != _belief_base.end();
+      ++it
+      )
   {
     if (it->get_statement().is_equal(stm.get_name()))
     {
@@ -69,7 +77,11 @@ bool BeliefBase::change_belief_state(Statement stm, bool state)
 
 bool BeliefBase::get_belief_state(Statement stm)
 {
-  for(std::vector<Belief>::iterator it = _belief_base.begin(); it != _belief_base.end(); ++it)
+  for(
+      std::vector<Belief>::iterator it = _belief_base.begin();
+      it != _belief_base.end();
+      ++it
+      )
   {
     if (it->get_statement().is_equal(stm))
     {

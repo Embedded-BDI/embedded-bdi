@@ -15,10 +15,13 @@
 
 class Body
 {
+  /// Vector of BodyInstructions
   std::vector <BodyInstruction> _body;
+  /// Max size of _body vector
+  int _size;
 
 public:
-  /*
+  /**
    * Body constructor
    * @param size Size of _body
    */
@@ -26,21 +29,21 @@ public:
 
   virtual ~Body();
 
-  /*
-   * Run instruction from body at specific position
-   * @param index Position in body of instruction to be run
+  /**
+   * Run instruction from Body at specific position
+   * @param index Position in Body of instruction to be run
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */
   BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
 
-  /*
-   * Adds instruction to body
-   * @param instruction Instruction to add
+  /**
+   * Adds instruction to Body
+   * @param instruction BodyInstruction to add to _body vector
    */
   bool add_instruction(BodyInstruction instruction);
 
-  int size();
+  int get_size();
 };
 
 #endif /* SYNTAX_BODY_H_ */

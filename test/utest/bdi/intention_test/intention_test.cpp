@@ -111,6 +111,13 @@ TEST_F(TIntention, is_suspended_by)
   EXPECT_TRUE(intention_belief->is_suspended_by(eb->last_event()));
 }
 
+TEST_F(TIntention, terminate)
+{
+  EventBase * eb = test_data->get_event_base_empty();
+
+  EXPECT_NO_FATAL_FAILURE(intention_belief->terminate(eb));
+}
+
 TEST_F(TIntention, destructor)
 {
   Intention * intention = new Intention(plan_action_fails, INTENTION_STACK_SIZE);

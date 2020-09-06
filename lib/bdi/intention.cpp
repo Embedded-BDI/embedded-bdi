@@ -111,7 +111,12 @@ bool Intention::is_suspended()
   return _suspended;
 }
 
-EventID * Intention::event()
+EventID * Intention::get_event_id()
 {
   return _suspended_by;
+}
+
+void Intention::terminate(EventBase * events)
+{
+  return;
 }

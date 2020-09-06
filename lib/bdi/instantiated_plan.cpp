@@ -18,7 +18,7 @@ BodyReturn InstantiatedPlan::run_plan(BeliefBase * beliefs, EventBase * events)
 {
   BodyReturn result;
 
-  if (_index < _plan->get_body()->size())
+  if (_index < _plan->get_body()->get_size())
   {
     result = _plan->run_body(_index, beliefs, events);
     _index++;
@@ -33,5 +33,5 @@ BodyReturn InstantiatedPlan::run_plan(BeliefBase * beliefs, EventBase * events)
 
 bool InstantiatedPlan::is_finished()
 {
-  return (_index == _plan->get_body()->size());
+  return (_index == _plan->get_body()->get_size());
 }

@@ -9,6 +9,7 @@
 
 Body::Body(int size)
 {
+  _size = size;
   _body.reserve(size);
 }
 
@@ -32,7 +33,7 @@ BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 
 bool Body::add_instruction(BodyInstruction instruction)
 {
-  if (_body.size() == _body.capacity())
+  if (_body.size() == _size)
   {
     return false;
   }
@@ -41,7 +42,7 @@ bool Body::add_instruction(BodyInstruction instruction)
   return true;
 }
 
-int Body::size()
+int Body::get_size()
 {
   return _body.size();
 }

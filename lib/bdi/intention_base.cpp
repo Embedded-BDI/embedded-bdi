@@ -17,9 +17,19 @@ IntentionBase::IntentionBase(int buffer_size, int stack_size)
 
 IntentionBase::~IntentionBase() {}
 
-void IntentionBase::add_intention(Plan * plan)
+void IntentionBase::add_intention(Plan * plan, Event * event)
 {
-  if (plan == nullptr || (_intention_base.size() == _buffer_size))
+  if (plan == nullptr)
+  {
+    return;
+  }
+
+  if(this->stack_plan(plan, event))
+  {
+    return;
+  }
+
+  if (this->is_full())
   {
     return;
   }
@@ -30,7 +40,11 @@ void IntentionBase::add_intention(Plan * plan)
 
 bool IntentionBase::stack_plan(Plan * plan, Event * event)
 {
-  for (std::vector<Intention>::iterator it = _intention_base.begin(); it != _intention_base.end(); ++it)
+  for (
+      std::vector<Intention>::iterator it = _intention_base.begin();
+      it != _intention_base.end();
+      ++it
+      )
   {
     if (it->is_suspended_by(event))
     {
@@ -52,8 +66,26 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
     return;
   }
 
+  // Handles suspended intention
+  if (_intention_base.back().is_suspended())
+  {
+    if (events->event_exists(_intention_base.back().get_event_id()))
+    {
+      Intention intention(_intention_base.front());
+      _intention_base.erase(_intention_base.begin());
+      _intention_base.push_back(intention);
+    }
+    else
+    {
+      _intention_base.back().terminate(events);
+      _intention_base.pop_back();
+    }
+  }
+
+  // Runs plan
   if (!_intention_base.back().run_intention(beliefs, events))
   {
+    _intention_base.back().terminate(events);
     _intention_base.pop_back();
   }
   else
@@ -73,4 +105,8 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
 
 bool IntentionBase::is_empty() {
   return (_intention_base.size() == 0);
+}
+
+bool IntentionBase::is_full() {
+  return (_intention_base.size() == _buffer_size);
 }

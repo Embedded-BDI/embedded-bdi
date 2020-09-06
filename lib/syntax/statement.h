@@ -11,6 +11,7 @@
 class Statement
 {
 private:
+  /// Statement name
   unsigned char _name;
 
 public:
