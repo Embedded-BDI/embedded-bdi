@@ -19,14 +19,14 @@ class Body
   /// Vector of BodyInstructions
   std::vector <BodyInstruction> _body;
   /// Max size of _body vector
-  uint8_t _size;
+  std::uint8_t _size;
 
 public:
   /**
    * Body constructor
    * @param size Size of _body
    */
-  Body(uint8_t size);
+  Body(std::uint8_t size);
 
   virtual ~Body();
 
@@ -36,7 +36,7 @@ public:
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */
-  BodyReturn run_body(uint8_t index, BeliefBase * beliefs, EventBase * events);
+  BodyReturn run_body(std::uint8_t index, BeliefBase * beliefs, EventBase * events);
 
   /**
    * Adds instruction to Body
@@ -44,7 +44,7 @@ public:
    */
   bool add_instruction(BodyInstruction instruction);
 
-  uint8_t get_size();
+  std::uint8_t get_size();
 };
 
 #endif /* SYNTAX_BODY_H_ */

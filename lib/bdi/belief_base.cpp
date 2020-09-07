@@ -7,7 +7,7 @@
 
 #include "belief_base.h"
 
-BeliefBase::BeliefBase(uint8_t size)
+BeliefBase::BeliefBase(std::uint8_t size)
 {
   _size = size;
   _belief_base.reserve(size);
@@ -92,7 +92,7 @@ bool BeliefBase::get_belief_state(Statement stm)
   return false;
 }
 
-const uint8_t BeliefBase::get_size()
+const std::uint8_t BeliefBase::get_size()
 {
   return _belief_base.size();
 }

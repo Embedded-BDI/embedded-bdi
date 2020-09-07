@@ -19,10 +19,10 @@ class EventID
 {
 private:
   /// Unique Event identifier
-  uint8_t _id;
+  std::uint8_t _id;
 
 protected:
-  static uint8_t id;
+  static std::uint8_t id;
 
 public:
   EventID();
@@ -35,7 +35,7 @@ public:
    */
   bool is_equal(EventID * event_id);
 
-  const uint8_t get_id() const
+  const std::uint8_t get_id() const
   {
     return _id;
   }
@@ -44,7 +44,7 @@ public:
    * Returns EventID's main counter
    * @return id
    */
-  uint8_t get_control_id()
+  std::uint8_t get_control_id()
   {
     return EventID::id;
   }

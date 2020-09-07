@@ -17,7 +17,7 @@ private:
   /// Pointer to plan to be run
   Plan * _plan;
   /// Index of Plan instruction list
-  uint8_t _index = 0;
+  std::uint8_t _index = 0;
 
 public:
   /**

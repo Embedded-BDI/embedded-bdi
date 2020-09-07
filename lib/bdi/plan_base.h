@@ -20,14 +20,14 @@ private:
   /// Vector of Plans
   std::vector <Plan> _plan_base;
   /// Max size of _plan_base vector
-  uint8_t _size;
+  std::uint8_t _size;
 
 public:
   /**
    * PlanBase constructor
    * @param size Size of _plan_base buffer
    */
-  PlanBase(uint8_t size);
+  PlanBase(std::uint8_t size);
 
   virtual ~PlanBase();
 
@@ -52,7 +52,7 @@ public:
    */
   bool is_full();
 
-  uint8_t get_size()
+  std::uint8_t get_size()
   {
     return _plan_base.size();
   }

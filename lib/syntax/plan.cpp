@@ -17,7 +17,7 @@ Plan::Plan(EventOperator op, Statement stm, Context * context, Body * body)
 
 Plan::~Plan() {}
 
-BodyReturn Plan::run_body(uint8_t index, BeliefBase * beliefs, EventBase * events)
+BodyReturn Plan::run_body(std::uint8_t index, BeliefBase * beliefs, EventBase * events)
 {
   return _body->run_body(index, beliefs, events);;
 }

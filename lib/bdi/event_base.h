@@ -18,14 +18,14 @@ private:
   /// Vector of Events
   std::vector <Event> _pending_events;
   /// Max size of _belief_base vector
-  uint8_t _size;
+  std::uint8_t _size;
 
 public:
   /**
    * EventBase's constructor
    * @param size Size of EventBase buffer
    */
-  EventBase(uint8_t size);
+  EventBase(std::uint8_t size);
 
   virtual ~EventBase();
 

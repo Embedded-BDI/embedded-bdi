@@ -7,7 +7,7 @@
 
 #include "body.h"
 
-Body::Body(uint8_t size)
+Body::Body(std::uint8_t size)
 {
   _size = size;
   _body.reserve(size);
@@ -15,7 +15,7 @@ Body::Body(uint8_t size)
 
 Body::~Body() {}
 
-BodyReturn Body::run_body(uint8_t index, BeliefBase * beliefs, EventBase * events)
+BodyReturn Body::run_body(std::uint8_t index, BeliefBase * beliefs, EventBase * events)
 {
   BodyReturn result;
 
@@ -42,7 +42,7 @@ bool Body::add_instruction(BodyInstruction instruction)
   return true;
 }
 
-uint8_t Body::get_size()
+std::uint8_t Body::get_size()
 {
   return _body.size();
 }

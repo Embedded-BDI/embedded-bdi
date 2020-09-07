@@ -7,7 +7,7 @@
 
 #include "intention_base.h"
 
-IntentionBase::IntentionBase(uint8_t buffer_size, uint8_t stack_size)
+IntentionBase::IntentionBase(std::uint8_t buffer_size, std::uint8_t stack_size)
 {
   _buffer_size = buffer_size;
   _stack_size = stack_size;

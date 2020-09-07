@@ -7,7 +7,7 @@
 
 #include "intention.h"
 
-Intention::Intention(Plan * plan, uint8_t size)
+Intention::Intention(Plan * plan, std::uint8_t size)
 {
   _size = size;
   _suspended_by = nullptr;

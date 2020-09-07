@@ -7,7 +7,7 @@
 
 #include "context.h"
 
-Context::Context(uint8_t size)
+Context::Context(std::uint8_t size)
 {
   _size = size;
   _context.reserve(size);

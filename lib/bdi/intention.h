@@ -20,7 +20,7 @@ private:
   /// Vector of InstantiatedPlan that represents Intention stack
   std::vector <InstantiatedPlan> _plans;
   /// Max size of _plans stack
-  uint8_t _size;
+  std::uint8_t _size;
   /// Identified of Event that suspends intention from running
   EventID * _suspended_by;
 
@@ -43,7 +43,7 @@ public:
    * @param plan Pointer to plan to be instantiated as intention
    * @param size Size of _plans stack
    */
-  Intention(Plan * plan, uint8_t size);
+  Intention(Plan * plan, std::uint8_t size);
 
   virtual ~Intention();
 

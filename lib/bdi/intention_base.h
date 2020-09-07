@@ -21,9 +21,9 @@ private:
   /// Vector of Intentions
   std::vector<Intention> _intention_base;
   /// Max size of _intention_base vector
-  uint8_t _buffer_size;
+  std::uint8_t _buffer_size;
   /// Max size of each Intention _plans stack vector
-  uint8_t _stack_size;
+  std::uint8_t _stack_size;
 
   /**
    * Stacks plan to existing intention
@@ -39,7 +39,7 @@ public:
    * @param buffer_size Size of the buffer where the intentions are stored
    * @param stack_size Size of each Intention stack
    */
-  IntentionBase(uint8_t buffer_size, uint8_t stack_size);
+  IntentionBase(std::uint8_t buffer_size, std::uint8_t stack_size);
 
   virtual ~IntentionBase();
 

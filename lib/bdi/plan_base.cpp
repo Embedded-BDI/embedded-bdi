@@ -7,7 +7,7 @@
 
 #include "plan_base.h"
 
-PlanBase::PlanBase(uint8_t size)
+PlanBase::PlanBase(std::uint8_t size)
 {
   _size = size;
   _plan_base.reserve(size);

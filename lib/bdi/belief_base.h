@@ -20,14 +20,14 @@ private:
   /// Vector of Beliefs
   std::vector <Belief> _belief_base;
   /// Max size of _belief_base vector
-  uint8_t _size;
+  std::uint8_t _size;
 
 public:
   /**
    * BeliefBase's constructor
    * @param size Size of BeliefBase buffer
    */
-  BeliefBase(uint8_t size);
+  BeliefBase(std::uint8_t size);
 
   virtual ~BeliefBase();
 
@@ -64,7 +64,7 @@ public:
    * Size of BeliefBase
    * @return Size of _belief_base
    */
-  const uint8_t get_size();
+  const std::uint8_t get_size();
 };
 
 #endif /* CLASSES_BELIEFBASE_H_ */

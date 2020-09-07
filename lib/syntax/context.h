@@ -18,10 +18,10 @@ class Context
   /// Vector of ContextConditions
   std::vector <ContextCondition> _context;
   /// Max size of _context vector
-  uint8_t _size;
+  std::uint8_t _size;
 
 public:
-  Context(uint8_t size);
+  Context(std::uint8_t size);
 
   virtual ~Context();
 

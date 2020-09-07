@@ -7,7 +7,7 @@
 
 #include "event_base.h"
 
-EventBase::EventBase(uint8_t size)
+EventBase::EventBase(std::uint8_t size)
 {
   _size = size;
   _pending_events.reserve(size);

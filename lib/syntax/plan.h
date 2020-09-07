@@ -39,7 +39,7 @@ public:
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */
-  BodyReturn run_body(uint8_t index, BeliefBase * beliefs, EventBase * events);
+  BodyReturn run_body(std::uint8_t index, BeliefBase * beliefs, EventBase * events);
 
   const EventOperator & get_operator() const
   {
