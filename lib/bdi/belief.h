@@ -9,6 +9,7 @@
 #define BDI_BELIEF_H_
 
 #include "../syntax/statement.h"
+#include <cstdint>
 
 class Belief
 {

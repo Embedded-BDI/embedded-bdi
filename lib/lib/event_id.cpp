@@ -7,7 +7,7 @@
 
 #include "event_id.h"
 
-int EventID::id = 0;
+uint8_t EventID::id = 0;
 
 EventID::EventID()
 {

@@ -9,6 +9,7 @@
 #define SYNTAX_CONTEXT_CONDITION_H_
 
 #include "statement.h"
+#include <cstdint>
 
 /**
  * Represents a literal from the plan's context

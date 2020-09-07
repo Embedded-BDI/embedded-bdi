@@ -9,6 +9,7 @@
 #define BDI_INSTANTIATED_PLAN_H_
 
 #include "../syntax/plan.h"
+#include <cstdint>
 
 class InstantiatedPlan
 {
@@ -16,7 +17,7 @@ private:
   /// Pointer to plan to be run
   Plan * _plan;
   /// Index of Plan instruction list
-  int _index = 0;
+  uint8_t _index = 0;
 
 public:
   /**
@@ -41,6 +42,11 @@ public:
    * @return True if all instructions from _plan were run, false otherwise
    */
   bool is_finished();
+
+  Plan * get_plan()
+  {
+    return _plan;
+  }
 };
 
 #endif /* BDI_INSTANTIATED_PLAN_H_ */

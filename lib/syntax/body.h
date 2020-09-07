@@ -12,20 +12,21 @@
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
 #include <vector>
+#include <cstdint>
 
 class Body
 {
   /// Vector of BodyInstructions
   std::vector <BodyInstruction> _body;
   /// Max size of _body vector
-  int _size;
+  uint8_t _size;
 
 public:
   /**
    * Body constructor
    * @param size Size of _body
    */
-  Body(int size);
+  Body(uint8_t size);
 
   virtual ~Body();
 
@@ -35,7 +36,7 @@ public:
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */
-  BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
+  BodyReturn run_body(uint8_t index, BeliefBase * beliefs, EventBase * events);
 
   /**
    * Adds instruction to Body
@@ -43,7 +44,7 @@ public:
    */
   bool add_instruction(BodyInstruction instruction);
 
-  int get_size();
+  uint8_t get_size();
 };
 
 #endif /* SYNTAX_BODY_H_ */

@@ -7,10 +7,9 @@
 
 #include "intention.h"
 
-Intention::Intention(Plan * plan, int size)
+Intention::Intention(Plan * plan, uint8_t size)
 {
   _size = size;
-  _suspended = false;
   _suspended_by = nullptr;
   _plans.reserve(size);
   InstantiatedPlan inst_plan(plan);
@@ -43,17 +42,8 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
 
   BodyReturn value = _plans.back().run_plan(beliefs, events);
 
-  // If instruction execution fails, remove all InstantiatedPlans from the plan
-  // stack and return false
-  if(!value.get_value())
-  {
-    while (_plans.size() > 0)
-    {
-      _plans.pop_back();
-    }
-    return value.get_value();
-  }
-  else
+  // If instruction execution fails, return false
+  if (value.get_value())
   {
     if (value.get_event())
     {
@@ -74,19 +64,17 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
 
 void Intention::suspend(EventID * event_id)
 {
-  _suspended = true;
   _suspended_by = event_id;
 }
 
 void Intention::unsuspend()
 {
-  _suspended = false;
   _suspended_by = nullptr;
 }
 
 bool Intention::is_suspended_by(Event * event)
 {
-  if (!_suspended || !event)
+  if ((_suspended_by == nullptr) || !event)
   {
     return false;
   }
@@ -108,15 +96,31 @@ bool Intention::is_finished() const
 
 bool Intention::is_suspended()
 {
-  return _suspended;
+  return (_suspended_by != nullptr);
 }
 
-EventID * Intention::get_event_id()
+void Intention::terminate(BeliefBase * beliefs, EventBase * events, PlanBase * plans)
 {
-  return _suspended_by;
-}
+  while (_plans.size() > 0)
+  {
+    Statement stm(_plans.back().get_plan()->get_statement()->get_name());
+    Event event(EventOperator::GOAL_DELETION, stm);
+    Plan * plan = plans->revise(&event, beliefs);
 
-void Intention::terminate(EventBase * events)
-{
+    if (plan)
+    {
+      events->add_event(EventOperator::GOAL_DELETION, stm);
+      while (_plans.size() > 0)
+      {
+        _plans.pop_back();
+        break;
+      }
+    }
+    else
+    {
+      _plans.pop_back();
+    }
+  }
+
   return;
 }

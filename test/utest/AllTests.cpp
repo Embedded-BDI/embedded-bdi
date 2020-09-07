@@ -12,6 +12,7 @@ int main(int argc, char* argv[]) {
   /*
    * Missing tests:
    * - Stack plan
+   * - Run intention
    */
 
   ::testing::InitGoogleTest(&argc, argv);

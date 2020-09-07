@@ -7,7 +7,7 @@
 
 #include "intention_base.h"
 
-IntentionBase::IntentionBase(int buffer_size, int stack_size)
+IntentionBase::IntentionBase(uint8_t buffer_size, uint8_t stack_size)
 {
   _buffer_size = buffer_size;
   _stack_size = stack_size;
@@ -59,7 +59,7 @@ bool IntentionBase::stack_plan(Plan * plan, Event * event)
   return false;
 }
 
-void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
+void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events, PlanBase * plans)
 {
   if (_intention_base.size() == 0)
   {
@@ -77,7 +77,7 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
     }
     else
     {
-      _intention_base.back().terminate(events);
+      _intention_base.back().terminate(beliefs, events, plans);
       _intention_base.pop_back();
     }
   }
@@ -85,7 +85,7 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events)
   // Runs plan
   if (!_intention_base.back().run_intention(beliefs, events))
   {
-    _intention_base.back().terminate(events);
+    _intention_base.back().terminate(beliefs, events, plans);
     _intention_base.pop_back();
   }
   else

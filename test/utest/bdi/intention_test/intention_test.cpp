@@ -114,8 +114,9 @@ TEST_F(TIntention, is_suspended_by)
 TEST_F(TIntention, terminate)
 {
   EventBase * eb = test_data->get_event_base_empty();
+  BeliefBase * bb = test_data->get_belief_base();
 
-  EXPECT_NO_FATAL_FAILURE(intention_belief->terminate(eb));
+  EXPECT_NO_FATAL_FAILURE(intention_belief->terminate(bb, eb, nullptr));
 }
 
 TEST_F(TIntention, destructor)

@@ -45,25 +45,16 @@ int main()
       event_to_process = nullptr;
     }
 
-    // Remove unnecessary methods
-
-    // Write documentation
-
+    // Create scheduler class
     // Create class for queue
     // - push_back
     // - push_front
     // - rotate
 
-    // Create scheduler class
-
-    // Mode stack_plan inside run_intention
-
-    // Check if is_full, is_empty, is_finished and size methods are required
-
     // Runs intention in case there are any
     if (!intentions->is_empty())
     {
-      intentions->run_intention_base(beliefs, events);
+      intentions->run_intention_base(beliefs, events, plans);
     }
 
     sleep(1);

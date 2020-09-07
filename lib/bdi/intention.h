@@ -8,9 +8,11 @@
 #ifndef BDI_INTENTION_H_
 #define BDI_INTENTION_H_
 
+#include "plan_base.h"
 #include "belief_base.h"
 #include "instantiated_plan.h"
 #include <vector>
+#include <cstdint>
 
 class Intention
 {
@@ -18,8 +20,7 @@ private:
   /// Vector of InstantiatedPlan that represents Intention stack
   std::vector <InstantiatedPlan> _plans;
   /// Max size of _plans stack
-  int _size;
-  bool _suspended;
+  uint8_t _size;
   /// Identified of Event that suspends intention from running
   EventID * _suspended_by;
 
@@ -42,7 +43,7 @@ public:
    * @param plan Pointer to plan to be instantiated as intention
    * @param size Size of _plans stack
    */
-  Intention(Plan * plan, int size);
+  Intention(Plan * plan, uint8_t size);
 
   virtual ~Intention();
 
@@ -78,9 +79,11 @@ public:
 
   /**
    * Handles termination by adding goal deletion events to EventBase
+   * @param beliefs Agent BeliefBase
    * @param events Agent EventBase where events will be added
+   * @param plans Agent PlanBase where fail plans will be searched
    */
-  void terminate(EventBase * events);
+  void terminate(BeliefBase * beliefs, EventBase * events, PlanBase * plans);
 
   /**
    * Checks if event is suspended
@@ -88,7 +91,10 @@ public:
    */
   bool is_suspended();
 
-  EventID * get_event_id();
+  EventID * get_event_id()
+  {
+    return _suspended_by;
+  }
 };
 
 #endif /* BDI_INTENTION_H_ */

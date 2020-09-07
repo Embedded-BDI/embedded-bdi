@@ -10,6 +10,7 @@
 
 #include "body_type.h"
 #include "../bdi/event.h"
+#include <cstdint>
 
 /**
  * Class to be used to return values after instruction is run.

@@ -11,6 +11,7 @@
 #include "../bdi/event_base.h"
 #include "body.h"
 #include "context.h"
+#include <cstdint>
 
 class Plan
 {
@@ -38,7 +39,7 @@ public:
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */
-  BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
+  BodyReturn run_body(uint8_t index, BeliefBase * beliefs, EventBase * events);
 
   const EventOperator & get_operator() const
   {

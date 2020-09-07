@@ -13,6 +13,7 @@
 #include "intention.h"
 #include "../syntax/plan.h"
 #include <vector>
+#include <cstdint>
 
 class IntentionBase
 {
@@ -20,9 +21,9 @@ private:
   /// Vector of Intentions
   std::vector<Intention> _intention_base;
   /// Max size of _intention_base vector
-  int _buffer_size;
+  uint8_t _buffer_size;
   /// Max size of each Intention _plans stack vector
-  int _stack_size;
+  uint8_t _stack_size;
 
   /**
    * Stacks plan to existing intention
@@ -38,7 +39,7 @@ public:
    * @param buffer_size Size of the buffer where the intentions are stored
    * @param stack_size Size of each Intention stack
    */
-  IntentionBase(int buffer_size, int stack_size);
+  IntentionBase(uint8_t buffer_size, uint8_t stack_size);
 
   virtual ~IntentionBase();
 
@@ -58,7 +59,7 @@ public:
    * After instruction is run, the Intention is placed at the end of
    * _intention_base if it has not finished
    */
-  void run_intention_base(BeliefBase * beliefs, EventBase * events);
+  void run_intention_base(BeliefBase * beliefs, EventBase * events, PlanBase * plans);
 
   /**
    * Returns if IntentionBase is empty based on _intention_base size

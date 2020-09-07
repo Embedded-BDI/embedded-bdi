@@ -11,16 +11,17 @@
 #include "context_condition.h"
 #include "../bdi/belief_base.h"
 #include <vector>
+#include <cstdint>
 
 class Context
 {
   /// Vector of ContextConditions
   std::vector <ContextCondition> _context;
   /// Max size of _context vector
-  int _size;
+  uint8_t _size;
 
 public:
-  Context(int size);
+  Context(uint8_t size);
 
   virtual ~Context();
 

@@ -10,6 +10,7 @@
 
 #include "event.h"
 #include <vector>
+#include <cstdint>
 
 class EventBase
 {
@@ -17,14 +18,14 @@ private:
   /// Vector of Events
   std::vector <Event> _pending_events;
   /// Max size of _belief_base vector
-  int _size;
+  uint8_t _size;
 
 public:
   /**
    * EventBase's constructor
    * @param size Size of EventBase buffer
    */
-  EventBase(int size);
+  EventBase(uint8_t size);
 
   virtual ~EventBase();
 

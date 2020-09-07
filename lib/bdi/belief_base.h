@@ -12,6 +12,7 @@
 #include "event.h"
 #include "event_base.h"
 #include <vector>
+#include <cstdint>
 
 class BeliefBase
 {
@@ -19,14 +20,14 @@ private:
   /// Vector of Beliefs
   std::vector <Belief> _belief_base;
   /// Max size of _belief_base vector
-  int _size;
+  uint8_t _size;
 
 public:
   /**
    * BeliefBase's constructor
    * @param size Size of BeliefBase buffer
    */
-  BeliefBase(int size);
+  BeliefBase(uint8_t size);
 
   virtual ~BeliefBase();
 
@@ -63,7 +64,7 @@ public:
    * Size of BeliefBase
    * @return Size of _belief_base
    */
-  const int get_size();
+  const uint8_t get_size();
 };
 
 #endif /* CLASSES_BELIEFBASE_H_ */

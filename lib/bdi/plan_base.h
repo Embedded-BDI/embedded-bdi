@@ -12,6 +12,7 @@
 #include "event.h"
 #include "../syntax/plan.h"
 #include <vector>
+#include <cstdint>
 
 class PlanBase
 {
@@ -19,14 +20,14 @@ private:
   /// Vector of Plans
   std::vector <Plan> _plan_base;
   /// Max size of _plan_base vector
-  int _size;
+  uint8_t _size;
 
 public:
   /**
    * PlanBase constructor
    * @param size Size of _plan_base buffer
    */
-  PlanBase(int size);
+  PlanBase(uint8_t size);
 
   virtual ~PlanBase();
 
@@ -51,7 +52,7 @@ public:
    */
   bool is_full();
 
-  int get_size()
+  uint8_t get_size()
   {
     return _plan_base.size();
   }

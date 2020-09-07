@@ -11,6 +11,7 @@
 #include "../lib/event_id.h"
 #include "../syntax/statement.h"
 #include "../syntax/event_operator.h"
+#include <cstdint>
 
 class Event
 {
