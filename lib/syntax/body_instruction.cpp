@@ -7,11 +7,9 @@
 
 #include "body_instruction.h"
 
-BodyInstruction::BodyInstruction(
-                                 BodyType type,
+BodyInstruction::BodyInstruction(BodyType type,
                                  Statement stm,
-                                 bool (*take_action)(bool var)
-                                 )
+                                 bool (*take_action)(bool var))
 {
   _type = type;
   _statement = stm;
@@ -19,11 +17,9 @@ BodyInstruction::BodyInstruction(
   _operator = EventOperator::BELIEF_ADDITION;
 }
 
-BodyInstruction::BodyInstruction(
-                                 BodyType type,
+BodyInstruction::BodyInstruction(BodyType type,
                                  Statement stm,
-                                 EventOperator event_operator
-                                 )
+                                 EventOperator event_operator)
 {
   _type = type;
   _statement = stm;
@@ -32,10 +28,8 @@ BodyInstruction::BodyInstruction(
 }
 
 // Add handling of belief that is not in beliefbase
-BodyReturn BodyInstruction::run_instruction(
-                                            BeliefBase * belief_base,
-                                            EventBase * event_base
-                                            )
+BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
+                                            EventBase * event_base)
 {
   BodyReturn result;
 

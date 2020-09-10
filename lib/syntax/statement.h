@@ -7,17 +7,18 @@
 
 #ifndef SYNTAX_STATEMENT_H_
 #define SYNTAX_STATEMENT_H_
+#include <cstdint>
 
 class Statement
 {
 private:
   /// Statement name
-  unsigned char _name;
+  std::uint8_t _name;
 
 public:
   Statement();
 
-  Statement(unsigned char name);
+  Statement(std::uint8_t name);
 
   virtual ~Statement();
 
@@ -25,7 +26,7 @@ public:
 
   bool is_equal(Statement * stm) const;
 
-  const unsigned char & get_name() const
+  const std::uint8_t & get_name() const
   {
     return _name;
   }

@@ -16,7 +16,7 @@ protected:
 public:
   TEvent()
   {
-    Statement stm('a');
+    Statement stm(0);
     event = new Event(EventOperator::BELIEF_ADDITION, stm);
   }
 
@@ -39,8 +39,8 @@ TEST_F(TEvent, get_operator)
  */
 TEST_F(TEvent, get_statement)
 {
-  Statement stm('a');
-  EXPECT_EQ('a', event->get_statement().get_name());
+  Statement stm(0);
+  EXPECT_EQ(0, event->get_statement().get_name());
   EXPECT_TRUE(event->get_statement().is_equal(stm));
 }
 
@@ -50,5 +50,6 @@ TEST_F(TEvent, get_statement)
 TEST_F(TEvent, get_event_id)
 {
   EXPECT_TRUE(nullptr != event->get_event_id());
-  EXPECT_EQ(event->get_event_id()->get_control_id()-1, event->get_event_id()->get_id());
+  EXPECT_EQ(event->get_event_id()->get_control_id()-1,
+            event->get_event_id()->get_id());
 }

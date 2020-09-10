@@ -99,8 +99,20 @@ bool Intention::is_suspended()
   return (_suspended_by != nullptr);
 }
 
-void Intention::terminate(BeliefBase * beliefs, EventBase * events, PlanBase * plans)
+void Intention::terminate(BeliefBase * beliefs,
+                          EventBase * events,
+                          PlanBase * plans)
 {
+  if (events->is_full())
+  {
+    return;
+  }
+
+  if ((beliefs == nullptr) || (events == nullptr) || (plans == nullptr))
+  {
+    return;
+  }
+
   while (_plans.size() > 0)
   {
     Statement stm(_plans.back().get_plan()->get_statement()->get_name());

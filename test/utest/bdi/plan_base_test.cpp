@@ -30,48 +30,60 @@ public:
 
 TEST_F(TPlanBase, add_plan)
 {
-  Statement stm('a');
+  Statement stm(0);
   Plan plan(EventOperator::BELIEF_ADDITION, stm, nullptr, nullptr);
 
   for (int i = 0; i < PLAN_BASE_SIZE; i++)
   {
-    plan_base->add_plan(plan);
+    EXPECT_TRUE(plan_base->add_plan(plan));
   }
 
+  EXPECT_FALSE(plan_base->add_plan(plan));
   EXPECT_EQ(PLAN_BASE_SIZE, plan_base->get_size());
 }
 
 TEST_F(TPlanBase, revise)
 {
-  Statement stm_a('a');
-  Statement stm_b('b');
+  Statement stm_0(0);
+  Statement stm_1(1);
 
   BeliefBase belief_base(2);
-  Belief belief_a(stm_a, nullptr, false);
-  Belief belief_b(stm_b, nullptr, false);
+  Belief belief_a(stm_0, nullptr, false);
+  Belief belief_b(stm_1, nullptr, false);
   belief_base.add_belief(belief_a);
   belief_base.add_belief(belief_b);
 
-  Event event_valid(EventOperator::BELIEF_ADDITION, stm_a);
-  Event event_without_plans(EventOperator::BELIEF_ADDITION, stm_b);
+  Event event_valid(EventOperator::BELIEF_ADDITION, stm_0);
+  Event event_without_plans(EventOperator::BELIEF_ADDITION, stm_1);
 
   Context context_valid(0);
   Context context_invalid(1);
-  ContextCondition ctx(stm_a, true);
+  ContextCondition ctx(stm_0, true);
   context_invalid.add_context(ctx);
 
   Plan plan_context_invalid(EventOperator::BELIEF_ADDITION,
-                            stm_a,
+                            stm_0,
                             &context_invalid,
                             nullptr);
   Plan plan_valid(EventOperator::BELIEF_ADDITION,
-                  stm_a,
+                  stm_0,
                   &context_valid,
                   nullptr);
 
   plan_base->add_plan(plan_context_invalid);
   plan_base->add_plan(plan_valid);
 
-  EXPECT_TRUE(nullptr == plan_base->revise(&event_without_plans, &belief_base));
-  EXPECT_TRUE(nullptr != plan_base->revise(&event_valid, &belief_base));
+  Plan * p_null;
+  Plan * p_plan;
+
+  p_null = plan_base->revise(&event_without_plans, &belief_base);
+  p_plan = plan_base->revise(&event_valid, &belief_base);
+
+  EXPECT_TRUE(nullptr == p_null);
+  EXPECT_TRUE(nullptr != p_plan);
+
+  EXPECT_EQ(plan_valid.get_operator(), p_plan->get_operator());
+  EXPECT_TRUE(plan_valid.get_statement()->is_equal(p_plan->get_statement()));
+  EXPECT_EQ(plan_valid.get_context(), p_plan->get_context());
+  EXPECT_EQ(plan_valid.get_body(), p_plan->get_body());
 }

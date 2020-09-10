@@ -7,11 +7,9 @@
 
 #include "belief.h"
 
-Belief::Belief(
-               Statement stm,
+Belief::Belief(Statement stm,
                bool (*update_function)(bool var),
-               bool belief_state
-               )
+               bool belief_state)
 {
   _statement = stm;
   _belief_state = belief_state;

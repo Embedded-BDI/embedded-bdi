@@ -15,7 +15,9 @@ Body::Body(std::uint8_t size)
 
 Body::~Body() {}
 
-BodyReturn Body::run_body(std::uint8_t index, BeliefBase * beliefs, EventBase * events)
+BodyReturn Body::run_body(std::uint8_t index,
+                          BeliefBase * beliefs,
+                          EventBase * events)
 {
   BodyReturn result;
 

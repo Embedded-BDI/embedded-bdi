@@ -29,7 +29,9 @@ public:
    * @param update_function Function to update _belief_state
    * @param belief_state Belief state. Default is false
    */
-  Belief(Statement stm, bool (*update_function)(bool var), bool belief_state = false);
+  Belief(Statement stm,
+         bool (*update_function)(bool var),
+         bool belief_state = false);
 
   virtual ~Belief();
 

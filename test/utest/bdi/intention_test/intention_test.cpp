@@ -21,6 +21,7 @@ protected:
   Intention * intention_belief;
   Plan * plan_action_successful;
   Plan * plan_action_fails;
+  Plan * plan_action_fails_handling;
   Plan * plan_belief;
   TestIntentionData * test_data;
 
@@ -31,6 +32,7 @@ public:
 
     plan_action_successful = test_data->get_plan_action_successful();
     plan_action_fails = test_data->get_plan_action_fails();
+    plan_action_fails_handling = test_data->get_plan_action_fails_handling();
     plan_belief = test_data->get_plan_belief();
 
     intention_action_successul = new Intention(plan_action_successful,
@@ -81,25 +83,15 @@ TEST_F(TIntention, run_intention)
 
 TEST_F(TIntention, is_finished)
 {
-  for (int i = 0; i < INTENTION_STACK_SIZE-1; i++)
+  for (int i = 0; i < (BODY_SIZE); i++)
   {
     EXPECT_FALSE(intention_action_successul->is_finished());
     EXPECT_FALSE(intention_action_fails->is_finished());
-    intention_action_successul->stack_plan(plan_action_successful);
-    intention_action_fails->stack_plan(plan_action_fails);
-  }
-
-  for (int i = 0; i < (INTENTION_STACK_SIZE * BODY_SIZE); i++)
-  {
-    EXPECT_FALSE(intention_action_successul->is_finished());
     intention_action_successul->run_intention(nullptr, nullptr);
     intention_action_fails->run_intention(nullptr, nullptr);
-    EXPECT_TRUE(intention_action_fails->is_finished());
   }
-
   EXPECT_TRUE(intention_action_successul->is_finished());
-  EXPECT_FALSE(intention_action_successul->run_intention(nullptr, nullptr));
-  EXPECT_TRUE(intention_action_successul->is_finished());
+  EXPECT_FALSE(intention_action_fails->is_finished());
 }
 
 TEST_F(TIntention, is_suspended_by)
@@ -111,12 +103,29 @@ TEST_F(TIntention, is_suspended_by)
   EXPECT_TRUE(intention_belief->is_suspended_by(eb->last_event()));
 }
 
-TEST_F(TIntention, terminate)
+TEST_F(TIntention, is_suspended)
 {
   EventBase * eb = test_data->get_event_base_empty();
   BeliefBase * bb = test_data->get_belief_base();
 
-  EXPECT_NO_FATAL_FAILURE(intention_belief->terminate(bb, eb, nullptr));
+  intention_belief->run_intention(bb, eb);
+  EXPECT_TRUE(intention_belief->is_suspended());
+}
+
+TEST_F(TIntention, terminate)
+{
+  EventBase * eb = test_data->get_event_base_empty();
+  BeliefBase * bb = test_data->get_belief_base();
+  PlanBase * pb = test_data->get_plan_base();
+  pb->add_plan(*plan_action_fails_handling);
+
+  EXPECT_NO_FATAL_FAILURE(intention_belief->terminate(bb, eb, pb));
+
+  Event * goal_deletion_event = eb->get_event();
+  EXPECT_TRUE(nullptr != goal_deletion_event);
+  EXPECT_EQ(plan_action_fails_handling->get_operator(),
+            goal_deletion_event->get_operator());
+  EXPECT_TRUE(plan_action_fails_handling->get_statement()->is_equal(goal_deletion_event->get_statement()));
 }
 
 TEST_F(TIntention, destructor)

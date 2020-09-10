@@ -6,15 +6,19 @@
  */
 
 #include "gtest/gtest.h"
+#include <string>
 
 int main(int argc, char* argv[]) {
 
-  /*
-   * Missing tests:
-   * - Stack plan
-   * - Run intention
-   */
-
   ::testing::InitGoogleTest(&argc, argv);
+
+  /*
+   * To run specific test, uncomment the code below and add the class name to
+   * the class_name variable
+   */
+//  std::string class_name = "TStatement";
+//  class_name += ".*";
+//  ::testing::GTEST_FLAG(filter) = class_name;
+
   return RUN_ALL_TESTS();
 }

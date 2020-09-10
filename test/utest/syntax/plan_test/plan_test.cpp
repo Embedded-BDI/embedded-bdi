@@ -31,9 +31,7 @@ protected:
 public:
   TPlan()
   {
-    test_data = new TestPlanData(BODY_SIZE,
-                                 BELIEF_BASE_SIZE,
-                                 EVENT_BASE_SIZE);
+    test_data = new TestPlanData(BODY_SIZE, BELIEF_BASE_SIZE, EVENT_BASE_SIZE);
     stm = test_data->get_stm();
 
     event_operator = EventOperator::GOAL_ADDITION;

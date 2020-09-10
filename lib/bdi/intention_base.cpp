@@ -59,7 +59,9 @@ bool IntentionBase::stack_plan(Plan * plan, Event * event)
   return false;
 }
 
-void IntentionBase::run_intention_base(BeliefBase * beliefs, EventBase * events, PlanBase * plans)
+void IntentionBase::run_intention_base(BeliefBase * beliefs,
+                                       EventBase * events,
+                                       PlanBase * plans)
 {
   if (_intention_base.size() == 0)
   {

@@ -59,7 +59,9 @@ public:
    * After instruction is run, the Intention is placed at the end of
    * _intention_base if it has not finished
    */
-  void run_intention_base(BeliefBase * beliefs, EventBase * events, PlanBase * plans);
+  void run_intention_base(BeliefBase * beliefs,
+                          EventBase * events,
+                          PlanBase * plans);
 
   /**
    * Returns if IntentionBase is empty based on _intention_base size

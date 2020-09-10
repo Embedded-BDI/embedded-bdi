@@ -21,7 +21,7 @@ protected:
 public:
   TBelief()
   {
-    Statement stm('a');
+    Statement stm(0);
     this->belief = new Belief(stm, always_opposite, false);
   }
 
@@ -56,7 +56,7 @@ TEST_F(TBelief, change_state)
  */
 TEST_F(TBelief, get_statement)
 {
-  Statement stm('a');
-  EXPECT_EQ('a',belief->get_statement().get_name());
+  Statement stm(0);
+  EXPECT_EQ(0, belief->get_statement().get_name());
   EXPECT_TRUE(belief->get_statement().is_equal(stm));
 }

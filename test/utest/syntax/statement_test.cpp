@@ -16,7 +16,7 @@ protected:
 public:
   TStatement()
   {
-    this->stm = new Statement('a');
+    this->stm = new Statement(0);
   }
 
   ~TStatement()
@@ -30,7 +30,7 @@ public:
  */
 TEST_F(TStatement, get_name)
 {
-  EXPECT_EQ('a', stm->get_name());
+  EXPECT_EQ(0, stm->get_name());
 }
 
 /*
@@ -38,7 +38,7 @@ TEST_F(TStatement, get_name)
  */
 TEST_F(TStatement, is_equal_to)
 {
-  Statement equal('a');
+  Statement equal(0);
   EXPECT_TRUE(stm->is_equal(equal));
   EXPECT_TRUE(stm->is_equal(&equal));
 }
