@@ -44,7 +44,7 @@ public:
    * Returns EventID's main counter
    * @return id
    */
-  std::uint8_t get_control_id()
+  static std::uint8_t get_control_id()
   {
     return EventID::id;
   }

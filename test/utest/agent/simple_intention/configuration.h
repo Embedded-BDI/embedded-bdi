@@ -5,9 +5,9 @@
 #include "../../lib/bdi/event_base.h"
 #include "../../lib/bdi/plan_base.h"
 #include "../../lib/bdi/intention_base.h"
-#include "../../data/functions.h"
+#include "functions.h"
 
-class AgentSettings
+class SimpleIntentionTest
 {
 private:
   BeliefBase * belief_base;
@@ -16,12 +16,12 @@ private:
   IntentionBase * intention_base;
 
 public:
-  AgentSettings()
+  SimpleIntentionTest()
   {
     belief_base = new BeliefBase(0);
-    event_base = new EventBase(6);
+    event_base = new EventBase(1);
     plan_base = new PlanBase(1);
-    intention_base = new IntentionBase(10, 4);
+    intention_base = new IntentionBase(1, 4);
 
     //--------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ public:
     plan_base->add_plan(plan_0);
   }
 
-  ~AgentSettings()
+  ~SimpleIntentionTest()
   {
     delete belief_base;
     delete event_base;

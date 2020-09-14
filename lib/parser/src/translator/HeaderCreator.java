@@ -145,7 +145,7 @@ public class HeaderCreator
           String argument;
           if (body.getOperator() == null)
           {
-            argument = "action_" + body.getStatement();
+            argument = body.getStatement();
           }
           else
           {
