@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "bdi/belief_base.h"
 #include "syntax/body_instruction.h"
-#include "../../common_test_functions.h"
+
 
 class TestBodyData {
 private:

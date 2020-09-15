@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "bdi/belief_base.h"
-#include "../common_test_functions.h"
+
 
 #define BELIEF_BASE_SIZE 3
 

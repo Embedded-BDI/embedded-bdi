@@ -8,8 +8,9 @@
 #ifndef UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_
 #define UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_
 
+#include "common_lib.h"
 #include "syntax/plan.h"
-#include "../../common_test_functions.h"
+
 
 class TestIntentionData {
 private:

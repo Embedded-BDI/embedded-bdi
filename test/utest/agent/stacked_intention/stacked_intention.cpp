@@ -1,7 +1,7 @@
 /*
- * simple_intention_test.cpp
+ * stacked_intention.cpp
  *
- *  Created on: Sep 13, 2020
+ *  Created on: Sep 15, 2020
  *      Author: Matuzalem Muller
  */
 
@@ -10,7 +10,7 @@
 #include "agent/agent.h"
 #include "configuration.h"
 
-class TSimpleIntention : public ::testing::Test
+class TStackedIntention : public ::testing::Test
 {
 protected:
   Agent * agent;
@@ -18,55 +18,57 @@ protected:
   EventBase * events;
   PlanBase * plans;
   IntentionBase * intentions;
-  SimpleIntention * simple_intention;
+  StackedIntention * stacked_intention;
 
 public:
-  TSimpleIntention()
+  TStackedIntention()
   {
-    simple_intention = new SimpleIntention();
+    stacked_intention = new StackedIntention();
 
-    beliefs = simple_intention->get_belief_base();
-    events = simple_intention->get_event_base();
-    plans = simple_intention->get_plan_base();
-    intentions = simple_intention->get_intention_base();
+    beliefs = stacked_intention->get_belief_base();
+    events = stacked_intention->get_event_base();
+    plans = stacked_intention->get_plan_base();
+    intentions = stacked_intention->get_intention_base();
 
     agent = new Agent(beliefs, events, plans, intentions);
   }
 
-  ~TSimpleIntention()
+  ~TStackedIntention()
   {
-    delete this->simple_intention;
+    delete this->stacked_intention;
     delete this->agent;
   }
 };
 
-TEST_F(TSimpleIntention, run_simple_intention)
+TEST_F(TStackedIntention, run_stacked_intention)
 {
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(2, shared_var);
+  EXPECT_EQ(10, shared_var);
+  EXPECT_TRUE(intentions->is_full());
+  EXPECT_TRUE(events->is_full());
+
+  agent->run();
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(3, shared_var);
+  EXPECT_EQ(20, shared_var);
+  EXPECT_TRUE(intentions->is_full());
+  EXPECT_TRUE(events->is_full());
+
+  agent->run();
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(4, shared_var);
-  EXPECT_TRUE(intentions->is_full());
-  EXPECT_TRUE(events->is_empty());
-
-  agent->run();
-  EXPECT_EQ(5, shared_var);
+  EXPECT_EQ(30, shared_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 }

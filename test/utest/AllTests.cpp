@@ -11,12 +11,11 @@
 int main(int argc, char* argv[]) {
 
   ::testing::InitGoogleTest(&argc, argv);
-
   /*
    * To run specific test, uncomment the code below and add the class name to
    * the class_name variable
    */
-//  std::string class_name = "TSimpleIntentionTest";
+//  std::string class_name = "TSimpleIntention";
 //  class_name += ".*";
 //  ::testing::GTEST_FLAG(filter) = class_name;
 

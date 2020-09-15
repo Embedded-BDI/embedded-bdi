@@ -8,11 +8,12 @@
 #ifndef UTEST_AGENT_EMPTY_EVENT_BASE_CONFIGURATION_H_
 #define UTEST_AGENT_EMPTY_EVENT_BASE_CONFIGURATION_H_
 
+#include "common_lib.h"
 #include "../../lib/bdi/belief_base.h"
 #include "../../lib/bdi/event_base.h"
 #include "../../lib/bdi/plan_base.h"
 #include "../../lib/bdi/intention_base.h"
-#include "../../common_test_functions.h"
+
 
 class EmptyEventBaseSettings
 {

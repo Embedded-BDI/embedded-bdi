@@ -8,10 +8,11 @@
 #ifndef UTEST_SYNTAX_PLAN_TEST_TEST_PLAN_DATA_H_
 #define UTEST_SYNTAX_PLAN_TEST_TEST_PLAN_DATA_H_
 
+#include "common_lib.h"
 #include "bdi/belief_base.h"
 #include "syntax/body.h"
 #include "syntax/context.h"
-#include "../../common_test_functions.h"
+
 
 class TestPlanData {
 private:

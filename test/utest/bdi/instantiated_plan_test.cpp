@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "bdi/instantiated_plan.h"
-#include "../common_test_functions.h"
+
 
 #define BODY_SIZE 3
 #define BASES_SIZE 3

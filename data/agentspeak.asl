@@ -1,3 +1,7 @@
-!simple_goal.
+!goal1.
 
-+!simple_goal <- action_client_socket_1; action_client_socket_2; action_client_socket_3; action_client_socket_4; action_client_socket_5.
++!goal1 <- action_client_socket_1; !goal2.
+
++!goal2 <- action_client_socket_2; !goal3.
+
++!goal3 <- action_client_socket_3.

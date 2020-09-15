@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "syntax/body_instruction.h"
-#include "../common_test_functions.h"
+
 
 #define BASES_SIZE 2
 

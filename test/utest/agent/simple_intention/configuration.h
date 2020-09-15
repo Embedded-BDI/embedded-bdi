@@ -1,5 +1,12 @@
-#ifndef CONFIGURATION_H_
-#define CONFIGURATION_H_
+/*
+ * configuration.h
+ *
+ *  Created on: Sep 15, 2020
+ *      Author: Matuzalem Muller
+ */
+
+#ifndef UTEST_AGENT_SIMPLE_INTENTION_CONFIGURATION_H_
+#define UTEST_AGENT_SIMPLE_INTENTION_CONFIGURATION_H_
 
 #include "../../lib/bdi/belief_base.h"
 #include "../../lib/bdi/event_base.h"
@@ -7,7 +14,7 @@
 #include "../../lib/bdi/intention_base.h"
 #include "functions.h"
 
-class SimpleIntentionTest
+class SimpleIntention
 {
 private:
   BeliefBase * belief_base;
@@ -16,7 +23,7 @@ private:
   IntentionBase * intention_base;
 
 public:
-  SimpleIntentionTest()
+  SimpleIntention()
   {
     belief_base = new BeliefBase(0);
     event_base = new EventBase(1);
@@ -34,30 +41,30 @@ public:
     Body * body_0 = new Body(5);
 
     Statement stm_0_body_0(1);
-    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_client_socket_1);
+    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_1_simple_intention);
     body_0->add_instruction(inst_0_0);
 
     Statement stm_0_body_1(2);
-    BodyInstruction inst_1_0(BodyType::ACTION, stm_0_body_1, action_client_socket_2);
+    BodyInstruction inst_1_0(BodyType::ACTION, stm_0_body_1, action_2_simple_intention);
     body_0->add_instruction(inst_1_0);
 
     Statement stm_0_body_2(3);
-    BodyInstruction inst_2_0(BodyType::ACTION, stm_0_body_2, action_client_socket_3);
+    BodyInstruction inst_2_0(BodyType::ACTION, stm_0_body_2, action_3_simple_intention);
     body_0->add_instruction(inst_2_0);
 
     Statement stm_0_body_3(4);
-    BodyInstruction inst_3_0(BodyType::ACTION, stm_0_body_3, action_client_socket_4);
+    BodyInstruction inst_3_0(BodyType::ACTION, stm_0_body_3, action_4_simple_intention);
     body_0->add_instruction(inst_3_0);
 
     Statement stm_0_body_4(5);
-    BodyInstruction inst_4_0(BodyType::ACTION, stm_0_body_4, action_client_socket_5);
+    BodyInstruction inst_4_0(BodyType::ACTION, stm_0_body_4, action_5_simple_intention);
     body_0->add_instruction(inst_4_0);
 
     Plan plan_0(EventOperator::GOAL_ADDITION, stm_0, context_0, body_0);
     plan_base->add_plan(plan_0);
   }
 
-  ~SimpleIntentionTest()
+  ~SimpleIntention()
   {
     delete belief_base;
     delete event_base;
@@ -86,4 +93,4 @@ public:
   }
 };
 
-#endif /*CONFIGURATION_H_ */
+#endif /*UTEST_AGENT_SIMPLE_INTENTION_CONFIGURATION_H_ */

@@ -1,26 +1,43 @@
-#include "../../common_test_functions.h"
+/*
+ * functions.h
+ *
+ *  Created on: Sep 15, 2020
+ *      Author: Matuzalem Muller
+ */
 
-bool action_client_socket_1(bool var)
+#ifndef UTEST_AGENT_SIMPLE_INTENTION_FUNCTIONS_H_
+#define UTEST_AGENT_SIMPLE_INTENTION_FUNCTIONS_H_
+
+#include "common_lib.h"
+
+bool action_1_simple_intention(bool var)
 {
-  return socket_client(12340, 1);
+  shared_var = 1;
+  return true;
 }
 
-bool action_client_socket_2(bool var)
+bool action_2_simple_intention(bool var)
 {
-  return socket_client(12341, 2);
+  shared_var = 2;
+  return true;
 }
 
-bool action_client_socket_3(bool var)
+bool action_3_simple_intention(bool var)
 {
-  return socket_client(12342, 3);
+  shared_var = 3;
+  return true;
 }
 
-bool action_client_socket_4(bool var)
+bool action_4_simple_intention(bool var)
 {
-  return socket_client(12343, 4);
+  shared_var = 4;
+  return true;
 }
 
-bool action_client_socket_5(bool var)
+bool action_5_simple_intention(bool var)
 {
-  return socket_client(12344, 5);
+  shared_var = 5;
+  return true;
 }
+
+#endif /* UTEST_AGENT_SIMPLE_INTENTION_FUNCTIONS_H_ */
