@@ -69,4 +69,13 @@ TEST_F(TSimpleIntention, run_simple_intention)
   EXPECT_EQ(5, shared_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
+
+  agent->run();
+  agent->run();
+  agent->run();
+  agent->run();
+  agent->run();
+  EXPECT_EQ(5, shared_var);
+  EXPECT_TRUE(intentions->is_empty());
+  EXPECT_TRUE(events->is_empty());
 }

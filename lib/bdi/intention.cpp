@@ -49,13 +49,9 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     {
       this->suspend(value.get_event());
     }
-    else
+    if (_plans.back().is_finished())
     {
-      if (_plans.back().is_finished())
-      {
-        _plans.pop_back();
-      }
-
+      _plans.pop_back();
     }
   }
 
@@ -91,7 +87,14 @@ bool Intention::is_suspended_by(Event * event)
 
 bool Intention::is_finished() const
 {
-  return (_plans.size() == 0);
+  if (_suspended_by)
+  {
+    return false;
+  }
+  else
+  {
+    return (_plans.size() == 0);
+  }
 }
 
 bool Intention::is_suspended()

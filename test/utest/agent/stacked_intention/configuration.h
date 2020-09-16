@@ -28,7 +28,7 @@ public:
     belief_base = new BeliefBase(0);
     event_base = new EventBase(1);
     plan_base = new PlanBase(3);
-    intention_base = new IntentionBase(1, 4);
+    intention_base = new IntentionBase(1, 3);
 
     //--------------------------------------------------------------------------
 

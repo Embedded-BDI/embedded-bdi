@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
    * To run specific test, uncomment the code below and add the class name to
    * the class_name variable
    */
-//  std::string class_name = "TSimpleIntention";
+//  std::string class_name = "TMultipleIntentions";
 //  class_name += ".*";
 //  ::testing::GTEST_FLAG(filter) = class_name;
 
