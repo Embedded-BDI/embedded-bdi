@@ -11,9 +11,11 @@ Intention::Intention(Plan * plan, std::uint8_t size)
 {
   _size = size;
   _suspended_by = nullptr;
-  _plans.reserve(size);
+//  _plans.reserve(size);
+  _plans.init(size);
   InstantiatedPlan inst_plan(plan);
-  _plans.push_back(inst_plan);
+//  _plans.push_back(inst_plan);
+  _plans.add_back(inst_plan);
 }
 
 Intention::~Intention() {}
@@ -26,7 +28,7 @@ bool Intention::stack_plan(Plan * plan)
   }
 
   InstantiatedPlan inst_plan(plan);
-  _plans.push_back(inst_plan);
+  _plans.add_back(plan);
 
   this->unsuspend();
 
@@ -40,7 +42,7 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     return false;
   }
 
-  BodyReturn value = _plans.back().run_plan(beliefs, events);
+  BodyReturn value = _plans.back()->run_plan(beliefs, events);
 
   // If instruction execution fails, return false
   if (value.get_value())
@@ -49,9 +51,9 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     {
       this->suspend(value.get_event());
     }
-    if (_plans.back().is_finished())
+    if (_plans.back()->is_finished())
     {
-      _plans.pop_back();
+      _plans.remove_back();
     }
   }
 
@@ -85,7 +87,7 @@ bool Intention::is_suspended_by(Event * event)
   return false;
 }
 
-bool Intention::is_finished() const
+bool Intention::is_finished()
 {
   if (_suspended_by)
   {
@@ -118,7 +120,8 @@ void Intention::terminate(BeliefBase * beliefs,
 
   while (_plans.size() > 0)
   {
-    Statement stm(_plans.back().get_plan()->get_statement()->get_name());
+    Statement stm(_plans.back()->get_plan()->get_statement()->get_name());
+
     Event event(EventOperator::GOAL_DELETION, stm);
     Plan * plan = plans->revise(&event, beliefs);
 
@@ -127,13 +130,13 @@ void Intention::terminate(BeliefBase * beliefs,
       events->add_event(EventOperator::GOAL_DELETION, stm);
       while (_plans.size() > 0)
       {
-        _plans.pop_back();
+        _plans.remove_back();
         break;
       }
     }
     else
     {
-      _plans.pop_back();
+      _plans.remove_back();
     }
   }
 

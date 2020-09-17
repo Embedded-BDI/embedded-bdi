@@ -20,7 +20,7 @@ class VectorQueue
 
 public:
   void init(std::uint8_t size);
-  void remove();
+  void remove_back();
   void add_front(X item);
   void add_back(X item);
   X * front();
@@ -28,7 +28,7 @@ public:
   X * item_at(std::uint8_t index);
   void erase(std::uint8_t index);
   void rotate();
-  int size();
+  std::uint8_t size();
   bool is_empty();
   bool is_full();
 };
@@ -42,7 +42,7 @@ void VectorQueue<X>::init(std::uint8_t size)
 
 // Utility function to remove front element from the queue
 template <class X>
-void VectorQueue<X>::remove()
+void VectorQueue<X>::remove_back()
 {
   _queue.pop_back();
 }
@@ -113,7 +113,7 @@ void VectorQueue<X>::rotate()
 
 // Utility function to return the size of the queue
 template <class X>
-int VectorQueue<X>::size()
+std::uint8_t VectorQueue<X>::size()
 {
   return _queue.size();
 }

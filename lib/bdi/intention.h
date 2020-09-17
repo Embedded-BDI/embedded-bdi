@@ -11,14 +11,14 @@
 #include "plan_base.h"
 #include "belief_base.h"
 #include "instantiated_plan.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class Intention
 {
 private:
   /// Vector of InstantiatedPlan that represents Intention stack
-  std::vector <InstantiatedPlan> _plans;
+  VectorQueue<InstantiatedPlan> _plans;
   /// Max size of _plans stack
   std::uint8_t _size;
   /// Identified of Event that suspends intention from running
@@ -75,7 +75,7 @@ public:
    * Checks if intention execution finished based on size of _plans
    * @return true if intention is finished, false otherwise
    */
-  bool is_finished() const;
+  bool is_finished();
 
   /**
    * Handles termination by adding goal deletion events to EventBase

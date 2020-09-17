@@ -35,7 +35,7 @@ Event * EventBase::get_event()
   }
 
   Event * event = new Event(*_pending_events.back());
-  _pending_events.remove();
+  _pending_events.remove_back();
   return event;
 }
 

@@ -73,7 +73,7 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs,
     else
     {
       _intention_base.back()->terminate(beliefs, events, plans);
-      _intention_base.remove();
+      _intention_base.remove_back();
     }
   }
 
@@ -81,13 +81,13 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs,
   if (!_intention_base.back()->run_intention(beliefs, events))
   {
     _intention_base.back()->terminate(beliefs, events, plans);
-    _intention_base.remove();
+    _intention_base.remove_back();
   }
   else
   {
     if (_intention_base.back()->is_finished())
     {
-      _intention_base.remove();
+      _intention_base.remove_back();
     }
     else
     {
