@@ -11,14 +11,14 @@
 #include "belief_base.h"
 #include "event.h"
 #include "../syntax/plan.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class PlanBase
 {
 private:
   /// Vector of Plans
-  std::vector <Plan> _plan_base;
+  VectorQueue<Plan> _plan_base;
   /// Max size of _plan_base vector
   std::uint8_t _size;
 

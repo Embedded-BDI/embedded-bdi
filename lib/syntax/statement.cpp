@@ -7,7 +7,9 @@
 
 #include "statement.h"
 
-Statement::Statement() {}
+Statement::Statement() {
+  _name = 0;
+}
 
 Statement::Statement(unsigned char name)
 {

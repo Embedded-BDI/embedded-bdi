@@ -10,7 +10,7 @@
 PlanBase::PlanBase(std::uint8_t size)
 {
   _size = size;
-  _plan_base.reserve(size);
+  _plan_base.init(size);
 }
 
 PlanBase::~PlanBase() {}
@@ -22,7 +22,7 @@ bool PlanBase::add_plan(Plan plan)
     return false;
   }
 
-  _plan_base.push_back(plan);
+  _plan_base.add_front(plan);
   return true;
 }
 
@@ -37,19 +37,15 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
         (event->get_operator() == EventOperator::TEST_GOAL_ADDITION)  ||
         (event->get_operator() == EventOperator::TEST_GOAL_DELETION))
     {
-      for(
-          std::vector<Plan>::iterator it = _plan_base.begin();
-          it != _plan_base.end();
-          ++it
-          )
+      for (std::uint8_t i = 0; i < _plan_base.size(); i++)
       {
-        if (event->get_operator() == it->get_operator())
+        if (event->get_operator() == _plan_base.item_at(i)->get_operator())
         {
-          if (event->get_statement().is_equal(it->get_statement()))
+          if (event->get_statement().is_equal(_plan_base.item_at(i)->get_statement()))
           {
-            if (it->get_context()->is_valid(belief_base))
+            if (_plan_base.item_at(i)->get_context()->is_valid(belief_base))
             {
-              return &*it;
+              return _plan_base.item_at(i);
             }
           }
         }

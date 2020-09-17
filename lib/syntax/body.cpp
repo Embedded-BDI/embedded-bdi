@@ -10,7 +10,7 @@
 Body::Body(std::uint8_t size)
 {
   _size = size;
-  _body.reserve(size);
+  _body.init(size);
 }
 
 Body::~Body() {}
@@ -27,7 +27,9 @@ BodyReturn Body::run_body(std::uint8_t index,
   }
   else
   {
-    result = _body.at(index).run_instruction(beliefs, events);
+//    std::uint8_t reverse_index = _body.size() - index - 1;
+//    result = _body.item_at(reverse_index)->run_instruction(beliefs, events);
+    result = _body.item_at(index)->run_instruction(beliefs, events);
   }
 
   return result;
@@ -40,7 +42,9 @@ bool Body::add_instruction(BodyInstruction instruction)
     return false;
   }
 
-  _body.push_back(instruction);
+//  _body.add_front(instruction);
+  _body.add_back(instruction);
+
   return true;
 }
 

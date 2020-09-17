@@ -3805,7 +3805,6 @@ static std::vector<std::string> GetReservedAttributesForElement(
   return std::vector<std::string>();
 }
 
-// TODO(jdesprez): Merge the two getReserved attributes once skip is improved
 static std::vector<std::string> GetReservedOutputAttributesForElement(
     const std::string& xml_element) {
   if (xml_element == "testsuites") {

@@ -10,7 +10,7 @@
 BeliefBase::BeliefBase(std::uint8_t size)
 {
   _size = size;
-  _belief_base.reserve(size);
+  _belief_base.init(size);
 }
 
 BeliefBase::~BeliefBase() {}
@@ -22,7 +22,7 @@ bool BeliefBase::add_belief(Belief belief)
     return false;
   }
 
-  _belief_base.push_back(belief);
+  _belief_base.add_front(belief);
   return true;
 }
 
@@ -30,44 +30,38 @@ void BeliefBase::update(EventBase * event_base)
 {
   if (event_base)
   {
-    for(
-        std::vector<Belief>::iterator it = _belief_base.begin();
-        it != _belief_base.end(); ++it
-        )
+    for (std::uint8_t i = 0; i < _belief_base.size(); i++)
     {
-      if (it->update_belief())
+      if (_belief_base.item_at(i)->update_belief())
       {
         if (!event_base->is_full())
         {
-          if (it->get_state())
+          if (_belief_base.item_at(i)->get_state())
           {
             // Add Event for BELIEF_ADDITION if belief is changed to true
             event_base->add_event(EventOperator::BELIEF_ADDITION,
-                                  it->get_statement()
+                                  _belief_base.item_at(i)->get_statement()
             );
           } else {
             // Add Event for BELIEF_DELETION if belief is changed to false
             event_base->add_event(EventOperator::BELIEF_DELETION,
-                                  it->get_statement()
+                                  _belief_base.item_at(i)->get_statement()
             );
           }
         }
       }
     }
+
   }
 }
 
 bool BeliefBase::change_belief_state(Statement stm, bool state)
 {
-  for(
-      std::vector<Belief>::iterator it = _belief_base.begin();
-      it != _belief_base.end();
-      ++it
-      )
+  for (std::uint8_t i = 0; i < _belief_base.size(); i++)
   {
-    if (it->get_statement().is_equal(stm.get_name()))
+    if (_belief_base.item_at(i)->get_statement().is_equal(stm.get_name()))
     {
-      it->change_state(state);
+      _belief_base.item_at(i)->change_state(state);
       return true;
     }
   }
@@ -77,15 +71,11 @@ bool BeliefBase::change_belief_state(Statement stm, bool state)
 
 bool BeliefBase::get_belief_state(Statement stm)
 {
-  for(
-      std::vector<Belief>::iterator it = _belief_base.begin();
-      it != _belief_base.end();
-      ++it
-      )
+  for (std::uint8_t i = 0; i < _belief_base.size(); i++)
   {
-    if (it->get_statement().is_equal(stm))
+    if (_belief_base.item_at(i)->get_statement().is_equal(stm))
     {
-      return it->get_state();
+      return _belief_base.item_at(i)->get_state();
     }
   }
 

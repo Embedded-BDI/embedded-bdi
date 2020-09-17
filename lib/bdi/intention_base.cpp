@@ -11,7 +11,7 @@ IntentionBase::IntentionBase(std::uint8_t buffer_size, std::uint8_t stack_size)
 {
   _buffer_size = buffer_size;
   _stack_size = stack_size;
-  _intention_base.reserve(buffer_size);
+  _intention_base.init(buffer_size);
 }
 
 IntentionBase::~IntentionBase() {}
@@ -34,22 +34,18 @@ void IntentionBase::add_intention(Plan * plan, Event * event)
   }
 
   Intention intention(plan, _stack_size);
-  _intention_base.insert(_intention_base.begin(), intention);
+  _intention_base.add_front(intention);
 }
 
 bool IntentionBase::stack_plan(Plan * plan, Event * event)
 {
-  for (
-      std::vector<Intention>::iterator it = _intention_base.begin();
-      it != _intention_base.end();
-      ++it
-      )
+  for (std::uint8_t i = 0; i < _intention_base.size(); i++)
   {
-    if (it->is_suspended_by(event))
+    if (_intention_base.item_at(i)->is_suspended_by(event))
     {
-      if (!it->stack_plan(plan))
+      if (!_intention_base.item_at(i)->stack_plan(plan))
       {
-        _intention_base.erase(it);
+        _intention_base.erase(i);
       }
       return true;
     }
@@ -68,44 +64,34 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs,
   }
 
   // Handles suspended intention
-  if (_intention_base.back().is_suspended())
+  if (_intention_base.back()->is_suspended())
   {
-    if (events->event_exists(_intention_base.back().get_event_id()))
+    if (events->event_exists(_intention_base.back()->get_event_id()))
     {
-//      Intention intention(_intention_base.front());
-//      _intention_base.erase(_intention_base.begin());
-//      _intention_base.push_back(intention);
-      Intention intention(_intention_base.back());
-      _intention_base.pop_back();
-      _intention_base.insert(_intention_base.begin(), intention);
+      _intention_base.rotate();
     }
     else
     {
-      _intention_base.back().terminate(beliefs, events, plans);
-      _intention_base.pop_back();
+      _intention_base.back()->terminate(beliefs, events, plans);
+      _intention_base.remove();
     }
   }
 
   // Runs plan
-  if (!_intention_base.back().run_intention(beliefs, events))
+  if (!_intention_base.back()->run_intention(beliefs, events))
   {
-    _intention_base.back().terminate(beliefs, events, plans);
-    _intention_base.pop_back();
+    _intention_base.back()->terminate(beliefs, events, plans);
+    _intention_base.remove();
   }
   else
   {
-    if (_intention_base.back().is_finished())
+    if (_intention_base.back()->is_finished())
     {
-      _intention_base.pop_back();
+      _intention_base.remove();
     }
     else
     {
-//      Intention intention(_intention_base.front());
-//      _intention_base.erase(_intention_base.begin());
-//      _intention_base.push_back(intention);
-      Intention intention(_intention_base.back());
-      _intention_base.pop_back();
-      _intention_base.insert(_intention_base.begin(), intention);
+      _intention_base.rotate();
     }
   }
 }

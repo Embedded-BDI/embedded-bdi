@@ -11,14 +11,14 @@
 #include "belief.h"
 #include "event.h"
 #include "event_base.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class BeliefBase
 {
 private:
   /// Vector of Beliefs
-  std::vector <Belief> _belief_base;
+  VectorQueue<Belief> _belief_base;
   /// Max size of _belief_base vector
   std::uint8_t _size;
 

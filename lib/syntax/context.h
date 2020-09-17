@@ -10,13 +10,13 @@
 
 #include "context_condition.h"
 #include "../bdi/belief_base.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class Context
 {
   /// Vector of ContextConditions
-  std::vector <ContextCondition> _context;
+  VectorQueue <ContextCondition> _context;
   /// Max size of _context vector
   std::uint8_t _size;
 

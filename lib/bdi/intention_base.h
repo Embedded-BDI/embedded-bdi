@@ -12,14 +12,14 @@
 #include "event_base.h"
 #include "intention.h"
 #include "../syntax/plan.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class IntentionBase
 {
 private:
   /// Vector of Intentions
-  std::vector<Intention> _intention_base;
+  VectorQueue<Intention> _intention_base;
   /// Max size of _intention_base vector
   std::uint8_t _buffer_size;
   /// Max size of each Intention _plans stack vector

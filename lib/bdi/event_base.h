@@ -9,14 +9,14 @@
 #define BDI_EVENT_BASE_H_
 
 #include "event.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class EventBase
 {
 private:
   /// Vector of Events
-  std::vector <Event> _pending_events;
+  VectorQueue<Event> _pending_events;
   /// Max size of _belief_base vector
   std::uint8_t _size;
 

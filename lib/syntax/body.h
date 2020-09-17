@@ -11,13 +11,13 @@
 #include "body_instruction.h"
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
-#include <vector>
+#include "../lib/vector_queue.h"
 #include <cstdint>
 
 class Body
 {
   /// Vector of BodyInstructions
-  std::vector <BodyInstruction> _body;
+  VectorQueue<BodyInstruction> _body;
   /// Max size of _body vector
   std::uint8_t _size;
 
