@@ -14,8 +14,6 @@ IntentionBase::IntentionBase(std::uint8_t buffer_size, std::uint8_t stack_size)
   _intention_base.init(buffer_size);
 }
 
-IntentionBase::~IntentionBase() {}
-
 void IntentionBase::add_intention(Plan * plan, Event * event)
 {
   if (plan == nullptr)
@@ -34,7 +32,7 @@ void IntentionBase::add_intention(Plan * plan, Event * event)
   }
 
   Intention intention(plan, _stack_size);
-  _intention_base.add_front(intention);
+  _intention_base.push_front(intention);
 }
 
 bool IntentionBase::stack_plan(Plan * plan, Event * event)
@@ -73,7 +71,7 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs,
     else
     {
       _intention_base.back()->terminate(beliefs, events, plans);
-      _intention_base.remove_back();
+      _intention_base.pop_back();
     }
   }
 
@@ -81,13 +79,13 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs,
   if (!_intention_base.back()->run_intention(beliefs, events))
   {
     _intention_base.back()->terminate(beliefs, events, plans);
-    _intention_base.remove_back();
+    _intention_base.pop_back();
   }
   else
   {
     if (_intention_base.back()->is_finished())
     {
-      _intention_base.remove_back();
+      _intention_base.pop_back();
     }
     else
     {

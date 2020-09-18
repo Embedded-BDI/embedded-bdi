@@ -14,6 +14,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Collection of agent beliefs.
+ */
 class BeliefBase
 {
 private:
@@ -25,14 +28,12 @@ private:
 public:
   /**
    * BeliefBase's constructor
-   * @param size Size of BeliefBase buffer
+   * @param size Size of _belief_base buffer
    */
   BeliefBase(std::uint8_t size);
 
-  virtual ~BeliefBase();
-
   /**
-   * Adds belief to BeliefBase. Does not protect/check for duplicates
+   * Adds belief to _belief_base. Does not avoid/check for duplicates
    * @param belief Belief to be added
    * @return true is belief is added, false otherwise
    */

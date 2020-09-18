@@ -11,14 +11,10 @@ Intention::Intention(Plan * plan, std::uint8_t size)
 {
   _size = size;
   _suspended_by = nullptr;
-//  _plans.reserve(size);
   _plans.init(size);
   InstantiatedPlan inst_plan(plan);
-//  _plans.push_back(inst_plan);
-  _plans.add_back(inst_plan);
+  _plans.push_back(inst_plan);
 }
-
-Intention::~Intention() {}
 
 bool Intention::stack_plan(Plan * plan)
 {
@@ -28,7 +24,7 @@ bool Intention::stack_plan(Plan * plan)
   }
 
   InstantiatedPlan inst_plan(plan);
-  _plans.add_back(plan);
+  _plans.push_back(plan);
 
   this->unsuspend();
 
@@ -51,9 +47,18 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
     {
       this->suspend(value.get_event());
     }
-    if (_plans.back()->is_finished())
+    else
     {
-      _plans.remove_back();
+      while (_plans.size() > 0)
+      {
+        if (_plans.back()->is_finished()){
+          _plans.pop_back();
+        }
+        else
+        {
+          break;
+        }
+      }
     }
   }
 
@@ -130,13 +135,13 @@ void Intention::terminate(BeliefBase * beliefs,
       events->add_event(EventOperator::GOAL_DELETION, stm);
       while (_plans.size() > 0)
       {
-        _plans.remove_back();
-        break;
+        _plans.pop_back();
       }
+      break;
     }
     else
     {
-      _plans.remove_back();
+      _plans.pop_back();
     }
   }
 

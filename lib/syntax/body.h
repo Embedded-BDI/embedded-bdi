@@ -14,6 +14,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Represents plan body with collection of body instructions.
+ */
 class Body
 {
   /// Vector of BodyInstructions
@@ -27,8 +30,6 @@ public:
    * @param size Size of _body
    */
   Body(std::uint8_t size);
-
-  virtual ~Body();
 
   /**
    * Run instruction from Body at specific position

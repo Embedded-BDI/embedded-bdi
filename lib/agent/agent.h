@@ -13,6 +13,9 @@
 #include "../bdi/intention_base.h"
 #include "../bdi/plan_base.h"
 
+/**
+ * Implements the agent reasoning cycle.
+ */
 class Agent
 {
 private:

@@ -12,5 +12,3 @@ ContextCondition::ContextCondition(Statement stm, bool is_true)
   _statement = stm;
   _is_true = is_true;
 }
-
-ContextCondition::~ContextCondition() {}

@@ -22,7 +22,6 @@ Agent::Agent(BeliefBase * beliefs,
 
 Agent::~Agent()
 {
-//  delete intentions;
   delete event_to_process;
 }
 

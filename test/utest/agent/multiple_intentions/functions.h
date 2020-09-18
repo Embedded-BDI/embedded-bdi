@@ -12,37 +12,37 @@
 
 bool action_1_multiple_intentions(bool var)
 {
-  shared_var = 1000;
+  shared_var = 1;
   return true;
 }
 
 bool action_2_multiple_intentions(bool var)
 {
-  shared_var = 2000;
+  shared_var = 2;
   return true;
 }
 
 bool action_3_multiple_intentions(bool var)
 {
-  shared_var = 3000;
+  shared_var = 3;
   return true;
 }
 
 bool action_4_multiple_intentions(bool var)
 {
-  shared_var = 4000;
+  shared_var = 4;
   return true;
 }
 
 bool action_5_multiple_intentions(bool var)
 {
-  shared_var = 5000;
+  shared_var = 5;
   return true;
 }
 
 bool action_6_multiple_intentions(bool var)
 {
-  shared_var = 6000;
+  shared_var = 6;
   return true;
 }
 

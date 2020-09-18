@@ -16,8 +16,6 @@ Statement::Statement(unsigned char name)
   _name = name;
 }
 
-Statement::~Statement() {}
-
 bool Statement::is_equal(Statement * stm) const
 {
   return (_name == stm->get_name());

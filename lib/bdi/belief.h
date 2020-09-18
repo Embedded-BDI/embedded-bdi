@@ -11,6 +11,11 @@
 #include "../syntax/statement.h"
 #include <cstdint>
 
+/**
+ * Represents the belief of an agent which can be true or false.
+ * Beliefs also contain an update function so the values can be automatically
+ * updated by the agent.
+ */
 class Belief
 {
 private:
@@ -32,8 +37,6 @@ public:
   Belief(Statement stm,
          bool (*update_function)(bool var),
          bool belief_state = false);
-
-  virtual ~Belief();
 
   /**
    * Update _belief_state based on _update function

@@ -13,8 +13,6 @@ EventBase::EventBase(std::uint8_t size)
   _pending_events.init(size);
 }
 
-EventBase::~EventBase() {}
-
 bool EventBase::add_event(EventOperator op, Statement stm)
 {
   if (this->is_full())
@@ -23,7 +21,7 @@ bool EventBase::add_event(EventOperator op, Statement stm)
   }
 
   Event event(op,stm);
-  _pending_events.add_front(event);
+  _pending_events.push_front(event);
   return true;
 }
 
@@ -35,7 +33,7 @@ Event * EventBase::get_event()
   }
 
   Event * event = new Event(*_pending_events.back());
-  _pending_events.remove_back();
+  _pending_events.pop_back();
   return event;
 }
 

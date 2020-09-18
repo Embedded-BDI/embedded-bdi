@@ -11,7 +11,11 @@
 #include <vector>
 #include <cstdint>
 
-// Class for queue
+/**
+ * Implementation of queue class using STL vector.
+ * Class provides flexibility on adding elements to the front and back of the
+ * queue.
+ */
 template <class X>
 class VectorQueue
 {
@@ -20,9 +24,9 @@ class VectorQueue
 
 public:
   void init(std::uint8_t size);
-  void remove_back();
-  void add_front(X item);
-  void add_back(X item);
+  void push_front(X item);
+  void push_back(X item);
+  void pop_back();
   X * front();
   X * back();
   X * item_at(std::uint8_t index);
@@ -33,6 +37,10 @@ public:
   bool is_full();
 };
 
+/**
+ * Configure queue before using class
+ * @param size Max size of queue
+ */
 template <class X>
 void VectorQueue<X>::init(std::uint8_t size)
 {
@@ -40,16 +48,12 @@ void VectorQueue<X>::init(std::uint8_t size)
   _queue.reserve(size);
 }
 
-// Utility function to remove front element from the queue
+/**
+ * Add element to the front of the queue
+ * @param item Element to be added
+ */
 template <class X>
-void VectorQueue<X>::remove_back()
-{
-  _queue.pop_back();
-}
-
-// Utility function to add an item to the queue
-template <class X>
-void VectorQueue<X>::add_front(X item)
+void VectorQueue<X>::push_front(X item)
 {
   if (_queue.size() < _capacity)
   {
@@ -57,8 +61,12 @@ void VectorQueue<X>::add_front(X item)
   }
 }
 
+/**
+ * Add element to the back of the queue
+ * @param item Element to be added
+ */
 template <class X>
-void VectorQueue<X>::add_back(X item)
+void VectorQueue<X>::push_back(X item)
 {
   if (_queue.size() < _capacity)
   {
@@ -66,31 +74,64 @@ void VectorQueue<X>::add_back(X item)
   }
 }
 
+/**
+ * Remove element from the back of the queue
+ */
+template <class X>
+void VectorQueue<X>::pop_back()
+{
+  _queue.pop_back();
+}
+
+/**
+ * Returns pointer to element at the front of the queue
+ * @return Pointer to element at the front of the queue
+ */
 template <class X>
 X * VectorQueue<X>::front()
 {
   return &_queue.front();
 }
 
+/**
+ * Returns pointer to element at the back of the queue
+ * @return Pointer to element at the back of the queue
+ */
 template <class X>
 X * VectorQueue<X>::back()
 {
-  return &_queue.back();
+  if (_queue.size() > 0)
+  {
+    return &_queue.back();
+  }
+  else
+  {
+    return nullptr;
+  }
 }
 
+/**
+ * Returns pointer to element at index position from the queue
+ * @param index Index of the queue
+ * @result Pointer to element at given index
+ */
 template <class X>
 X * VectorQueue<X>::item_at(std::uint8_t index)
 {
-//  if (_queue.size() > index)
-//  {
+  if (_queue.size() > index)
+  {
     return &_queue.at(index);
-//  }
-//  else
-//  {
-//    return nullptr;
-//  }
+  }
+  else
+  {
+    return nullptr;
+  }
 }
 
+/**
+ * Erase element at specific position of queue
+ * @param index Position of element to be deleted
+ */
 template <class X>
 void VectorQueue<X>::erase(std::uint8_t index)
 {
@@ -100,6 +141,9 @@ void VectorQueue<X>::erase(std::uint8_t index)
   }
 }
 
+/**
+ * Places last element from queue in the begin of the queue
+ */
 template <class X>
 void VectorQueue<X>::rotate()
 {
@@ -111,21 +155,30 @@ void VectorQueue<X>::rotate()
   }
 }
 
-// Utility function to return the size of the queue
+/**
+ * Return the size of the queue
+ * @result Size/number of elements of queue
+ */
 template <class X>
 std::uint8_t VectorQueue<X>::size()
 {
   return _queue.size();
 }
 
-// Utility function to check if the queue is empty or not
+/**
+ * Checks if the queue is empty
+ * @result false if queue is full of elements, true otherwise
+ */
 template <class X>
 bool VectorQueue<X>::is_empty()
 {
   return (_queue.size() == 0);
 }
 
-// Utility function to check if the queue is full or not
+/**
+ * Checks if the queue is full
+ * @result true if queue is full of elements, false otherwise
+ */
 template <class X>
 bool VectorQueue<X>::is_full()
 {

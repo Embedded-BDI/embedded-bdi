@@ -12,8 +12,6 @@ InstantiatedPlan::InstantiatedPlan(Plan * plan)
   _plan = plan;
 }
 
-InstantiatedPlan::~InstantiatedPlan() {}
-
 BodyReturn InstantiatedPlan::run_plan(BeliefBase * beliefs, EventBase * events)
 {
   BodyReturn result;

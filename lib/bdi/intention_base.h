@@ -15,6 +15,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Collection of agent intentions.
+ */
 class IntentionBase
 {
 private:
@@ -40,8 +43,6 @@ public:
    * @param stack_size Size of each Intention stack
    */
   IntentionBase(std::uint8_t buffer_size, std::uint8_t stack_size);
-
-  virtual ~IntentionBase();
 
   /**
    * Creates new Intention with given Plan or adds Plan to existing Intention

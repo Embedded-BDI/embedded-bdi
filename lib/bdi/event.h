@@ -8,11 +8,14 @@
 #ifndef SYNTAX_EVENT_H_
 #define SYNTAX_EVENT_H_
 
-#include "../lib/event_id.h"
 #include "../syntax/statement.h"
 #include "../syntax/event_operator.h"
+#include "../lib/event_id.h"
 #include <cstdint>
 
+/**
+ * Represents events for belief updates and plan adoption/drop.
+ */
 class Event
 {
 private:
@@ -28,8 +31,6 @@ public:
    * @param stm Event's Statement
    */
   Event(EventOperator op, Statement stm);
-
-  virtual ~Event();
 
   const EventOperator & get_operator() const
   {

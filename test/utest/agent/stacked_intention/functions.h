@@ -12,19 +12,19 @@
 
 bool action_1_stacked_intention(bool var)
 {
-  shared_var = 10;
+  shared_var = 1;
   return true;
 }
 
 bool action_2_stacked_intention(bool var)
 {
-  shared_var = 20;
+  shared_var = 2;
   return true;
 }
 
 bool action_3_stacked_intention(bool var)
 {
-  shared_var = 30;
+  shared_var = 3;
   return true;
 }
 

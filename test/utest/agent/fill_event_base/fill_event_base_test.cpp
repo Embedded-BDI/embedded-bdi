@@ -3,13 +3,18 @@
  *
  *  Created on: Sep 12, 2020
  *      Author: Matuzalem Muller
- */
-
-/*
- * empty_event_base_test.cpp
  *
- *  Created on: Sep 10, 2020
- *      Author: Matuzalem Muller
+ *
+ * AgentSpeak code:
+ *
+ *   +!goal1 <- action_do_nothing.
+ *   +!goal2 <- action_do_nothing.
+ *   +!goal3 <- action_do_nothing.
+ *   +!goal4 <- action_do_nothing.
+ *   +!goal5 <- action_do_nothing.
+ *   +!goal6 <- action_do_nothing.
+ *   +!goal7 <- action_do_nothing.
+ *   +!goal8 <- action_do_nothing.
  */
 
 #include "gtest/gtest.h"

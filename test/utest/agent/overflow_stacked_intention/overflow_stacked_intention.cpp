@@ -3,6 +3,17 @@
  *
  *  Created on: Sep 15, 2020
  *      Author: Matuzalem Muller
+ *
+ *
+ * AgentSpeak code:
+ *
+ *   goal1.
+ *
+ *   +!goal1 <- action_1_1_overflow_stacked_intention; !goal2; action_1_2_overflow_stacked_intention.
+ *   +!goal2 <- action_2_1_overflow_stacked_intention; !goal3; action_2_2_overflow_stacked_intention.
+ *   +!goal3 <- action_3_1_overflow_stacked_intention; !goal4; action_3_2_overflow_stacked_intention.
+ *   +!goal4 <- action_4_1_overflow_stacked_intention; !goal5; action_4_2_overflow_stacked_intention.
+ *   +!goal5 <- action_5_1_overflow_stacked_intention.
  */
 
 #include "common_lib.h"
@@ -18,24 +29,24 @@ protected:
   EventBase * events;
   PlanBase * plans;
   IntentionBase * intentions;
-  OverflowStackedIntention * stacked_intention;
+  OverflowStackedIntention * overflow_stacked_intention;
 
 public:
   TOverflowStackedIntention()
   {
-    stacked_intention = new OverflowStackedIntention();
+    overflow_stacked_intention = new OverflowStackedIntention();
 
-    beliefs = stacked_intention->get_belief_base();
-    events = stacked_intention->get_event_base();
-    plans = stacked_intention->get_plan_base();
-    intentions = stacked_intention->get_intention_base();
+    beliefs = overflow_stacked_intention->get_belief_base();
+    events = overflow_stacked_intention->get_event_base();
+    plans = overflow_stacked_intention->get_plan_base();
+    intentions = overflow_stacked_intention->get_intention_base();
 
     agent = new Agent(beliefs, events, plans, intentions);
   }
 
   ~TOverflowStackedIntention()
   {
-    delete this->stacked_intention;
+    delete this->overflow_stacked_intention;
     delete this->agent;
   }
 };

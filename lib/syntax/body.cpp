@@ -13,8 +13,6 @@ Body::Body(std::uint8_t size)
   _body.init(size);
 }
 
-Body::~Body() {}
-
 BodyReturn Body::run_body(std::uint8_t index,
                           BeliefBase * beliefs,
                           EventBase * events)
@@ -42,8 +40,8 @@ bool Body::add_instruction(BodyInstruction instruction)
     return false;
   }
 
-//  _body.add_front(instruction);
-  _body.add_back(instruction);
+//  _body.push_front(instruction);
+  _body.push_back(instruction);
 
   return true;
 }

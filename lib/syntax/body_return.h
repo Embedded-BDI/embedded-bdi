@@ -40,8 +40,6 @@ public:
 
   BodyReturn(BodyType type, bool value, EventID * event);
 
-  virtual ~BodyReturn();
-
   EventID * get_event()
   {
     return _event;

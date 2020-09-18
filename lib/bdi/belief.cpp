@@ -16,8 +16,6 @@ Belief::Belief(Statement stm,
   _update = update_function;
 }
 
-Belief::~Belief() {}
-
 bool Belief::update_belief()
 {
   if (_update)

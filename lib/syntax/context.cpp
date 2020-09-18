@@ -13,8 +13,6 @@ Context::Context(std::uint8_t size)
   _context.init(size);
 }
 
-Context::~Context() {}
-
 bool Context::add_context(ContextCondition value)
 {
   if (_context.size() == _size)
@@ -23,7 +21,7 @@ bool Context::add_context(ContextCondition value)
   }
 
 //  _context.push_back(value);
-  _context.add_front(value);
+  _context.push_front(value);
   return true;
 }
 

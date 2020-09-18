@@ -8,8 +8,6 @@
 #include "gtest/gtest.h"
 #include "lib/vector_queue.h"
 
-#include <iostream>
-
 class TVectorQueue : public ::testing::Test
 {
 protected:
@@ -23,37 +21,37 @@ public:
   }
 };
 
-TEST_F(TVectorQueue, add_front)
+TEST_F(TVectorQueue, push_front)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_front(i);
+    queue.push_front(i);
     EXPECT_EQ(i, *queue.front());
     EXPECT_EQ(0, *queue.back());
   }
 }
 
-TEST_F(TVectorQueue, add_back)
+TEST_F(TVectorQueue, push_back)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
     EXPECT_EQ(0, *queue.front());
     EXPECT_EQ(i, *queue.back());
   }
 }
 
-TEST_F(TVectorQueue, remove_back)
+TEST_F(TVectorQueue, pop_back)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
   }
 
   for (int i = MAX_SIZE-1; i >= 0; i--)
   {
     EXPECT_EQ(i, *queue.back());
-    queue.remove_back();
+    queue.pop_back();
   }
 
   EXPECT_TRUE(queue.is_empty());
@@ -63,7 +61,7 @@ TEST_F(TVectorQueue, item_at)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
     EXPECT_EQ(i, *queue.item_at(i));
   }
 }
@@ -72,7 +70,7 @@ TEST_F(TVectorQueue, erase)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
   }
 
   for (int i = MAX_SIZE-1; i >= 0; i--)
@@ -85,7 +83,7 @@ TEST_F(TVectorQueue, erase)
 
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
   }
 
   for (int i = 0; i < MAX_SIZE; i++)
@@ -101,7 +99,7 @@ TEST_F(TVectorQueue, rotate)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
   }
 
   queue.rotate();
@@ -114,7 +112,7 @@ TEST_F(TVectorQueue, size)
 {
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
     EXPECT_EQ(i+1, queue.size());
   }
 }
@@ -125,7 +123,7 @@ TEST_F(TVectorQueue, is_empty)
 
   for (int i = 0; i < MAX_SIZE; i++)
   {
-    queue.add_back(i);
+    queue.push_back(i);
     EXPECT_FALSE(queue.is_empty());
   }
 
@@ -145,7 +143,7 @@ TEST_F(TVectorQueue, is_full)
   for (int i = 0; i < MAX_SIZE; i++)
   {
     EXPECT_FALSE(queue.is_full());
-    queue.add_back(i);
+    queue.push_back(i);
   }
 
   EXPECT_TRUE(queue.is_full());

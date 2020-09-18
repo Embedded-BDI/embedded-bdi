@@ -12,6 +12,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Collection of agent events.
+ */
 class EventBase
 {
 private:
@@ -26,8 +29,6 @@ public:
    * @param size Size of EventBase buffer
    */
   EventBase(std::uint8_t size);
-
-  virtual ~EventBase();
 
   /**
    * Creates an Event using op and stm and adds Event _pending_events

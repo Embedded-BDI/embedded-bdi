@@ -1,13 +1,20 @@
-#ifndef CONFIGURATION_H_
-#define CONFIGURATION_H_
+/*
+ * configuration.h
+ *
+ *  Created on: Sep 17, 2020
+ *      Author: Matuzalem Muller
+ */
+
+#ifndef UTEST_AGENT_FAILED_INTENTION_CONFIGURATION_H_
+#define UTEST_AGENT_FAILED_INTENTION_CONFIGURATION_H_
 
 #include "../../lib/bdi/belief_base.h"
 #include "../../lib/bdi/event_base.h"
 #include "../../lib/bdi/plan_base.h"
 #include "../../lib/bdi/intention_base.h"
-#include "../../data/functions.h"
+#include "functions.h"
 
-class AgentSettings
+class FailedIntention
 {
 private:
   BeliefBase * belief_base;
@@ -16,12 +23,12 @@ private:
   IntentionBase * intention_base;
 
 public:
-  AgentSettings()
+  FailedIntention()
   {
     belief_base = new BeliefBase(0);
-    event_base = new EventBase(6);
+    event_base = new EventBase(2);
     plan_base = new PlanBase(7);
-    intention_base = new IntentionBase(10, 4);
+    intention_base = new IntentionBase(2, 4);
 
     //--------------------------------------------------------------------------
 
@@ -135,7 +142,7 @@ public:
     plan_base->add_plan(plan_6);
   }
 
-  ~AgentSettings()
+  ~FailedIntention()
   {
     delete belief_base;
     delete event_base;
@@ -164,4 +171,4 @@ public:
   }
 };
 
-#endif /*CONFIGURATION_H_ */
+#endif /* UTEST_AGENT_FAILED_INTENTION_CONFIGURATION_H_ */

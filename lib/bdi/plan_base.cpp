@@ -13,8 +13,6 @@ PlanBase::PlanBase(std::uint8_t size)
   _plan_base.init(size);
 }
 
-PlanBase::~PlanBase() {}
-
 bool PlanBase::add_plan(Plan plan)
 {
   if (this->is_full())
@@ -22,7 +20,7 @@ bool PlanBase::add_plan(Plan plan)
     return false;
   }
 
-  _plan_base.add_front(plan);
+  _plan_base.push_back(plan);
   return true;
 }
 

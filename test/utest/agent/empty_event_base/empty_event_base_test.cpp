@@ -3,6 +3,21 @@
  *
  *  Created on: Sep 10, 2020
  *      Author: Matuzalem Muller
+ *
+ *
+ * AgentSpeak code:
+ *
+ *   goal1.
+ *   goal2.
+ *   goal3.
+ *   goal4.
+ *   goal5.
+ *
+ *   +!goal1 <- action_do_nothing.
+ *   +!goal2 <- action_do_nothing.
+ *   +!goal3 <- action_do_nothing.
+ *   +!goal4 <- action_do_nothing.
+ *   +!goal5 <- action_do_nothing.
  */
 
 #include "gtest/gtest.h"

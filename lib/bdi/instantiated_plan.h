@@ -11,6 +11,9 @@
 #include "../syntax/plan.h"
 #include <cstdint>
 
+/**
+ * Instantiates plan so it can be run.
+ */
 class InstantiatedPlan
 {
 private:
@@ -25,8 +28,6 @@ public:
    * @param plan Pointer to Plan
    */
   InstantiatedPlan(Plan * plan);
-
-  virtual ~InstantiatedPlan();
 
   /**
    * Run instruction from position _index from Plan _plan

@@ -12,7 +12,7 @@
 #include <cstdint>
 
 /**
- * Represents a literal from the plan's context
+ * Represents a literal from the plan's context.
  */
 class ContextCondition
 {
@@ -28,8 +28,6 @@ public:
    * @param negation Whether the statement should be considered true or false
    */
   ContextCondition(Statement stm, bool negation);
-
-  virtual ~ContextCondition();
 
   bool is_true() const
   {

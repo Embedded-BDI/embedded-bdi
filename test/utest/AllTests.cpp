@@ -6,8 +6,13 @@
  */
 
 #include "gtest/gtest.h"
-#include <string>
 
+/*
+ * TODO:
+ *
+ * Test:
+ *   - OverflowIntentionBase
+ */
 int main(int argc, char* argv[]) {
 
   ::testing::InitGoogleTest(&argc, argv);
@@ -15,22 +20,9 @@ int main(int argc, char* argv[]) {
    * To run specific test, uncomment the code below and add the class name to
    * the class_name variable
    */
-//  std::string class_name = "TVectorQueue";
+//  std::string class_name = "TFailedIntention";
 //  class_name += ".*";
 //  ::testing::GTEST_FLAG(filter) = class_name;
 
   return RUN_ALL_TESTS();
 }
-
-/*
- * TODO:
- *
- * Test:
- *   - VectorQueue
- *   - OverflowIntentionBase
- *   - Failed intention
- *
- * Comment description of each class for doc generation
- *
- * Add comments to VectorQueue methods
- */

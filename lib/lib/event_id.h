@@ -11,9 +11,9 @@
 #include <cstdint>
 
 /**
- * Represents Event Unique Identifier
+ * Represents Event Unique Identifier.
  * Class can be modified to use other control and data representation such as
- * UUID for better handling of events
+ * UUID for better handling of events.
  */
 class EventID
 {
@@ -26,8 +26,6 @@ protected:
 
 public:
   EventID();
-
-  virtual ~EventID();
 
   /**
    * Compares given ID with object _id

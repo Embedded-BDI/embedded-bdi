@@ -14,6 +14,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Represents agent intention with stack of plans to be run.
+ */
 class Intention
 {
 private:
@@ -44,8 +47,6 @@ public:
    * @param size Size of _plans stack
    */
   Intention(Plan * plan, std::uint8_t size);
-
-  virtual ~Intention();
 
   /**
    * Stack plan in _plan stack

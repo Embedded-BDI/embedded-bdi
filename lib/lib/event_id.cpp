@@ -14,8 +14,6 @@ EventID::EventID()
   _id = id++;
 }
 
-EventID::~EventID() {}
-
 bool EventID::is_equal(EventID * event_id)
 {
   return (_id == event_id->_id);

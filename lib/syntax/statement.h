@@ -7,8 +7,12 @@
 
 #ifndef SYNTAX_STATEMENT_H_
 #define SYNTAX_STATEMENT_H_
+
 #include <cstdint>
 
+/**
+ * Represents statement.
+ */
 class Statement
 {
 private:
@@ -20,10 +24,18 @@ public:
 
   Statement(std::uint8_t name);
 
-  virtual ~Statement();
-
+  /**
+   * Compares value of current statement with given statement.
+   * @param stm Statement to be compared
+   * @return true if equal, false otherwise
+   */
   bool is_equal(Statement stm) const;
 
+  /**
+   * Compares value of current statement with given statement.
+   * @param stm Pointer to statement to be compared
+   * @return true if equal, false otherwise
+   */
   bool is_equal(Statement * stm) const;
 
   const std::uint8_t & get_name() const

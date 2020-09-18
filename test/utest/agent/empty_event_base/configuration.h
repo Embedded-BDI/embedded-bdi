@@ -14,7 +14,6 @@
 #include "../../lib/bdi/plan_base.h"
 #include "../../lib/bdi/intention_base.h"
 
-
 class EmptyEventBaseSettings
 {
 private:

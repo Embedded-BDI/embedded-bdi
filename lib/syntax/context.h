@@ -13,6 +13,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Represents the context of a plan.
+ */
 class Context
 {
   /// Vector of ContextConditions
@@ -21,9 +24,11 @@ class Context
   std::uint8_t _size;
 
 public:
+  /**
+   * Context constructor
+   * @param size Max size of context queue
+   */
   Context(std::uint8_t size);
-
-  virtual ~Context();
 
   /**
    * Adds belief to _context buffer

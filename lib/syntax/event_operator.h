@@ -10,12 +10,12 @@
 
 /**
  * Event types:
- *  * BELIEF_ADDITION (+): Addition of belief to belief base
- *  * BELIEF_DELETION (-): Deletion of belief from belief base
- *  * GOAL_ADDITION (+!): Addition of (sub)goal
- *  * GOAL_DELETION (-!): Deletion of (sub)goal
- *  * TEST_GOAL_ADDITION (+?!): Addition of test (sub)goal
- *  * TEST_GOAL_DELETION (+?-): Deletion of test (sub)goal
+ *   * BELIEF_ADDITION (+): Addition of belief to belief base
+ *   * BELIEF_DELETION (-): Deletion of belief from belief base
+ *   * GOAL_ADDITION (+!): Addition of (sub)goal
+ *   * GOAL_DELETION (-!): Deletion of (sub)goal
+ *   * TEST_GOAL_ADDITION (+?!): Addition of test (sub)goal
+ *   * TEST_GOAL_DELETION (+?-): Deletion of test (sub)goal
  */
 enum class EventOperator : unsigned char
 {

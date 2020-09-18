@@ -13,6 +13,9 @@
 #include "context.h"
 #include <cstdint>
 
+/**
+ * Represents agent plan.
+ */
 class Plan
 {
 private:
@@ -30,8 +33,6 @@ public:
    * @param body Body with instructions
    */
   Plan(EventOperator op, Statement stm, Context * context, Body * body);
-
-  virtual ~Plan();
 
   /**
    * Run instruction from Plan Body at specific index

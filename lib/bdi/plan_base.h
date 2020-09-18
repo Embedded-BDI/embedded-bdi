@@ -14,6 +14,9 @@
 #include "../lib/vector_queue.h"
 #include <cstdint>
 
+/**
+ * Collection of agent plans.
+ */
 class PlanBase
 {
 private:
@@ -28,8 +31,6 @@ public:
    * @param size Size of _plan_base buffer
    */
   PlanBase(std::uint8_t size);
-
-  virtual ~PlanBase();
 
   /**
    * Adds plan to plan base

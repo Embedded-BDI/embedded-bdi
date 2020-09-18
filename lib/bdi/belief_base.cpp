@@ -13,8 +13,6 @@ BeliefBase::BeliefBase(std::uint8_t size)
   _belief_base.init(size);
 }
 
-BeliefBase::~BeliefBase() {}
-
 bool BeliefBase::add_belief(Belief belief)
 {
   if (_belief_base.size() == _size)
@@ -22,7 +20,7 @@ bool BeliefBase::add_belief(Belief belief)
     return false;
   }
 
-  _belief_base.add_front(belief);
+  _belief_base.push_front(belief);
   return true;
 }
 
