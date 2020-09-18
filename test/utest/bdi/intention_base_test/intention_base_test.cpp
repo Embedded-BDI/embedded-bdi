@@ -39,18 +39,31 @@ public:
   }
 };
 
-TEST_F(TIntentionBase, run_intention_base)
-{
-  EXPECT_NO_FATAL_FAILURE(intention_base->run_intention_base(NULL, NULL));
 
+TEST_F(TIntentionBase, add_intention)
+{
   for (int i = 0; i < BASES_SIZE; i++)
   {
-    intention_base->add_intention(plan_action_successful);
+    EXPECT_NO_FATAL_FAILURE(intention_base->add_intention(plan_action_successful,
+                                                          NULL));
+  }
+}
+
+TEST_F(TIntentionBase, run_intention_base)
+{
+  EXPECT_NO_FATAL_FAILURE(intention_base->run_intention_base(nullptr,
+                                                             nullptr,
+                                                             nullptr));
+  for (int i = 0; i < BASES_SIZE; i++)
+  {
+    intention_base->add_intention(plan_action_successful, NULL);
   }
 
   for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE * 2); i++)
   {
-    EXPECT_NO_FATAL_FAILURE(intention_base->run_intention_base(NULL, NULL));
+    EXPECT_NO_FATAL_FAILURE(intention_base->run_intention_base(nullptr,
+                                                               nullptr,
+                                                               nullptr));
   }
 }
 
@@ -60,15 +73,34 @@ TEST_F(TIntentionBase, is_empty)
 
   for (int i = 0; i < BASES_SIZE; i++)
   {
-    intention_base->add_intention(plan_action_successful);
+    intention_base->add_intention(plan_action_successful, NULL);
     EXPECT_FALSE(intention_base->is_empty());
   }
 
   for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE); i++)
   {
     EXPECT_FALSE(intention_base->is_empty());
-    intention_base->run_intention_base(nullptr, nullptr);
+    intention_base->run_intention_base(nullptr, nullptr, nullptr);
   }
 
   EXPECT_TRUE(intention_base->is_empty());
+}
+
+TEST_F(TIntentionBase, is_full)
+{
+  EXPECT_FALSE(intention_base->is_full());
+
+  for (int i = 0; i < BASES_SIZE; i++)
+  {
+    EXPECT_FALSE(intention_base->is_full());
+    intention_base->add_intention(plan_action_successful, NULL);
+  }
+  EXPECT_TRUE(intention_base->is_full());
+
+  for (int i = 0; i < (BASES_SIZE * PLAN_BODY_SIZE); i++)
+  {
+    intention_base->run_intention_base(nullptr, nullptr, nullptr);
+  }
+
+  EXPECT_FALSE(intention_base->is_full());
 }

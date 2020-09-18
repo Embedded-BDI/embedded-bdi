@@ -3,52 +3,59 @@
 
 #include <iostream>
 
-bool action_action_1(bool var)
+bool action_1(bool var)
 {
-  std::cout << "Action 1" << std::endl;
+  std::cout << "A" << std::endl;
   return true;
 }
 
-bool action_action_2(bool var)
+bool action_2(bool var)
 {
-  std::cout << "Action 2" << std::endl;
+  std::cout << "B" << std::endl;
   return true;
 }
 
-bool action_action_3(bool var)
+bool action_3(bool var)
 {
-  std::cout << "Action 3" << std::endl;
+  std::cout << "C" << std::endl;
   return true;
 }
 
-bool action_action_4(bool var)
+bool action_4(bool var)
 {
-  std::cout << "Action 4" << std::endl;
+  std::cout << "D" << std::endl;
   return true;
 }
 
-bool action_action_5(bool var)
+bool action_5(bool var)
 {
-  std::cout << "Action 5" << std::endl;
+  std::cout << "E" << std::endl;
   return true;
 }
 
-bool action_action_6(bool var)
+bool update_belief_1(bool var)
 {
-  std::cout << "Action 6" << std::endl;
-  return true;
+  return !var;
 }
 
-bool action_action_7(bool var)
+bool update_belief_2(bool var)
 {
-  std::cout << "Action 7" << std::endl;
-  return false;
+  return !var;
 }
 
-bool action_action_8(bool var)
+bool update_belief_3(bool var)
 {
-  std::cout << "Action 8" << std::endl;
-  return true;
+  return !var;
+}
+
+bool update_belief_4(bool var)
+{
+  return !var;
+}
+
+bool update_belief_5(bool var)
+{
+  return !var;
 }
 
 #endif /* FUNCTIONS_H_ */

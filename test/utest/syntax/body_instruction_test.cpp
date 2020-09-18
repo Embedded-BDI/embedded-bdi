@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "syntax/body_instruction.h"
-#include "../common_test_functions.h"
+
 
 #define BASES_SIZE 2
 
@@ -27,27 +28,27 @@ public:
     bb = new BeliefBase(BASES_SIZE);
     eb = new EventBase(BASES_SIZE);
 
-    Statement stm_a('a');
-    Statement stm_b('b');
-    Belief belief_a(stm_a, nullptr, false);
-    Belief belief_b(stm_b, nullptr, false);
+    Statement stm_0(0);
+    Statement stm_1(1);
+    Belief belief_a(stm_0, nullptr, false);
+    Belief belief_b(stm_1, nullptr, false);
     bb->add_belief(belief_a);
     bb->add_belief(belief_b);
 
     action_true = new BodyInstruction(BodyType::ACTION,
-                                 stm_a,
+                                 stm_0,
                                  return_true_beliefbase);
 
     action_false = new BodyInstruction(BodyType::ACTION,
-                                       stm_a,
+                                       stm_0,
                                        return_false_beliefbase);
 
     belief_operation = new BodyInstruction(BodyType::BELIEF,
-                                           stm_a,
+                                           stm_0,
                                            EventOperator::BELIEF_ADDITION);
 
     goal = new BodyInstruction(BodyType::GOAL,
-                               stm_a,
+                               stm_0,
                                EventOperator::GOAL_ADDITION);
   }
 
@@ -85,7 +86,7 @@ TEST_F(TBodyInstruction, run_instruction)
   EXPECT_TRUE(nullptr != belief_op_result.get_event());
   EXPECT_TRUE(nullptr != goal_result.get_event());
 
-  Statement stm('a');
+  Statement stm(0);
   EXPECT_TRUE(bb->get_belief_state(stm));
 
   EXPECT_TRUE(eb->is_full());

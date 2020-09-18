@@ -10,7 +10,24 @@
 
 #include "body_type.h"
 #include "../bdi/event.h"
+#include <cstdint>
 
+/**
+ * Class to be used to return values after instruction is run.
+ * For each BodyType:
+ *  * Action:
+ *    * type is BodyType::ACTION
+ *    * _value is true if action is successful, false otherwise
+ *    * event is nullptr
+ *  * Belief:
+ *    * type is BodyType::BELIEF
+ *    * _value is true if event is added to EventBase, false otherwise
+ *    * event is pointer to EventID of event created for instruction
+ *  * Goal:
+ *    * type is BodyType::GOAL
+ *    * _value is true if event is added to EventBase, false otherwise
+ *    * event is pointer to EventID of event created for instruction
+ */
 class BodyReturn
 {
 private:
@@ -21,21 +38,7 @@ private:
 public:
   BodyReturn();
 
-  /*
-   * BodyReturn constructor. For each BodyType:
-   *  * Action: type is BodyType::ACTION
-   *            _value is true if action is successful, false otherwise
-   *            event is nullptr
-   *  * Belief: type is BodyType::BELIEF
-   *            _value is true if event is added to EventBase, false otherwise
-   *            event is pointer to EventID of event created for instruction
-   *  * Goal: type is BodyType::GOAL
-   *          _value is true if event is added to EventBase, false otherwise
-   *          event is pointer to EventID of event created for instruction
-   */
   BodyReturn(BodyType type, bool value, EventID * event);
-
-  virtual ~BodyReturn();
 
   EventID * get_event()
   {

@@ -31,9 +31,7 @@ protected:
 public:
   TPlan()
   {
-    test_data = new TestPlanData(BODY_SIZE,
-                                 BELIEF_BASE_SIZE,
-                                 EVENT_BASE_SIZE);
+    test_data = new TestPlanData(BODY_SIZE, BELIEF_BASE_SIZE, EVENT_BASE_SIZE);
     stm = test_data->get_stm();
 
     event_operator = EventOperator::GOAL_ADDITION;
@@ -95,7 +93,7 @@ TEST_F(TPlan, run_body)
 {
   BodyReturn result;
 
-  for (int i = 0; i < plan_valid->get_body()->size(); i++)
+  for (int i = 0; i < plan_valid->get_body()->get_size(); i++)
   {
     result = plan_valid->run_body(i,
                                   test_data->get_belief_base_empty(),
@@ -103,7 +101,7 @@ TEST_F(TPlan, run_body)
     EXPECT_TRUE(result.get_value());
   }
 
-  for (int i = 0; i < plan_valid->get_body()->size(); i++)
+  for (int i = 0; i < plan_valid->get_body()->get_size(); i++)
   {
     result = plan_action->run_body(i,
                                    test_data->get_belief_base_empty(),
@@ -111,7 +109,7 @@ TEST_F(TPlan, run_body)
     EXPECT_FALSE(result.get_value());
   }
 
-  for (int i = 0; i < plan_valid->get_body()->size(); i++)
+  for (int i = 0; i < plan_valid->get_body()->get_size(); i++)
   {
     result = plan_belief->run_body(i,
                                    test_data->get_belief_base_empty(),
@@ -119,7 +117,7 @@ TEST_F(TPlan, run_body)
     EXPECT_TRUE(result.get_value());
   }
 
-  for (int i = 0; i < plan_valid->get_body()->size(); i++)
+  for (int i = 0; i < plan_valid->get_body()->get_size(); i++)
   {
     result = plan_belief->run_body(i,
                                    test_data->get_belief_base_empty(),
@@ -127,7 +125,7 @@ TEST_F(TPlan, run_body)
     EXPECT_FALSE(result.get_value());
   }
 
-  for (int i = 0; i < plan_valid->get_body()->size(); i++)
+  for (int i = 0; i < plan_valid->get_body()->get_size(); i++)
   {
     result = plan_goal->run_body(i,
                                  test_data->get_belief_base_empty(),
@@ -135,7 +133,7 @@ TEST_F(TPlan, run_body)
     EXPECT_TRUE(result.get_value());
   }
 
-  for (int i = 0; i < plan_valid->get_body()->size(); i++)
+  for (int i = 0; i < plan_valid->get_body()->get_size(); i++)
   {
     result = plan_goal->run_body(i,
                                  test_data->get_belief_base_empty(),

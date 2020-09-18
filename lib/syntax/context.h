@@ -10,26 +10,37 @@
 
 #include "context_condition.h"
 #include "../bdi/belief_base.h"
-#include <vector>
+#include "../lib/vector_queue.h"
+#include <cstdint>
 
+/**
+ * Represents the context of a plan.
+ */
 class Context
 {
-  std::vector <ContextCondition> _context;
+  /// Vector of ContextConditions
+  VectorQueue <ContextCondition> _context;
+  /// Max size of _context vector
+  std::uint8_t _size;
 
 public:
-  Context(int size);
+  /**
+   * Context constructor
+   * @param size Max size of context queue
+   */
+  Context(std::uint8_t size);
 
-  virtual ~Context();
-
-  /*
+  /**
    * Adds belief to _context buffer
    * @param value ContextCondition to be added
    * @return true if value is added to buffer, false otherwise
    */
   bool add_context(ContextCondition value);
 
-  /*
+  /**
    * Checks if context is valid
+   * @param beliefs Checks if statements from vector of ContextConditions have
+   * the expected values given the BeliefBase
    */
   bool is_valid (BeliefBase * beliefs);
 };

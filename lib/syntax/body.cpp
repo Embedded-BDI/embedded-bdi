@@ -7,14 +7,15 @@
 
 #include "body.h"
 
-Body::Body(int size)
+Body::Body(std::uint8_t size)
 {
-  _body.reserve(size);
+  _size = size;
+  _body.init(size);
 }
 
-Body::~Body() {}
-
-BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
+BodyReturn Body::run_body(std::uint8_t index,
+                          BeliefBase * beliefs,
+                          EventBase * events)
 {
   BodyReturn result;
 
@@ -24,7 +25,9 @@ BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
   }
   else
   {
-    result = _body.at(index).run_instruction(beliefs, events);
+//    std::uint8_t reverse_index = _body.size() - index - 1;
+//    result = _body.item_at(reverse_index)->run_instruction(beliefs, events);
+    result = _body.item_at(index)->run_instruction(beliefs, events);
   }
 
   return result;
@@ -32,16 +35,18 @@ BodyReturn Body::run_body(int index, BeliefBase * beliefs, EventBase * events)
 
 bool Body::add_instruction(BodyInstruction instruction)
 {
-  if (_body.size() == _body.capacity())
+  if (_body.size() == _size)
   {
     return false;
   }
 
+//  _body.push_front(instruction);
   _body.push_back(instruction);
+
   return true;
 }
 
-int Body::size()
+std::uint8_t Body::get_size()
 {
   return _body.size();
 }

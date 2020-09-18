@@ -8,13 +8,15 @@
 #ifndef UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_
 #define UTEST_BDI_INTENTION_TEST_TEST_INTENTION_DATA_H_
 
+#include "common_lib.h"
 #include "syntax/plan.h"
-#include "../../common_test_functions.h"
+
 
 class TestIntentionData {
 private:
   BeliefBase * belief_base;
   EventBase * event_base_empty;
+  PlanBase * plan_base;
   Statement stm;
   Context * context_valid;
   Body * body_action_successful;
@@ -22,6 +24,7 @@ private:
   Body * body_belief;
   Plan * plan_action_successful;
   Plan * plan_action_fails;
+  Plan * plan_action_fails_handling;
   Plan * plan_belief;
 
 public:
@@ -33,6 +36,7 @@ public:
 
     event_base_empty = new EventBase(bases_size);
     belief_base = new BeliefBase(bases_size);
+    plan_base = new PlanBase(bases_size);
 
     Belief belief(stm, nullptr);
 
@@ -74,6 +78,14 @@ public:
                                  body_action_fails);
 
     /*
+     * Creates plan to handle plan failure (-!)
+     */
+    plan_action_fails_handling = new Plan(EventOperator::GOAL_DELETION,
+                                          stm,
+                                          context_valid,
+                                          body_action_successful);
+
+    /*
      * Creates plan full of belief events
      */
     body_belief = new Body(body_size);
@@ -95,11 +107,13 @@ public:
   {
     delete event_base_empty;
     delete belief_base;
+    delete plan_base;
     delete body_action_successful;
     delete body_action_fails;
     delete body_belief;
     delete plan_action_successful;
     delete plan_action_fails;
+    delete plan_action_fails_handling;
     delete plan_belief;
   }
 
@@ -111,6 +125,11 @@ public:
   EventBase * get_event_base_empty()
   {
     return event_base_empty;
+  }
+
+  PlanBase * get_plan_base()
+  {
+    return plan_base;
   }
 
   Statement get_statement()
@@ -126,6 +145,11 @@ public:
   Plan * get_plan_action_fails()
   {
     return plan_action_fails;
+  }
+
+  Plan * get_plan_action_fails_handling()
+  {
+    return plan_action_fails_handling;
   }
 
   Plan * get_plan_belief()

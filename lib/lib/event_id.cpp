@@ -7,14 +7,12 @@
 
 #include "event_id.h"
 
-int EventID::id = 0;
+std::uint8_t EventID::id = 0;
 
 EventID::EventID()
 {
   _id = id++;
 }
-
-EventID::~EventID() {}
 
 bool EventID::is_equal(EventID * event_id)
 {

@@ -17,10 +17,10 @@ protected:
 public:
   TContextCondition()
   {
-    Statement stm_a('a');
-    Statement stm_b('b');
-    context_condition_true = new ContextCondition(stm_a, true);
-    context_condition_false = new ContextCondition(stm_b, false);
+    Statement stm_0(0);
+    Statement stm_1(1);
+    context_condition_true = new ContextCondition(stm_0, true);
+    context_condition_false = new ContextCondition(stm_1, false);
   }
 
   ~TContextCondition()
@@ -44,8 +44,8 @@ TEST_F(TContextCondition, is_true)
  */
 TEST_F(TContextCondition, get_statement)
 {
-  Statement stm_a('a');
-  Statement stm_b('b');
-  EXPECT_TRUE(context_condition_true->get_statement().is_equal(stm_a));
-  EXPECT_TRUE(context_condition_false->get_statement().is_equal(stm_b));
+  Statement stm_0(0);
+  Statement stm_1(1);
+  EXPECT_TRUE(context_condition_true->get_statement().is_equal(stm_0));
+  EXPECT_TRUE(context_condition_false->get_statement().is_equal(stm_1));
 }

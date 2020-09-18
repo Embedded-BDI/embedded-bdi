@@ -12,5 +12,3 @@ Event::Event(EventOperator op, Statement stm)
    _operator = op;
    _statement = stm;
 }
-
-Event::~Event() {}

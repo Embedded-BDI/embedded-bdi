@@ -8,23 +8,37 @@
 #ifndef SYNTAX_STATEMENT_H_
 #define SYNTAX_STATEMENT_H_
 
+#include <cstdint>
+
+/**
+ * Represents statement.
+ */
 class Statement
 {
 private:
-  unsigned char _name;
+  /// Statement name
+  std::uint8_t _name;
 
 public:
   Statement();
 
-  Statement(unsigned char name);
+  Statement(std::uint8_t name);
 
-  virtual ~Statement();
-
+  /**
+   * Compares value of current statement with given statement.
+   * @param stm Statement to be compared
+   * @return true if equal, false otherwise
+   */
   bool is_equal(Statement stm) const;
 
+  /**
+   * Compares value of current statement with given statement.
+   * @param stm Pointer to statement to be compared
+   * @return true if equal, false otherwise
+   */
   bool is_equal(Statement * stm) const;
 
-  const unsigned char & get_name() const
+  const std::uint8_t & get_name() const
   {
     return _name;
   }

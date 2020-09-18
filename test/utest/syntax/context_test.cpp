@@ -27,17 +27,17 @@ public:
     context_empty = new Context(SIZES);
     belief_base = new BeliefBase(SIZES);
 
-    Statement stm_a('a');
-    Statement stm_b('b');
-    Statement stm_c('c');
+    Statement stm_0(0);
+    Statement stm_1(1);
+    Statement stm_2(2);
 
-    cond_1 = new ContextCondition(stm_a, true);
-    cond_2 = new ContextCondition(stm_b, true);
-    cond_3 = new ContextCondition(stm_c, false);
+    cond_1 = new ContextCondition(stm_0, true);
+    cond_2 = new ContextCondition(stm_1, true);
+    cond_3 = new ContextCondition(stm_2, false);
 
-    Belief belief_a(stm_a, nullptr, true);
-    Belief belief_b(stm_b, nullptr, true);
-    Belief belief_c(stm_c, nullptr, false);
+    Belief belief_a(stm_0, nullptr, true);
+    Belief belief_b(stm_1, nullptr, true);
+    Belief belief_c(stm_2, nullptr, false);
 
     belief_base->add_belief(belief_a);
     belief_base->add_belief(belief_b);

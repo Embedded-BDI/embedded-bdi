@@ -20,5 +20,3 @@ BodyReturn::BodyReturn(BodyType type, bool value, EventID * event)
   _value = value;
   _event = event;
 }
-
-BodyReturn::~BodyReturn() {}

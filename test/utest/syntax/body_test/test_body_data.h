@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "bdi/belief_base.h"
 #include "syntax/body_instruction.h"
-#include "../../common_test_functions.h"
+
 
 class TestBodyData {
 private:
@@ -20,7 +21,7 @@ public:
     _belief_base = new BeliefBase(size);
     _event_base = new EventBase(size);
 
-    Statement stm('a');
+    Statement stm(0);
     Belief belief(stm, nullptr, true);
     for (int i = 0; i < size; i++)
     {
@@ -46,28 +47,28 @@ public:
 
   BodyInstruction get_action_true()
   {
-    Statement stm('a');
+    Statement stm(0);
     BodyInstruction action(BodyType::ACTION, stm, return_true_beliefbase);
     return action;
   }
 
   BodyInstruction get_action_false()
   {
-    Statement stm('a');
+    Statement stm(0);
     BodyInstruction action(BodyType::ACTION, stm, return_false_beliefbase);
     return action;
   }
 
   BodyInstruction get_belief_operation()
   {
-    Statement stm('a');
+    Statement stm(0);
     BodyInstruction bf(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
     return bf;
   }
 
   BodyInstruction get_goal()
   {
-    Statement stm('a');
+    Statement stm(0);
     BodyInstruction goal(BodyType::GOAL, stm, EventOperator::GOAL_ADDITION);
     return goal;
   }

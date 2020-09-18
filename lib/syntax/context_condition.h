@@ -9,25 +9,25 @@
 #define SYNTAX_CONTEXT_CONDITION_H_
 
 #include "statement.h"
+#include <cstdint>
 
-/*
- * Represents a literal from the plan's context
+/**
+ * Represents a literal from the plan's context.
  */
 class ContextCondition
 {
 private:
   Statement _statement;
+  /// Whether the expected value is true or false
   bool _is_true;
 
 public:
-  /*
+  /**
    * ContextCondition constructor
    * @param stm Statement to be compared with belief from BeliefBase
-   * @para negation Whether the statement should be considered true or false
+   * @param negation Whether the statement should be considered true or false
    */
   ContextCondition(Statement stm, bool negation);
-
-  virtual ~ContextCondition();
 
   bool is_true() const
   {

@@ -8,14 +8,14 @@
 #ifndef SYNTAX_EVENT_OPERATOR_H_
 #define SYNTAX_EVENT_OPERATOR_H_
 
-/*
+/**
  * Event types:
- *  +   Addition of belief to belief base
- *  -   Deletion of belief from belief base
- *  +!  Addition of (sub)goal
- *  -!  Deletion of (sub)goal
- *  +?! Addition of test (sub)goal
- *  +?- Deletion of test (sub)goal
+ *   * BELIEF_ADDITION (+): Addition of belief to belief base
+ *   * BELIEF_DELETION (-): Deletion of belief from belief base
+ *   * GOAL_ADDITION (+!): Addition of (sub)goal
+ *   * GOAL_DELETION (-!): Deletion of (sub)goal
+ *   * TEST_GOAL_ADDITION (+?!): Addition of test (sub)goal
+ *   * TEST_GOAL_DELETION (+?-): Deletion of test (sub)goal
  */
 enum class EventOperator : unsigned char
 {

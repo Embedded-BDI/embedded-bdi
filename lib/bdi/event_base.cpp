@@ -7,13 +7,11 @@
 
 #include "event_base.h"
 
-EventBase::EventBase(int size)
+EventBase::EventBase(std::uint8_t size)
 {
   _size = size;
-  _pending_events.reserve(size);
+  _pending_events.init(size);
 }
-
-EventBase::~EventBase() {}
 
 bool EventBase::add_event(EventOperator op, Statement stm)
 {
@@ -23,7 +21,7 @@ bool EventBase::add_event(EventOperator op, Statement stm)
   }
 
   Event event(op,stm);
-  _pending_events.insert(_pending_events.begin(), event);
+  _pending_events.push_front(event);
   return true;
 }
 
@@ -34,7 +32,7 @@ Event * EventBase::get_event()
     return nullptr;
   }
 
-  Event * event = new Event(_pending_events.back());
+  Event * event = new Event(*_pending_events.back());
   _pending_events.pop_back();
   return event;
 }
@@ -47,15 +45,15 @@ Event * EventBase::last_event()
   }
   else
   {
-    return &_pending_events.front();
+    return _pending_events.front();
   }
 }
 
 bool EventBase::event_exists(EventID * event_id)
 {
-  for(std::vector<Event>::iterator it = _pending_events.begin(); it != _pending_events.end(); ++it)
+  for (std::uint8_t i = 0; i < _pending_events.size(); i++)
   {
-    if (event_id->is_equal(it->get_event_id()))
+    if (event_id->is_equal(_pending_events.item_at(i)->get_event_id()))
     {
       return true;
     }

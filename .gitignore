@@ -33,5 +33,12 @@ config/configuration.h
 
 ###################################################
 
+# Doxygen
+docs/html
+docs/latex
+docs/.settings
+
+###################################################
+
 # OSX
 .DS_Store

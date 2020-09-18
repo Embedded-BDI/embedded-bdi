@@ -11,36 +11,43 @@
 #include "body_instruction.h"
 #include "../bdi/belief_base.h"
 #include "../bdi/event_base.h"
-#include <vector>
+#include "../lib/vector_queue.h"
+#include <cstdint>
 
+/**
+ * Represents plan body with collection of body instructions.
+ */
 class Body
 {
-  std::vector <BodyInstruction> _body;
+  /// Vector of BodyInstructions
+  VectorQueue<BodyInstruction> _body;
+  /// Max size of _body vector
+  std::uint8_t _size;
 
 public:
-  /*
+  /**
    * Body constructor
    * @param size Size of _body
    */
-  Body(int size);
+  Body(std::uint8_t size);
 
-  virtual ~Body();
-
-  /*
-   * Run instruction from body at specific position
-   * @param index Position in body of instruction to be run
+  /**
+   * Run instruction from Body at specific position
+   * @param index Position in Body of instruction to be run
    * @param beliefs Agent's BeliefBase
    * @param events Agent's EventBase
    */
-  BodyReturn run_body(int index, BeliefBase * beliefs, EventBase * events);
+  BodyReturn run_body(std::uint8_t index,
+                      BeliefBase * beliefs,
+                      EventBase * events);
 
-  /*
-   * Adds instruction to body
-   * @param instruction Instruction to add
+  /**
+   * Adds instruction to Body
+   * @param instruction BodyInstruction to add to _body vector
    */
   bool add_instruction(BodyInstruction instruction);
 
-  int size();
+  std::uint8_t get_size();
 };
 
 #endif /* SYNTAX_BODY_H_ */

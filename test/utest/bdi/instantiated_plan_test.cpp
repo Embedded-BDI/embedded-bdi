@@ -5,9 +5,10 @@
  *      Author: Matuzalem Muller
  */
 
+#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "bdi/instantiated_plan.h"
-#include "../common_test_functions.h"
+
 
 #define BODY_SIZE 3
 #define BASES_SIZE 3
@@ -33,21 +34,21 @@ public:
       event_base_full->add_event(EventOperator::BELIEF_ADDITION, event);
     }
 
-    Statement stm_plan('p');
-    Statement stm_a('a');
-    Statement stm_b('c');
-    Statement stm_g('g');
+    Statement stm_0(0);
+    Statement stm_1(1);
+    Statement stm_2(2);
+    Statement stm_3(3);
 
     Context * ctx = new Context(0);
 
     BodyInstruction body_a(BodyType::ACTION,
-                           stm_a,
+                           stm_1,
                            return_true_beliefbase);
     BodyInstruction body_b(BodyType::BELIEF,
-                           stm_b,
+                           stm_2,
                            EventOperator::BELIEF_ADDITION);
     BodyInstruction body_g(BodyType::GOAL,
-                           stm_g,
+                           stm_3,
                            EventOperator::GOAL_ADDITION);
 
     Body * body = new Body(BODY_SIZE);
@@ -55,7 +56,7 @@ public:
     body->add_instruction(body_b);
     body->add_instruction(body_g);
 
-    Plan * plan = new Plan(EventOperator::BELIEF_ADDITION, stm_plan, ctx, body);
+    Plan * plan = new Plan(EventOperator::BELIEF_ADDITION, stm_0, ctx, body);
 
     inst_plan = new InstantiatedPlan(plan);
   }

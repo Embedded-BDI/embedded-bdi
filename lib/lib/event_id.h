@@ -8,40 +8,41 @@
 #ifndef LIB_EVENT_ID_H_
 #define LIB_EVENT_ID_H_
 
-/*
- * Represents Event Unique Identifier
+#include <cstdint>
+
+/**
+ * Represents Event Unique Identifier.
  * Class can be modified to use other control and data representation such as
- * UUID for better handling of events
+ * UUID for better handling of events.
  */
 class EventID
 {
 private:
-  int _id;
+  /// Unique Event identifier
+  std::uint8_t _id;
 
 protected:
-  static int id;
+  static std::uint8_t id;
 
 public:
   EventID();
 
-  virtual ~EventID();
-
-  /*
-   * Compares given ID with _id
-   * @return True if event_id is equal to _id, false otherwise
+  /**
+   * Compares given ID with object _id
+   * @return True if event_id is equal to object _id, false otherwise
    */
   bool is_equal(EventID * event_id);
 
-  const int get_id() const
+  const std::uint8_t get_id() const
   {
     return _id;
   }
 
-  /*
+  /**
    * Returns EventID's main counter
    * @return id
    */
-  int get_control_id()
+  static std::uint8_t get_control_id()
   {
     return EventID::id;
   }

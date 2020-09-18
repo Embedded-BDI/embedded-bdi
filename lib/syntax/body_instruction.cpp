@@ -7,7 +7,9 @@
 
 #include "body_instruction.h"
 
-BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool (*take_action)(bool var))
+BodyInstruction::BodyInstruction(BodyType type,
+                                 Statement stm,
+                                 bool (*take_action)(bool var))
 {
   _type = type;
   _statement = stm;
@@ -15,7 +17,9 @@ BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool (*take_actio
   _operator = EventOperator::BELIEF_ADDITION;
 }
 
-BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator event_operator)
+BodyInstruction::BodyInstruction(BodyType type,
+                                 Statement stm,
+                                 EventOperator event_operator)
 {
   _type = type;
   _statement = stm;
@@ -24,7 +28,8 @@ BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator eve
 }
 
 // Add handling of belief that is not in beliefbase
-BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase * event_base)
+BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
+                                            EventBase * event_base)
 {
   BodyReturn result;
 
@@ -45,7 +50,10 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
       {
         belief_base->change_belief_state(_statement, false);
       }
-      result = BodyReturn(BodyType::BELIEF, true, event_base->last_event()->get_event_id());
+      result = BodyReturn(BodyType::BELIEF,
+                          true,
+                          event_base->last_event()->get_event_id()
+                          );
     }
     else
     {
@@ -56,7 +64,11 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base, EventBase 
   {
     if (event_base->add_event(_operator, _statement))
     {
-      result = BodyReturn(BodyType::GOAL, true, event_base->last_event()->get_event_id());
+      result = BodyReturn(
+                          BodyType::GOAL,
+                          true,
+                          event_base->last_event()->get_event_id()
+                          );
     }
     else
     {
