@@ -3,6 +3,20 @@
  *
  *  Created on: Sep 15, 2020
  *      Author: Matuzalem Muller
+ *
+ *
+ * AgentSpeak code:
+ *
+ *   goal1.
+ *   goal2.
+ *   goal3.
+ *
+ *   +!goal1 <- action_1_multiple_intentions; !goal2.
+ *   +!goal2 <- action_2_multiple_intentions.
+ *   +!goal3 <- action_3_multiple_intentions; !goal4.
+ *   +!goal4 <- action_4_multiple_intentions.
+ *   +!goal5 <- action_5_multiple_intentions; !goal6.
+ *   +!goal6 <- action_6_multiple_intentions.
  */
 
 #include "common_lib.h"

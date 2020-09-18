@@ -2,6 +2,7 @@ package translator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.io.FileInputStream;
 
 import jason.asSemantics.Agent;
@@ -30,7 +31,7 @@ public class As2Json
       ag.initAg();
       parser.agent(ag);
 
-      HashMap<String, Boolean> beliefs = this.getBeliefs(ag);
+      TreeMap<String, Boolean> beliefs = this.getBeliefs(ag);
       ArrayList<String> events = this.getEvents(ag);
       ArrayList<PlanSkeleton> plans = this.getPlans(ag);
 
@@ -43,10 +44,10 @@ public class As2Json
     }
   }
 
-  // Capture all beliefs from code file and create corresponding HashMap
-  private HashMap<String, Boolean> getBeliefs(Agent ag)
+  // Capture all beliefs from code file and create corresponding TreeMap
+  private TreeMap<String, Boolean> getBeliefs(Agent ag)
   {
-    HashMap<String, Boolean> beliefs = new HashMap<String, Boolean>();
+    TreeMap<String, Boolean> beliefs = new TreeMap<String, Boolean>();
     
     // Capture all initial beliefs
     for (Literal lit : ag.getInitialBels())

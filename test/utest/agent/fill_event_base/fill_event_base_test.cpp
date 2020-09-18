@@ -57,10 +57,6 @@ TEST_F(TFillEventBaseSettings, fill_event_base)
   EXPECT_FALSE(events->is_full());
   agent->run();
   EXPECT_FALSE(events->is_empty());
-  EXPECT_FALSE(events->is_full());
-
-  Statement stm(1);
-  events->add_event(EventOperator::GOAL_ADDITION, stm);
   EXPECT_TRUE(events->is_full());
 
   for (int i = 8; i > 0; i--)

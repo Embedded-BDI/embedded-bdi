@@ -20,7 +20,7 @@ bool BeliefBase::add_belief(Belief belief)
     return false;
   }
 
-  _belief_base.push_front(belief);
+  _belief_base.push_back(belief);
   return true;
 }
 

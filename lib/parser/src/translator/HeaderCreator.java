@@ -6,10 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class HeaderCreator
 {
-  private HashMap<String, Boolean> beliefs;
+  private TreeMap<String, Boolean> beliefs;
   private ArrayList<String> events;
   private ArrayList<PlanSkeleton> plans;
   private int event_base_size;
@@ -23,7 +24,7 @@ public class HeaderCreator
   private String function_file;
 
   public HeaderCreator (
-                        HashMap<String, Boolean> beliefs,
+                        TreeMap<String, Boolean> beliefs,
                         ArrayList<String> events,
                         ArrayList<PlanSkeleton> plans,
                         int event_base_size,

@@ -55,7 +55,7 @@ public:
   }
 };
 
-TEST_F(TFailedIntention, test)
+TEST_F(TFailedIntention, failed_intention)
 {
   EXPECT_TRUE(events->is_full());
   EXPECT_TRUE(intentions->is_empty());
