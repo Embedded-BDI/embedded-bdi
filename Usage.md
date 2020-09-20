@@ -37,6 +37,10 @@ Currently, only propositional logic and simple plan context is supported by the 
 -!goal3 <- action_3.
 ```
 
+## Build agent
+
+To create the agent executable, run `make all` to run the agent code translation and build the reasoning cycle. The executable will be available at `build/agent.out`.
+
 ## Advanced
 
 Since the agent aims to be run in embedded platforms, resource usage must be limited. As a result, the size of the Event Base, Intention Base and stack of Plans per Intention can be defined in the `translate.sh` file.

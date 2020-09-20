@@ -1,8 +1,8 @@
 ## Description
 
-Programming of embedded agents using propositional logic & BDI architecture for embedded systems.
+Master's thesis on programming of embedded agents using propositional logic & BDI architecture for embedded systems.
 
-GitHub repository: http://github.com/matuzalemmuller/embedded-bdi
+[GitHub repository](http://github.com/matuzalemmuller/embedded-bdi)
 
 ## Requirements:
 * [OpenJDK](https://openjdk.java.net/) (or [Java SDK](https://www.oracle.com/java/technologies/javase-downloads.html)).
@@ -14,7 +14,7 @@ GitHub repository: http://github.com/matuzalemmuller/embedded-bdi
 
 HTML documentation can be generated using [Doxygen](https://www.doxygen.nl/download.html). To generate the documentation, simply run `make docs` at the root folder of the repository or check the [docs](docs/) folder for more details.
 
-## AgentSpeak code translation
+## Building Agent
 
 See the [usage](Usage.md) documentation for more information.
 
