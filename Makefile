@@ -46,11 +46,11 @@ $(BUILD_DIR)/%.cc.o: %.cc
 	$(MKDIR_P) $(dir $@)
 	$(CXX) $(TEST_CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-all: test agent
+all: tests translate agent
 
 agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
 
-test: $(BUILD_DIR)/$(TEST_EXEC)
+tests: $(BUILD_DIR)/$(TEST_EXEC)
 
 translate:
 	./translate.sh

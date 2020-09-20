@@ -55,7 +55,7 @@ public:
     Body * body_0 = new Body(1);
 
     Statement stm_0_body_0(5);
-    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_1);
+    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_action_1);
     body_0->add_instruction(inst_0_0);
 
     Plan plan_0(EventOperator::BELIEF_ADDITION, stm_0, context_0, body_0);
@@ -68,7 +68,7 @@ public:
     Body * body_1 = new Body(1);
 
     Statement stm_1_body_0(6);
-    BodyInstruction inst_0_1(BodyType::ACTION, stm_1_body_0, action_2);
+    BodyInstruction inst_0_1(BodyType::ACTION, stm_1_body_0, action_action_2);
     body_1->add_instruction(inst_0_1);
 
     Plan plan_1(EventOperator::BELIEF_ADDITION, stm_1, context_1, body_1);
@@ -81,7 +81,7 @@ public:
     Body * body_2 = new Body(1);
 
     Statement stm_2_body_0(7);
-    BodyInstruction inst_0_2(BodyType::ACTION, stm_2_body_0, action_3);
+    BodyInstruction inst_0_2(BodyType::ACTION, stm_2_body_0, action_action_3);
     body_2->add_instruction(inst_0_2);
 
     Plan plan_2(EventOperator::BELIEF_ADDITION, stm_2, context_2, body_2);
@@ -94,7 +94,7 @@ public:
     Body * body_3 = new Body(1);
 
     Statement stm_3_body_0(8);
-    BodyInstruction inst_0_3(BodyType::ACTION, stm_3_body_0, action_4);
+    BodyInstruction inst_0_3(BodyType::ACTION, stm_3_body_0, action_action_4);
     body_3->add_instruction(inst_0_3);
 
     Plan plan_3(EventOperator::BELIEF_ADDITION, stm_3, context_3, body_3);
@@ -107,7 +107,7 @@ public:
     Body * body_4 = new Body(1);
 
     Statement stm_4_body_0(9);
-    BodyInstruction inst_0_4(BodyType::ACTION, stm_4_body_0, action_5);
+    BodyInstruction inst_0_4(BodyType::ACTION, stm_4_body_0, action_action_5);
     body_4->add_instruction(inst_0_4);
 
     Plan plan_4(EventOperator::BELIEF_ADDITION, stm_4, context_4, body_4);

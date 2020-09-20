@@ -3,31 +3,31 @@
 
 #include <iostream>
 
-bool action_1(bool var)
+bool action_action_1(bool var)
 {
   std::cout << "A" << std::endl;
   return true;
 }
 
-bool action_2(bool var)
+bool action_action_2(bool var)
 {
   std::cout << "B" << std::endl;
   return true;
 }
 
-bool action_3(bool var)
+bool action_action_3(bool var)
 {
   std::cout << "C" << std::endl;
   return true;
 }
 
-bool action_4(bool var)
+bool action_action_4(bool var)
 {
   std::cout << "D" << std::endl;
   return true;
 }
 
-bool action_5(bool var)
+bool action_action_5(bool var)
 {
   std::cout << "E" << std::endl;
   return true;

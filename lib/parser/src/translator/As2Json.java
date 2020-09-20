@@ -48,7 +48,7 @@ public class As2Json
   private TreeMap<String, Boolean> getBeliefs(Agent ag)
   {
     TreeMap<String, Boolean> beliefs = new TreeMap<String, Boolean>();
-    
+
     // Capture all initial beliefs
     for (Literal lit : ag.getInitialBels())
     {

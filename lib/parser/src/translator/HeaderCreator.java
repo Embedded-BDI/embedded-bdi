@@ -159,7 +159,7 @@ public class HeaderCreator
                  "inst_" + plan.getBodyInstruction().indexOf(body) + "_"       +
                  plan_count + "(BodyType::" + body.getType() + ", " + "stm_"   +
                  plan_count+ "_body_"+ plan.getBodyInstruction().indexOf(body) +
-                 ", " + argument + ");\n    body_" + plan_count                +
+                 ", action_" + argument + ");\n    body_" + plan_count         +
                  "->add_instruction(inst_"                                     + 
                  plan.getBodyInstruction().indexOf(body) + "_" + plan_count    +
                  ");\n\n";
@@ -218,8 +218,9 @@ public class HeaderCreator
         {
           if (body.getType() == BodyInstruction.BodyType.ACTION)
           {
-            if (funcs.indexOf(body.getStatement() + "(boolvar)") != -1) {
-              action_functions.add(body.getStatement());
+            System.out.println("boolaction_" + body.getStatement() + "(boolvar)");
+            if (funcs.indexOf("boolaction_" + body.getStatement() + "(boolvar)") != -1) {
+              action_functions.add("action_" + body.getStatement());
             }
             else
             {
