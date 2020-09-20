@@ -48,9 +48,12 @@ $(BUILD_DIR)/%.cc.o: %.cc
 
 all: test agent
 
-agent: $(BUILD_DIR)/$(AGENT_EXEC)
+agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
 
 test: $(BUILD_DIR)/$(TEST_EXEC)
+
+translate:
+	./translate.sh
 
 docs:
 	if [ -d "/Applications/Doxygen.app/Contents/Resources" ]; \
