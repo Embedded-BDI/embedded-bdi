@@ -7,7 +7,7 @@
  *
  * AgentSpeak code:
  *
- *   goal1.
+ *   !goal1.
  *
  *   +!goal1 <- action_1_simple_intention; action_2_simple_intention; action_3_simple_intention; action_4_simple_intention; action_5_simple_intention.
  */

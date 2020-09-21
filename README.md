@@ -14,10 +14,10 @@ Master's thesis on programming of embedded agents using propositional logic & BD
 
 HTML documentation can be generated using [Doxygen](https://www.doxygen.nl/download.html). To generate the documentation, simply run `make docs` at the root folder of the repository or check the [docs](docs/) folder for more details.
 
-## Building Agent
-
-See the [usage](Usage.md) documentation for more information.
-
 ## Unit Tests
 
-[CircleCI](https://circleci.com/) is used for continuous integration and all code committed to the `master/main` branch passed Unit Tests. To run the tests locally, run `make tests` and then run the binary available at `build/unittest.out`.
+[CircleCI](https://circleci.com/) is used for continuous integration and all code committed to the `master/main` branch passed Unit Tests. To run the tests locally, run `make tests` and then execute the binary available at `build/unittest.out`.
+
+## Build Agent
+
+See the [usage](Usage.md) documentation for more information.

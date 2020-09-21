@@ -7,7 +7,7 @@
  *
  * AgentSpeak code:
  *
- *   goal1.
+ *   !goal1.
  *
  *   +!goal1 <- action_1_1_overflow_stacked_intention; !goal2; action_1_2_overflow_stacked_intention.
  *   +!goal2 <- action_2_1_overflow_stacked_intention; !goal3; action_2_2_overflow_stacked_intention.

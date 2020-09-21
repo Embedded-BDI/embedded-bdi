@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run:
           name: Installing GCC, G++ and Make
-          command: 'apt-get update && apt-get install -y gcc g++ make'
+          command: 'apt-get update && apt-get install -y gcc g++ make doxygen'
       - run:
-          name: Build unit tests
-          command: 'make tests'
+          name: Build all
+          command: 'make all'
       - run:
           name: Run Unit Tests
           command: './build/unittest.out'

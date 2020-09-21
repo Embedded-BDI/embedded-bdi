@@ -1,6 +1,6 @@
 ## Usage
 
-In order to generate the agent code, two files are necessary: `data/functions.h` and `data/agentpeak.asl`. The former contains the functions to update beliefs and act in the environment, while the latter contains the agent code.
+In order to generate the agent executable, two files are necessary: `data/functions.h` and `data/agentpeak.asl`. The former contains the functions to update beliefs and act in the environment, and the latter contains the agent code.
 
 ### Functions file
 
@@ -21,7 +21,7 @@ bool update_open_door(bool var)
 
 ### AgentSpeak file
 
-Currently, only propositional logic and simple plan context is supported by the agent. Example of agent code supported is displayed below:
+Currently, only propositional logic and simple plan context is supported by the tool. Example of agent code supported is displayed below:
 
 ```
 !goal1.
@@ -39,11 +39,11 @@ Currently, only propositional logic and simple plan context is supported by the 
 
 ## Build agent
 
-To create the agent executable, run `make all` to run the agent code translation and build the reasoning cycle. The executable will be available at `build/agent.out`.
+To create the agent executable, run `make all` to perform the AgentSpeak code translation and build the agent executable. The executable will be available at `build/agent.out`.
 
 ## Advanced
 
-Since the agent aims to be run in embedded platforms, resource usage must be limited. As a result, the size of the Event Base, Intention Base and stack of Plans per Intention can be defined in the `translate.sh` file.
+Since the agent aims to be run in embedded platforms, resource usage must be limited. As a result, the size of the Event Base, Intention Base and stack of Plans per Intention must be defined in the `bases_size.mk` file.
 
 ```
 EVENT_BASE_SIZE=6

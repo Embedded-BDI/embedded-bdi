@@ -7,7 +7,7 @@ AGENT_EXEC ?= agent.out
 DOCS_DIR ?= ./docs
 BUILD_DIR ?= ./build
 TEST_DIRS ?= ./lib ./test
-AGENT_DIRS ?= ./lib ./src
+AGENT_DIRS ?= ./lib ./data ./src
 TEST_SRCS := $(shell find $(TEST_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
 AGENT_SRCS := $(shell find $(AGENT_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
 TEST_OBJS := $(TEST_SRCS:%=$(BUILD_DIR)/%.o)
@@ -46,29 +46,41 @@ $(BUILD_DIR)/%.cc.o: %.cc
 	$(MKDIR_P) $(dir $@)
 	$(CXX) $(TEST_CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-all: tests translate agent
+all: tests translate agent docs
 
 agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
 
 tests: $(BUILD_DIR)/$(TEST_EXEC)
 
 translate:
-	./translate.sh
+	javac -cp lib/parser/lib/jason-2.6.jar                                    \
+            lib/parser/src/translator/As2Json.java                          \
+            lib/parser/src/translator/PlanSkeleton.java                     \
+            lib/parser/src/translator/BodyInstruction.java                  \
+            lib/parser/src/translator/EventOperatorType.java                \
+            lib/parser/src/translator/HeaderCreator.java
+
+	java -cp lib/parser/lib/jason-2.6.jar:lib/parser/src                      \
+           translator.As2Json                                               \
+           data/agentspeak.asl                                              \
+           data/functions.h                                                 \
+           src/config/configuration.h                                       \
+           $(EVENT_BASE_SIZE) $(INTENTION_BASE_SIZE) $(INTENTION_STACK_SIZE)
 
 docs:
-	if [ -d "/Applications/Doxygen.app/Contents/Resources" ]; \
-	then \
-		cd $(DOCS_DIR); \
-		/Applications/Doxygen.app/Contents/Resources/doxygen Doxygen.doxyfile; \
-	else \
-		if [ $(command -v doxygen) ]; \
-		then \
-			cd $(DOCS_DIR); \
-			doxygen Doxygen.doxyfile; \
-		fi \
-	fi
+	if [ -d "/Applications/Doxygen.app/Contents/Resources" ];                 \
+  then                                                                      \
+    cd $(DOCS_DIR);                                                         \
+    /Applications/Doxygen.app/Contents/Resources/doxygen Doxygen.doxyfile;  \
+  else                                                                      \
+    if [ $(command -v doxygen) ];                                           \
+    then                                                                    \
+      cd $(DOCS_DIR);                                                       \
+      doxygen Doxygen.doxyfile;                                             \
+    fi                                                                      \
+  fi
 
-.PHONY: all docs clean
+.PHONY: clean agent
 
 clean:
 	$(RM) -r $(BUILD_DIR)
@@ -76,5 +88,6 @@ clean:
 
 -include $(AGENT_DEPS)
 -include $(TEST_DEPS)
+-include bases_size.mk
 
 MKDIR_P ?= mkdir -p

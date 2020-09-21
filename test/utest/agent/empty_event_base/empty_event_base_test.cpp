@@ -7,11 +7,11 @@
  *
  * AgentSpeak code:
  *
- *   goal1.
- *   goal2.
- *   goal3.
- *   goal4.
- *   goal5.
+ *   !goal1.
+ *   !goal2.
+ *   !goal3.
+ *   !goal4.
+ *   !goal5.
  *
  *   +!goal1 <- action_do_nothing.
  *   +!goal2 <- action_do_nothing.

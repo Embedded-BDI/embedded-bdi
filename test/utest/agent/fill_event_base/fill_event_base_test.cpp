@@ -3,18 +3,19 @@
  *
  *  Created on: Sep 12, 2020
  *      Author: Matuzalem Muller
- *
- *
+ * 
+ * 
  * AgentSpeak code:
- *
- *   +!goal1 <- action_do_nothing.
- *   +!goal2 <- action_do_nothing.
- *   +!goal3 <- action_do_nothing.
- *   +!goal4 <- action_do_nothing.
- *   +!goal5 <- action_do_nothing.
- *   +!goal6 <- action_do_nothing.
- *   +!goal7 <- action_do_nothing.
- *   +!goal8 <- action_do_nothing.
+ * 
+ *   +belief_belief_1_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   +belief_belief_2_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   +belief_belief_3_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   +belief_belief_4_do_nothing_fill_event_base_config <- !goal.
+ *   +belief_belief_5_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   +belief_belief_6_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   +belief_belief_7_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   +belief_belief_8_do_nothing_fill_event_base_config <- action_do_nothing.
+ *   !+goal <- action_do_nothing.
  */
 
 #include "gtest/gtest.h"

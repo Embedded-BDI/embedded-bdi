@@ -116,6 +116,10 @@ void Intention::terminate(BeliefBase * beliefs,
   if (events->is_full())
   {
     return;
+    while (_plans.size() > 0)
+    {
+      _plans.pop_back();
+    }
   }
 
   if ((beliefs == nullptr) || (events == nullptr) || (plans == nullptr))
