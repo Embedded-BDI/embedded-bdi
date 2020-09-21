@@ -31,7 +31,7 @@ public class As2Json
       ag.initAg();
       parser.agent(ag);
 
-      System.out.println("Starting parsing to individual structures");
+      System.out.println("\n\nStarting parsing to individual structures...");
 
       TreeMap<String, Boolean> beliefs = this.getBeliefs(ag);
       ArrayList<String> events = this.getEvents(ag);

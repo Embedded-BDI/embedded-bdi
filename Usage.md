@@ -43,7 +43,7 @@ To create the agent executable, run `make all` to perform the AgentSpeak code tr
 
 ## Advanced
 
-Since the agent aims to be run in embedded platforms, resource usage must be limited. As a result, the size of the Event Base, Intention Base and stack of Plans per Intention must be defined in the `bases_size.mk` file.
+Since the agent aims to be run in embedded platforms, resource usage must be limited. As a result, the size of the Event Base, Intention Base and stack of Plans per Intention must be defined in the `agent.config` file.
 
 ```
 EVENT_BASE_SIZE=6

@@ -88,6 +88,6 @@ clean:
 
 -include $(AGENT_DEPS)
 -include $(TEST_DEPS)
--include bases_size.mk
+-include agent.config
 
 MKDIR_P ?= mkdir -p
