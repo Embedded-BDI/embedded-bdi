@@ -7,11 +7,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Installing GCC and Make
-          command: 'apt-get update && apt-get install -y gcc g++ make'
+          name: Install OpenJDK 14 JDK
+          command: 'apt-get update &&
+                    apt-get -y upgrade &&
+                    echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list &&
+                    apt-get -y update &&
+                    mkdir -p /usr/share/man/man1 &&
+                    apt-get -y install openjdk-14-jdk-headless'
       - run:
-          name: Build unit tests
-          command: 'make test'
+          name: Install GCC, G++ and Make
+          command: 'apt-get update && apt-get install -y gcc g++ make doxygen'
       - run:
-          name: Run Unit Testing
+          name: Build all
+          command: 'make all'
+      - run:
+          name: Run Unit Tests
           command: './build/unittest.out'

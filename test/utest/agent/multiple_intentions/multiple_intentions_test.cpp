@@ -7,9 +7,9 @@
  *
  * AgentSpeak code:
  *
- *   goal1.
- *   goal2.
- *   goal3.
+ *   !goal1.
+ *   !goal2.
+ *   !goal3.
  *
  *   +!goal1 <- action_1_multiple_intentions; !goal2.
  *   +!goal2 <- action_2_multiple_intentions.

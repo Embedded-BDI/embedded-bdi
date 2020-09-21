@@ -11,7 +11,7 @@ Statement::Statement() {
   _name = 0;
 }
 
-Statement::Statement(unsigned char name)
+Statement::Statement(std::uint8_t name)
 {
   _name = name;
 }

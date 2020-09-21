@@ -7,8 +7,8 @@
  *
  * AgentSpeak code:
  *
- *   goal1.
- *   goal2.
+ *   !goal1.
+ *   !goal2.
  *
  *   +!goal1 <- action_return_false.
  *   -!goal1 <- action_deletion_1.
