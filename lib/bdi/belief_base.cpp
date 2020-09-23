@@ -49,7 +49,6 @@ void BeliefBase::update(EventBase * event_base)
         }
       }
     }
-
   }
 }
 
@@ -84,4 +83,3 @@ const std::uint8_t BeliefBase::get_size()
 {
   return _belief_base.size();
 }
-

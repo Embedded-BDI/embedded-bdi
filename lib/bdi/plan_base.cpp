@@ -50,7 +50,6 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
       }
     }
   }
-
   return nullptr;
 }
 

@@ -25,6 +25,10 @@ protected:
   static std::uint8_t id;
 
 public:
+  /**
+   * EventID constructor. Starts _id with unique identifier based on the
+   * static ID.
+   */
   EventID();
 
   /**

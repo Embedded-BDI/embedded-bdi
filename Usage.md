@@ -32,7 +32,7 @@ Currently, only propositional logic and simple plan context is supported by the 
 
 +belief1 <- action_2.
 
-+!goal3 : belief_3 AND belief_4 <- !goal4.
++!goal3 : belief_3 && belief_4 <- !goal4.
 
 -!goal3 <- action_3.
 ```

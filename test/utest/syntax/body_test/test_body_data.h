@@ -9,7 +9,6 @@
 #include "bdi/belief_base.h"
 #include "syntax/body_instruction.h"
 
-
 class TestBodyData {
 private:
   BeliefBase * _belief_base;

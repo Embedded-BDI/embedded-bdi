@@ -1,4 +1,6 @@
 # Based on https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
+CXX := g++
+
 .DEFAULT_GOAL := all
 
 TEST_EXEC ?= unittest.out
@@ -23,8 +25,6 @@ AGENT_INC_FLAGS := $(addprefix -I,$(AGENT_INC_DIRS))
 TEST_CPPFLAGS ?= -std=c++11 -DGTEST_HAS_PTHREAD=0 $(TEST_INC_FLAGS) -O0 -g3 -Wall -MMD -MP
 AGENT_CPPFLAGS ?= -std=c++11 $(AGENT_INC_FLAGS) -O0 -g3 -Wall -MMD -MP
 
-CXX := g++
-
 $(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
 	$(CXX) $(TEST_OBJS) -o $@ $(LDFLAGS)
 
@@ -46,7 +46,7 @@ $(BUILD_DIR)/%.cc.o: %.cc
 	$(MKDIR_P) $(dir $@)
 	$(CXX) $(TEST_CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-all: tests translate agent docs
+all: tests agent docs
 
 agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
 
@@ -80,7 +80,7 @@ docs:
     fi                                                                      \
   fi
 
-.PHONY: clean agent
+.PHONY: clean agent docs
 
 clean:
 	$(RM) -r $(BUILD_DIR)

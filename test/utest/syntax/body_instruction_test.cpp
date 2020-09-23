@@ -9,7 +9,6 @@
 #include "gtest/gtest.h"
 #include "syntax/body_instruction.h"
 
-
 #define BASES_SIZE 2
 
 class TBodyInstruction : public ::testing::Test

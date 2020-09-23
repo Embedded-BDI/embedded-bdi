@@ -52,7 +52,7 @@ public:
   }
 };
 
-TEST_F(TFillEventBaseSettings, fill_event_base)
+TEST_F(TFillEventBaseSettings, run_fill_event_base)
 {
   EXPECT_TRUE(events->is_empty());
   EXPECT_FALSE(events->is_full());

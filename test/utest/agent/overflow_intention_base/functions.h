@@ -10,8 +10,6 @@
 
 #include "common_lib.h"
 
-#include <iostream>
-
 bool action_1(bool var)
 {
   shared_var = 1;

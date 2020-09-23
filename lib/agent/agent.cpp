@@ -50,5 +50,4 @@ void Agent::run()
   {
     intentions->run_intention_base(beliefs, events, plans);
   }
-
 }
