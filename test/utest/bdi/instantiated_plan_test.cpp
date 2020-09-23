@@ -9,7 +9,6 @@
 #include "gtest/gtest.h"
 #include "bdi/instantiated_plan.h"
 
-
 #define BODY_SIZE 3
 #define BASES_SIZE 3
 

@@ -6,7 +6,7 @@ Master's thesis on programming of embedded agents using propositional logic & BD
 
 ## Requirements:
 * [OpenJDK](https://openjdk.java.net/) (or [Java SDK](https://www.oracle.com/java/technologies/javase-downloads.html)).
-* C++11 compiler. [g++ 4.9 or later](https://gcc.gnu.org/gcc-4.9/changes.html) is recommended as the [Makefile](Makefile) is based on that compiler, otherwise modifications in the [Makefile](Makefile) will be necessary to run the project from command line.
+* C++11 compiler. [g++ 4.9 or later](https://gcc.gnu.org/gcc-4.9/changes.html) is recommended but another compiler can also be set in the `Makefile`.
 * (Recommended) [Doxygen](https://www.doxygen.nl/index.html) for documentation generation.
 * (Recommended) [Graphviz](https://graphviz.org/) for UML/chart support in documentation.
 

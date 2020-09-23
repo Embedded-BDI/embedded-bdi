@@ -54,7 +54,7 @@ public:
   }
 };
 
-TEST_F(TEmptyEventBaseSettings, empty_event_base)
+TEST_F(TEmptyEventBaseSettings, run_empty_event_base)
 {
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_full());

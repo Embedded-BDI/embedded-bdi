@@ -9,7 +9,6 @@
 #include "gtest/gtest.h"
 #include "bdi/belief_base.h"
 
-
 #define BELIEF_BASE_SIZE 3
 
 class TBeliefBase : public ::testing::Test
