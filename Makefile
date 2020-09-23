@@ -44,7 +44,7 @@ $(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
 
 ################################# Build rules #################################
 
-CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -MP -DGTEST_HAS_PTHREAD=0 $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS)
+CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -DGTEST_HAS_PTHREAD=0 $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS)
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
@@ -90,11 +90,8 @@ docs:
     cd $(DOCS_DIR);                                                         \
     /Applications/Doxygen.app/Contents/Resources/doxygen Doxygen.doxyfile;  \
   else                                                                      \
-    if [ $(command -v doxygen) ];                                           \
-    then                                                                    \
-      cd $(DOCS_DIR);                                                       \
-      doxygen Doxygen.doxyfile;                                             \
-    fi                                                                      \
+    cd $(DOCS_DIR);                                                       \
+    doxygen Doxygen.doxyfile;                                             \
   fi
 
 .PHONY: clean agent docs
