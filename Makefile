@@ -1,5 +1,15 @@
 # Based on https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
+
+# Compiler to be used
 CXX := g++
+
+# Special flags for compilation such as hardware specific-flags for embedded platforms
+ADDITIONAL_FLAGS = 
+
+# https://www.rapidtables.com/code/linux/gcc/gcc-o.html
+OPTIMIZATION_FLAG = -Os
+
+#########################################################################################
 
 .DEFAULT_GOAL := all
 
@@ -22,8 +32,8 @@ AGENT_INC_DIRS := $(shell find $(AGENT_DIRS) -type d)
 TEST_INC_FLAGS := $(addprefix -I,$(TEST_INC_DIRS))
 AGENT_INC_FLAGS := $(addprefix -I,$(AGENT_INC_DIRS))
 
-TEST_CPPFLAGS ?= -std=c++11 -DGTEST_HAS_PTHREAD=0 $(TEST_INC_FLAGS) -O0 -g3 -Wall -MMD -MP
-AGENT_CPPFLAGS ?= -std=c++11 $(AGENT_INC_FLAGS) -O0 -g3 -Wall -MMD -MP
+TEST_CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -MP -DGTEST_HAS_PTHREAD=0 $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS) 
+AGENT_CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -MP $(ADDITIONAL_FLAGS) $(AGENT_INC_FLAGS) 
 
 $(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
 	$(CXX) $(TEST_OBJS) -o $@ $(LDFLAGS)
