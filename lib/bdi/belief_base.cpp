@@ -37,14 +37,14 @@ void BeliefBase::update(EventBase * event_base)
           if (_belief_base.item_at(i)->get_state())
           {
             // Add Event for BELIEF_ADDITION if belief is changed to true
-            event_base->add_event(EventOperator::BELIEF_ADDITION,
-                                  _belief_base.item_at(i)->get_statement()
-            );
+            Event event(EventOperator::BELIEF_ADDITION,
+                        _belief_base.item_at(i)->get_statement());
+            event_base->add_event(event);
           } else {
             // Add Event for BELIEF_DELETION if belief is changed to false
-            event_base->add_event(EventOperator::BELIEF_DELETION,
-                                  _belief_base.item_at(i)->get_statement()
-            );
+            Event event(EventOperator::BELIEF_DELETION,
+                        _belief_base.item_at(i)->get_statement());
+            event_base->add_event(event);
           }
         }
       }

@@ -32,6 +32,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
                                             EventBase * event_base)
 {
   BodyReturn result;
+  Event event(_operator, _statement);
 
   if (_type == BodyType::ACTION)
   {
@@ -40,7 +41,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
   }
   else if (_type == BodyType::BELIEF)
   {
-    if (event_base->add_event(_operator, _statement))
+    if (event_base->add_event(event))
     {
       if (_operator == EventOperator::BELIEF_ADDITION)
       {
@@ -62,7 +63,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
   }
   else
   {
-    if (event_base->add_event(_operator, _statement))
+    if (event_base->add_event(event))
     {
       result = BodyReturn(
                           BodyType::GOAL,

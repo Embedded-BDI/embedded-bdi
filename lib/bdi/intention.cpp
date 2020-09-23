@@ -136,7 +136,8 @@ void Intention::terminate(BeliefBase * beliefs,
 
     if (plan)
     {
-      events->add_event(EventOperator::GOAL_DELETION, stm);
+      Event event(EventOperator::GOAL_DELETION, stm);
+      events->add_event(event);
       while (_plans.size() > 0)
       {
         _plans.pop_back();

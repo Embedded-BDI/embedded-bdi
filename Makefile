@@ -6,10 +6,13 @@
 CXX := g++
 
 # Special flags for compilation such as hardware specific-flags for embedded platforms
-ADDITIONAL_FLAGS =
+ADDITIONAL_FLAGS :=
+
+# https://gcc.gnu.org/onlinedocs/gcc/Debugging-Options.html
+DEBUG_LEVEL :=
 
 # https://www.rapidtables.com/code/linux/gcc/gcc-o.html
-OPTIMIZATION_FLAG = -Os
+OPTIMIZATION_FLAG := -Os
 
 # Output folders and files
 .DEFAULT_GOAL := all
@@ -44,7 +47,7 @@ $(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
 
 ################################# Build rules #################################
 
-CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -DGTEST_HAS_PTHREAD=0 $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS)
+CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -DGTEST_HAS_PTHREAD=0 $(DEBUG_LEVEL) $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS)
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
@@ -90,8 +93,8 @@ docs:
     cd $(DOCS_DIR);                                                         \
     /Applications/Doxygen.app/Contents/Resources/doxygen Doxygen.doxyfile;  \
   else                                                                      \
-    cd $(DOCS_DIR);                                                       \
-    doxygen Doxygen.doxyfile;                                             \
+    cd $(DOCS_DIR);                                                         \
+    doxygen Doxygen.doxyfile;                                               \
   fi
 
 .PHONY: clean agent docs

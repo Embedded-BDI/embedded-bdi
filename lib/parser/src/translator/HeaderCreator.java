@@ -108,8 +108,9 @@ public class HeaderCreator
                "---------------------\n\n";
         out.append(text);
 
-        text = "    event_base->add_event(EventOperator::GOAL_ADDITION"        +
-               ", " + stm_map.get(event) + ");\n";
+        text = "    Event event_" + stm_map.get(event)                         +
+               "(EventOperator::GOAL_ADDITION, " + stm_map.get(event) + ");\n" +
+               "    event_base->add_event(event_" + stm_map.get(event) + ");\n";
         out.append(text);
       }
 

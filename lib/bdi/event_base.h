@@ -32,10 +32,10 @@ public:
 
   /**
    * Creates an Event using op and stm and adds Event _pending_events
-   * @param op EventOperator of Event to be added to _pending_events
-   * @param stm Statement of Event to be added to _pending_events
+   * @param event Event to be added to _pending_events
+   * @return true if event is added to _pending_events, false otherwise
    */
-  bool add_event(EventOperator op, Statement stm);
+  bool add_event(Event event);
 
   /**
    * Removes Event from _pending_events and returns pointer to removed Event

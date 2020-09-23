@@ -13,14 +13,13 @@ EventBase::EventBase(std::uint8_t size)
   _pending_events.init(size);
 }
 
-bool EventBase::add_event(EventOperator op, Statement stm)
+bool EventBase::add_event(Event event)
 {
   if (this->is_full())
   {
     return false;
   }
 
-  Event event(op,stm);
   _pending_events.push_front(event);
   return true;
 }

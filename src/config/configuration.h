@@ -50,7 +50,8 @@ public:
 
     //--------------------------------------------------------------------------
 
-    event_base->add_event(EventOperator::GOAL_ADDITION, 5);
+    Event event_5(EventOperator::GOAL_ADDITION, 5);
+    event_base->add_event(event_5);
 
     //--------------------------------------------------------------------------
 

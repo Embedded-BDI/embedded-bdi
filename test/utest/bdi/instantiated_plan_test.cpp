@@ -30,7 +30,8 @@ public:
     Statement event('e');
     for (int i = 0; i < BASES_SIZE; i++)
     {
-      event_base_full->add_event(EventOperator::BELIEF_ADDITION, event);
+      Event event_e(EventOperator::BELIEF_ADDITION, event);
+      event_base_full->add_event(event_e);
     }
 
     Statement stm_0(0);

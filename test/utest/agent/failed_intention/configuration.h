@@ -32,11 +32,13 @@ public:
 
     //--------------------------------------------------------------------------
 
-    event_base->add_event(EventOperator::GOAL_ADDITION, 0);
+    Event event_1(EventOperator::GOAL_ADDITION, 0);
+    event_base->add_event(event_1);
 
     //--------------------------------------------------------------------------
 
-    event_base->add_event(EventOperator::GOAL_ADDITION, 1);
+    Event event_2(EventOperator::GOAL_ADDITION, 1);
+    event_base->add_event(event_2);
 
     //--------------------------------------------------------------------------
 

@@ -45,8 +45,8 @@ public:
     event_base_full = new EventBase(event_base_size);
     for (int i = 0; i < event_base_size; i++)
     {
-      event_base_full->add_event(EventOperator::GOAL_ADDITION,
-                                 stm);
+      Event event(EventOperator::GOAL_ADDITION, stm);
+      event_base_full->add_event(event);
     }
 
     // Creates valid plan
