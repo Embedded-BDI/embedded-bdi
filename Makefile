@@ -1,16 +1,17 @@
 # Based on https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
 
+############################ General configuration #############################
+
 # Compiler to be used
 CXX := g++
 
 # Special flags for compilation such as hardware specific-flags for embedded platforms
-ADDITIONAL_FLAGS = 
+ADDITIONAL_FLAGS =
 
 # https://www.rapidtables.com/code/linux/gcc/gcc-o.html
 OPTIMIZATION_FLAG = -Os
 
-#########################################################################################
-
+# Output folders and files
 .DEFAULT_GOAL := all
 
 TEST_EXEC ?= unittest.out
@@ -18,43 +19,49 @@ AGENT_EXEC ?= agent.out
 
 DOCS_DIR ?= ./docs
 BUILD_DIR ?= ./build
-TEST_DIRS ?= ./lib ./test
+
+############################### Agent variables ################################
 AGENT_DIRS ?= ./lib ./data ./src
-TEST_SRCS := $(shell find $(TEST_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
 AGENT_SRCS := $(shell find $(AGENT_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
-TEST_OBJS := $(TEST_SRCS:%=$(BUILD_DIR)/%.o)
 AGENT_OBJS := $(AGENT_SRCS:%=$(BUILD_DIR)/%.o)
-TEST_DEPS := $(TEST_OBJS:.o=.d)
 AGENT_DEPS := $(AGENT_OBJS:.o=.d)
-
-TEST_INC_DIRS := $(shell find $(TEST_DIRS) -type d)
 AGENT_INC_DIRS := $(shell find $(AGENT_DIRS) -type d)
-TEST_INC_FLAGS := $(addprefix -I,$(TEST_INC_DIRS))
 AGENT_INC_FLAGS := $(addprefix -I,$(AGENT_INC_DIRS))
-
-TEST_CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -MP -DGTEST_HAS_PTHREAD=0 $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS) 
-AGENT_CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -MP $(ADDITIONAL_FLAGS) $(AGENT_INC_FLAGS) 
-
-$(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
-	$(CXX) $(TEST_OBJS) -o $@ $(LDFLAGS)
 
 $(BUILD_DIR)/$(AGENT_EXEC): $(AGENT_OBJS)
 	$(CXX) $(AGENT_OBJS) -o $@ $(LDFLAGS)
 
+################################ Test variables ################################
+TEST_DIRS ?= ./lib ./test
+TEST_SRCS := $(shell find $(TEST_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
+TEST_OBJS := $(TEST_SRCS:%=$(BUILD_DIR)/%.o)
+TEST_DEPS := $(TEST_OBJS:.o=.d)
+TEST_INC_DIRS := $(shell find $(TEST_DIRS) -type d ! -path '*/Debug*')
+TEST_INC_FLAGS := $(addprefix -I,$(TEST_INC_DIRS) )
+
+$(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
+	$(CXX) $(TEST_OBJS) -o $@ $(LDFLAGS)
+
+################################# Build rules #################################
+
+CPPFLAGS ?= -std=c++11 $(OPTIMIZATION_FLAG) -Wall -MP -DGTEST_HAS_PTHREAD=0 $(ADDITIONAL_FLAGS) $(TEST_INC_FLAGS)
+
 # c source
 $(BUILD_DIR)/%.c.o: %.c
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(TEST_CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 # c++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(TEST_CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 # c++ source
 $(BUILD_DIR)/%.cc.o: %.cc
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(TEST_CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+################################# Make targets #################################
 
 all: tests agent docs
 
