@@ -5,7 +5,7 @@
 #include "../../lib/bdi/event_base.h"
 #include "../../lib/bdi/plan_base.h"
 #include "../../lib/bdi/intention_base.h"
-#include "../../data/functions.h"
+#include "functions.h"
 
 class AgentSettings
 {
@@ -184,6 +184,10 @@ public:
 
   ~AgentSettings()
   {
+    delete belief_base;
+    delete event_base;
+    delete plan_base;
+    delete intention_base;
     delete body_0;
     delete context_0;
     delete body_1;
@@ -200,16 +204,12 @@ public:
     delete context_6;
     delete body_7;
     delete context_7;
-   delete belief_base;
-    delete event_base;
-    delete plan_base;
-    delete intention_base;
 }
 
   BeliefBase *  get_belief_base()
   {
     return belief_base;
- }
+  }
 
   EventBase * get_event_base()
   {

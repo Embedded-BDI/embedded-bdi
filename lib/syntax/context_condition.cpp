@@ -7,8 +7,7 @@
 
 #include "context_condition.h"
 
-ContextCondition::ContextCondition(Statement stm, bool is_true)
+ContextCondition::ContextCondition(Statement stm)
 {
   _statement = stm;
-  _is_true = is_true;
 }

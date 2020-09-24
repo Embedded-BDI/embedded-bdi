@@ -19,6 +19,7 @@ OPTIMIZATION_FLAG := -Os
 
 TEST_EXEC ?= unittest.out
 AGENT_EXEC ?= agent.out
+VALGRIND_EXEC ?= valgrind.out
 
 DOCS_DIR ?= ./docs
 BUILD_DIR ?= ./build
@@ -28,7 +29,7 @@ AGENT_DIRS ?= ./lib ./data ./src
 AGENT_SRCS := $(shell find $(AGENT_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
 AGENT_OBJS := $(AGENT_SRCS:%=$(BUILD_DIR)/%.o)
 AGENT_DEPS := $(AGENT_OBJS:.o=.d)
-AGENT_INC_DIRS := $(shell find $(AGENT_DIRS) -type d)
+AGENT_INC_DIRS := $(shell find $(AGENT_DIRS) -type d ! -path '*/Debug*')
 AGENT_INC_FLAGS := $(addprefix -I,$(AGENT_INC_DIRS))
 
 $(BUILD_DIR)/$(AGENT_EXEC): $(AGENT_OBJS)
@@ -44,6 +45,17 @@ TEST_INC_FLAGS := $(addprefix -I,$(TEST_INC_DIRS) )
 
 $(BUILD_DIR)/$(TEST_EXEC): $(TEST_OBJS)
 	$(CXX) $(TEST_OBJS) -o $@ $(LDFLAGS)
+
+############################# Valgrind variables ###############################
+VALGRIND_DIRS ?= ./lib ./valgrind 
+VALGRIND_SRCS := $(shell find $(VALGRIND_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.cc)
+VALGRIND_OBJS := $(VALGRIND_SRCS:%=$(BUILD_DIR)/%.o)
+VALGRIND_DEPS := $(VALGRIND_OBJS:.o=.d)
+VALGRIND_INC_DIRS := $(shell find $(VALGRIND_DIRS) -type d ! -path '*/Debug*')
+VALGRIND_INC_FLAGS := $(addprefix -I,$(VALGRIND_INC_DIRS))
+
+$(BUILD_DIR)/$(VALGRIND_EXEC): $(VALGRIND_OBJS)
+	$(CXX) $(VALGRIND_OBJS) -o $@ $(LDFLAGS)
 
 ################################# Build rules #################################
 
@@ -66,11 +78,13 @@ $(BUILD_DIR)/%.cc.o: %.cc
 
 ################################# Make targets #################################
 
-all: tests agent docs
+all: tests agent docs valgrind
 
 agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
 
 tests: $(BUILD_DIR)/$(TEST_EXEC)
+
+valgrind: $(BUILD_DIR)/$(VALGRIND_EXEC)
 
 translate:
 	javac -cp lib/parser/lib/jason-2.6.jar                                    \
@@ -97,7 +111,7 @@ docs:
     doxygen Doxygen.doxyfile;                                               \
   fi
 
-.PHONY: clean agent docs
+.PHONY: clean agent valgrind docs
 
 clean:
 	$(RM) -r $(BUILD_DIR)
@@ -105,6 +119,7 @@ clean:
 
 -include $(AGENT_DEPS)
 -include $(TEST_DEPS)
+-include $(VALGRIND_DEPS)
 -include agent.config
 
 MKDIR_P ?= mkdir -p

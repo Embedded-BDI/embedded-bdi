@@ -9,7 +9,7 @@ Master's thesis on programming of embedded agents using propositional logic & BD
 
 ## Table of Contents
 
-- [Requirements](#requirements-)
+- [Requirements](#requirements)
 - [Documentation](#documentation)
 - [Usage](#usage)
   * [Functions file](#functions-file)

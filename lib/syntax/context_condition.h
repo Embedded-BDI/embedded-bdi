@@ -18,21 +18,13 @@ class ContextCondition
 {
 private:
   Statement _statement;
-  /// Whether the expected value is true or false
-  bool _is_true;
 
 public:
   /**
    * ContextCondition constructor
    * @param stm Statement to be compared with belief from BeliefBase
-   * @param negation Whether the statement should be considered true or false
    */
-  ContextCondition(Statement stm, bool negation);
-
-  bool is_true() const
-  {
-    return _is_true;
-  }
+  ContextCondition(Statement stm);
 
   const Statement & get_statement() const
   {

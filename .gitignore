@@ -11,6 +11,9 @@ src/.settings
 test/Debug
 test/.settings
 
+valgrind/Debug
+valgrind/.settings
+
 ###################################################
 
 #VS Code

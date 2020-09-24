@@ -57,6 +57,8 @@ public class HeaderCreator
 
       BufferedWriter out = new BufferedWriter(new FileWriter(output_file));
 
+      System.out.println(plans.size());
+
       // Include headers and start class declaration
       String text = "#ifndef CONFIGURATION_H_\n#define CONFIGURATION_H_\n\n"   +
                     "#include \"../../lib/bdi/belief_base.h\"\n"               +
@@ -64,17 +66,27 @@ public class HeaderCreator
                     "#include \"../../lib/bdi/plan_base.h\"\n"                 +
                     "#include \"../../lib/bdi/intention_base.h\"\n"            +
                     "#include \"../../" + function_file + "\"\n\n"             +
-                    "class AgentSettings\n{\nprivate:\n"                       +
-                    "  BeliefBase * belief_base;\n  EventBase * event_base;\n" +
-                    "  PlanBase * plan_base;\n"                                +
-                    "  IntentionBase * intention_base;\n"                      +
-                    "\npublic:\n  AgentSettings()\n  {\n"                      +
-                    "    belief_base = new BeliefBase(" + beliefs.size() + ");"+
-                    "\n    event_base = new EventBase(" + event_base_size      +
-                    ");\n    plan_base = new PlanBase(" + plans.size() + ");\n"+
-                    "    intention_base = new IntentionBase("                  +
-                    intention_base_size + ", " + intention_stack_size          +
-                    ");\n";
+                    "class AgentSettings\n{\nprivate:\n";
+      
+      out.append(text);
+    
+      for (int i = 0; i < plans.size(); i++)
+      {
+        text = "  Body * body_" + i + ";\n  Context * context_" + i + ";\n";
+        out.append(text);
+      }
+
+      text = "  BeliefBase * belief_base;\n  EventBase * event_base;\n"        +
+             "  PlanBase * plan_base;\n"                                       +
+             "  IntentionBase * intention_base;\n"                             +
+             "\npublic:\n  AgentSettings()\n  {\n"                             +
+             "    belief_base = new BeliefBase(" + beliefs.size() + ");"       +
+             "\n    event_base = new EventBase(" + event_base_size             +
+             ");\n    plan_base = new PlanBase(" + plans.size() + ");\n"       +
+             "    intention_base = new IntentionBase("                         +
+             intention_base_size + ", " + intention_stack_size                 +
+             ");\n";
+      
       out.append(text);
 
       // Creation of beliefs
@@ -124,9 +136,9 @@ public class HeaderCreator
         out.append(text);
 
         text = "    Statement stm_" + plan_count + "("   +
-               stm_map.get(plan.getStatement()) + ");\n    Context * context_" +
+               stm_map.get(plan.getStatement()) + ");\n    context_"           +
                context_count + " = new Context(" + plan.getContext().size()    +
-               ");\n    Body * body_" + plan_count + " = new Body("            +
+               ");\n    body_" + plan_count + " = new Body("                   +
                plan.getBodySize() + ");\n\n";;
         out.append(text);
 
@@ -135,7 +147,7 @@ public class HeaderCreator
           text = "    Statement stm_" + plan_count + "_" + context + "("       +
                  stm_map.get(context) + ");\n    ContextCondition cond_"       +
                  plan_count + "_" + plan.getContext().indexOf(context)         +
-                 "(stm_" + plan_count + "_" + context + ", true);\n    "       +
+                 "(stm_" + plan_count + "_" + context + ");\n    "             +
                  "context_" + context_count + "->add_context(cond_"            +
                  context_count + "_" + plan.getContext().indexOf(context)      +
                  ");\n\n";
@@ -177,17 +189,27 @@ public class HeaderCreator
         context_count++;
       }
 
-      text = "  }\n\n  ~AgentSettings()\n  {\n    delete belief_base;\n    de" +
-             "lete event_base;\n    delete plan_base;\n    delete intention_b" +
-             "ase;\n  }\n\n  BeliefBase *  get_belief_base()\n  {\n    return" +
-             " belief_base;\n  }\n\n  EventBase * get_event_base()\n  {\n    " +
+      text = "  }\n\n  ~AgentSettings()\n  {\n";
+      
+      out.append(text);
+
+      for (int i = 0; i < plans.size(); i++)
+      {
+        text = "    delete body_" + i + ";\n    delete context_" + i + ";\n";
+        out.append(text);
+      }
+             
+      text = "   delete belief_base;\n    delete event_base;\n    delete "     +
+             "plan_base;\n    delete intention_base;\n}\n\n  "                 +
+             "BeliefBase *  get_belief_base()\n  {\n    return belief_base;\n" +
+             " }\n\n  EventBase * get_event_base()\n  {\n    "                 +
              "return event_base;\n  }\n\n  PlanBase * get_plan_base()\n  {\n " +
              "   return plan_base;\n  }\n\n  IntentionBase * get_intention_ba" +
              "se()\n  {\n    return intention_base;\n  }\n};\n\n#endif /*"     +
              "CONFIGURATION_H_ */";
       out.append(text);
-      out.close();
 
+      out.close();
     }
     catch (Exception e)
     {
