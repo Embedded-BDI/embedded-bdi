@@ -33,37 +33,37 @@ bool update_belief_5(bool var)
   return !var;
 }
 
-bool action_action_1(bool var)
+bool action_action_1()
 {
   return true;
 }
 
-bool action_action_2(bool var)
+bool action_action_2()
 {
   return true;
 }
 
-bool action_action_3(bool var)
+bool action_action_3()
 {
   return true;
 }
 
-bool action_action_4(bool var)
+bool action_action_4()
 {
   return true;
 }
 
-bool action_action_5(bool var)
+bool action_action_5()
 {
   return true;
 }
 
-bool action_action_6(bool var)
+bool action_action_6()
 {
   return true;
 }
 
-bool action_action_7(bool var)
+bool action_action_7()
 {
   return true;
 }

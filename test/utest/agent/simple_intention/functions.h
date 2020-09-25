@@ -10,31 +10,31 @@
 
 #include "common_lib.h"
 
-bool action_1_simple_intention(bool var)
+bool action_1_simple_intention()
 {
   shared_var = 1;
   return true;
 }
 
-bool action_2_simple_intention(bool var)
+bool action_2_simple_intention()
 {
   shared_var = 2;
   return true;
 }
 
-bool action_3_simple_intention(bool var)
+bool action_3_simple_intention()
 {
   shared_var = 3;
   return true;
 }
 
-bool action_4_simple_intention(bool var)
+bool action_4_simple_intention()
 {
   shared_var = 4;
   return true;
 }
 
-bool action_5_simple_intention(bool var)
+bool action_5_simple_intention()
 {
   shared_var = 5;
   return true;

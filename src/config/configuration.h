@@ -1,4 +1,6 @@
- /* 
+ /*
+  * AgentSpeak code:
+  *
   * !goal1.
   * 
   * +belief_1 <- action_1.
@@ -10,7 +12,7 @@
   * +!goal1 : belief_2 & belief_3 <- !goal2.
   * +!goal2 <- action_6.
   * 
-  * -!goal1 <- action_7.
+  * -!goal2 <- action_7.
   */ 
 
 #ifndef CONFIGURATION_H_
@@ -185,7 +187,7 @@ public:
 
     //--------------------------------------------------------------------------
 
-    Statement stm_7(5);
+    Statement stm_7(11);
     context_7 = new Context(0);
     body_7 = new Body(1);
 

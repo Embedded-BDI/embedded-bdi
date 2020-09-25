@@ -9,4 +9,4 @@
 +!goal1 : belief_2 & belief_3 <- !goal2.
 +!goal2 <- action_6.
 
--!goal1 <- action_7.
+-!goal2 <- action_7.

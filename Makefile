@@ -1,7 +1,6 @@
 # Based on https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
 
 ############################ General configuration #############################
-
 # Compiler to be used
 CXX := g++
 
@@ -77,10 +76,11 @@ $(BUILD_DIR)/%.cc.o: %.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 ################################# Make targets #################################
+.PHONY: clean agent docs
 
 all: tests valgrind agent docs
 
-agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
+agent: translate force_agent_update $(BUILD_DIR)/$(AGENT_EXEC)
 
 tests: $(BUILD_DIR)/$(TEST_EXEC)
 
@@ -111,7 +111,8 @@ docs:
     doxygen Doxygen.doxyfile;                                               \
   fi
 
-.PHONY: clean agent valgrind docs
+force_agent_update:
+	touch ./src/agent_loop.cpp
 
 clean:
 	$(RM) -r $(BUILD_DIR)

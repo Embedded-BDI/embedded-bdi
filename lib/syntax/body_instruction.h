@@ -22,7 +22,7 @@ class BodyInstruction
 {
 private:
   /// Function to act in the environment
-  bool (*_take_action)(bool var);
+  bool (*_take_action)();
   Statement _statement;
   EventOperator _operator;
   /// Identifies whether the instruction is an Action, Goal or Belief operation
@@ -35,7 +35,7 @@ public:
    * @param stm Statement that represents the Plan name
    * @param take_action Function that acts in the environment
    */
-  BodyInstruction(BodyType type, Statement stm, bool (*take_action)(bool var));
+  BodyInstruction(BodyType type, Statement stm, bool (*take_action)());
 
   /**
    * Constructor for Belief and Goal events

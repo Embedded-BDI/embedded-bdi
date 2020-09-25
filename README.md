@@ -40,7 +40,7 @@ In order to generate the agent executable, two files are necessary: `data/functi
 Functions to update the belief must contain the prefix `update_` and functions that act in the environment must start with `action_`. In the example below, the function `action_close_door` refers to the action *close_door* and `update_open_door` updates the belief `open_door`.
 
 ```
-bool action_close_door(bool var)
+bool action_close_door()
 {
   std::cout << "A" << std::endl;
   return true;

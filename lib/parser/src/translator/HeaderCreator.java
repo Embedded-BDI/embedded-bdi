@@ -64,14 +64,14 @@ public class HeaderCreator
       String text;
 
       try (BufferedReader br = new BufferedReader(new FileReader(agent_file))) {
-        text = " /* Corresponding AgentSpeak code:\n";
+        text = "/*\n * AgentSpeak code:\n *\n";
         out.append(text);
         String line;
         while ((line = br.readLine()) != null) {
-          text = "  * " + line + "\n";
+          text = " * " + line + "\n";
           out.append(text);
         }
-        text = "  */ \n\n";
+        text = " */ \n\n";
         out.append(text);
       }
 
@@ -257,7 +257,7 @@ public class HeaderCreator
         {
           if (body.getType() == BodyInstruction.BodyType.ACTION)
           {
-            if (funcs.indexOf("boolaction_" + body.getStatement() + "(boolvar)") != -1) {
+            if (funcs.indexOf("boolaction_" + body.getStatement() + "()") != -1) {
               action_functions.add("action_" + body.getStatement());
             }
             else

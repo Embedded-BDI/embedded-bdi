@@ -10,19 +10,19 @@
 
 #include "common_lib.h"
 
-bool action_1_stacked_intention(bool var)
+bool action_1_stacked_intention()
 {
   shared_var = 1;
   return true;
 }
 
-bool action_2_stacked_intention(bool var)
+bool action_2_stacked_intention()
 {
   shared_var = 2;
   return true;
 }
 
-bool action_3_stacked_intention(bool var)
+bool action_3_stacked_intention()
 {
   shared_var = 3;
   return true;

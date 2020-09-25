@@ -9,7 +9,7 @@
 
 BodyInstruction::BodyInstruction(BodyType type,
                                  Statement stm,
-                                 bool (*take_action)(bool var))
+                                 bool (*take_action)())
 {
   _type = type;
   _statement = stm;
@@ -36,7 +36,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
 
   if (_type == BodyType::ACTION)
   {
-    bool value = _take_action(belief_base);
+    bool value = _take_action();
     result = BodyReturn(BodyType::ACTION, value, nullptr);
   }
   else if (_type == BodyType::BELIEF)

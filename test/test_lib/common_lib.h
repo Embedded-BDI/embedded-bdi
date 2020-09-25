@@ -10,12 +10,17 @@
 
 static int shared_var;
 
-inline bool return_true_beliefbase(bool var)
+inline bool action_do_nothing()
 {
   return true;
 }
 
-inline bool return_false_beliefbase(bool var)
+inline bool return_true_beliefbase()
+{
+  return true;
+}
+
+inline bool return_false_beliefbase()
 {
   return false;
 }
@@ -28,11 +33,6 @@ inline bool return_true_bool(bool var)
 inline bool return_false_bool(bool var)
 {
   return false;
-}
-
-inline bool action_do_nothing(bool var)
-{
-  return true;
 }
 
 inline bool update_belief_1_revert_state(bool var)

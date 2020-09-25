@@ -10,25 +10,25 @@
 
 #include "common_lib.h"
 
-bool action_return_true(bool var)
+bool action_return_true()
 {
   shared_var = 1;
   return true;
 }
 
-bool action_return_false(bool var)
+bool action_return_false()
 {
   shared_var = 2;
   return false;
 }
 
-bool action_deletion_1(bool var)
+bool action_deletion_1()
 {
   shared_var = -100;
   return true;
 }
 
-bool action_deletion_2(bool var)
+bool action_deletion_2()
 {
   shared_var = -200;
   return true;

@@ -10,31 +10,31 @@
 
 #include "common_lib.h"
 
-bool action_1(bool var)
+bool action_1()
 {
   shared_var = 1;
   return true;
 }
 
-bool action_2(bool var)
+bool action_2()
 {
   shared_var = 2;
   return true;
 }
 
-bool action_3(bool var)
+bool action_3()
 {
   shared_var = 3;
   return true;
 }
 
-bool action_4(bool var)
+bool action_4()
 {
   shared_var = 4;
   return true;
 }
 
-bool action_5(bool var)
+bool action_5()
 {
   shared_var = 5;
   return true;
