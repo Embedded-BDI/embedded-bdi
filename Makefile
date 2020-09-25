@@ -78,7 +78,7 @@ $(BUILD_DIR)/%.cc.o: %.cc
 
 ################################# Make targets #################################
 
-all: tests agent docs valgrind
+all: tests valgrind agent docs
 
 agent: translate $(BUILD_DIR)/$(AGENT_EXEC)
 

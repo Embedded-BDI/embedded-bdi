@@ -1,3 +1,18 @@
+ /* 
+  * !goal1.
+  * 
+  * +belief_1 <- action_1.
+  * +belief_2 <- action_2.
+  * +belief_3 <- action_3.
+  * +belief_4 <- action_4.
+  * +belief_5 <- action_5.
+  * 
+  * +!goal1 : belief_2 & belief_3 <- !goal2.
+  * +!goal2 <- action_6.
+  * 
+  * -!goal1 <- action_7.
+  */ 
+
 #ifndef CONFIGURATION_H_
 #define CONFIGURATION_H_
 
@@ -184,10 +199,6 @@ public:
 
   ~AgentSettings()
   {
-    delete belief_base;
-    delete event_base;
-    delete plan_base;
-    delete intention_base;
     delete body_0;
     delete context_0;
     delete body_1;
@@ -204,6 +215,10 @@ public:
     delete context_6;
     delete body_7;
     delete context_7;
+    delete belief_base;
+    delete event_base;
+    delete plan_base;
+    delete intention_base;
 }
 
   BeliefBase *  get_belief_base()

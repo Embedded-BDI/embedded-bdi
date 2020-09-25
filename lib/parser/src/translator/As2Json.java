@@ -37,7 +37,7 @@ public class As2Json
       ArrayList<String> events = this.getEvents(ag);
       ArrayList<PlanSkeleton> plans = this.getPlans(ag);
 
-      HeaderCreator write_to_file = new HeaderCreator(beliefs, events, plans, event_base_size, intention_base_size, intention_stack_size, function_file, output_file);
+      HeaderCreator write_to_file = new HeaderCreator(beliefs, events, plans, event_base_size, intention_base_size, intention_stack_size, function_file, output_file, agentspeak_file);
       write_to_file.write_header();
     }
     catch (Exception e)

@@ -1,7 +1,9 @@
 package translator;
 
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class HeaderCreator
   private ArrayList<String> action_functions;
   private String output_file;
   private String function_file;
+  private String agent_file;
 
   public HeaderCreator (
                         TreeMap<String, Boolean> beliefs,
@@ -31,7 +34,8 @@ public class HeaderCreator
                         int intention_base_size,
                         int intention_stack_size,
                         String function_file,
-                        String output_file
+                        String output_file,
+                        String agent_file
                         )
   {
     this.beliefs = beliefs;
@@ -40,12 +44,12 @@ public class HeaderCreator
     this.event_base_size = event_base_size;
     this.intention_base_size = intention_base_size;
     this.intention_stack_size = intention_stack_size;
-
     this.stm_map = new HashMap <String, Integer>();
     this.belief_functions = new ArrayList<String>();
     this.action_functions = new ArrayList<String>();
     this.output_file = output_file;
     this.function_file = function_file;
+    this.agent_file = agent_file;
   }
 
   public void write_header()
@@ -57,16 +61,28 @@ public class HeaderCreator
 
       BufferedWriter out = new BufferedWriter(new FileWriter(output_file));
 
-      System.out.println(plans.size());
+      String text;
+
+      try (BufferedReader br = new BufferedReader(new FileReader(agent_file))) {
+        text = " /* Corresponding AgentSpeak code:\n";
+        out.append(text);
+        String line;
+        while ((line = br.readLine()) != null) {
+          text = "  * " + line + "\n";
+          out.append(text);
+        }
+        text = "  */ \n\n";
+        out.append(text);
+      }
 
       // Include headers and start class declaration
-      String text = "#ifndef CONFIGURATION_H_\n#define CONFIGURATION_H_\n\n"   +
-                    "#include \"../../lib/bdi/belief_base.h\"\n"               +
-                    "#include \"../../lib/bdi/event_base.h\"\n"                +
-                    "#include \"../../lib/bdi/plan_base.h\"\n"                 +
-                    "#include \"../../lib/bdi/intention_base.h\"\n"            +
-                    "#include \"../../" + function_file + "\"\n\n"             +
-                    "class AgentSettings\n{\nprivate:\n";
+      text = "#ifndef CONFIGURATION_H_\n#define CONFIGURATION_H_\n\n"          +
+             "#include \"../../lib/bdi/belief_base.h\"\n"                      +
+             "#include \"../../lib/bdi/event_base.h\"\n"                       +
+             "#include \"../../lib/bdi/plan_base.h\"\n"                        +
+             "#include \"../../lib/bdi/intention_base.h\"\n"                   +
+             "#include \"../../" + function_file + "\"\n\n"                    +
+             "class AgentSettings\n{\nprivate:\n";
       
       out.append(text);
     
@@ -199,10 +215,10 @@ public class HeaderCreator
         out.append(text);
       }
              
-      text = "   delete belief_base;\n    delete event_base;\n    delete "     +
+      text = "    delete belief_base;\n    delete event_base;\n    delete "    +
              "plan_base;\n    delete intention_base;\n}\n\n  "                 +
              "BeliefBase *  get_belief_base()\n  {\n    return belief_base;\n" +
-             " }\n\n  EventBase * get_event_base()\n  {\n    "                 +
+             "  }\n\n  EventBase * get_event_base()\n  {\n    "                +
              "return event_base;\n  }\n\n  PlanBase * get_plan_base()\n  {\n " +
              "   return plan_base;\n  }\n\n  IntentionBase * get_intention_ba" +
              "se()\n  {\n    return intention_base;\n  }\n};\n\n#endif /*"     +
