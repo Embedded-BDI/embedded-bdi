@@ -31,7 +31,7 @@ jobs:
                    echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list &&
                    apt-get -y update &&
                    mkdir -p /usr/share/man/man1 &&
-                   apt-get -y install openjdk-14-jdk-headless
+                   apt-get -y install openjdk-14-jdk-headless -o APT::Immediate-Configure=0
       - run:
           name: Translate AgentSpeak file and Build agent
           command: 'make agent'
