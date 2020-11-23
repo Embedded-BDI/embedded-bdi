@@ -1,27 +1,27 @@
- /*
-  * AgentSpeak code:
-  *
-  * !goal1.
-  * 
-  * +belief_1 <- action_1.
-  * +belief_2 <- action_2.
-  * +belief_3 <- action_3.
-  * +belief_4 <- action_4.
-  * +belief_5 <- action_5.
-  * 
-  * +!goal1 : belief_2 & belief_3 <- !goal2.
-  * +!goal2 <- action_6.
-  * 
-  * -!goal2 <- action_7.
-  */ 
+/*
+ * AgentSpeak code:
+ *
+ * !goal1.
+ * 
+ * +belief_1 <- action_1.
+ * +belief_2 <- action_2.
+ * +belief_3 <- action_3.
+ * +belief_4 <- action_4.
+ * +belief_5 <- action_5.
+ * 
+ * +!goal1 : belief_2 & belief_3 <- !goal2.
+ * +!goal2 <- action_6.
+ * 
+ * -!goal2 <- action_7.
+ */ 
 
 #ifndef CONFIGURATION_H_
 #define CONFIGURATION_H_
 
-#include "../../lib/bdi/belief_base.h"
-#include "../../lib/bdi/event_base.h"
-#include "../../lib/bdi/plan_base.h"
-#include "../../lib/bdi/intention_base.h"
+#include "bdi/belief_base.h"
+#include "bdi/event_base.h"
+#include "bdi/plan_base.h"
+#include "bdi/intention_base.h"
 #include "../../data/functions.h"
 
 class AgentSettings

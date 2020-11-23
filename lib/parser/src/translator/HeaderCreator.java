@@ -77,10 +77,10 @@ public class HeaderCreator
 
       // Include headers and start class declaration
       text = "#ifndef CONFIGURATION_H_\n#define CONFIGURATION_H_\n\n"          +
-             "#include \"../../lib/bdi/belief_base.h\"\n"                      +
-             "#include \"../../lib/bdi/event_base.h\"\n"                       +
-             "#include \"../../lib/bdi/plan_base.h\"\n"                        +
-             "#include \"../../lib/bdi/intention_base.h\"\n"                   +
+             "#include \"bdi/belief_base.h\"\n"                      +
+             "#include \"bdi/event_base.h\"\n"                       +
+             "#include \"bdi/plan_base.h\"\n"                        +
+             "#include \"bdi/intention_base.h\"\n"                   +
              "#include \"../../" + function_file + "\"\n\n"                    +
              "class AgentSettings\n{\nprivate:\n";
       
