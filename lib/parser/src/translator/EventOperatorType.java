@@ -4,6 +4,7 @@ public enum EventOperatorType
 {
   BELIEF_ADDITION,      // +
   BELIEF_DELETION,      // -
+  GOAL_ACHIEVE,         // !!
   GOAL_ADDITION,        // +!
   GOAL_DELETION,        // -!
   TEST_GOAL_ADDITION,   // +?!

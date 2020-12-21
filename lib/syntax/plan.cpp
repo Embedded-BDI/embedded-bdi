@@ -19,5 +19,5 @@ BodyReturn Plan::run_body(std::uint8_t index,
                           BeliefBase * beliefs,
                           EventBase * events)
 {
-  return _body->run_body(index, beliefs, events);;
+  return _body->run_body(index, beliefs, events);
 }

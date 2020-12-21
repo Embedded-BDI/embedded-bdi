@@ -23,6 +23,7 @@ enum class EventOperator : unsigned char
   BELIEF_DELETION,      // -
   GOAL_ADDITION,        // +!
   GOAL_DELETION,        // -!
+  GOAL_ACHIEVE,         // !!
   TEST_GOAL_ADDITION,   // +?!
   TEST_GOAL_DELETION,   // -?!
 };
