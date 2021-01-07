@@ -14,6 +14,7 @@
  *   * BELIEF_DELETION (-): Deletion of belief from belief base
  *   * GOAL_ADDITION (+!): Addition of (sub)goal
  *   * GOAL_DELETION (-!): Deletion of (sub)goal
+ *   * GOAL_ACHIEVE (!!): Non-blocking addition of subgoal
  *   * TEST_GOAL_ADDITION (+?!): Addition of test (sub)goal
  *   * TEST_GOAL_DELETION (+?-): Deletion of test (sub)goal
  */
