@@ -161,6 +161,9 @@ public class As2Json
         case "-":
           plan_s.setOperator(EventOperatorType.BELIEF_DELETION);
           break;
+        case "!!":
+          plan_s.setOperator(EventOperatorType.GOAL_ACHIEVE);
+          break;
         case "+!":
           plan_s.setOperator(EventOperatorType.GOAL_ADDITION);
           break;
@@ -216,7 +219,7 @@ public class As2Json
             break;
           case achieveNF:
             instruction.setType(BodyInstruction.BodyType.GOAL);
-            instruction.setOperator(EventOperatorType.GOAL_DELETION);
+            instruction.setOperator(EventOperatorType.GOAL_ACHIEVE);
             break;
           case action:
             instruction.setType(BodyInstruction.BodyType.ACTION);

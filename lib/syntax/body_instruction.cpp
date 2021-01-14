@@ -63,7 +63,16 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
   }
   else
   {
-    if (event_base->add_event(event))
+    if (event.get_operator() == EventOperator::GOAL_ACHIEVE)
+    {
+      event_base->add_event(event);
+      result = BodyReturn(
+                          BodyType::GOAL,
+                          true,
+                          nullptr
+                          );
+    }
+    else if (event_base->add_event(event))
     {
       result = BodyReturn(
                           BodyType::GOAL,
