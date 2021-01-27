@@ -26,6 +26,7 @@ private:
   std::uint8_t _size;
   /// Identified of Event that suspends intention from running
   EventID * _suspended_by;
+  bool suspended_by_belief_event;
 
   /**
    * Suspend intention. Intentions should be suspended when the instruction
@@ -33,12 +34,9 @@ private:
    * can be run without processing the event first
    * @param event_id Pointer to EventID that blocks the intention from running
    */
-  void suspend(EventID * event_id);
+  void suspend(EventID * event_id, EventBase * events);
 
-  /**
-   * Unsuspend intention so instructions can be run
-   */
-  void unsuspend();
+
 
 public:
   /**
@@ -92,10 +90,17 @@ public:
    */
   bool is_suspended();
 
+  bool is_suspended_by_belief_event();
+
   EventID * get_event_id()
   {
     return _suspended_by;
   }
+
+  /**
+   * Unsuspend intention so instructions can be run
+   */
+  void unsuspend();
 };
 
 #endif /* BDI_INTENTION_H_ */

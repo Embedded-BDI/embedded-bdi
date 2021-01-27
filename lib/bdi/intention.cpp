@@ -7,10 +7,12 @@
 
 #include "intention.h"
 
+
 Intention::Intention(Plan * plan, std::uint8_t size)
 {
   _size = size;
   _suspended_by = nullptr;
+  suspended_by_belief_event = false;
   _plans.init(size);
   InstantiatedPlan inst_plan(plan);
   _plans.push_back(inst_plan);
@@ -45,7 +47,7 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
   {
     if (value.get_event())
     {
-      this->suspend(value.get_event());
+      this->suspend(value.get_event(), events);
     }
     else
     {
@@ -65,14 +67,25 @@ bool Intention::run_intention(BeliefBase * beliefs, EventBase * events)
   return value.get_value();
 }
 
-void Intention::suspend(EventID * event_id)
+void Intention::suspend(EventID * event_id, EventBase * events)
 {
   _suspended_by = event_id;
+
+  Event * event = events->get_event_by_id(event_id);
+  if (event)
+  {
+    if (event->get_operator() == EventOperator::BELIEF_ADDITION ||
+    	event->get_operator() == EventOperator::BELIEF_DELETION)
+    {
+      this->suspended_by_belief_event = true;
+    }
+  }
 }
 
 void Intention::unsuspend()
 {
   _suspended_by = nullptr;
+  this->suspended_by_belief_event = false;
 }
 
 bool Intention::is_suspended_by(Event * event)
@@ -94,7 +107,7 @@ bool Intention::is_suspended_by(Event * event)
 
 bool Intention::is_finished()
 {
-  if (_suspended_by)
+  if (_suspended_by != nullptr)
   {
     return false;
   }
@@ -107,6 +120,11 @@ bool Intention::is_finished()
 bool Intention::is_suspended()
 {
   return (_suspended_by != nullptr);
+}
+
+bool Intention::is_suspended_by_belief_event()
+{
+  return suspended_by_belief_event;
 }
 
 void Intention::terminate(BeliefBase * beliefs,

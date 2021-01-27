@@ -69,3 +69,15 @@ bool EventBase::is_empty()
 {
   return (_pending_events.size() == 0);
 }
+
+Event * EventBase::get_event_by_id(EventID * event_id)
+{
+  for (std::uint8_t i = 0; i < _pending_events.size(); i++)
+  {
+    if (event_id->is_equal(_pending_events.item_at(i)->get_event_id()))
+    {
+      return _pending_events.item_at(i);
+    }
+  }
+  return nullptr;
+}

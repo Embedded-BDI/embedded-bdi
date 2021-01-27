@@ -7,6 +7,8 @@
 
 #include "intention_base.h"
 
+#include <iostream>
+
 IntentionBase::IntentionBase(std::uint8_t buffer_size, std::uint8_t stack_size)
 {
   _buffer_size = buffer_size;
@@ -61,21 +63,30 @@ void IntentionBase::run_intention_base(BeliefBase * beliefs,
     return;
   }
 
-  // Handles suspended intention
   if (_intention_base.back()->is_suspended())
   {
     if (events->event_exists(_intention_base.back()->get_event_id()))
     {
       _intention_base.rotate();
     }
+    else if (_intention_base.back()->is_suspended_by_belief_event())
+    {
+      _intention_base.back()->unsuspend();
+    }
     else
     {
       _intention_base.back()->terminate(beliefs, events, plans);
       _intention_base.pop_back();
     }
+    return;
   }
 
   // Runs plan
+  if (_intention_base.size() == 0)
+  {
+    return;
+  }
+
   if (!_intention_base.back()->run_intention(beliefs, events))
   {
     _intention_base.back()->terminate(beliefs, events, plans);
