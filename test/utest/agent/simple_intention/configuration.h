@@ -17,6 +17,10 @@
 class SimpleIntention
 {
 private:
+  Body * body_0;
+  Context * context_0;
+  Body * body_1;
+  Context * context_1;
   BeliefBase * belief_base;
   EventBase * event_base;
   PlanBase * plan_base;
@@ -25,53 +29,83 @@ private:
 public:
   SimpleIntention()
   {
-    belief_base = new BeliefBase(0);
+    belief_base = new BeliefBase(1);
     event_base = new EventBase(1);
-    plan_base = new PlanBase(1);
-    intention_base = new IntentionBase(1, 4);
+    plan_base = new PlanBase(2);
+    intention_base = new IntentionBase(1, 2);
 
     //--------------------------------------------------------------------------
 
-    Event event(EventOperator::GOAL_ADDITION, 0);
-    event_base->add_event(event);
+    Belief belief_belief_1(0, nullptr, false);
+    belief_base->add_belief(belief_belief_1);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_0(0);
-    Context * context_0 = new Context(0);
-    Body * body_0 = new Body(5);
+    Event event_1(EventOperator::GOAL_ADDITION, 1);
+    event_base->add_event(event_1);
 
-    Statement stm_0_body_0(1);
-    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_1_simple_intention);
+    //--------------------------------------------------------------------------
+
+    Statement stm_0(1);
+    context_0 = new Context(0);
+    body_0 = new Body(7);
+
+    Statement stm_0_body_0(0);
+    BodyInstruction inst_0_0(BodyType::BELIEF, stm_0_body_0, EventOperator::BELIEF_ADDITION);
     body_0->add_instruction(inst_0_0);
 
     Statement stm_0_body_1(2);
-    BodyInstruction inst_1_0(BodyType::ACTION, stm_0_body_1, action_2_simple_intention);
+    BodyInstruction inst_1_0(BodyType::ACTION, stm_0_body_1, action_1_simple_intention);
     body_0->add_instruction(inst_1_0);
 
     Statement stm_0_body_2(3);
-    BodyInstruction inst_2_0(BodyType::ACTION, stm_0_body_2, action_3_simple_intention);
+    BodyInstruction inst_2_0(BodyType::ACTION, stm_0_body_2, action_2_simple_intention);
     body_0->add_instruction(inst_2_0);
 
-    Statement stm_0_body_3(4);
-    BodyInstruction inst_3_0(BodyType::ACTION, stm_0_body_3, action_4_simple_intention);
+    Statement stm_0_body_3(0);
+    BodyInstruction inst_3_0(BodyType::BELIEF, stm_0_body_3, EventOperator::BELIEF_DELETION);
     body_0->add_instruction(inst_3_0);
 
-    Statement stm_0_body_4(5);
-    BodyInstruction inst_4_0(BodyType::ACTION, stm_0_body_4, action_5_simple_intention);
+    Statement stm_0_body_4(4);
+    BodyInstruction inst_4_0(BodyType::ACTION, stm_0_body_4, action_3_simple_intention);
     body_0->add_instruction(inst_4_0);
+
+    Statement stm_0_body_5(5);
+    BodyInstruction inst_5_0(BodyType::ACTION, stm_0_body_5, action_4_simple_intention);
+    body_0->add_instruction(inst_5_0);
+
+    Statement stm_0_body_6(6);
+    BodyInstruction inst_6_0(BodyType::ACTION, stm_0_body_6, action_5_simple_intention);
+    body_0->add_instruction(inst_6_0);
 
     Plan plan_0(EventOperator::GOAL_ADDITION, stm_0, context_0, body_0);
     plan_base->add_plan(plan_0);
+
+    //--------------------------------------------------------------------------
+
+    Statement stm_1(0);
+    context_1 = new Context(0);
+    body_1 = new Body(1);
+
+    Statement stm_1_body_0(2);
+    BodyInstruction inst_0_1(BodyType::ACTION, stm_1_body_0, action_1_simple_intention);
+    body_1->add_instruction(inst_0_1);
+
+    Plan plan_1(EventOperator::BELIEF_DELETION, stm_1, context_1, body_1);
+    plan_base->add_plan(plan_1);
   }
 
   ~SimpleIntention()
   {
+    delete body_0;
+    delete context_0;
+    delete body_1;
+    delete context_1;
     delete belief_base;
     delete event_base;
     delete plan_base;
     delete intention_base;
-  }
+}
 
   BeliefBase *  get_belief_base()
   {

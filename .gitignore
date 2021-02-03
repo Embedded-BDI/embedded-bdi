@@ -45,3 +45,4 @@ docs/.settings
 
 # OSX
 .DS_Store
+/.project

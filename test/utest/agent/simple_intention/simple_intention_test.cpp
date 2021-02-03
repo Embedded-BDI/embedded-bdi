@@ -7,9 +7,17 @@
  *
  * AgentSpeak code:
  *
- *   !goal1.
+ *  !goal1.
  *
- *   +!goal1 <- action_1_simple_intention; action_2_simple_intention; action_3_simple_intention; action_4_simple_intention; action_5_simple_intention.
+ *  +!goal1 <- +belief_1;
+ *             action_1_simple_intention;
+ *             action_2_simple_intention;
+ *             -belief_1;
+ *             action_3_simple_intention;
+ *             action_4_simple_intention;
+ *             action_5_simple_intention.
+ *
+ *  -belief_1 <- action_1_simple_intention.
  */
 
 #include "common_lib.h"
@@ -53,12 +61,30 @@ TEST_F(TSimpleIntention, run_simple_intention)
   EXPECT_TRUE(events->is_full());
 
   agent->run();
+  EXPECT_TRUE(intentions->is_full());
+  EXPECT_TRUE(events->is_full());
+
+  agent->run();
+  EXPECT_TRUE(intentions->is_full());
+  EXPECT_TRUE(events->is_empty());
+
+  agent->run();
   EXPECT_EQ(1, shared_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
   EXPECT_EQ(2, shared_var);
+  EXPECT_TRUE(intentions->is_full());
+  EXPECT_TRUE(events->is_empty());
+
+  agent->run();
+  EXPECT_EQ(2, shared_var);
+  EXPECT_TRUE(intentions->is_full());
+  EXPECT_TRUE(events->is_full());
+
+  agent->run();
+  EXPECT_EQ(1, shared_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 

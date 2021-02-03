@@ -68,6 +68,8 @@ public:
    * @return true if EventBase is empty, false otherwise
    */
   bool is_empty();
+
+  Event * get_event_by_id(EventID * event);
 };
 
 #endif /* BDI_EVENT_BASE_H_ */
