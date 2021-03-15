@@ -1,9 +1,0 @@
-## TODO
-
-[ ] Improve Makefile so only necessary paths are included during compilation
-[ ] Add Event/Intention priority
-[ ] Add support for AgentSpeak predicates (may require complete refactor of code)
-[ ] Add support for more complex condition unification
-[ ] Optimize code
-[ ] Replace usage of STL vector by dynamic arrays for queues
-[ ] Port C++ code to C for more efficiency

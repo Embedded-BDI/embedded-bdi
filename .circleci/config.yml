@@ -24,7 +24,7 @@ jobs:
           name: Run Unit Tests
           command: './build/unittest.out'
       - run:
-          name: Install Oracle JDK
+          name: Install OpenJDK
           command: apt install -y openjdk-11-jdk
       - run:
           name: Translate AgentSpeak file and Build agent
