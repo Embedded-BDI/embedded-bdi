@@ -2,72 +2,55 @@
 #define FUNCTIONS_H_
 
 #include <iostream>
+#include <ctime>
 
-bool action_action_1()
+//-----------------------------------------------------------------------------
+
+int my_number = 11;           // number out of range so it is not sorted before
+                              // the agent grabs a number
+bool joined_auction = false;
+
+//------------------------- Action functions ----------------------------------
+
+bool action_join_lottery()
 {
-  std::cout << "Action 1 - Successful" << std::endl;
+  joined_auction = true;
+  std::cout << "I'm joining the lottery!" << std::endl;
   return true;
 }
 
-bool action_action_2()
+bool action_grab_number()
 {
-  std::cout << "Action 2 - Successful" << std::endl;
+  srand(time(0));
+
+  my_number = rand() % 10;
+  std::cout << "My number is: " << my_number << std::endl;
+
   return true;
 }
 
-bool action_action_3()
+bool action_cheer_and_leave()
 {
-  std::cout << "Action 3 - Successful" << std::endl;
+  std::cout << "I won! My number was sorted: " << my_number << std::endl;
+  exit(0);
   return true;
 }
 
-bool action_action_4()
-{
-  std::cout << "Action 4 - Successful" << std::endl;
-  return true;
-}
+//-------------------------- Belief update functions --------------------------
 
-bool action_action_5()
+bool update_my_number(bool var)
 {
-  std::cout << "Action 5 - Successful" << std::endl;
-  return true;
-}
-
-bool action_action_6()
-{
-  std::cout << "Action 6 - Failure" << std::endl;
-  return false;
-}
-
-bool action_action_7()
-{
-  std::cout << "Action 7 - Failure handling" << std::endl;
-  return true;
-}
-
-bool update_belief_1(bool var)
-{
-  return !var;
-}
-
-bool update_belief_2(bool var)
-{
-  return !var;
-}
-
-bool update_belief_3(bool var)
-{
-  return !var;
-}
-
-bool update_belief_4(bool var)
-{
-  return !var;
-}
-
-bool update_belief_5(bool var)
-{
-  return !var;
+  if (joined_auction)
+  {
+    int number_sorted = rand() % 10;
+    std::cout << "Number sorted was: " << number_sorted << std::endl;
+    
+    return (my_number == number_sorted);
+  }
+  else
+  {
+    return false;
+  }
 }
 
 #endif /* FUNCTIONS_H_ */
