@@ -1,13 +1,13 @@
 <map id="belief_base.cpp" name="belief_base.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="246,5,358,32"/>
-<area shape="rect" id="node2" href="$d2/d2f/belief__base_8h.html" title=" " alt="" coords="252,80,351,107"/>
-<area shape="rect" id="node3" href="$da/db8/belief_8h.html" title=" " alt="" coords="70,229,133,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="179,379,240,405"/>
-<area shape="rect" id="node6" href="$dd/d20/event_8h.html" title=" " alt="" coords="270,229,334,256"/>
-<area shape="rect" id="node9" href="$d7/dc4/event__base_8h.html" title=" " alt="" coords="438,155,536,181"/>
-<area shape="rect" id="node10" href="$d0/d81/vector__queue_8h.html" title=" " alt="" coords="625,229,762,256"/>
-<area shape="rect" id="node4" href="$de/d93/statement_8h.html" title=" " alt="" coords="31,304,172,331"/>
-<area shape="rect" id="node7" href="$db/d50/event__operator_8h.html" title=" " alt="" coords="380,304,549,331"/>
-<area shape="rect" id="node8" href="$df/dc3/event__id_8h.html" title=" " alt="" coords="248,304,356,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="675,304,734,331"/>
+<area shape="rect" id="node1" title=" " alt="" coords="251,5,363,32"/>
+<area shape="rect" id="node2" href="$d2/d2f/belief__base_8h.html" title=" " alt="" coords="258,80,357,107"/>
+<area shape="rect" id="node3" href="$da/db8/belief_8h.html" title=" " alt="" coords="73,229,136,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="185,379,246,405"/>
+<area shape="rect" id="node6" href="$dd/d20/event_8h.html" title=" " alt="" coords="275,229,339,256"/>
+<area shape="rect" id="node9" href="$d7/dc4/event__base_8h.html" title=" " alt="" coords="443,155,542,181"/>
+<area shape="rect" id="node10" href="$d0/d81/vector__queue_8h.html" title=" " alt="" coords="631,229,768,256"/>
+<area shape="rect" id="node4" href="$d5/d6b/proposition_8h.html" title=" " alt="" coords="31,304,178,331"/>
+<area shape="rect" id="node7" href="$db/d50/event__operator_8h.html" title=" " alt="" coords="385,304,555,331"/>
+<area shape="rect" id="node8" href="$df/dc3/event__id_8h.html" title=" " alt="" coords="253,304,361,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="681,304,739,331"/>
 </map>

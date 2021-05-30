@@ -67,9 +67,9 @@ var files_dup =
     [ "plan_base.h", "de/d75/plan__base_8h.html", [
       [ "PlanBase", "d1/d0c/class_plan_base.html", "d1/d0c/class_plan_base" ]
     ] ],
-    [ "statement.cpp", "d1/d48/statement_8cpp.html", null ],
-    [ "statement.h", "de/d93/statement_8h.html", [
-      [ "Statement", "d7/da3/class_statement.html", "d7/da3/class_statement" ]
+    [ "proposition.cpp", "d1/d0a/proposition_8cpp.html", null ],
+    [ "proposition.h", "d5/d6b/proposition_8h.html", [
+      [ "Proposition", "df/d75/class_proposition.html", "df/d75/class_proposition" ]
     ] ],
     [ "vector_queue.h", "d0/d81/vector__queue_8h.html", [
       [ "VectorQueue", "df/d28/class_vector_queue.html", "df/d28/class_vector_queue" ]

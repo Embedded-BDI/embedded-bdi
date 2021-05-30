@@ -1,9 +1,9 @@
-<map id="statement.h" name="statement.h">
-<area shape="rect" id="node1" title=" " alt="" coords="595,5,685,32"/>
+<map id="proposition.h" name="proposition.h">
+<area shape="rect" id="node1" title=" " alt="" coords="593,5,687,32"/>
 <area shape="rect" id="node2" href="$da/db8/belief_8h.html" title=" " alt="" coords="89,80,151,107"/>
 <area shape="rect" id="node25" href="$dd/d20/event_8h.html" title=" " alt="" coords="547,80,611,107"/>
 <area shape="rect" id="node31" href="$d7/d7d/context__condition_8h.html" title=" " alt="" coords="767,80,900,107"/>
-<area shape="rect" id="node33" href="$d1/d48/statement_8cpp.html" title=" " alt="" coords="924,80,1028,107"/>
+<area shape="rect" id="node33" href="$d1/d0a/proposition_8cpp.html" title=" " alt="" coords="924,80,1033,107"/>
 <area shape="rect" id="node3" href="$d7/d2f/belief_8cpp.html" title=" " alt="" coords="5,155,83,181"/>
 <area shape="rect" id="node4" href="$d2/d2f/belief__base_8h.html" title=" " alt="" coords="387,229,485,256"/>
 <area shape="rect" id="node5" href="$de/d9e/agent_8h.html" title=" " alt="" coords="441,752,505,779"/>

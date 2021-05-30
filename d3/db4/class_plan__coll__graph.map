@@ -1,9 +1,9 @@
 <map id="Plan" name="Plan">
-<area shape="rect" id="node1" title=" " alt="" coords="279,836,403,987"/>
-<area shape="rect" id="node2" href="$d5/de2/class_context.html" title=" " alt="" coords="130,652,241,759"/>
-<area shape="rect" id="node3" href="$df/d28/class_vector_queue.html" title=" " alt="" coords="5,321,224,575"/>
-<area shape="rect" id="node4" href="$df/d28/class_vector_queue.html" title=" " alt="" coords="169,5,298,259"/>
-<area shape="rect" id="node7" href="$df/d28/class_vector_queue.html" title=" " alt="" coords="248,321,459,575"/>
-<area shape="rect" id="node5" href="$d7/da3/class_statement.html" title=" " alt="" coords="431,637,532,773"/>
-<area shape="rect" id="node6" href="$d0/dcb/class_body.html" title=" " alt="" coords="277,645,406,766"/>
+<area shape="rect" id="node1" title=" " alt="" coords="127,836,257,987"/>
+<area shape="rect" id="node2" href="$df/d75/class_proposition.html" title=" " alt="" coords="5,637,112,773"/>
+<area shape="rect" id="node3" href="$d5/de2/class_context.html" title=" " alt="" coords="137,652,247,759"/>
+<area shape="rect" id="node4" href="$df/d28/class_vector_queue.html" title=" " alt="" coords="47,321,265,575"/>
+<area shape="rect" id="node5" href="$df/d28/class_vector_queue.html" title=" " alt="" coords="210,5,339,259"/>
+<area shape="rect" id="node7" href="$df/d28/class_vector_queue.html" title=" " alt="" coords="289,321,500,575"/>
+<area shape="rect" id="node6" href="$d0/dcb/class_body.html" title=" " alt="" coords="318,645,447,766"/>
 </map>

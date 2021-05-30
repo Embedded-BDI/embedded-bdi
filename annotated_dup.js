@@ -16,6 +16,6 @@ var annotated_dup =
     [ "IntentionBase", "d8/d1d/class_intention_base.html", "d8/d1d/class_intention_base" ],
     [ "Plan", "de/dcd/class_plan.html", "de/dcd/class_plan" ],
     [ "PlanBase", "d1/d0c/class_plan_base.html", "d1/d0c/class_plan_base" ],
-    [ "Statement", "d7/da3/class_statement.html", "d7/da3/class_statement" ],
+    [ "Proposition", "df/d75/class_proposition.html", "df/d75/class_proposition" ],
     [ "VectorQueue", "df/d28/class_vector_queue.html", "df/d28/class_vector_queue" ]
 ];

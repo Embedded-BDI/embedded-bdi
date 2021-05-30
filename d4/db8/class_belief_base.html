@@ -107,10 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a79c1185a450fc9fc280199a530e64f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed4dc3c60d5baa805fe6b13cc6a962bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db8/class_belief_base.html#aed4dc3c60d5baa805fe6b13cc6a962bc">update</a> (<a class="el" href="../../da/df2/class_event_base.html">EventBase</a> *event_base)</td></tr>
 <tr class="separator:aed4dc3c60d5baa805fe6b13cc6a962bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fc1b22231fa6b7780115c0d9e691aa2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db8/class_belief_base.html#a2fc1b22231fa6b7780115c0d9e691aa2">change_belief_state</a> (<a class="el" href="../../d7/da3/class_statement.html">Statement</a> stm, bool state)</td></tr>
-<tr class="separator:a2fc1b22231fa6b7780115c0d9e691aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2610728a055a366169e5e68e457bfa0f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db8/class_belief_base.html#a2610728a055a366169e5e68e457bfa0f">get_belief_state</a> (<a class="el" href="../../d7/da3/class_statement.html">Statement</a> stm)</td></tr>
-<tr class="separator:a2610728a055a366169e5e68e457bfa0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f09267963748e213777d819a5c6229f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db8/class_belief_base.html#a1f09267963748e213777d819a5c6229f">change_belief_state</a> (<a class="el" href="../../df/d75/class_proposition.html">Proposition</a> prop, bool state)</td></tr>
+<tr class="separator:a1f09267963748e213777d819a5c6229f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a279a3fa55dde926e44385399adee5915"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db8/class_belief_base.html#a279a3fa55dde926e44385399adee5915">get_belief_state</a> (<a class="el" href="../../df/d75/class_proposition.html">Proposition</a> prop)</td></tr>
+<tr class="separator:a279a3fa55dde926e44385399adee5915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6103f5dd726fa243a1446ae26a249e90"><td class="memItemLeft" align="right" valign="top">const std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db8/class_belief_base.html#a6103f5dd726fa243a1446ae26a249e90">get_size</a> ()</td></tr>
 <tr class="separator:a6103f5dd726fa243a1446ae26a249e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -176,8 +176,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2fc1b22231fa6b7780115c0d9e691aa2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fc1b22231fa6b7780115c0d9e691aa2">&#9670;&nbsp;</a></span>change_belief_state()</h2>
+<a id="a1f09267963748e213777d819a5c6229f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f09267963748e213777d819a5c6229f">&#9670;&nbsp;</a></span>change_belief_state()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,8 +185,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool BeliefBase::change_belief_state </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d7/da3/class_statement.html">Statement</a>&#160;</td>
-          <td class="paramname"><em>stm</em>, </td>
+          <td class="paramtype"><a class="el" href="../../df/d75/class_proposition.html">Proposition</a>&#160;</td>
+          <td class="paramname"><em>prop</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,7 +203,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Change the _belief_state of a belief </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stm</td><td><a class="el" href="../../db/db3/class_belief.html">Belief</a>'s statement </td></tr>
+    <tr><td class="paramname">prop</td><td><a class="el" href="../../db/db3/class_belief.html">Belief</a>'s proposition </td></tr>
     <tr><td class="paramname">state</td><td>New _belief_state value </td></tr>
   </table>
   </dd>
@@ -212,8 +212,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2610728a055a366169e5e68e457bfa0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2610728a055a366169e5e68e457bfa0f">&#9670;&nbsp;</a></span>get_belief_state()</h2>
+<a id="a279a3fa55dde926e44385399adee5915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a279a3fa55dde926e44385399adee5915">&#9670;&nbsp;</a></span>get_belief_state()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,15 +221,15 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool BeliefBase::get_belief_state </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d7/da3/class_statement.html">Statement</a>&#160;</td>
-          <td class="paramname"><em>stm</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="../../df/d75/class_proposition.html">Proposition</a>&#160;</td>
+          <td class="paramname"><em>prop</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get _belief_state value of belief that matches given statement </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Get _belief_state value of belief that matches given proposition </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stm</td><td><a class="el" href="../../d7/da3/class_statement.html">Statement</a> to match belief's statement </td></tr>
+    <tr><td class="paramname">prop</td><td><a class="el" href="../../df/d75/class_proposition.html">Proposition</a> to match belief's proposition </td></tr>
   </table>
   </dd>
 </dl>

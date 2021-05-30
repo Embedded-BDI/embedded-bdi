@@ -1,7 +1,7 @@
 var searchData=
 [
   ['back_36',['back',['../df/d28/class_vector_queue.html#affaf02ccb2619f3388785b7b75ebc8bd',1,'VectorQueue']]],
-  ['belief_37',['Belief',['../db/db3/class_belief.html#a24f6c9a53ed16bc678288480dc4a1175',1,'Belief']]],
+  ['belief_37',['Belief',['../db/db3/class_belief.html#a4eac29e5fd35fc675138174c201b3490',1,'Belief']]],
   ['belief_38',['BELIEF',['../d0/d96/body__type_8h.html#aa84fe78a5a90b774aff00456706564eaad4b0955d06274789d968bda510997904',1,'body_type.h']]],
   ['belief_39',['Belief',['../db/db3/class_belief.html',1,'']]],
   ['belief_2ecpp_40',['belief.cpp',['../d7/d2f/belief_8cpp.html',1,'']]],
@@ -20,7 +20,7 @@ var searchData=
   ['body_5freturn_2ecpp_53',['body_return.cpp',['../de/dc0/body__return_8cpp.html',1,'']]],
   ['body_5freturn_2eh_54',['body_return.h',['../d9/ded/body__return_8h.html',1,'']]],
   ['body_5ftype_2eh_55',['body_type.h',['../d0/d96/body__type_8h.html',1,'']]],
-  ['bodyinstruction_56',['BodyInstruction',['../d2/d3e/class_body_instruction.html#aacda236c6e34d89ffdcb6adfe1aa1431',1,'BodyInstruction::BodyInstruction(BodyType type, Statement stm, bool(*take_action)())'],['../d2/d3e/class_body_instruction.html#a8c767539bf5b6e19a77a163bac15f47a',1,'BodyInstruction::BodyInstruction(BodyType type, Statement stm, EventOperator event_operator)'],['../d2/d3e/class_body_instruction.html',1,'BodyInstruction']]],
+  ['bodyinstruction_56',['BodyInstruction',['../d2/d3e/class_body_instruction.html#a34fed2693983972fe5050f37036c9ed1',1,'BodyInstruction::BodyInstruction(BodyType type, Proposition prop, bool(*take_action)())'],['../d2/d3e/class_body_instruction.html#ac234c9f0e2ff7c2b3e406a9eae21eb25',1,'BodyInstruction::BodyInstruction(BodyType type, Proposition prop, EventOperator event_operator)'],['../d2/d3e/class_body_instruction.html',1,'BodyInstruction']]],
   ['bodyreturn_57',['BodyReturn',['../dd/d51/class_body_return.html#a6cef7334b226efa95d436059022f5ce1',1,'BodyReturn::BodyReturn()'],['../dd/d51/class_body_return.html#adf1ff88bb0ac8c1f485f6b8e4b9e4fd8',1,'BodyReturn::BodyReturn(BodyType type, bool value, EventID *event)'],['../dd/d51/class_body_return.html',1,'BodyReturn']]],
   ['bodytype_58',['BodyType',['../d0/d96/body__type_8h.html#aa84fe78a5a90b774aff00456706564ea',1,'body_type.h']]]
 ];
