@@ -27,28 +27,28 @@ public:
     event_base_empty = new EventBase(BASES_SIZE);
     event_base_full = new EventBase(BASES_SIZE);
 
-    Statement event('e');
+    Proposition event('e');
     for (int i = 0; i < BASES_SIZE; i++)
     {
       Event event_e(EventOperator::BELIEF_ADDITION, event);
       event_base_full->add_event(event_e);
     }
 
-    Statement stm_0(0);
-    Statement stm_1(1);
-    Statement stm_2(2);
-    Statement stm_3(3);
+    Proposition prop_0(0);
+    Proposition prop_1(1);
+    Proposition prop_2(2);
+    Proposition prop_3(3);
 
     Context * ctx = new Context(0);
 
     BodyInstruction body_a(BodyType::ACTION,
-                           stm_1,
+                           prop_1,
                            return_true_beliefbase);
     BodyInstruction body_b(BodyType::BELIEF,
-                           stm_2,
+                           prop_2,
                            EventOperator::BELIEF_ADDITION);
     BodyInstruction body_g(BodyType::GOAL,
-                           stm_3,
+                           prop_3,
                            EventOperator::GOAL_ADDITION);
 
     Body * body = new Body(BODY_SIZE);
@@ -56,7 +56,7 @@ public:
     body->add_instruction(body_b);
     body->add_instruction(body_g);
 
-    Plan * plan = new Plan(EventOperator::BELIEF_ADDITION, stm_0, ctx, body);
+    Plan * plan = new Plan(EventOperator::BELIEF_ADDITION, prop_0, ctx, body);
 
     inst_plan = new InstantiatedPlan(plan);
   }

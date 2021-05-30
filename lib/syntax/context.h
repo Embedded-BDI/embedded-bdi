@@ -39,7 +39,7 @@ public:
 
   /**
    * Checks if context is valid
-   * @param beliefs Checks if statements from vector of ContextConditions have
+   * @param beliefs Checks if propositions from vector of ContextConditions have
    * the expected values given the BeliefBase
    */
   bool is_valid (BeliefBase * beliefs);

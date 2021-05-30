@@ -42,105 +42,105 @@ public:
 
     //--------------------------------------------------------------------------
 
-    Statement stm_0(0);
+    Proposition prop_0(0);
     Context * context_0 = new Context(0);
     Body * body_0 = new Body(1);
 
-    Statement stm_0_body_0(2);
-    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_return_false);
+    Proposition prop_0_body_0(2);
+    BodyInstruction inst_0_0(BodyType::ACTION, prop_0_body_0, action_return_false);
     body_0->add_instruction(inst_0_0);
 
-    Plan plan_0(EventOperator::GOAL_ADDITION, stm_0, context_0, body_0);
+    Plan plan_0(EventOperator::GOAL_ADDITION, prop_0, context_0, body_0);
     plan_base->add_plan(plan_0);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_1(0);
+    Proposition prop_1(0);
     Context * context_1 = new Context(0);
     Body * body_1 = new Body(1);
 
-    Statement stm_1_body_0(3);
-    BodyInstruction inst_0_1(BodyType::ACTION, stm_1_body_0, action_deletion_1);
+    Proposition prop_1_body_0(3);
+    BodyInstruction inst_0_1(BodyType::ACTION, prop_1_body_0, action_deletion_1);
     body_1->add_instruction(inst_0_1);
 
-    Plan plan_1(EventOperator::GOAL_DELETION, stm_1, context_1, body_1);
+    Plan plan_1(EventOperator::GOAL_DELETION, prop_1, context_1, body_1);
     plan_base->add_plan(plan_1);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_2(1);
+    Proposition prop_2(1);
     Context * context_2 = new Context(0);
     Body * body_2 = new Body(3);
 
-    Statement stm_2_body_0(4);
-    BodyInstruction inst_0_2(BodyType::ACTION, stm_2_body_0, action_return_true);
+    Proposition prop_2_body_0(4);
+    BodyInstruction inst_0_2(BodyType::ACTION, prop_2_body_0, action_return_true);
     body_2->add_instruction(inst_0_2);
 
-    Statement stm_2_body_1(5);
-    BodyInstruction inst_1_2(BodyType::GOAL, stm_2_body_1, EventOperator::GOAL_ADDITION);
+    Proposition prop_2_body_1(5);
+    BodyInstruction inst_1_2(BodyType::GOAL, prop_2_body_1, EventOperator::GOAL_ADDITION);
     body_2->add_instruction(inst_1_2);
 
-    Statement stm_2_body_2(4);
-    BodyInstruction inst_2_2(BodyType::ACTION, stm_2_body_2, action_return_true);
+    Proposition prop_2_body_2(4);
+    BodyInstruction inst_2_2(BodyType::ACTION, prop_2_body_2, action_return_true);
     body_2->add_instruction(inst_2_2);
 
-    Plan plan_2(EventOperator::GOAL_ADDITION, stm_2, context_2, body_2);
+    Plan plan_2(EventOperator::GOAL_ADDITION, prop_2, context_2, body_2);
     plan_base->add_plan(plan_2);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_3(5);
+    Proposition prop_3(5);
     Context * context_3 = new Context(0);
     Body * body_3 = new Body(2);
 
-    Statement stm_3_body_0(4);
-    BodyInstruction inst_0_3(BodyType::ACTION, stm_3_body_0, action_return_true);
+    Proposition prop_3_body_0(4);
+    BodyInstruction inst_0_3(BodyType::ACTION, prop_3_body_0, action_return_true);
     body_3->add_instruction(inst_0_3);
 
-    Statement stm_3_body_1(6);
-    BodyInstruction inst_1_3(BodyType::GOAL, stm_3_body_1, EventOperator::GOAL_ADDITION);
+    Proposition prop_3_body_1(6);
+    BodyInstruction inst_1_3(BodyType::GOAL, prop_3_body_1, EventOperator::GOAL_ADDITION);
     body_3->add_instruction(inst_1_3);
 
-    Plan plan_3(EventOperator::GOAL_ADDITION, stm_3, context_3, body_3);
+    Plan plan_3(EventOperator::GOAL_ADDITION, prop_3, context_3, body_3);
     plan_base->add_plan(plan_3);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_4(6);
+    Proposition prop_4(6);
     Context * context_4 = new Context(0);
     Body * body_4 = new Body(1);
 
-    Statement stm_4_body_0(2);
-    BodyInstruction inst_0_4(BodyType::ACTION, stm_4_body_0, action_return_false);
+    Proposition prop_4_body_0(2);
+    BodyInstruction inst_0_4(BodyType::ACTION, prop_4_body_0, action_return_false);
     body_4->add_instruction(inst_0_4);
 
-    Plan plan_4(EventOperator::GOAL_ADDITION, stm_4, context_4, body_4);
+    Plan plan_4(EventOperator::GOAL_ADDITION, prop_4, context_4, body_4);
     plan_base->add_plan(plan_4);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_5(6);
+    Proposition prop_5(6);
     Context * context_5 = new Context(0);
     Body * body_5 = new Body(1);
 
-    Statement stm_5_body_0(3);
-    BodyInstruction inst_0_5(BodyType::ACTION, stm_5_body_0, action_deletion_1);
+    Proposition prop_5_body_0(3);
+    BodyInstruction inst_0_5(BodyType::ACTION, prop_5_body_0, action_deletion_1);
     body_5->add_instruction(inst_0_5);
 
-    Plan plan_5(EventOperator::GOAL_DELETION, stm_5, context_5, body_5);
+    Plan plan_5(EventOperator::GOAL_DELETION, prop_5, context_5, body_5);
     plan_base->add_plan(plan_5);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_6(6);
+    Proposition prop_6(6);
     Context * context_6 = new Context(0);
     Body * body_6 = new Body(1);
 
-    Statement stm_6_body_0(7);
-    BodyInstruction inst_0_6(BodyType::ACTION, stm_6_body_0, action_deletion_2);
+    Proposition prop_6_body_0(7);
+    BodyInstruction inst_0_6(BodyType::ACTION, prop_6_body_0, action_deletion_2);
     body_6->add_instruction(inst_0_6);
 
-    Plan plan_6(EventOperator::GOAL_DELETION, stm_6, context_6, body_6);
+    Plan plan_6(EventOperator::GOAL_DELETION, prop_6, context_6, body_6);
     plan_base->add_plan(plan_6);
   }
 

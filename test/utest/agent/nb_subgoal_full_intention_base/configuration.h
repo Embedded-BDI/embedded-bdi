@@ -41,40 +41,40 @@ public:
 
     //--------------------------------------------------------------------------
 
-    Statement stm_0(0);
+    Proposition prop_0(0);
     context_0 = new Context(0);
     body_0 = new Body(4);
 
-    Statement stm_0_body_0(1);
-    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_action_1);
+    Proposition prop_0_body_0(1);
+    BodyInstruction inst_0_0(BodyType::ACTION, prop_0_body_0, action_action_1);
     body_0->add_instruction(inst_0_0);
 
-    Statement stm_0_body_1(2);
-    BodyInstruction inst_1_0(BodyType::GOAL, stm_0_body_1, EventOperator::GOAL_ACHIEVE);
+    Proposition prop_0_body_1(2);
+    BodyInstruction inst_1_0(BodyType::GOAL, prop_0_body_1, EventOperator::GOAL_ACHIEVE);
     body_0->add_instruction(inst_1_0);
 
-    Statement stm_0_body_2(3);
-    BodyInstruction inst_2_0(BodyType::ACTION, stm_0_body_2, action_action_2);
+    Proposition prop_0_body_2(3);
+    BodyInstruction inst_2_0(BodyType::ACTION, prop_0_body_2, action_action_2);
     body_0->add_instruction(inst_2_0);
 
-    Statement stm_0_body_3(4);
-    BodyInstruction inst_3_0(BodyType::ACTION, stm_0_body_3, action_action_3);
+    Proposition prop_0_body_3(4);
+    BodyInstruction inst_3_0(BodyType::ACTION, prop_0_body_3, action_action_3);
     body_0->add_instruction(inst_3_0);
 
-    Plan plan_0(EventOperator::GOAL_ADDITION, stm_0, context_0, body_0);
+    Plan plan_0(EventOperator::GOAL_ADDITION, prop_0, context_0, body_0);
     plan_base->add_plan(plan_0);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_1(2);
+    Proposition prop_1(2);
     context_1 = new Context(0);
     body_1 = new Body(1);
 
-    Statement stm_1_body_0(1);
-    BodyInstruction inst_0_1(BodyType::ACTION, stm_1_body_0, action_action_1);
+    Proposition prop_1_body_0(1);
+    BodyInstruction inst_0_1(BodyType::ACTION, prop_1_body_0, action_action_1);
     body_1->add_instruction(inst_0_1);
 
-    Plan plan_1(EventOperator::GOAL_ADDITION, stm_1, context_1, body_1);
+    Plan plan_1(EventOperator::GOAL_ADDITION, prop_1, context_1, body_1);
     plan_base->add_plan(plan_1);
   }
 

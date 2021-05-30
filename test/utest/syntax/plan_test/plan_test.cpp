@@ -20,7 +20,7 @@ protected:
   TestPlanData * test_data;
 
   EventOperator event_operator;
-  Statement stm;
+  Proposition prop;
   Context * context_valid;
 
   Plan * plan_valid;
@@ -32,32 +32,32 @@ public:
   TPlan()
   {
     test_data = new TestPlanData(BODY_SIZE, BELIEF_BASE_SIZE, EVENT_BASE_SIZE);
-    stm = test_data->get_stm();
+    prop = test_data->get_prop();
 
     event_operator = EventOperator::GOAL_ADDITION;
     context_valid = new Context(CONTEXT_SIZE);
 
     // Valid plan
     plan_valid = new Plan(event_operator,
-                          stm,
+                          prop,
                           context_valid,
                           test_data->get_body_valid());
 
     // Plan that fails due to failure in action
     plan_action = new Plan(event_operator,
-                           stm,
+                           prop,
                            context_valid,
                            test_data->get_body_action_fails());
 
     // Plan that fails due to full EventBase and belief event cannot be created
     plan_belief = new Plan(event_operator,
-                           stm,
+                           prop,
                            context_valid,
                            test_data->get_body_belief_fails());
 
     // Plan that fails due to full EventBase and goal event cannot be created
     plan_goal = new Plan(event_operator,
-                         stm,
+                         prop,
                          context_valid,
                          test_data->get_body_goal_fails());
   }
@@ -76,8 +76,8 @@ TEST_F(TPlan, get_operator) {
   EXPECT_EQ(EventOperator::GOAL_ADDITION, plan_valid->get_operator());
 }
 
-TEST_F(TPlan, get_statement) {
-  EXPECT_TRUE(plan_valid->get_statement()->is_equal(stm));
+TEST_F(TPlan, get_proposition) {
+  EXPECT_TRUE(plan_valid->get_proposition()->is_equal(prop));
 }
 
 TEST_F(TPlan, get_context) {

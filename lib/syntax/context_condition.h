@@ -8,7 +8,7 @@
 #ifndef SYNTAX_CONTEXT_CONDITION_H_
 #define SYNTAX_CONTEXT_CONDITION_H_
 
-#include "statement.h"
+#include "proposition.h"
 #include <cstdint>
 
 /**
@@ -17,18 +17,18 @@
 class ContextCondition
 {
 private:
-  Statement _statement;
+  Proposition _proposition;
 
 public:
   /**
    * ContextCondition constructor
-   * @param stm Statement to be compared with belief from BeliefBase
+   * @param prop Proposition to be compared with belief from BeliefBase
    */
-  ContextCondition(Statement stm);
+  ContextCondition(Proposition prop);
 
-  const Statement & get_statement() const
+  const Proposition & get_proposition() const
   {
-    return _statement;
+    return _proposition;
   }
 };
 

@@ -19,7 +19,7 @@ public class HeaderCreator
   private int intention_base_size;
   private int intention_stack_size;
   private final int STM_MAX_SIZE = 256;
-  private HashMap <String, Integer> stm_map;
+  private HashMap <String, Integer> prop_map;
   private ArrayList<String> belief_functions;
   private ArrayList<String> action_functions;
   private String output_file;
@@ -44,7 +44,7 @@ public class HeaderCreator
     this.event_base_size = event_base_size;
     this.intention_base_size = intention_base_size;
     this.intention_stack_size = intention_stack_size;
-    this.stm_map = new HashMap <String, Integer>();
+    this.prop_map = new HashMap <String, Integer>();
     this.belief_functions = new ArrayList<String>();
     this.action_functions = new ArrayList<String>();
     this.output_file = output_file;
@@ -57,7 +57,7 @@ public class HeaderCreator
     try
     {
       this.load_functions();
-      this.define_statements();
+      this.define_propositions();
 
       BufferedWriter out = new BufferedWriter(new FileWriter(output_file));
 
@@ -123,7 +123,7 @@ public class HeaderCreator
                "---------------------\n\n";
         out.append(text);
 
-        text = "    Belief belief_" + belief + "(" + stm_map.get(belief) + "," +
+        text = "    Belief belief_" + belief + "(" + prop_map.get(belief) + "," +
                " " +  function_name + ", " + beliefs.get(belief) + ");\n"      +
                "    belief_base->add_belief(belief_" + belief + ");\n";
         out.append(text);
@@ -136,9 +136,9 @@ public class HeaderCreator
                "---------------------\n\n";
         out.append(text);
 
-        text = "    Event event_" + stm_map.get(event)                         +
-               "(EventOperator::GOAL_ADDITION, " + stm_map.get(event) + ");\n" +
-               "    event_base->add_event(event_" + stm_map.get(event) + ");\n";
+        text = "    Event event_" + prop_map.get(event)                         +
+               "(EventOperator::GOAL_ADDITION, " + prop_map.get(event) + ");\n" +
+               "    event_base->add_event(event_" + prop_map.get(event) + ");\n";
         out.append(text);
       }
 
@@ -151,8 +151,8 @@ public class HeaderCreator
                "---------------------\n\n";
         out.append(text);
 
-        text = "    Statement stm_" + plan_count + "("   +
-               stm_map.get(plan.getStatement()) + ");\n    context_"           +
+        text = "    Proposition prop_" + plan_count + "("   +
+               prop_map.get(plan.getProposition()) + ");\n    context_"           +
                context_count + " = new Context(" + plan.getContext().size()    +
                ");\n    body_" + plan_count + " = new Body("                   +
                plan.getBodySize() + ");\n\n";;
@@ -160,10 +160,10 @@ public class HeaderCreator
 
         for (String context : plan.getContext())
         {
-          text = "    Statement stm_" + plan_count + "_" + context + "("       +
-                 stm_map.get(context) + ");\n    ContextCondition cond_"       +
+          text = "    Proposition prop_" + plan_count + "_" + context + "("       +
+                 prop_map.get(context) + ");\n    ContextCondition cond_"       +
                  plan_count + "_" + plan.getContext().indexOf(context)         +
-                 "(stm_" + plan_count + "_" + context + ");\n    "             +
+                 "(prop_" + plan_count + "_" + context + ");\n    "             +
                  "context_" + context_count + "->add_context(cond_"            +
                  context_count + "_" + plan.getContext().indexOf(context)      +
                  ");\n\n";
@@ -175,18 +175,18 @@ public class HeaderCreator
           String argument;
           if (body.getOperator() == null)
           {
-            argument = "action_" + body.getStatement();
+            argument = "action_" + body.getProposition();
           }
           else
           {
             argument = "EventOperator::" + body.getOperator();
           }
 
-          text = "    Statement stm_" + plan_count + "_body_"                  +
+          text = "    Proposition prop_" + plan_count + "_body_"                  +
                  plan.getBodyInstruction().indexOf(body) + "("                 +
-                 stm_map.get(body.getStatement()) + ");\n    BodyInstruction " +
+                 prop_map.get(body.getProposition()) + ");\n    BodyInstruction " +
                  "inst_" + plan.getBodyInstruction().indexOf(body) + "_"       +
-                 plan_count + "(BodyType::" + body.getType() + ", " + "stm_"   +
+                 plan_count + "(BodyType::" + body.getType() + ", " + "prop_"   +
                  plan_count+ "_body_"+ plan.getBodyInstruction().indexOf(body) +
                  ", " + argument + ");\n    body_" + plan_count         +
                  "->add_instruction(inst_"                                     + 
@@ -196,7 +196,7 @@ public class HeaderCreator
         }
 
         text = "    Plan plan_" + plan_count + "(EventOperator::"              +
-               plan.getOperator() + ", stm_" + plan_count + ", context_"       +
+               plan.getOperator() + ", prop_" + plan_count + ", context_"       +
                context_count + ", body_" + plan_count + ");\n    "             +
                "plan_base->add_plan(plan_" + plan_count + ");\n";
         out.append(text);
@@ -257,8 +257,8 @@ public class HeaderCreator
         {
           if (body.getType() == BodyInstruction.BodyType.ACTION)
           {
-            if (funcs.indexOf("boolaction_" + body.getStatement() + "()") != -1) {
-              action_functions.add("action_" + body.getStatement());
+            if (funcs.indexOf("boolaction_" + body.getProposition() + "()") != -1) {
+              action_functions.add("action_" + body.getProposition());
             }
             else
             {
@@ -275,48 +275,48 @@ public class HeaderCreator
     }
   }
 
-  private void define_statements()
+  private void define_propositions()
   {    
     for (String belief : beliefs.keySet())
     {
-      stm_map.put(belief, stm_map.size());
+      prop_map.put(belief, prop_map.size());
     }
 
     for (String event : events)
     {
-      if (!stm_map.containsKey(event))
+      if (!prop_map.containsKey(event))
       {
-        stm_map.put(event, stm_map.size());
+        prop_map.put(event, prop_map.size());
       }
     }
 
     for (PlanSkeleton plan : plans)
     {
-      if (!stm_map.containsKey(plan.getStatement()))
+      if (!prop_map.containsKey(plan.getProposition()))
       {
-        stm_map.put(plan.getStatement(), stm_map.size());
+        prop_map.put(plan.getProposition(), prop_map.size());
       }
 
       for (String context : plan.getContext())
       {
-        if (!stm_map.containsKey(context))
+        if (!prop_map.containsKey(context))
         {
-          stm_map.put(context, stm_map.size());
+          prop_map.put(context, prop_map.size());
         }
       }
 
       for (BodyInstruction body_instruction : plan.getBodyInstruction())
       {
-        if(!stm_map.containsKey(body_instruction.getStatement()))
+        if(!prop_map.containsKey(body_instruction.getProposition()))
         {
-          stm_map.put(body_instruction.getStatement(), stm_map.size());
+          prop_map.put(body_instruction.getProposition(), prop_map.size());
         }
       }
     }
 
-    if (stm_map.size() > this.STM_MAX_SIZE)
+    if (prop_map.size() > this.STM_MAX_SIZE)
     {
-      System.out.println("There are more than 256 statements in the program.");
+      System.out.println("There are more than 256 propositions in the program.");
       System.exit(-1);
     }
     return;

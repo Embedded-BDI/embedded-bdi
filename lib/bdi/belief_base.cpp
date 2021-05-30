@@ -38,12 +38,12 @@ void BeliefBase::update(EventBase * event_base)
           {
             // Add Event for BELIEF_ADDITION if belief is changed to true
             Event event(EventOperator::BELIEF_ADDITION,
-                        _belief_base.item_at(i)->get_statement());
+                        _belief_base.item_at(i)->get_proposition());
             event_base->add_event(event);
           } else {
             // Add Event for BELIEF_DELETION if belief is changed to false
             Event event(EventOperator::BELIEF_DELETION,
-                        _belief_base.item_at(i)->get_statement());
+                        _belief_base.item_at(i)->get_proposition());
             event_base->add_event(event);
           }
         }
@@ -52,11 +52,11 @@ void BeliefBase::update(EventBase * event_base)
   }
 }
 
-bool BeliefBase::change_belief_state(Statement stm, bool state)
+bool BeliefBase::change_belief_state(Proposition prop, bool state)
 {
   for (std::uint8_t i = 0; i < _belief_base.size(); i++)
   {
-    if (_belief_base.item_at(i)->get_statement().is_equal(stm.get_name()))
+    if (_belief_base.item_at(i)->get_proposition().is_equal(prop.get_name()))
     {
       _belief_base.item_at(i)->change_state(state);
       return true;
@@ -66,11 +66,11 @@ bool BeliefBase::change_belief_state(Statement stm, bool state)
   return false;
 }
 
-bool BeliefBase::get_belief_state(Statement stm)
+bool BeliefBase::get_belief_state(Proposition prop)
 {
   for (std::uint8_t i = 0; i < _belief_base.size(); i++)
   {
-    if (_belief_base.item_at(i)->get_statement().is_equal(stm))
+    if (_belief_base.item_at(i)->get_proposition().is_equal(prop))
     {
       return _belief_base.item_at(i)->get_state();
     }

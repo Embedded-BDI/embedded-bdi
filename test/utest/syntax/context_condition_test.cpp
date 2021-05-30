@@ -16,8 +16,8 @@ protected:
 public:
   TContextCondition()
   {
-    Statement stm_0(0);
-    context_condition_true = new ContextCondition(stm_0);
+    Proposition prop_0(0);
+    context_condition_true = new ContextCondition(prop_0);
   }
 
   ~TContextCondition()
@@ -27,10 +27,10 @@ public:
 };
 
 /*
- * Test return of get_statement
+ * Test return of get_proposition
  */
-TEST_F(TContextCondition, get_statement)
+TEST_F(TContextCondition, get_proposition)
 {
-  Statement stm_0(0);
-  EXPECT_TRUE(context_condition_true->get_statement().is_equal(stm_0));
+  Proposition prop_0(0);
+  EXPECT_TRUE(context_condition_true->get_proposition().is_equal(prop_0));
 }

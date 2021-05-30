@@ -27,27 +27,27 @@ public:
     bb = new BeliefBase(BASES_SIZE);
     eb = new EventBase(BASES_SIZE);
 
-    Statement stm_0(0);
-    Statement stm_1(1);
-    Belief belief_a(stm_0, nullptr, false);
-    Belief belief_b(stm_1, nullptr, false);
+    Proposition prop_0(0);
+    Proposition prop_1(1);
+    Belief belief_a(prop_0, nullptr, false);
+    Belief belief_b(prop_1, nullptr, false);
     bb->add_belief(belief_a);
     bb->add_belief(belief_b);
 
     action_true = new BodyInstruction(BodyType::ACTION,
-                                 stm_0,
+                                 prop_0,
                                  return_true_beliefbase);
 
     action_false = new BodyInstruction(BodyType::ACTION,
-                                       stm_0,
+                                       prop_0,
                                        return_false_beliefbase);
 
     belief_operation = new BodyInstruction(BodyType::BELIEF,
-                                           stm_0,
+                                           prop_0,
                                            EventOperator::BELIEF_ADDITION);
 
     goal = new BodyInstruction(BodyType::GOAL,
-                               stm_0,
+                               prop_0,
                                EventOperator::GOAL_ADDITION);
   }
 
@@ -85,8 +85,8 @@ TEST_F(TBodyInstruction, run_instruction)
   EXPECT_TRUE(nullptr != belief_op_result.get_event());
   EXPECT_TRUE(nullptr != goal_result.get_event());
 
-  Statement stm(0);
-  EXPECT_TRUE(bb->get_belief_state(stm));
+  Proposition prop(0);
+  EXPECT_TRUE(bb->get_belief_state(prop));
 
   EXPECT_TRUE(eb->is_full());
 }

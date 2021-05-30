@@ -20,7 +20,7 @@ class Plan
 {
 private:
   EventOperator _operator;
-  Statement _statement;
+  Proposition _proposition;
   Context * _context;
   Body * _body;
 
@@ -28,11 +28,11 @@ public:
   /**
    * Plan constructor
    * @param op Triggering EventOperator
-   * @param stm Triggering Event Statement/name
+   * @param prop Triggering Event Proposition/name
    * @param context Context
    * @param body Body with instructions
    */
-  Plan(EventOperator op, Statement stm, Context * context, Body * body);
+  Plan(EventOperator op, Proposition prop, Context * context, Body * body);
 
   /**
    * Run instruction from Plan Body at specific index
@@ -49,9 +49,9 @@ public:
     return _operator;
   }
 
-  Statement * get_statement()
+  Proposition * get_proposition()
   {
-     return &_statement;
+     return &_proposition;
   }
 
   Context * get_context()

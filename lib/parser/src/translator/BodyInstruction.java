@@ -10,7 +10,7 @@ public class BodyInstruction
   };
 
   private BodyType type;
-  private String statement;
+  private String proposition;
   private EventOperatorType operator;
 
   public BodyType getType()
@@ -23,14 +23,14 @@ public class BodyInstruction
     this.type = type;
   }
 
-  public String getStatement()
+  public String getProposition()
   {
-    return statement;
+    return proposition;
   }
 
-  public void setStatement(String statement)
+  public void setProposition(String proposition)
   {
-    this.statement = statement;
+    this.proposition = proposition;
   }
 
   public EventOperatorType getOperator()

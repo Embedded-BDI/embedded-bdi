@@ -147,14 +147,14 @@ void Intention::terminate(BeliefBase * beliefs,
 
   while (_plans.size() > 0)
   {
-    Statement stm(_plans.back()->get_plan()->get_statement()->get_name());
+    Proposition prop(_plans.back()->get_plan()->get_proposition()->get_name());
 
-    Event event(EventOperator::GOAL_DELETION, stm);
+    Event event(EventOperator::GOAL_DELETION, prop);
     Plan * plan = plans->revise(&event, beliefs);
 
     if (plan)
     {
-      Event event(EventOperator::GOAL_DELETION, stm);
+      Event event(EventOperator::GOAL_DELETION, prop);
       events->add_event(event);
       while (_plans.size() > 0)
       {

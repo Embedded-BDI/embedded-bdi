@@ -48,18 +48,18 @@ public:
 
   /**
    * Change the _belief_state of a belief
-   * @param stm Belief's statement
+   * @param prop Belief's proposition
    * @param state New _belief_state value
    * @return false if Belief does not exist, true otherwise
    */
-  bool change_belief_state(Statement stm, bool state);
+  bool change_belief_state(Proposition prop, bool state);
 
   /**
-   * Get _belief_state value of belief that matches given statement
-   * @param stm Statement to match belief's statement
+   * Get _belief_state value of belief that matches given proposition
+   * @param prop Proposition to match belief's proposition
    * @return belief's value. False if belief does not exist in BeliefBase
    */
-  bool get_belief_state(Statement stm);
+  bool get_belief_state(Proposition prop);
 
   /**
    * Size of BeliefBase

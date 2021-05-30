@@ -8,21 +8,21 @@
 #include "body_instruction.h"
 
 BodyInstruction::BodyInstruction(BodyType type,
-                                 Statement stm,
+                                 Proposition prop,
                                  bool (*take_action)())
 {
   _type = type;
-  _statement = stm;
+  _proposition = prop;
   _take_action = take_action;
   _operator = EventOperator::BELIEF_ADDITION;
 }
 
 BodyInstruction::BodyInstruction(BodyType type,
-                                 Statement stm,
+                                 Proposition prop,
                                  EventOperator event_operator)
 {
   _type = type;
-  _statement = stm;
+  _proposition = prop;
   _take_action = nullptr;
   _operator = event_operator;
 }
@@ -32,7 +32,7 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
                                             EventBase * event_base)
 {
   BodyReturn result;
-  Event event(_operator, _statement);
+  Event event(_operator, _proposition);
 
   if (_type == BodyType::ACTION)
   {
@@ -45,11 +45,11 @@ BodyReturn BodyInstruction::run_instruction(BeliefBase * belief_base,
     {
       if (_operator == EventOperator::BELIEF_ADDITION)
       {
-        belief_base->change_belief_state(_statement, true);
+        belief_base->change_belief_state(_proposition, true);
       }
       else
       {
-        belief_base->change_belief_state(_statement, false);
+        belief_base->change_belief_state(_proposition, false);
       }
       result = BodyReturn(BodyType::BELIEF,
                           true,

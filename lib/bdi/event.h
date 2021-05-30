@@ -8,7 +8,7 @@
 #ifndef SYNTAX_EVENT_H_
 #define SYNTAX_EVENT_H_
 
-#include "../syntax/statement.h"
+#include "../syntax/proposition.h"
 #include "../syntax/event_operator.h"
 #include "../lib/event_id.h"
 #include <cstdint>
@@ -20,7 +20,7 @@ class Event
 {
 private:
   EventOperator _operator;
-  Statement _statement;
+  Proposition _proposition;
   /// Event identifier
   EventID _id;
 
@@ -28,18 +28,18 @@ public:
   /**
    * Event constructor
    * @param op Event's EventOperator
-   * @param stm Event's Statement
+   * @param prop Event's Proposition
    */
-  Event(EventOperator op, Statement stm);
+  Event(EventOperator op, Proposition prop);
 
   const EventOperator & get_operator() const
   {
     return _operator;
   }
 
-  const Statement & get_statement() const
+  const Proposition & get_proposition() const
   {
-    return _statement;
+    return _proposition;
   }
 
   /**
