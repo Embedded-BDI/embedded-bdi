@@ -72,119 +72,119 @@ public:
 
     //--------------------------------------------------------------------------
 
-    Statement stm_0(6);
+    Proposition prop_0(6);
     Context * context_0 = new Context(0);
     Body * body_0 = new Body(1);
 
-    Statement stm_0_body_0(8);
-    BodyInstruction inst_0_0(BodyType::ACTION, stm_0_body_0, action_do_nothing);
+    Proposition prop_0_body_0(8);
+    BodyInstruction inst_0_0(BodyType::ACTION, prop_0_body_0, action_do_nothing);
     body_0->add_instruction(inst_0_0);
 
-    Plan plan_0(EventOperator::BELIEF_ADDITION, stm_0, context_0, body_0);
+    Plan plan_0(EventOperator::BELIEF_ADDITION, prop_0, context_0, body_0);
     plan_base->add_plan(plan_0);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_1(2);
+    Proposition prop_1(2);
     Context * context_1 = new Context(0);
     Body * body_1 = new Body(1);
 
-    Statement stm_1_body_0(8);
-    BodyInstruction inst_0_1(BodyType::ACTION, stm_1_body_0, action_do_nothing);
+    Proposition prop_1_body_0(8);
+    BodyInstruction inst_0_1(BodyType::ACTION, prop_1_body_0, action_do_nothing);
     body_1->add_instruction(inst_0_1);
 
-    Plan plan_1(EventOperator::BELIEF_ADDITION, stm_1, context_1, body_1);
+    Plan plan_1(EventOperator::BELIEF_ADDITION, prop_1, context_1, body_1);
     plan_base->add_plan(plan_1);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_2(3);
+    Proposition prop_2(3);
     Context * context_2 = new Context(0);
     Body * body_2 = new Body(1);
 
-    Statement stm_2_body_0(8);
-    BodyInstruction inst_0_2(BodyType::ACTION, stm_2_body_0, action_do_nothing);
+    Proposition prop_2_body_0(8);
+    BodyInstruction inst_0_2(BodyType::ACTION, prop_2_body_0, action_do_nothing);
     body_2->add_instruction(inst_0_2);
 
-    Plan plan_2(EventOperator::BELIEF_ADDITION, stm_2, context_2, body_2);
+    Plan plan_2(EventOperator::BELIEF_ADDITION, prop_2, context_2, body_2);
     plan_base->add_plan(plan_2);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_3(0);
+    Proposition prop_3(0);
     Context * context_3 = new Context(0);
     Body * body_3 = new Body(1);
 
-    Statement stm_3_body_0(9);
-    BodyInstruction inst_0_3(BodyType::GOAL, stm_3_body_0, EventOperator::GOAL_ADDITION);
+    Proposition prop_3_body_0(9);
+    BodyInstruction inst_0_3(BodyType::GOAL, prop_3_body_0, EventOperator::GOAL_ADDITION);
     body_3->add_instruction(inst_0_3);
 
-    Plan plan_3(EventOperator::BELIEF_ADDITION, stm_3, context_3, body_3);
+    Plan plan_3(EventOperator::BELIEF_ADDITION, prop_3, context_3, body_3);
     plan_base->add_plan(plan_3);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_4(4);
+    Proposition prop_4(4);
     Context * context_4 = new Context(0);
     Body * body_4 = new Body(1);
 
-    Statement stm_4_body_0(8);
-    BodyInstruction inst_0_4(BodyType::ACTION, stm_4_body_0, action_do_nothing);
+    Proposition prop_4_body_0(8);
+    BodyInstruction inst_0_4(BodyType::ACTION, prop_4_body_0, action_do_nothing);
     body_4->add_instruction(inst_0_4);
 
-    Plan plan_4(EventOperator::BELIEF_ADDITION, stm_4, context_4, body_4);
+    Plan plan_4(EventOperator::BELIEF_ADDITION, prop_4, context_4, body_4);
     plan_base->add_plan(plan_4);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_5(1);
+    Proposition prop_5(1);
     Context * context_5 = new Context(0);
     Body * body_5 = new Body(1);
 
-    Statement stm_5_body_0(8);
-    BodyInstruction inst_0_5(BodyType::ACTION, stm_5_body_0, action_do_nothing);
+    Proposition prop_5_body_0(8);
+    BodyInstruction inst_0_5(BodyType::ACTION, prop_5_body_0, action_do_nothing);
     body_5->add_instruction(inst_0_5);
 
-    Plan plan_5(EventOperator::BELIEF_ADDITION, stm_5, context_5, body_5);
+    Plan plan_5(EventOperator::BELIEF_ADDITION, prop_5, context_5, body_5);
     plan_base->add_plan(plan_5);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_6(5);
+    Proposition prop_6(5);
     Context * context_6 = new Context(0);
     Body * body_6 = new Body(1);
 
-    Statement stm_6_body_0(8);
-    BodyInstruction inst_0_6(BodyType::ACTION, stm_6_body_0, action_do_nothing);
+    Proposition prop_6_body_0(8);
+    BodyInstruction inst_0_6(BodyType::ACTION, prop_6_body_0, action_do_nothing);
     body_6->add_instruction(inst_0_6);
 
-    Plan plan_6(EventOperator::BELIEF_ADDITION, stm_6, context_6, body_6);
+    Plan plan_6(EventOperator::BELIEF_ADDITION, prop_6, context_6, body_6);
     plan_base->add_plan(plan_6);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_7(7);
+    Proposition prop_7(7);
     Context * context_7 = new Context(0);
     Body * body_7 = new Body(1);
 
-    Statement stm_7_body_0(8);
-    BodyInstruction inst_0_7(BodyType::ACTION, stm_7_body_0, action_do_nothing);
+    Proposition prop_7_body_0(8);
+    BodyInstruction inst_0_7(BodyType::ACTION, prop_7_body_0, action_do_nothing);
     body_7->add_instruction(inst_0_7);
 
-    Plan plan_7(EventOperator::BELIEF_ADDITION, stm_7, context_7, body_7);
+    Plan plan_7(EventOperator::BELIEF_ADDITION, prop_7, context_7, body_7);
     plan_base->add_plan(plan_7);
 
     //--------------------------------------------------------------------------
 
-    Statement stm_8(9);
+    Proposition prop_8(9);
     Context * context_8 = new Context(0);
     Body * body_8 = new Body(1);
 
-    Statement stm_8_body_0(8);
-    BodyInstruction inst_0_8(BodyType::ACTION, stm_8_body_0, action_do_nothing);
+    Proposition prop_8_body_0(8);
+    BodyInstruction inst_0_8(BodyType::ACTION, prop_8_body_0, action_do_nothing);
     body_8->add_instruction(inst_0_8);
 
-    Plan plan_8(EventOperator::GOAL_ADDITION, stm_8, context_8, body_8);
+    Plan plan_8(EventOperator::GOAL_ADDITION, prop_8, context_8, body_8);
     plan_base->add_plan(plan_8);
   }
 

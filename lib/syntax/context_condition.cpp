@@ -7,7 +7,7 @@
 
 #include "context_condition.h"
 
-ContextCondition::ContextCondition(Statement stm)
+ContextCondition::ContextCondition(Proposition prop)
 {
-  _statement = stm;
+  _proposition = prop;
 }

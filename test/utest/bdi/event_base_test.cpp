@@ -34,11 +34,11 @@ TEST_F(TEventBase, is_empty)
 
 TEST_F(TEventBase, is_full)
 {
-  Statement stm(0);
+  Proposition prop(0);
 
   for (int i = 0; i < EVENT_BASE_SIZE; i++)
   {
-    Event event(EventOperator::BELIEF_ADDITION, stm);
+    Event event(EventOperator::BELIEF_ADDITION, prop);
     event_base->add_event(event);
   }
 
@@ -47,39 +47,39 @@ TEST_F(TEventBase, is_full)
 
 TEST_F(TEventBase, add_event)
 {
-  Statement stm_0(0);
-  Statement stm_1(1);
-  Statement stm_c(2);
-  Statement stm_d(3);
-  Statement stm_e('e');
+  Proposition prop_0(0);
+  Proposition prop_1(1);
+  Proposition prop_c(2);
+  Proposition prop_d(3);
+  Proposition prop_e('e');
 
-  Event event_1(EventOperator::BELIEF_ADDITION, stm_0);
+  Event event_1(EventOperator::BELIEF_ADDITION, prop_0);
   EXPECT_TRUE(event_base->add_event(event_1));
-  Event event_2(EventOperator::BELIEF_DELETION, stm_1);
+  Event event_2(EventOperator::BELIEF_DELETION, prop_1);
   EXPECT_TRUE(event_base->add_event(event_2));
-  Event event_3(EventOperator::GOAL_ADDITION, stm_c);
+  Event event_3(EventOperator::GOAL_ADDITION, prop_c);
   EXPECT_TRUE(event_base->add_event(event_3));
-  Event event_4(EventOperator::GOAL_DELETION, stm_d);
+  Event event_4(EventOperator::GOAL_DELETION, prop_d);
   EXPECT_TRUE(event_base->add_event(event_4));
-  Event event_5(EventOperator::BELIEF_ADDITION, stm_e);
+  Event event_5(EventOperator::BELIEF_ADDITION, prop_e);
   EXPECT_FALSE(event_base->add_event(event_5));
 }
 
 TEST_F(TEventBase, get_event)
 {
-  Statement stm_0(0);
-  Statement stm_1(1);
-  Statement stm_2(2);
+  Proposition prop_0(0);
+  Proposition prop_1(1);
+  Proposition prop_2(2);
 
   Event * event_p = event_base->get_event();
 
   EXPECT_TRUE(nullptr == event_p);
 
-  Event event_1(EventOperator::BELIEF_ADDITION, stm_0);
+  Event event_1(EventOperator::BELIEF_ADDITION, prop_0);
   event_base->add_event(event_1);
-  Event event_2(EventOperator::BELIEF_DELETION, stm_1);
+  Event event_2(EventOperator::BELIEF_DELETION, prop_1);
   event_base->add_event(event_2);
-  Event event_3(EventOperator::GOAL_ADDITION, stm_2);
+  Event event_3(EventOperator::GOAL_ADDITION, prop_2);
   event_base->add_event(event_3);
 
   Event * event_a = event_base->get_event();
@@ -96,9 +96,9 @@ TEST_F(TEventBase, get_event)
   EXPECT_EQ(EventOperator::BELIEF_DELETION, event_b->get_operator());
   EXPECT_EQ(EventOperator::GOAL_ADDITION, event_c->get_operator());
 
-  EXPECT_TRUE(stm_0.is_equal(event_a->get_statement()));
-  EXPECT_TRUE(stm_1.is_equal(event_b->get_statement()));
-  EXPECT_TRUE(stm_2.is_equal(event_c->get_statement()));
+  EXPECT_TRUE(prop_0.is_equal(event_a->get_proposition()));
+  EXPECT_TRUE(prop_1.is_equal(event_b->get_proposition()));
+  EXPECT_TRUE(prop_2.is_equal(event_c->get_proposition()));
 
   delete event_p;
   delete event_a;
@@ -109,43 +109,43 @@ TEST_F(TEventBase, get_event)
 
 TEST_F(TEventBase, last_event)
 {
-  Statement stm_0(0);
-  Statement stm_1(1);
+  Proposition prop_0(0);
+  Proposition prop_1(1);
 
   EXPECT_TRUE(nullptr == event_base->last_event());
 
-  Event event_1(EventOperator::BELIEF_ADDITION, stm_0);
+  Event event_1(EventOperator::BELIEF_ADDITION, prop_0);
   event_base->add_event(event_1);
-  Event event_2(EventOperator::BELIEF_DELETION, stm_1);
+  Event event_2(EventOperator::BELIEF_DELETION, prop_1);
   event_base->add_event(event_2);
 
   Event * event_b = event_base->last_event();
 
   EXPECT_TRUE(nullptr != event_b);
   EXPECT_EQ(EventOperator::BELIEF_DELETION, event_b->get_operator());
-  EXPECT_TRUE(stm_1.is_equal(event_b->get_statement()));
+  EXPECT_TRUE(prop_1.is_equal(event_b->get_proposition()));
 }
 
 TEST_F(TEventBase, event_exists)
 {
-  Statement stm_0(0);
-  Statement stm_1(1);
-  Statement stm_2(2);
-  Statement stm_3(3);
+  Proposition prop_0(0);
+  Proposition prop_1(1);
+  Proposition prop_2(2);
+  Proposition prop_3(3);
 
-  Event event_1(EventOperator::BELIEF_ADDITION, stm_0);
+  Event event_1(EventOperator::BELIEF_ADDITION, prop_0);
   event_base->add_event(event_1);
   Event * event_a = event_base->last_event();
 
-  Event event_2(EventOperator::BELIEF_DELETION, stm_1);
+  Event event_2(EventOperator::BELIEF_DELETION, prop_1);
   event_base->add_event(event_2);
   Event * event_b = event_base->last_event();
 
-  Event event_3(EventOperator::GOAL_ADDITION, stm_2);
+  Event event_3(EventOperator::GOAL_ADDITION, prop_2);
   event_base->add_event(event_3);
   Event * event_c = event_base->last_event();
 
-  Event event_nonexisting(EventOperator::BELIEF_ADDITION, stm_3);
+  Event event_nonexisting(EventOperator::BELIEF_ADDITION, prop_3);
 
   EXPECT_TRUE(event_base->event_exists(event_a->get_event_id()));
   EXPECT_TRUE(event_base->event_exists(event_b->get_event_id()));

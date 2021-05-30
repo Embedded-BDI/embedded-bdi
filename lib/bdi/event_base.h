@@ -31,7 +31,7 @@ public:
   EventBase(std::uint8_t size);
 
   /**
-   * Creates an Event using op and stm and adds Event _pending_events
+   * Creates an Event using op and prop and adds Event _pending_events
    * @param event Event to be added to _pending_events
    * @return true if event is added to _pending_events, false otherwise
    */

@@ -30,7 +30,7 @@ bool Context::is_valid(BeliefBase * beliefs)
   for (std::uint8_t i = 0; i < _context.size(); i++)
   {
     // If any belief has different value than expected, return false
-    if (!beliefs->get_belief_state(_context.item_at(i)->get_statement()))
+    if (!beliefs->get_belief_state(_context.item_at(i)->get_proposition()))
     {
       return false;
     }

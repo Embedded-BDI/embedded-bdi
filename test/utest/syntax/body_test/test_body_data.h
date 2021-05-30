@@ -20,8 +20,8 @@ public:
     _belief_base = new BeliefBase(size);
     _event_base = new EventBase(size);
 
-    Statement stm(0);
-    Belief belief(stm, nullptr, true);
+    Proposition prop(0);
+    Belief belief(prop, nullptr, true);
     for (int i = 0; i < size; i++)
     {
       _belief_base->add_belief(belief);
@@ -46,29 +46,29 @@ public:
 
   BodyInstruction get_action_true()
   {
-    Statement stm(0);
-    BodyInstruction action(BodyType::ACTION, stm, return_true_beliefbase);
+    Proposition prop(0);
+    BodyInstruction action(BodyType::ACTION, prop, return_true_beliefbase);
     return action;
   }
 
   BodyInstruction get_action_false()
   {
-    Statement stm(0);
-    BodyInstruction action(BodyType::ACTION, stm, return_false_beliefbase);
+    Proposition prop(0);
+    BodyInstruction action(BodyType::ACTION, prop, return_false_beliefbase);
     return action;
   }
 
   BodyInstruction get_belief_operation()
   {
-    Statement stm(0);
-    BodyInstruction bf(BodyType::BELIEF, stm, EventOperator::BELIEF_ADDITION);
+    Proposition prop(0);
+    BodyInstruction bf(BodyType::BELIEF, prop, EventOperator::BELIEF_ADDITION);
     return bf;
   }
 
   BodyInstruction get_goal()
   {
-    Statement stm(0);
-    BodyInstruction goal(BodyType::GOAL, stm, EventOperator::GOAL_ADDITION);
+    Proposition prop(0);
+    BodyInstruction goal(BodyType::GOAL, prop, EventOperator::GOAL_ADDITION);
     return goal;
   }
 };

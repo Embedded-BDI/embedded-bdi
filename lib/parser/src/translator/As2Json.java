@@ -178,8 +178,8 @@ public class As2Json
           break;
       }
 
-      // Parse plan statement
-      plan_s.setStatement(plan.getTrigger().getLiteral().toString());
+      // Parse plan proposition
+      plan_s.setProposition(plan.getTrigger().getLiteral().toString());
 
       // Parse plan context
       try
@@ -227,7 +227,7 @@ public class As2Json
           default:
             break;
         }
-        instruction.setStatement(body_term.toString());
+        instruction.setProposition(body_term.toString());
         plan_s.addBodyInstruction(instruction);
 
         plan_body = plan_body.getBodyNext();
@@ -240,7 +240,7 @@ public class As2Json
     {
       System.out.println("\n---\n\nPLAN:");
       System.out.println("Operator:\n\t" + plan.getOperator());
-      System.out.println("Statement:\n\t" + plan.getStatement());
+      System.out.println("Proposition:\n\t" + plan.getProposition());
       System.out.println("Context:");
       for (String ctx : plan.getContext())
       {
@@ -249,7 +249,7 @@ public class As2Json
       System.out.println("Body:");
       for (BodyInstruction body : plan.getBodyInstruction())
       {
-        System.out.println("\t[" + body.getType() + ", " + body.getStatement() +
+        System.out.println("\t[" + body.getType() + ", " + body.getProposition() +
                            ", " + body.getOperator() + "]");
       }
     }

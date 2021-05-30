@@ -21,8 +21,8 @@ protected:
 public:
   TBelief()
   {
-    Statement stm(0);
-    this->belief = new Belief(stm, always_opposite, false);
+    Proposition prop(0);
+    this->belief = new Belief(prop, always_opposite, false);
   }
 
   ~TBelief()
@@ -52,11 +52,11 @@ TEST_F(TBelief, change_state)
 }
 
 /*
- * Test if statement is stored correctly
+ * Test if proposition is stored correctly
  */
-TEST_F(TBelief, get_statement)
+TEST_F(TBelief, get_proposition)
 {
-  Statement stm(0);
-  EXPECT_EQ(0, belief->get_statement().get_name());
-  EXPECT_TRUE(belief->get_statement().is_equal(stm));
+  Proposition prop(0);
+  EXPECT_EQ(0, belief->get_proposition().get_name());
+  EXPECT_TRUE(belief->get_proposition().is_equal(prop));
 }

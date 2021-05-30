@@ -16,7 +16,7 @@
 
 class TestPlanData {
 private:
-  Statement stm;
+  Proposition prop;
   BeliefBase * belief_base_empty;
   BeliefBase * belief_base_full;
   EventBase * event_base_empty;
@@ -29,14 +29,14 @@ private:
 public:
   TestPlanData(int body_size, int belief_base_size, int event_base_size)
   {
-    stm = Statement('a');
+    prop = Proposition('a');
 
     // Creates BeliefBases
     belief_base_empty = new BeliefBase(belief_base_size);
     belief_base_full = new BeliefBase(belief_base_size);
     for (int i = 0; i < belief_base_size; i++)
     {
-      Belief belief(stm, nullptr);
+      Belief belief(prop, nullptr);
       belief_base_full->add_belief(belief);
     }
 
@@ -45,13 +45,13 @@ public:
     event_base_full = new EventBase(event_base_size);
     for (int i = 0; i < event_base_size; i++)
     {
-      Event event(EventOperator::GOAL_ADDITION, stm);
+      Event event(EventOperator::GOAL_ADDITION, prop);
       event_base_full->add_event(event);
     }
 
     // Creates valid plan
     BodyInstruction instruction(BodyType::ACTION,
-                                stm,
+                                prop,
                                 return_true_beliefbase);
     body_valid = new Body(body_size);
 
@@ -63,7 +63,7 @@ public:
     // Creates plan that fails due to failure in action
     body_action_fails = new Body(body_size);
     instruction = BodyInstruction(BodyType::ACTION,
-                                  stm,
+                                  prop,
                                   return_false_beliefbase);
     for (int i = 0; i < body_size; i++)
     {
@@ -73,7 +73,7 @@ public:
     // Creates plan that fails due to full EventBase and belief event cannot be created
     body_belief_fails = new Body(body_size);
     instruction = BodyInstruction(BodyType::BELIEF,
-                                  stm,
+                                  prop,
                                   EventOperator::BELIEF_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
@@ -83,7 +83,7 @@ public:
     // Creates plan that fails due to full EventBase and goal event cannot be created
     body_goal_fails = new Body(body_size);
     instruction = BodyInstruction(BodyType::GOAL,
-                                  stm,
+                                  prop,
                                   EventOperator::GOAL_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
@@ -143,9 +143,9 @@ public:
     return body_valid;
   }
 
-  Statement get_stm()
+  Proposition get_prop()
   {
-    return stm;
+    return prop;
   }
 };
 

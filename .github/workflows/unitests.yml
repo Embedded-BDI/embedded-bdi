@@ -1,0 +1,35 @@
+name: Build agent and run unit tests
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+    container:
+      image: ghcr.io/embedded-bdi/embeddedbdi-cicd:latest
+      credentials:
+        username: matuzalemmuller
+        password: ${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN_EMBEDDED_BDI }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build test agent for memory check using Valgrind
+        run: make valgrind
+      - name: Memory test using Valgrind
+        run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --verbose --error-exitcode=1 ./build/valgrind.out
+      - name: Build Unit Tests
+        run: make tests
+      - name: Run Unit Tests
+        run: ./build/unittest.out
+      - name: Translate AgentSpeak file and Build agent
+        run: make agent
+      - name: Build Doxygen documentation
+        run: make docs

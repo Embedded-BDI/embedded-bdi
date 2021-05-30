@@ -8,7 +8,7 @@
 #ifndef BDI_BELIEF_H_
 #define BDI_BELIEF_H_
 
-#include "../syntax/statement.h"
+#include "../syntax/proposition.h"
 #include <cstdint>
 
 /**
@@ -19,7 +19,7 @@
 class Belief
 {
 private:
-  Statement _statement;
+  Proposition _proposition;
   /// State of Belief
   bool _belief_state;
   ///@{ Function to update _belief_state.
@@ -30,11 +30,11 @@ private:
 public:
   /**
    * Belief constructor
-   * @param stm Belief Statement
+   * @param prop Belief Proposition
    * @param update_function Function to update _belief_state
    * @param belief_state Belief state. Default is false
    */
-  Belief(Statement stm,
+  Belief(Proposition prop,
          bool (*update_function)(bool var),
          bool belief_state = false);
 
@@ -50,9 +50,9 @@ public:
    */
   void change_state(bool state);
 
-  const Statement & get_statement() const
+  const Proposition & get_proposition() const
   {
-    return _statement;
+    return _proposition;
   }
 
   bool & get_state()

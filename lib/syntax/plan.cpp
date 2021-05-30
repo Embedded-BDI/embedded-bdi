@@ -7,10 +7,10 @@
 
 #include "plan.h"
 
-Plan::Plan(EventOperator op, Statement stm, Context * context, Body * body)
+Plan::Plan(EventOperator op, Proposition prop, Context * context, Body * body)
 {
   _operator = op;
-  _statement = stm;
+  _proposition = prop;
   _context = context;
   _body = body;
 }

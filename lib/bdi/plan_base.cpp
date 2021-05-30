@@ -36,7 +36,7 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
       {
         if (_plan_base.item_at(i)->get_operator() == EventOperator::GOAL_ADDITION)
         {
-          if (event->get_statement().is_equal(_plan_base.item_at(i)->get_statement()))
+          if (event->get_proposition().is_equal(_plan_base.item_at(i)->get_proposition()))
           {
             if (_plan_base.item_at(i)->get_context()->is_valid(belief_base))
             {
@@ -57,7 +57,7 @@ Plan * PlanBase::revise(Event * event, BeliefBase * belief_base)
       {
         if (event->get_operator() == _plan_base.item_at(i)->get_operator())
         {
-          if (event->get_statement().is_equal(_plan_base.item_at(i)->get_statement()))
+          if (event->get_proposition().is_equal(_plan_base.item_at(i)->get_proposition()))
           {
             if (_plan_base.item_at(i)->get_context()->is_valid(belief_base))
             {

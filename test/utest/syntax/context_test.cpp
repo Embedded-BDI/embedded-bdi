@@ -27,17 +27,17 @@ public:
     context_empty = new Context(SIZES);
     belief_base = new BeliefBase(SIZES);
 
-    Statement stm_0(0);
-    Statement stm_1(1);
-    Statement stm_2(2);
+    Proposition prop_0(0);
+    Proposition prop_1(1);
+    Proposition prop_2(2);
 
-    cond_1 = new ContextCondition(stm_0);
-    cond_2 = new ContextCondition(stm_1);
-    cond_3 = new ContextCondition(stm_2);
+    cond_1 = new ContextCondition(prop_0);
+    cond_2 = new ContextCondition(prop_1);
+    cond_3 = new ContextCondition(prop_2);
 
-    Belief belief_a(stm_0, nullptr, true);
-    Belief belief_b(stm_1, nullptr, true);
-    Belief belief_c(stm_2, nullptr, true);
+    Belief belief_a(prop_0, nullptr, true);
+    Belief belief_b(prop_1, nullptr, true);
+    Belief belief_c(prop_2, nullptr, true);
 
     belief_base->add_belief(belief_a);
     belief_base->add_belief(belief_b);
@@ -73,7 +73,7 @@ TEST_F(TContext, is_valid)
 
   EXPECT_TRUE(context->is_valid(belief_base));
 
-  Statement stm_0(0);
-  belief_base->change_belief_state(stm_0, false);
+  Proposition prop_0(0);
+  belief_base->change_belief_state(prop_0, false);
   EXPECT_FALSE(context->is_valid(belief_base));
 }

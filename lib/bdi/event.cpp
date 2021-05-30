@@ -7,8 +7,8 @@
 
 #include "event.h"
 
-Event::Event(EventOperator op, Statement stm)
+Event::Event(EventOperator op, Proposition prop)
 {
    _operator = op;
-   _statement = stm;
+   _proposition = prop;
 }

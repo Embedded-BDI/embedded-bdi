@@ -16,8 +16,8 @@ protected:
 public:
   TEvent()
   {
-    Statement stm(0);
-    event = new Event(EventOperator::BELIEF_ADDITION, stm);
+    Proposition prop(0);
+    event = new Event(EventOperator::BELIEF_ADDITION, prop);
   }
 
   ~TEvent()
@@ -35,13 +35,13 @@ TEST_F(TEvent, get_operator)
 }
 
 /*
- * Test if statement is stored correctly
+ * Test if proposition is stored correctly
  */
-TEST_F(TEvent, get_statement)
+TEST_F(TEvent, get_proposition)
 {
-  Statement stm(0);
-  EXPECT_EQ(0, event->get_statement().get_name());
-  EXPECT_TRUE(event->get_statement().is_equal(stm));
+  Proposition prop(0);
+  EXPECT_EQ(0, event->get_proposition().get_name());
+  EXPECT_TRUE(event->get_proposition().is_equal(prop));
 }
 
 /*

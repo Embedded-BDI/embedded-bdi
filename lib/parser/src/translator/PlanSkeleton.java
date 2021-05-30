@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PlanSkeleton
 {
   private EventOperatorType operator;
-  private String statement;
+  private String proposition;
   private ArrayList<String> context;
   private ArrayList<BodyInstruction> body_instruction;
 
@@ -25,14 +25,14 @@ public class PlanSkeleton
     this.operator = operator;
   }
 
-  public String getStatement()
+  public String getProposition()
   {
-    return this.statement;
+    return this.proposition;
   }
 
-  public void setStatement(String statement)
+  public void setProposition(String proposition)
   {
-    this.statement = statement;
+    this.proposition = proposition;
   }
 
   public ArrayList<String> getContext() 

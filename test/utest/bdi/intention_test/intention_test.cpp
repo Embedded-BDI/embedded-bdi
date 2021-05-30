@@ -125,7 +125,7 @@ TEST_F(TIntention, terminate)
   EXPECT_TRUE(nullptr != goal_deletion_event);
   EXPECT_EQ(plan_action_fails_handling->get_operator(),
             goal_deletion_event->get_operator());
-  EXPECT_TRUE(plan_action_fails_handling->get_statement()->is_equal(goal_deletion_event->get_statement()));
+  EXPECT_TRUE(plan_action_fails_handling->get_proposition()->is_equal(goal_deletion_event->get_proposition()));
 }
 
 TEST_F(TIntention, destructor)

@@ -16,7 +16,7 @@ class TestIntentionBaseData {
 private:
   BeliefBase * belief_base;
   EventBase * event_base_empty;
-  Statement stm;
+  Proposition prop;
   Context * context_valid;
   Body * body_action_successful;
   Body * body_action_fails;
@@ -28,14 +28,14 @@ private:
 public:
   TestIntentionBaseData(int body_size, int bases_size)
   {
-    stm = Statement('a');
+    prop = Proposition('a');
 
     context_valid = new Context(0);
 
     event_base_empty = new EventBase(bases_size);
     belief_base = new BeliefBase(bases_size);
 
-    Belief belief(stm, nullptr);
+    Belief belief(prop, nullptr);
 
     belief_base->add_belief(belief);
 
@@ -43,7 +43,7 @@ public:
      * Creates successful plan with successful actions
      */
     BodyInstruction instruction(BodyType::ACTION,
-                                stm,
+                                prop,
                                 return_true_beliefbase);
 
     body_action_successful = new Body(body_size);
@@ -53,7 +53,7 @@ public:
     }
 
     plan_action_successful = new Plan(EventOperator::BELIEF_ADDITION,
-                                      stm,
+                                      prop,
                                       context_valid,
                                       body_action_successful);
 
@@ -62,7 +62,7 @@ public:
      */
     body_action_fails = new Body(body_size);
     instruction = BodyInstruction(BodyType::ACTION,
-                                  stm,
+                                  prop,
                                   return_false_beliefbase);
     for (int i = 0; i < body_size; i++)
     {
@@ -70,7 +70,7 @@ public:
     }
 
     plan_action_fails = new Plan(EventOperator::BELIEF_ADDITION,
-                                 stm,
+                                 prop,
                                  context_valid,
                                  body_action_fails);
 
@@ -79,7 +79,7 @@ public:
      */
     body_belief = new Body(body_size);
     instruction = BodyInstruction(BodyType::BELIEF,
-                                  stm,
+                                  prop,
                                   EventOperator::BELIEF_ADDITION);
     for (int i = 0; i < body_size; i++)
     {
@@ -87,7 +87,7 @@ public:
     }
 
     plan_belief = new Plan(EventOperator::BELIEF_ADDITION,
-                           stm,
+                           prop,
                            context_valid,
                            body_belief);
   }
@@ -114,9 +114,9 @@ public:
     return event_base_empty;
   }
 
-  Statement get_statement()
+  Proposition get_proposition()
   {
-    return stm;
+    return prop;
   }
 
   Plan * get_plan_action_successful()

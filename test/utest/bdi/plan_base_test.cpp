@@ -30,8 +30,8 @@ public:
 
 TEST_F(TPlanBase, add_plan)
 {
-  Statement stm(0);
-  Plan plan(EventOperator::BELIEF_ADDITION, stm, nullptr, nullptr);
+  Proposition prop(0);
+  Plan plan(EventOperator::BELIEF_ADDITION, prop, nullptr, nullptr);
 
   for (int i = 0; i < PLAN_BASE_SIZE; i++)
   {
@@ -44,29 +44,29 @@ TEST_F(TPlanBase, add_plan)
 
 TEST_F(TPlanBase, revise)
 {
-  Statement stm_0(0);
-  Statement stm_1(1);
+  Proposition prop_0(0);
+  Proposition prop_1(1);
 
   BeliefBase belief_base(2);
-  Belief belief_a(stm_0, nullptr, false);
-  Belief belief_b(stm_1, nullptr, false);
+  Belief belief_a(prop_0, nullptr, false);
+  Belief belief_b(prop_1, nullptr, false);
   belief_base.add_belief(belief_a);
   belief_base.add_belief(belief_b);
 
-  Event event_valid(EventOperator::BELIEF_ADDITION, stm_0);
-  Event event_without_plans(EventOperator::BELIEF_ADDITION, stm_1);
+  Event event_valid(EventOperator::BELIEF_ADDITION, prop_0);
+  Event event_without_plans(EventOperator::BELIEF_ADDITION, prop_1);
 
   Context context_valid(0);
   Context context_invalid(1);
-  ContextCondition ctx(stm_0);
+  ContextCondition ctx(prop_0);
   context_invalid.add_context(ctx);
 
   Plan plan_context_invalid(EventOperator::BELIEF_ADDITION,
-                            stm_0,
+                            prop_0,
                             &context_invalid,
                             nullptr);
   Plan plan_valid(EventOperator::BELIEF_ADDITION,
-                  stm_0,
+                  prop_0,
                   &context_valid,
                   nullptr);
 
@@ -83,7 +83,7 @@ TEST_F(TPlanBase, revise)
   EXPECT_TRUE(nullptr != p_plan);
 
   EXPECT_EQ(plan_valid.get_operator(), p_plan->get_operator());
-  EXPECT_TRUE(plan_valid.get_statement()->is_equal(p_plan->get_statement()));
+  EXPECT_TRUE(plan_valid.get_proposition()->is_equal(p_plan->get_proposition()));
   EXPECT_EQ(plan_valid.get_context(), p_plan->get_context());
   EXPECT_EQ(plan_valid.get_body(), p_plan->get_body());
 }
