@@ -32,3 +32,4 @@ jobs:
       - name: Translate AgentSpeak file and Build agent
         run: make agent
       - name: Build Doxygen documentation
+        run: make docs
