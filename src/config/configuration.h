@@ -3,12 +3,10 @@
  *
  * !start.
  * 
- * +!start <- join_lottery;
- *            grab_number;
- *            !!wait_for_number.
+ * +!start <- +happy;
+ *            !!hello.
  * 
- * +!wait_for_number : my_number <- cheer_and_leave.
- * +!wait_for_number <- !!wait_for_number.
+ * +!hello : happy <- say_hello.
  */ 
 
 #ifndef CONFIGURATION_H_
@@ -27,8 +25,6 @@ private:
   Context * context_0;
   Body * body_1;
   Context * context_1;
-  Body * body_2;
-  Context * context_2;
   BeliefBase * belief_base;
   EventBase * event_base;
   PlanBase * plan_base;
@@ -39,13 +35,13 @@ public:
   {
     belief_base = new BeliefBase(1);
     event_base = new EventBase(6);
-    plan_base = new PlanBase(3);
+    plan_base = new PlanBase(2);
     intention_base = new IntentionBase(10, 4);
 
     //--------------------------------------------------------------------------
 
-    Belief belief_my_number(0, update_my_number, false);
-    belief_base->add_belief(belief_my_number);
+    Belief belief_happy(0, nullptr, false);
+    belief_base->add_belief(belief_happy);
 
     //--------------------------------------------------------------------------
 
@@ -56,52 +52,35 @@ public:
 
     Proposition prop_0(1);
     context_0 = new Context(0);
-    body_0 = new Body(3);
+    body_0 = new Body(2);
 
-    Proposition prop_0_body_0(2);
-    BodyInstruction inst_0_0(BodyType::ACTION, prop_0_body_0, action_join_lottery);
+    Proposition prop_0_body_0(0);
+    BodyInstruction inst_0_0(BodyType::BELIEF, prop_0_body_0, EventOperator::BELIEF_ADDITION);
     body_0->add_instruction(inst_0_0);
 
-    Proposition prop_0_body_1(3);
-    BodyInstruction inst_1_0(BodyType::ACTION, prop_0_body_1, action_grab_number);
+    Proposition prop_0_body_1(2);
+    BodyInstruction inst_1_0(BodyType::GOAL, prop_0_body_1, EventOperator::GOAL_ACHIEVE);
     body_0->add_instruction(inst_1_0);
-
-    Proposition prop_0_body_2(4);
-    BodyInstruction inst_2_0(BodyType::GOAL, prop_0_body_2, EventOperator::GOAL_ACHIEVE);
-    body_0->add_instruction(inst_2_0);
 
     Plan plan_0(EventOperator::GOAL_ADDITION, prop_0, context_0, body_0);
     plan_base->add_plan(plan_0);
 
     //--------------------------------------------------------------------------
 
-    Proposition prop_1(4);
+    Proposition prop_1(2);
     context_1 = new Context(1);
     body_1 = new Body(1);
 
-    Proposition prop_1_my_number(0);
-    ContextCondition cond_1_0(prop_1_my_number);
+    Proposition prop_1_happy(0);
+    ContextCondition cond_1_0(prop_1_happy);
     context_1->add_context(cond_1_0);
 
-    Proposition prop_1_body_0(5);
-    BodyInstruction inst_0_1(BodyType::ACTION, prop_1_body_0, action_cheer_and_leave);
+    Proposition prop_1_body_0(3);
+    BodyInstruction inst_0_1(BodyType::ACTION, prop_1_body_0, action_say_hello);
     body_1->add_instruction(inst_0_1);
 
     Plan plan_1(EventOperator::GOAL_ADDITION, prop_1, context_1, body_1);
     plan_base->add_plan(plan_1);
-
-    //--------------------------------------------------------------------------
-
-    Proposition prop_2(4);
-    context_2 = new Context(0);
-    body_2 = new Body(1);
-
-    Proposition prop_2_body_0(4);
-    BodyInstruction inst_0_2(BodyType::GOAL, prop_2_body_0, EventOperator::GOAL_ACHIEVE);
-    body_2->add_instruction(inst_0_2);
-
-    Plan plan_2(EventOperator::GOAL_ADDITION, prop_2, context_2, body_2);
-    plan_base->add_plan(plan_2);
   }
 
   ~AgentSettings()
@@ -110,8 +89,6 @@ public:
     delete context_0;
     delete body_1;
     delete context_1;
-    delete body_2;
-    delete context_2;
     delete belief_base;
     delete event_base;
     delete plan_base;
