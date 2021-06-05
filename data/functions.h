@@ -3,12 +3,14 @@
 
 #include <iostream>
 
-//------------------------- Action functions ----------------------------------
-
-bool action_say_hello()
+bool action_buy_ice_cream()
 {
-  std::cout << "Hello!\nI am an agent and I will keep running until I am "
-            << "terminated" << std::endl;
+  std::cout << "Yummy!" << std::endl;
+  return true;
+}
+
+bool update_money(bool var)
+{
   return true;
 }
 
