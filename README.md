@@ -8,4 +8,4 @@ Visit the [project page](https://embedded-bdi.github.io).
 
 Version history
 
-* v1.0.0 - Matuzalem Muller dos Santos.
+* v1.0.0 - [Matuzalem Muller dos Santos](https://matuzalemmuller.com)
