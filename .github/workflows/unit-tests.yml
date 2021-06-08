@@ -1,4 +1,4 @@
-name: Build agent and run unit tests
+name: Build agent, run unit tests, and check for memory leaks
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch

@@ -24,7 +24,6 @@ int main()
   while(true)
   {
     agent.run();
-    usleep(200000);
   }
 
   return 0;

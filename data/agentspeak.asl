@@ -1,5 +1,7 @@
 !start.
 
-+!start <- +sunny.
-+sunny <- +happy.
-+happy : sunny & money <- buy_ice_cream.
++!start <- +happy.
+
++happy <- !!hello.
+
++!hello <- say_hello.
