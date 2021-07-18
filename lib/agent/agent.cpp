@@ -16,14 +16,10 @@ Agent::Agent(BeliefBase * beliefs,
   this->events = events;
   this->plans = plans;
   this->intentions = intentions;
-  this->event_to_process = nullptr;
   this->plan_to_act = nullptr;
 }
 
-Agent::~Agent()
-{
-  delete event_to_process;
-}
+Agent::~Agent() {}
 
 void Agent::run()
 {
@@ -33,16 +29,11 @@ void Agent::run()
   // Checks if there are events to be processed
   if (!events->is_empty())
   {
-    event_to_process = events->get_event();
-    if(event_to_process)
-    {
-      plan_to_act = plans->revise(event_to_process, beliefs);
-      if (plan_to_act) {
-        intentions->add_intention(plan_to_act, event_to_process);
-      }
+    Event event = events->get_event();
+    plan_to_act = plans->revise(&event, beliefs);
+    if (plan_to_act) {
+      intentions->add_intention(plan_to_act, &event);
     }
-    delete event_to_process;
-    event_to_process = nullptr;
   }
 
   // Runs intention in case there are any

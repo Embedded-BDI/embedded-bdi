@@ -62,7 +62,7 @@ TEST_F(TFillEventBaseSettings, run_fill_event_base)
 
   for (int i = 8; i > 0; i--)
   {
-    Event * event = events->get_event();
-    EXPECT_EQ(EventID::get_control_id() - i, event->get_event_id()->get_id());
+    Event event = events->get_event();
+    EXPECT_EQ(EventID::get_control_id() - i, event.get_event_id()->get_id());
   }
 }

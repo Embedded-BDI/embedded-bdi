@@ -42,7 +42,7 @@ public:
    * @return Pointer to first element from _pending_events. If _pending_events
    * has no elements, return is nullptr
    */
-  Event * get_event();
+  Event get_event();
 
   /**
    * Returns last Event added to EventBase

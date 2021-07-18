@@ -24,14 +24,9 @@ bool EventBase::add_event(Event event)
   return true;
 }
 
-Event * EventBase::get_event()
+Event EventBase::get_event()
 {
-  if (this->is_empty())
-  {
-    return nullptr;
-  }
-
-  Event * event = new Event(*_pending_events.back());
+  Event event = *_pending_events.back();
   _pending_events.pop_back();
   return event;
 }

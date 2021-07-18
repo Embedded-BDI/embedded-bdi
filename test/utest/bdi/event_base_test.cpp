@@ -71,9 +71,7 @@ TEST_F(TEventBase, get_event)
   Proposition prop_1(1);
   Proposition prop_2(2);
 
-  Event * event_p = event_base->get_event();
-
-  EXPECT_TRUE(nullptr == event_p);
+  EXPECT_TRUE(event_base->is_empty());
 
   Event event_1(EventOperator::BELIEF_ADDITION, prop_0);
   event_base->add_event(event_1);
@@ -82,29 +80,19 @@ TEST_F(TEventBase, get_event)
   Event event_3(EventOperator::GOAL_ADDITION, prop_2);
   event_base->add_event(event_3);
 
-  Event * event_a = event_base->get_event();
-  Event * event_b = event_base->get_event();
-  Event * event_c = event_base->get_event();
-  Event * event_null = event_base->get_event();
+  Event event_a = event_base->get_event();
+  Event event_b = event_base->get_event();
+  Event event_c = event_base->get_event();
 
-  EXPECT_TRUE(nullptr != event_a);
-  EXPECT_TRUE(nullptr != event_b);
-  EXPECT_TRUE(nullptr != event_c);
-  EXPECT_TRUE(nullptr == event_null);
+  EXPECT_TRUE(event_base->is_empty());
 
-  EXPECT_EQ(EventOperator::BELIEF_ADDITION, event_a->get_operator());
-  EXPECT_EQ(EventOperator::BELIEF_DELETION, event_b->get_operator());
-  EXPECT_EQ(EventOperator::GOAL_ADDITION, event_c->get_operator());
+  EXPECT_EQ(EventOperator::BELIEF_ADDITION, event_a.get_operator());
+  EXPECT_EQ(EventOperator::BELIEF_DELETION, event_b.get_operator());
+  EXPECT_EQ(EventOperator::GOAL_ADDITION, event_c.get_operator());
 
-  EXPECT_TRUE(prop_0.is_equal(event_a->get_proposition()));
-  EXPECT_TRUE(prop_1.is_equal(event_b->get_proposition()));
-  EXPECT_TRUE(prop_2.is_equal(event_c->get_proposition()));
-
-  delete event_p;
-  delete event_a;
-  delete event_b;
-  delete event_c;
-  delete event_null;
+  EXPECT_TRUE(prop_0.is_equal(event_a.get_proposition()));
+  EXPECT_TRUE(prop_1.is_equal(event_b.get_proposition()));
+  EXPECT_TRUE(prop_2.is_equal(event_c.get_proposition()));
 }
 
 TEST_F(TEventBase, last_event)

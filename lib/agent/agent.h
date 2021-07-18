@@ -23,7 +23,6 @@ private:
   EventBase * events;
   PlanBase * plans;
   IntentionBase * intentions;
-  Event * event_to_process;
   Plan * plan_to_act;
 
 public:

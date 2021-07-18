@@ -121,11 +121,10 @@ TEST_F(TIntention, terminate)
 
   EXPECT_NO_FATAL_FAILURE(intention_belief->terminate(bb, eb, pb));
 
-  Event * goal_deletion_event = eb->get_event();
-  EXPECT_TRUE(nullptr != goal_deletion_event);
+  Event goal_deletion_event = eb->get_event();
   EXPECT_EQ(plan_action_fails_handling->get_operator(),
-            goal_deletion_event->get_operator());
-  EXPECT_TRUE(plan_action_fails_handling->get_proposition()->is_equal(goal_deletion_event->get_proposition()));
+            goal_deletion_event.get_operator());
+  EXPECT_TRUE(plan_action_fails_handling->get_proposition()->is_equal(goal_deletion_event.get_proposition()));
 }
 
 TEST_F(TIntention, destructor)
