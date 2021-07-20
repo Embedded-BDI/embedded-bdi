@@ -7,6 +7,11 @@
 
 #include "belief_base.h"
 
+BeliefBase::BeliefBase()
+{
+  _size = 0;
+}
+
 BeliefBase::BeliefBase(std::uint8_t size)
 {
   _size = size;

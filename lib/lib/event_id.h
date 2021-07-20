@@ -19,7 +19,7 @@ class EventID
 {
 private:
   /// Unique Event identifier
-  std::uint8_t _id;
+  std::uint8_t _id = 0;
 
 protected:
   static std::uint8_t id;

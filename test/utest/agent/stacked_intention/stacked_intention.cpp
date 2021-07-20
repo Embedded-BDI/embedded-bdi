@@ -4,17 +4,15 @@
  *  Created on: Sep 15, 2020
  *      Author: Matuzalem Muller
  *
- *
  * AgentSpeak code:
  *
- *   !goal1.
- *
- *   +!goal1 <- action_1_stacked_intention; !goal2.
- *   +!goal2 <- action_2_stacked_intention; !goal3.
- *   +!goal3 <- action_3_stacked_intention.
+ * !goal1.
+ * 
+ * +!goal1 <- stacked_intention_action_1; !goal2.
+ * +!goal2 <- stacked_intention_action_2; !goal3.
+ * +!goal3 <- stacked_intention_action_3.
  */
 
-#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -55,7 +53,7 @@ TEST_F(TStackedIntention, run_stacked_intention)
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
@@ -64,7 +62,7 @@ TEST_F(TStackedIntention, run_stacked_intention)
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(2, shared_var);
+  EXPECT_EQ(2, stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
@@ -73,17 +71,17 @@ TEST_F(TStackedIntention, run_stacked_intention)
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(3, shared_var);
+  EXPECT_EQ(3, stacked_intention_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(3, shared_var);
+  EXPECT_EQ(3, stacked_intention_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(3, shared_var);
+  EXPECT_EQ(3, stacked_intention_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 }

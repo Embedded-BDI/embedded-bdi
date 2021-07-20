@@ -4,17 +4,17 @@
  *  Created on: Jan 7, 2021
  *      Author: Matuzalem Muller
  *
- *
  * AgentSpeak code:
  *
- *   !plan_1.
- *
- *   +!plan_1 <- action_1; !!plan_2; action_2; action_4.
- *
- *   +!plan_2 <- action_3.
+ * !goal_1.
+ * 
+ * +!goal_1 <- nb_subgoal_true_1; !!goal_2; nb_subgoal_true_2; nb_subgoal_true_4; nb_subgoal_true_5; nb_subgoal_true_7.
+ * 
+ * +!goal_2 <- nb_subgoal_true_3; nb_subgoal_false.
+ * 
+ * -!goal_2 <- nb_subgoal_true_6.
  */
 
-#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -61,75 +61,75 @@ TEST_F(TNBSubgoalFailedPlan, fail_intention)
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 1);
+  EXPECT_EQ(nb_subgoal_var, 1);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), false);
   EXPECT_EQ(events->is_full(), true);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 1);
+  EXPECT_EQ(nb_subgoal_var, 1);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), true);
-  EXPECT_EQ(shared_var, 2);
+  EXPECT_EQ(nb_subgoal_var, 2);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), true);
-  EXPECT_EQ(shared_var, 3);
+  EXPECT_EQ(nb_subgoal_var, 3);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), true);
-  EXPECT_EQ(shared_var, 4);
+  EXPECT_EQ(nb_subgoal_var, 4);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), false);
   EXPECT_EQ(events->is_full(), true);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 4);
+  EXPECT_EQ(nb_subgoal_var, 4);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), true);
-  EXPECT_EQ(shared_var, 5);
+  EXPECT_EQ(nb_subgoal_var, 5);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 6);
+  EXPECT_EQ(nb_subgoal_var, 6);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), true);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 7);
+  EXPECT_EQ(nb_subgoal_var, 7);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), true);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 7);
+  EXPECT_EQ(nb_subgoal_var, 7);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), true);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 7);
+  EXPECT_EQ(nb_subgoal_var, 7);
 }

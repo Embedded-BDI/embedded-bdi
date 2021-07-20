@@ -8,29 +8,29 @@
 #ifndef UTEST_AGENT_NB_SUBGOAL_EMPTY_INTENTION_BASE_FUNCTIONS_H_
 #define UTEST_AGENT_NB_SUBGOAL_EMPTY_INTENTION_BASE_FUNCTIONS_H_
 
-#include "common_lib.h"
+int action_nb_empty_intention_base_var = 0;
 
-bool action_value_1()
+bool action_nb_empty_intention_base_value_1()
 {
-  shared_var = 1;
+  action_nb_empty_intention_base_var = 1;
   return true;
 }
 
-bool action_value_2()
+bool action_nb_empty_intention_base_value_2()
 {
-  shared_var = 2;
+  action_nb_empty_intention_base_var = 2;
   return true;
 }
 
-bool action_value_3()
+bool action_nb_empty_intention_base_value_3()
 {
-  shared_var = 3;
+  action_nb_empty_intention_base_var = 3;
   return true;
 }
 
-bool action_value_4()
+bool action_nb_empty_intention_base_value_4()
 {
-  shared_var = 4;
+  action_nb_empty_intention_base_var = 4;
   return true;
 }
 

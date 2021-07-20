@@ -22,9 +22,11 @@ class Body
   /// Vector of BodyInstructions
   VectorQueue<BodyInstruction> _body;
   /// Max size of _body vector
-  std::uint8_t _size;
+  std::uint8_t _size = 0;
 
 public:
+  Body();
+
   /**
    * Body constructor
    * @param size Size of _body

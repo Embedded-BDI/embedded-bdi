@@ -23,9 +23,11 @@ private:
   /// Vector of Beliefs
   VectorQueue<Belief> _belief_base;
   /// Max size of _belief_base vector
-  std::uint8_t _size;
+  std::uint8_t _size = 0;
 
 public:
+  BeliefBase();
+
   /**
    * BeliefBase's constructor
    * @param size Size of _belief_base buffer

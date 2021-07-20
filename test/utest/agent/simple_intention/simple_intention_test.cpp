@@ -7,20 +7,19 @@
  *
  * AgentSpeak code:
  *
- *  !goal1.
- *
- *  +!goal1 <- +belief_1;
- *             action_1_simple_intention;
- *             action_2_simple_intention;
- *             -belief_1;
- *             action_3_simple_intention;
- *             action_4_simple_intention;
- *             action_5_simple_intention.
- *
- *  -belief_1 <- action_1_simple_intention.
+ * !goal1.
+ * 
+ * +!goal1 <- +belief_1;
+ *            simple_intention_action_1;
+ *            simple_intention_action_2;
+ *            -belief_1;
+ *            simple_intention_action_3;
+ *            simple_intention_action_4;
+ *            simple_intention_action_5.
+ * 
+ * -belief_1 <- simple_intention_action_1.
  */
 
-#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -69,37 +68,37 @@ TEST_F(TSimpleIntention, run_simple_intention)
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, simple_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(2, shared_var);
+  EXPECT_EQ(2, simple_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(2, shared_var);
+  EXPECT_EQ(2, simple_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, simple_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(3, shared_var);
+  EXPECT_EQ(3, simple_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(4, shared_var);
+  EXPECT_EQ(4, simple_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(5, shared_var);
+  EXPECT_EQ(5, simple_intention_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 
@@ -108,7 +107,7 @@ TEST_F(TSimpleIntention, run_simple_intention)
   agent->run();
   agent->run();
   agent->run();
-  EXPECT_EQ(5, shared_var);
+  EXPECT_EQ(5, simple_intention_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 }

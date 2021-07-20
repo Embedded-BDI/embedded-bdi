@@ -7,14 +7,13 @@
  *
  * AgentSpeak code:
  *
- *   !plan_1.
- *
- *   +!plan_1 <- action_1; !!plan_2; action_2; action_4.
- *
- *   +!plan_2 <- action_3.
+ * !plan_1.
+ * 
+ * +!plan_1 <- nb_empty_intention_base_value_1; !!plan_2; nb_empty_intention_base_value_2; nb_empty_intention_base_value_4.
+ * 
+ * +!plan_2 <- nb_empty_intention_base_value_3.
  */
 
-#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -61,47 +60,47 @@ TEST_F(TNBSubgoalEmptyIntentionBase, run_intention)
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 1);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 1);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), false);
   EXPECT_EQ(events->is_full(), true);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 1);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 1);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), true);
-  EXPECT_EQ(shared_var, 2);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 2);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), false);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 3);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 3);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), true);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 4);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 4);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), true);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 4);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 4);
 
   agent->run();
   EXPECT_EQ(events->is_empty(), true);
   EXPECT_EQ(events->is_full(), false);
   EXPECT_EQ(intentions->is_empty(), true);
   EXPECT_EQ(intentions->is_full(), false);
-  EXPECT_EQ(shared_var, 4);
+  EXPECT_EQ(action_nb_empty_intention_base_var, 4);
 }

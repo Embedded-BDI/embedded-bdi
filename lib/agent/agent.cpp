@@ -19,8 +19,6 @@ Agent::Agent(BeliefBase * beliefs,
   this->plan_to_act = nullptr;
 }
 
-Agent::~Agent() {}
-
 void Agent::run()
 {
   // Update beliefs
@@ -29,10 +27,10 @@ void Agent::run()
   // Checks if there are events to be processed
   if (!events->is_empty())
   {
-    Event event = events->get_event();
-    plan_to_act = plans->revise(&event, beliefs);
+    event_to_process = events->get_event();
+    plan_to_act = plans->revise(&event_to_process, beliefs);
     if (plan_to_act) {
-      intentions->add_intention(plan_to_act, &event);
+      intentions->add_intention(plan_to_act, &event_to_process);
     }
   }
 

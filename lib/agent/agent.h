@@ -24,13 +24,13 @@ private:
   PlanBase * plans;
   IntentionBase * intentions;
   Plan * plan_to_act;
+  Event event_to_process;
 
 public:
   Agent(BeliefBase * beliefs,
         EventBase * events,
         PlanBase * plans,
         IntentionBase * intentions);
-  virtual ~Agent();
 
   /**
    * Runs an iteration of the agent reasoning cycle

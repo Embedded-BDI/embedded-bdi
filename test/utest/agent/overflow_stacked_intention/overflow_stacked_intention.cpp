@@ -7,16 +7,15 @@
  *
  * AgentSpeak code:
  *
- *   !goal1.
- *
- *   +!goal1 <- action_1_1_overflow_stacked_intention; !goal2; action_1_2_overflow_stacked_intention.
- *   +!goal2 <- action_2_1_overflow_stacked_intention; !goal3; action_2_2_overflow_stacked_intention.
- *   +!goal3 <- action_3_1_overflow_stacked_intention; !goal4; action_3_2_overflow_stacked_intention.
- *   +!goal4 <- action_4_1_overflow_stacked_intention; !goal5; action_4_2_overflow_stacked_intention.
- *   +!goal5 <- action_5_1_overflow_stacked_intention.
+ * !goal1.
+ * 
+ * +!goal1 <- overflow_stacked_intention_1_1; !goal2; overflow_stacked_intention_1_2.
+ * +!goal2 <- overflow_stacked_intention_2_1; !goal3; overflow_stacked_intention_2_2.
+ * +!goal3 <- overflow_stacked_intention_3_1; !goal4; overflow_stacked_intention_3_2.
+ * +!goal4 <- overflow_stacked_intention_4_1; !goal5; overflow_stacked_intention_4_2.
+ * +!goal5 <- overflow_stacked_intention_5_1.
  */
 
-#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -57,37 +56,37 @@ TEST_F(TOverflowStackedIntention, run_overflow_stacked_intention)
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(100, shared_var);
+  EXPECT_EQ(100, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(100, shared_var);
+  EXPECT_EQ(100, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(200, shared_var);
+  EXPECT_EQ(200, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(200, shared_var);
+  EXPECT_EQ(200, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(300, shared_var);
+  EXPECT_EQ(300, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_empty());
 
   agent->run();
-  EXPECT_EQ(300, shared_var);
+  EXPECT_EQ(300, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_full());
   EXPECT_TRUE(events->is_full());
 
   agent->run();
-  EXPECT_EQ(300, shared_var);
+  EXPECT_EQ(300, ovflw_stacked_intention_var);
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_TRUE(events->is_empty());
 }

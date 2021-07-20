@@ -23,9 +23,11 @@ private:
   /// Vector of Plans
   VectorQueue<Plan> _plan_base;
   /// Max size of _plan_base vector
-  std::uint8_t _size;
+  std::uint8_t _size = 0;
 
 public:
+  PlanBase();
+
   /**
    * PlanBase constructor
    * @param size Size of _plan_base buffer

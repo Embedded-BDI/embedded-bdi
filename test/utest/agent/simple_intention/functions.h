@@ -8,35 +8,35 @@
 #ifndef UTEST_AGENT_SIMPLE_INTENTION_FUNCTIONS_H_
 #define UTEST_AGENT_SIMPLE_INTENTION_FUNCTIONS_H_
 
-#include "common_lib.h"
+int simple_intention_var = 0;
 
-bool action_1_simple_intention()
+bool action_simple_intention_action_1()
 {
-  shared_var = 1;
+  simple_intention_var = 1;
   return true;
 }
 
-bool action_2_simple_intention()
+bool action_simple_intention_action_2()
 {
-  shared_var = 2;
+  simple_intention_var = 2;
   return true;
 }
 
-bool action_3_simple_intention()
+bool action_simple_intention_action_3()
 {
-  shared_var = 3;
+  simple_intention_var = 3;
   return true;
 }
 
-bool action_4_simple_intention()
+bool action_simple_intention_action_4()
 {
-  shared_var = 4;
+  simple_intention_var = 4;
   return true;
 }
 
-bool action_5_simple_intention()
+bool action_simple_intention_action_5()
 {
-  shared_var = 5;
+  simple_intention_var = 5;
   return true;
 }
 

@@ -7,6 +7,8 @@
 
 #include "event.h"
 
+Event::Event() {}
+
 Event::Event(EventOperator op, Proposition prop)
 {
    _operator = op;

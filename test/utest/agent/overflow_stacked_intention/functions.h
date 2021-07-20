@@ -5,69 +5,69 @@
  *      Author: Matuzalem Muller
  */
 
-#ifndef UTEST_AGENT_OVERFLOW_STACKED_INTENTION_FUNCTIONS_H_
-#define UTEST_AGENT_OVERFLOW_STACKED_INTENTION_FUNCTIONS_H_
+#ifndef UTEST_AGENT_action_overflow_STACKED_INTENTION_FUNCTIONS_H_
+#define UTEST_AGENT_action_overflow_STACKED_INTENTION_FUNCTIONS_H_
 
-#include "common_lib.h"
+int ovflw_stacked_intention_var = 0;
 
-bool action_1_1_overflow_stacked_intention()
+bool action_overflow_stacked_intention_1_1()
 {
-  shared_var = 100;
+  ovflw_stacked_intention_var = 100;
   return true;
 }
 
-bool action_1_2_overflow_stacked_intention()
+bool action_overflow_stacked_intention_1_2()
 {
-  shared_var = 101;
+  ovflw_stacked_intention_var = 101;
   return true;
 }
 
-bool action_2_1_overflow_stacked_intention()
+bool action_overflow_stacked_intention_2_1()
 {
-  shared_var = 200;
+  ovflw_stacked_intention_var = 200;
   return true;
 }
 
-bool action_2_2_overflow_stacked_intention()
+bool action_overflow_stacked_intention_2_2()
 {
-  shared_var = 201;
+  ovflw_stacked_intention_var = 201;
   return true;
 }
 
-bool action_3_1_overflow_stacked_intention()
+bool action_overflow_stacked_intention_3_1()
 {
-  shared_var = 300;
+  ovflw_stacked_intention_var = 300;
   return true;
 }
 
-bool action_3_2_overflow_stacked_intention()
+bool action_overflow_stacked_intention_3_2()
 {
-  shared_var = 301;
+  ovflw_stacked_intention_var = 301;
   return true;
 }
 
-bool action_4_1_overflow_stacked_intention()
+bool action_overflow_stacked_intention_4_1()
 {
-  shared_var = 400;
+  ovflw_stacked_intention_var = 400;
   return true;
 }
 
-bool action_4_2_overflow_stacked_intention()
+bool action_overflow_stacked_intention_4_2()
 {
-  shared_var = 401;
+  ovflw_stacked_intention_var = 401;
   return true;
 }
 
-bool action_5_1_overflow_stacked_intention()
+bool action_overflow_stacked_intention_5_1()
 {
-  shared_var = 500;
+  ovflw_stacked_intention_var = 500;
   return true;
 }
 
-bool action_5_2_overflow_stacked_intention()
+bool action_overflow_stacked_intention_5_2()
 {
-  shared_var = 501;
+  ovflw_stacked_intention_var = 501;
   return true;
 }
 
-#endif /* UTEST_AGENT_OVERFLOW_STACKED_INTENTION_FUNCTIONS_H_ */
+#endif /* UTEST_AGENT_action_overflow_STACKED_INTENTION_FUNCTIONS_H_ */

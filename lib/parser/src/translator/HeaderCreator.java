@@ -52,188 +52,6 @@ public class HeaderCreator
     this.agent_file = agent_file;
   }
 
-  public void write_header()
-  {
-    try
-    {
-      this.load_functions();
-      this.define_propositions();
-
-      BufferedWriter out = new BufferedWriter(new FileWriter(output_file));
-
-      String text;
-
-      try (BufferedReader br = new BufferedReader(new FileReader(agent_file))) {
-        text = "/*\n * AgentSpeak code:\n *\n";
-        out.append(text);
-        String line;
-        while ((line = br.readLine()) != null) {
-          text = " * " + line + "\n";
-          out.append(text);
-        }
-        text = " */ \n\n";
-        out.append(text);
-      }
-
-      // Include headers and start class declaration
-      text = "#ifndef CONFIGURATION_H_\n#define CONFIGURATION_H_\n\n"          +
-             "#include \"bdi/belief_base.h\"\n"                      +
-             "#include \"bdi/event_base.h\"\n"                       +
-             "#include \"bdi/plan_base.h\"\n"                        +
-             "#include \"bdi/intention_base.h\"\n"                   +
-             "#include \"../../" + function_file + "\"\n\n"                    +
-             "class AgentSettings\n{\nprivate:\n";
-      
-      out.append(text);
-    
-      for (int i = 0; i < plans.size(); i++)
-      {
-        text = "  Body * body_" + i + ";\n  Context * context_" + i + ";\n";
-        out.append(text);
-      }
-
-      text = "  BeliefBase * belief_base;\n  EventBase * event_base;\n"        +
-             "  PlanBase * plan_base;\n"                                       +
-             "  IntentionBase * intention_base;\n"                             +
-             "\npublic:\n  AgentSettings()\n  {\n"                             +
-             "    belief_base = new BeliefBase(" + beliefs.size() + ");"       +
-             "\n    event_base = new EventBase(" + event_base_size             +
-             ");\n    plan_base = new PlanBase(" + plans.size() + ");\n"       +
-             "    intention_base = new IntentionBase("                         +
-             intention_base_size + ", " + intention_stack_size                 +
-             ");\n";
-      
-      out.append(text);
-
-      // Creation of beliefs
-      for (String belief : beliefs.keySet())
-      {
-        String function_name = "";
-
-        if (belief_functions.contains(belief))
-        {
-          function_name = "update_" + belief;
-        }
-        else
-        {
-          function_name = "nullptr";
-        }
-
-        text = "\n    //-----------------------------------------------------" +
-               "---------------------\n\n";
-        out.append(text);
-
-        text = "    Belief belief_" + belief + "(" + prop_map.get(belief) + "," +
-               " " +  function_name + ", " + beliefs.get(belief) + ");\n"      +
-               "    belief_base->add_belief(belief_" + belief + ");\n";
-        out.append(text);
-      }
-
-      // Creation of events
-      for (String event : events)
-      {
-        text = "\n    //-----------------------------------------------------" +
-               "---------------------\n\n";
-        out.append(text);
-
-        text = "    Event event_" + prop_map.get(event)                         +
-               "(EventOperator::GOAL_ADDITION, " + prop_map.get(event) + ");\n" +
-               "    event_base->add_event(event_" + prop_map.get(event) + ");\n";
-        out.append(text);
-      }
-
-      // Creation of plans
-      int plan_count = 0;
-      int context_count = 0;
-      for (PlanSkeleton plan : plans)
-      {
-        text = "\n    //-----------------------------------------------------" +
-               "---------------------\n\n";
-        out.append(text);
-
-        text = "    Proposition prop_" + plan_count + "("   +
-               prop_map.get(plan.getProposition()) + ");\n    context_"           +
-               context_count + " = new Context(" + plan.getContext().size()    +
-               ");\n    body_" + plan_count + " = new Body("                   +
-               plan.getBodySize() + ");\n\n";;
-        out.append(text);
-
-        for (String context : plan.getContext())
-        {
-          text = "    Proposition prop_" + plan_count + "_" + context + "("       +
-                 prop_map.get(context) + ");\n    ContextCondition cond_"       +
-                 plan_count + "_" + plan.getContext().indexOf(context)         +
-                 "(prop_" + plan_count + "_" + context + ");\n    "             +
-                 "context_" + context_count + "->add_context(cond_"            +
-                 context_count + "_" + plan.getContext().indexOf(context)      +
-                 ");\n\n";
-          out.append(text);
-        }
-
-        for (BodyInstruction body : plan.getBodyInstruction())
-        {
-          String argument;
-          if (body.getOperator() == null)
-          {
-            argument = "action_" + body.getProposition();
-          }
-          else
-          {
-            argument = "EventOperator::" + body.getOperator();
-          }
-
-          text = "    Proposition prop_" + plan_count + "_body_"                  +
-                 plan.getBodyInstruction().indexOf(body) + "("                 +
-                 prop_map.get(body.getProposition()) + ");\n    BodyInstruction " +
-                 "inst_" + plan.getBodyInstruction().indexOf(body) + "_"       +
-                 plan_count + "(BodyType::" + body.getType() + ", " + "prop_"   +
-                 plan_count+ "_body_"+ plan.getBodyInstruction().indexOf(body) +
-                 ", " + argument + ");\n    body_" + plan_count         +
-                 "->add_instruction(inst_"                                     + 
-                 plan.getBodyInstruction().indexOf(body) + "_" + plan_count    +
-                 ");\n\n";
-          out.append(text);
-        }
-
-        text = "    Plan plan_" + plan_count + "(EventOperator::"              +
-               plan.getOperator() + ", prop_" + plan_count + ", context_"       +
-               context_count + ", body_" + plan_count + ");\n    "             +
-               "plan_base->add_plan(plan_" + plan_count + ");\n";
-        out.append(text);
-
-        plan_count++;
-        context_count++;
-      }
-
-      text = "  }\n\n  ~AgentSettings()\n  {\n";
-      
-      out.append(text);
-
-      for (int i = 0; i < plans.size(); i++)
-      {
-        text = "    delete body_" + i + ";\n    delete context_" + i + ";\n";
-        out.append(text);
-      }
-             
-      text = "    delete belief_base;\n    delete event_base;\n    delete "    +
-             "plan_base;\n    delete intention_base;\n}\n\n  "                 +
-             "BeliefBase *  get_belief_base()\n  {\n    return belief_base;\n" +
-             "  }\n\n  EventBase * get_event_base()\n  {\n    "                +
-             "return event_base;\n  }\n\n  PlanBase * get_plan_base()\n  {\n " +
-             "   return plan_base;\n  }\n\n  IntentionBase * get_intention_ba" +
-             "se()\n  {\n    return intention_base;\n  }\n};\n\n#endif /*"     +
-             "CONFIGURATION_H_ */";
-      out.append(text);
-
-      out.close();
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-    return;
-  }
-
   private void load_functions()
   {
     try
@@ -318,6 +136,194 @@ public class HeaderCreator
     {
       System.out.println("There are more than 256 propositions in the program.");
       System.exit(-1);
+    }
+    return;
+  }
+
+  public void write_header()
+  {
+    try
+    {
+      this.load_functions();
+      this.define_propositions();
+
+      BufferedWriter out = new BufferedWriter(new FileWriter(output_file));
+
+      String text;
+
+      try (BufferedReader br = new BufferedReader(new FileReader(agent_file))) {
+        text = "/*\n * AgentSpeak code:\n *\n";
+        out.append(text);
+        String line;
+        while ((line = br.readLine()) != null) {
+          text = " * " + line + "\n";
+          out.append(text);
+        }
+        text = " */ \n\n";
+        out.append(text);
+      }
+
+      // Include headers and start class declaration
+      text = "#ifndef CONFIGURATION_H_\n"                                     +
+             "#define CONFIGURATION_H_\n\n"                                   +
+             "#include \"bdi/belief_base.h\"\n"                               +
+             "#include \"bdi/event_base.h\"\n"                                +
+             "#include \"bdi/plan_base.h\"\n"                                 +
+             "#include \"bdi/intention_base.h\"\n"                            +
+             "#include \"../../" + function_file + "\""                       +
+             "\n\n"                                                           +
+             "class AgentSettings\n"                                          +
+             "{\n"                                                            +
+             "private:\n";
+      out.append(text);
+    
+      for (int i = 0; i < plans.size(); i++)
+      {
+        text = "  Body body_" + i + ";\n" + "  Context context_" + i + ";\n";
+        out.append(text);
+      }
+
+      text = "  BeliefBase belief_base;\n"                                    +
+             "  EventBase event_base;\n"                                      +
+             "  PlanBase plan_base;\n"                                        +
+             "  IntentionBase intention_base;\n";
+      out.append(text);
+
+      text = "\npublic:\n"                                                    +
+             "  AgentSettings()\n  {\n"                                       +
+             "    belief_base = BeliefBase(" + beliefs.size() + ");\n"        +
+             "    event_base = EventBase(" + event_base_size + ");\n"         +
+             "    plan_base = PlanBase(" + plans.size() + ");\n"              +
+             "    intention_base = IntentionBase("                            +
+             intention_base_size + ", " + intention_stack_size + ");\n";
+      out.append(text);
+
+      // Creation of beliefs
+      for (String belief : beliefs.keySet())
+      {
+        String function_name = "";
+
+        if (belief_functions.contains(belief))
+        {
+          function_name = "update_" + belief;
+        }
+        else
+        {
+          function_name = "nullptr";
+        }
+
+        text = "\n    //-----------------------------------------------------"+
+               "---------------------\n\n";
+        out.append(text);
+
+        text = "    Belief belief_" + belief + "(" + prop_map.get(belief)     + 
+               ", " +  function_name + ", " + beliefs.get(belief) + ");\n"    +
+               "    belief_base.add_belief(belief_" + belief + ");\n";
+        out.append(text);
+      }
+
+      // Creation of events
+      for (String event : events)
+      {
+        text = "\n    //-----------------------------------------------------"+
+               "---------------------\n\n";
+        out.append(text);
+
+        text = "    Event event_" + prop_map.get(event)                       +
+               "(EventOperator::GOAL_ADDITION, " + prop_map.get(event) +");\n"+
+               "    event_base.add_event(event_" + prop_map.get(event) +");\n";
+        out.append(text);
+      }
+
+      // Creation of plans
+      int plan_count = 0;
+      int context_count = 0;
+      for (PlanSkeleton plan : plans)
+      {
+        text = "\n    //-----------------------------------------------------"+
+               "---------------------\n\n";
+        out.append(text);
+
+        text = "    Proposition prop_" + plan_count + "("                     +
+               prop_map.get(plan.getProposition()) + ");\n    context_"       +
+               context_count + " = Context(" + plan.getContext().size()       +
+               ");\n    body_" + plan_count + " = Body("                      +
+               plan.getBodySize() + ");\n\n";;
+        out.append(text);
+
+        for (String context : plan.getContext())
+        {
+          text = "    Proposition prop_" + plan_count + "_" + context + "("   +
+                 prop_map.get(context) + ");\n    ContextCondition cond_"     +
+                 plan_count + "_" + plan.getContext().indexOf(context)        +
+                 "(prop_" + plan_count + "_" + context + ");\n    "           +
+                 "context_" + context_count + ".add_context(cond_"            +
+                 context_count + "_" + plan.getContext().indexOf(context)     +
+                 ");\n\n";
+          out.append(text);
+        }
+
+        for (BodyInstruction body : plan.getBodyInstruction())
+        {
+          String argument;
+          if (body.getOperator() == null)
+          {
+            argument = "action_" + body.getProposition();
+          }
+          else
+          {
+            argument = "EventOperator::" + body.getOperator();
+          }
+
+          text = "    Proposition prop_" + plan_count + "_body_"              +
+                 plan.getBodyInstruction().indexOf(body) + "("                +
+                 prop_map.get(body.getProposition()) + ");\n"                 +
+                 "    BodyInstruction inst_"                                  + 
+                 plan.getBodyInstruction().indexOf(body) + "_"                +
+                 plan_count + "(BodyType::" + body.getType() + ", " + "prop_" +
+                 plan_count+ "_body_"+ plan.getBodyInstruction().indexOf(body)+
+                 ", " + argument + ");\n"                                     +
+                 "    body_" + plan_count         +
+                 ".add_instruction(inst_"                                     + 
+                 plan.getBodyInstruction().indexOf(body) + "_" + plan_count   +
+                 ");\n\n";
+          out.append(text);
+        }
+
+        text = "    Plan plan_" + plan_count + "(EventOperator::"              +
+               plan.getOperator() + ", prop_" + plan_count + ", &context_"     +
+               context_count + ", &body_" + plan_count + ");\n"                +
+               "    plan_base.add_plan(plan_" + plan_count + ");\n";
+        out.append(text);
+
+        plan_count++;
+        context_count++;
+      }
+
+      text = "  }\n\n";  
+      out.append(text);
+             
+      text = "  BeliefBase * get_belief_base()\n  {\n"                        +
+             "    return &belief_base;\n"                                     +
+             "  }\n\n"                                                        +
+             "  EventBase * get_event_base()\n  {\n"                          +
+             "    return &event_base;\n"                                      +
+             "  }\n\n"                                                        +
+             "  PlanBase * get_plan_base()\n  {\n "                           +
+             "   return &plan_base;\n"                                        +
+             "  }\n\n"                                                        +
+             "  IntentionBase * get_intention_base()\n  {\n"                  +
+             "    return &intention_base;\n"                                  +
+             "  }\n"                                                          +
+             "};\n\n#endif /*"                                                +
+             "CONFIGURATION_H_ */";
+      out.append(text);
+
+      out.close();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
     }
     return;
   }

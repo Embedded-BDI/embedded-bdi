@@ -21,11 +21,11 @@ class Belief
 private:
   Proposition _proposition;
   /// State of Belief
-  bool _belief_state;
+  bool _belief_state = false;
   ///@{ Function to update _belief_state.
   /// var receives the current value of _belief_state
   ///@}
-  bool (*_update)(bool var);
+  bool (*_update)(bool var) = nullptr;
 
 public:
   /**

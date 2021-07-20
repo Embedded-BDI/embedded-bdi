@@ -8,51 +8,51 @@
 #ifndef UTEST_AGENT_NB_SUBGOAL_FAILED_PLAN_FUNCTIONS_H_
 #define UTEST_AGENT_NB_SUBGOAL_FAILED_PLAN_FUNCTIONS_H_
 
-#include "common_lib.h"
+int nb_subgoal_var = 0;
 
-bool action_update_1()
+bool action_nb_subgoal_true_1()
 {
-  shared_var = 1;
+  nb_subgoal_var = 1;
   return true;
 }
 
-bool action_update_2()
+bool action_nb_subgoal_true_2()
 {
-  shared_var = 2;
+  nb_subgoal_var = 2;
   return true;
 }
 
-bool action_update_3()
+bool action_nb_subgoal_true_3()
 {
-  shared_var = 3;
+  nb_subgoal_var = 3;
   return true;
 }
 
-bool action_update_4()
+bool action_nb_subgoal_true_4()
 {
-  shared_var = 4;
+  nb_subgoal_var = 4;
   return true;
 }
 
-bool action_update_5()
+bool action_nb_subgoal_true_5()
 {
-  shared_var = 5;
+  nb_subgoal_var = 5;
   return true;
 }
 
-bool action_update_6()
+bool action_nb_subgoal_true_6()
 {
-  shared_var = 6;
+  nb_subgoal_var = 6;
   return true;
 }
 
-bool action_update_7()
+bool action_nb_subgoal_true_7()
 {
-  shared_var = 7;
+  nb_subgoal_var = 7;
   return true;
 }
 
-bool action_return_false_bool()
+bool action_nb_subgoal_false()
 {
   return false;
 }

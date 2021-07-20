@@ -8,35 +8,35 @@
 #ifndef UTEST_AGENT_OVERFLOW_INTENTION_BASE_FUNCTIONS_H_
 #define UTEST_AGENT_OVERFLOW_INTENTION_BASE_FUNCTIONS_H_
 
-#include "common_lib.h"
+int ovflw_int_base_var = 0;
 
-bool action_1()
+bool action_ovflw_int_base_action_1()
 {
-  shared_var = 1;
+  ovflw_int_base_var = 1;
   return true;
 }
 
-bool action_2()
+bool action_ovflw_int_base_action_2()
 {
-  shared_var = 2;
+  ovflw_int_base_var = 2;
   return true;
 }
 
-bool action_3()
+bool action_ovflw_int_base_action_3()
 {
-  shared_var = 3;
+  ovflw_int_base_var = 3;
   return true;
 }
 
-bool action_4()
+bool action_ovflw_int_base_action_4()
 {
-  shared_var = 4;
+  ovflw_int_base_var = 4;
   return true;
 }
 
-bool action_5()
+bool action_ovflw_int_base_action_5()
 {
-  shared_var = 5;
+  ovflw_int_base_var = 5;
   return true;
 }
 

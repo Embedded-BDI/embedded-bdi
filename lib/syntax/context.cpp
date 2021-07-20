@@ -7,6 +7,11 @@
 
 #include "context.h"
 
+Context::Context()
+{
+  _size = 0;
+}
+
 Context::Context(std::uint8_t size)
 {
   _size = size;

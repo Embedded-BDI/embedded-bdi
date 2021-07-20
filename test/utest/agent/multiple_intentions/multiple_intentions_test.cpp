@@ -11,15 +11,15 @@
  *   !goal2.
  *   !goal3.
  *
- *   +!goal1 <- action_1_multiple_intentions; !goal2.
- *   +!goal2 <- action_2_multiple_intentions.
- *   +!goal3 <- action_3_multiple_intentions; !goal4.
- *   +!goal4 <- action_4_multiple_intentions.
- *   +!goal5 <- action_5_multiple_intentions; !goal6.
- *   +!goal6 <- action_6_multiple_intentions.
+ *   +!goal1 <- multiple_intentions_action_1; !goal2.
+ *   +!goal2 <- multiple_intentions_action_2.
+ *   +!goal3 <- multiple_intentions_action_3; !goal4.
+ *   +!goal4 <- multiple_intentions_action_4.
+ *   +!goal5 <- multiple_intentions_action_5; !goal6.
+ *   +!goal6 <- multiple_intentions_action_6.
  */
 
-#include "common_lib.h"
+#include "functions.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -56,62 +56,52 @@ public:
 
 TEST_F(TMultipleIntentions, run_multiple_intentions)
 {
-  EXPECT_EQ(shared_var, 0);
+  EXPECT_EQ(multiple_intentions_shared_var, 0);
   EXPECT_TRUE(events->is_full());
   EXPECT_TRUE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(shared_var, 1);
+  EXPECT_EQ(multiple_intentions_shared_var, 1);
   EXPECT_FALSE(events->is_full());
   EXPECT_FALSE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(shared_var, 1);
+  EXPECT_EQ(multiple_intentions_shared_var, 1);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(shared_var, 3);
-  EXPECT_FALSE(events->is_empty());
-  EXPECT_TRUE(intentions->is_full());
-
-  agent->run();
-  EXPECT_EQ(shared_var, 2);
-  EXPECT_TRUE(events->is_empty());
-  EXPECT_FALSE(intentions->is_full());
-
-  agent->run();
-  EXPECT_EQ(shared_var, 5);
-  EXPECT_TRUE(events->is_empty());
-  EXPECT_FALSE(intentions->is_full());
-
-  agent->run();
-  EXPECT_EQ(shared_var, 5);
+  EXPECT_EQ(multiple_intentions_shared_var, 2);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(shared_var, 5);
+  EXPECT_EQ(multiple_intentions_shared_var, 2);
+  EXPECT_TRUE(events->is_empty());
+  EXPECT_FALSE(intentions->is_full());
+
+  agent->run();
+  EXPECT_EQ(multiple_intentions_shared_var, 3);
+  EXPECT_TRUE(events->is_empty());
+  EXPECT_FALSE(intentions->is_full());
+
+  agent->run();
+  EXPECT_EQ(multiple_intentions_shared_var, 3);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(shared_var, 4);
-  EXPECT_TRUE(events->is_empty());
-  EXPECT_FALSE(intentions->is_empty());
-
-  agent->run();
-  EXPECT_EQ(shared_var, 6);
+  EXPECT_EQ(multiple_intentions_shared_var, 4);
   EXPECT_TRUE(events->is_empty());
   EXPECT_TRUE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(shared_var, 6);
+  EXPECT_EQ(multiple_intentions_shared_var, 4);
   EXPECT_TRUE(events->is_empty());
   EXPECT_TRUE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(shared_var, 6);
+  EXPECT_EQ(multiple_intentions_shared_var, 4);
   EXPECT_TRUE(events->is_empty());
   EXPECT_TRUE(intentions->is_empty());
 }

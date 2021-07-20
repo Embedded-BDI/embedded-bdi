@@ -4,23 +4,23 @@
  *  Created on: Sep 17, 2020
  *      Author: Matuzalem Muller
  *
- *
  * AgentSpeak code:
  *
- *   !goal1.
- *   !goal2.
- *
- *   +!goal1 <- action_return_false.
- *   -!goal1 <- action_deletion_1.
- *
- *   +!goal2 <- action_return_true; !goal3; action_return_true.
- *   +!goal3 <- action_return_true; !goal4.
- *   +!goal4 <- action_return_false.
- *   -!goal4 <- action_deletion_1.
- *   -!goal4 <- action_deletion_2.
- */
+ * !goal1.
+ * !goal2.
+ * 
+ * +!goal1 <- failed_intention_return_false.
+ * -!goal1 <- failed_intention_deletion_1.
+ * 
+ * +!goal2 <- failed_intention_return_true; !goal3; failed_intention_return_true.
+ * 
+ * +!goal3 <- failed_intention_return_true; !goal4.
+ * 
+ * +!goal4 <- failed_intention_return_false.
+ * -!goal4 <- failed_intention_deletion_1.
+ * -!goal4 <- failed_intention_deletion_2.
+ */ 
 
-#include "common_lib.h"
 #include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "configuration.h"
@@ -61,56 +61,56 @@ TEST_F(TFailedIntention, run_failed_intention)
   EXPECT_TRUE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(2, shared_var);
+  EXPECT_EQ(2, failed_intention_shared_var);
   EXPECT_TRUE(events->is_full());
   EXPECT_TRUE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, failed_intention_shared_var);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(events->is_full());
   EXPECT_FALSE(intentions->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, failed_intention_shared_var);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(events->is_full());
   EXPECT_TRUE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(-100, shared_var);
+  EXPECT_EQ(-100, failed_intention_shared_var);
   EXPECT_TRUE(events->is_empty());
   EXPECT_FALSE(intentions->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, failed_intention_shared_var);
   EXPECT_TRUE(events->is_empty());
   EXPECT_FALSE(intentions->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(1, shared_var);
+  EXPECT_EQ(1, failed_intention_shared_var);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(events->is_full());
   EXPECT_FALSE(intentions->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(2, shared_var);
+  EXPECT_EQ(2, failed_intention_shared_var);
   EXPECT_FALSE(events->is_empty());
   EXPECT_FALSE(events->is_full());
   EXPECT_TRUE(intentions->is_empty());
   EXPECT_FALSE(intentions->is_full());
 
   agent->run();
-  EXPECT_EQ(-100, shared_var);
+  EXPECT_EQ(-100, failed_intention_shared_var);
   EXPECT_TRUE(events->is_empty());
   EXPECT_TRUE(intentions->is_empty());
 
   agent->run();
-  EXPECT_EQ(-100, shared_var);
+  EXPECT_EQ(-100, failed_intention_shared_var);
   EXPECT_TRUE(events->is_empty());
   EXPECT_TRUE(intentions->is_empty());
 }

@@ -21,9 +21,11 @@ class Context
   /// Vector of ContextConditions
   VectorQueue <ContextCondition> _context;
   /// Max size of _context vector
-  std::uint8_t _size;
+  std::uint8_t _size = 0;
 
 public:
+  Context();
+
   /**
    * Context constructor
    * @param size Max size of context queue

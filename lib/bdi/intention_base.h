@@ -24,9 +24,9 @@ private:
   /// Vector of Intentions
   VectorQueue<Intention> _intention_base;
   /// Max size of _intention_base vector
-  std::uint8_t _buffer_size;
+  std::uint8_t _buffer_size = 0;
   /// Max size of each Intention _plans stack vector
-  std::uint8_t _stack_size;
+  std::uint8_t _stack_size = 0;
 
   /**
    * Stacks plan to existing intention
@@ -37,6 +37,8 @@ private:
   bool stack_plan(Plan * plan, Event * event);
 
 public:
+  IntentionBase();
+
   /**
    * IntentionBase constructor
    * @param buffer_size Size of the buffer where the intentions are stored

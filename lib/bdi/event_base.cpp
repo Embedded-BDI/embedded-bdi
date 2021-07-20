@@ -7,6 +7,11 @@
 
 #include "event_base.h"
 
+EventBase::EventBase()
+{
+  _size = 0;
+}
+
 EventBase::EventBase(std::uint8_t size)
 {
   _size = size;

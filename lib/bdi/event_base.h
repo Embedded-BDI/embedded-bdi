@@ -21,9 +21,11 @@ private:
   /// Vector of Events
   VectorQueue<Event> _pending_events;
   /// Max size of _belief_base vector
-  std::uint8_t _size;
+  std::uint8_t _size = 0;
 
 public:
+  EventBase();
+
   /**
    * EventBase's constructor
    * @param size Size of EventBase buffer

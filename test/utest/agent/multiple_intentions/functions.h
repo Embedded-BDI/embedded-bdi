@@ -8,41 +8,41 @@
 #ifndef UTEST_AGENT_MULTIPLE_INTENTIONS_FUNCTIONS_H_
 #define UTEST_AGENT_MULTIPLE_INTENTIONS_FUNCTIONS_H_
 
-#include "common_lib.h"
+int multiple_intentions_shared_var = 0;
 
-bool action_1_multiple_intentions()
+bool action_multiple_intentions_action_1()
 {
-  shared_var = 1;
+  multiple_intentions_shared_var = 1;
   return true;
 }
 
-bool action_2_multiple_intentions()
+bool action_multiple_intentions_action_2()
 {
-  shared_var = 2;
+  multiple_intentions_shared_var = 2;
   return true;
 }
 
-bool action_3_multiple_intentions()
+bool action_multiple_intentions_action_3()
 {
-  shared_var = 3;
+  multiple_intentions_shared_var = 3;
   return true;
 }
 
-bool action_4_multiple_intentions()
+bool action_multiple_intentions_action_4()
 {
-  shared_var = 4;
+  multiple_intentions_shared_var = 4;
   return true;
 }
 
-bool action_5_multiple_intentions()
+bool action_multiple_intentions_action_5()
 {
-  shared_var = 5;
+  multiple_intentions_shared_var = 5;
   return true;
 }
 
-bool action_6_multiple_intentions()
+bool action_multiple_intentions_action_6()
 {
-  shared_var = 6;
+  multiple_intentions_shared_var = 6;
   return true;
 }
 

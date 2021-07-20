@@ -8,23 +8,23 @@
 #ifndef UTEST_AGENT_STACKED_INTENTION_FUNCTIONS_H_
 #define UTEST_AGENT_STACKED_INTENTION_FUNCTIONS_H_
 
-#include "common_lib.h"
+int stacked_intention_var = 0;
 
-bool action_1_stacked_intention()
+bool action_stacked_intention_action_1()
 {
-  shared_var = 1;
+  stacked_intention_var = 1;
   return true;
 }
 
-bool action_2_stacked_intention()
+bool action_stacked_intention_action_2()
 {
-  shared_var = 2;
+  stacked_intention_var = 2;
   return true;
 }
 
-bool action_3_stacked_intention()
+bool action_stacked_intention_action_3()
 {
-  shared_var = 3;
+  stacked_intention_var = 3;
   return true;
 }
 

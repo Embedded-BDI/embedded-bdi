@@ -7,6 +7,11 @@
 
 #include "body.h"
 
+Body::Body()
+{
+  _size = 0;
+}
+
 Body::Body(std::uint8_t size)
 {
   _size = size;
