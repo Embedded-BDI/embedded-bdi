@@ -1,5 +1,6 @@
 var class_intention_base =
 [
+    [ "IntentionBase", "d8/d1d/class_intention_base.html#a58a92bad62dce6a469aa5b1b7414b4f5", null ],
     [ "IntentionBase", "d8/d1d/class_intention_base.html#acf72bc7a04141b8520cc603d99c24ed0", null ],
     [ "add_intention", "d8/d1d/class_intention_base.html#ae01b52ea577a4893c1e3df12a5ab6977", null ],
     [ "is_empty", "d8/d1d/class_intention_base.html#a446d09012ba68e4b60effa8ff6634a1b", null ],

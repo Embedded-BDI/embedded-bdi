@@ -1,5 +1,6 @@
 var class_event_base =
 [
+    [ "EventBase", "da/df2/class_event_base.html#a8c4fff3365a3dd5670b113bce3d1e968", null ],
     [ "EventBase", "da/df2/class_event_base.html#a2fa66181a443235fe976b33d1ac2bfd0", null ],
     [ "add_event", "da/df2/class_event_base.html#ac2566da6c2944d02bbc6d260d3b82c80", null ],
     [ "event_exists", "da/df2/class_event_base.html#a46d50ff429f43a57a8ac959e540cef6b", null ],

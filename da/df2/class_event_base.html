@@ -101,6 +101,8 @@ Collaboration diagram for EventBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a8c4fff3365a3dd5670b113bce3d1e968"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df2/class_event_base.html#a8c4fff3365a3dd5670b113bce3d1e968">EventBase</a> ()</td></tr>
+<tr class="separator:a8c4fff3365a3dd5670b113bce3d1e968"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fa66181a443235fe976b33d1ac2bfd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df2/class_event_base.html#a2fa66181a443235fe976b33d1ac2bfd0">EventBase</a> (std::uint8_t size)</td></tr>
 <tr class="separator:a2fa66181a443235fe976b33d1ac2bfd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2566da6c2944d02bbc6d260d3b82c80"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df2/class_event_base.html#ac2566da6c2944d02bbc6d260d3b82c80">add_event</a> (<a class="el" href="../../d1/da9/class_event.html">Event</a> event)</td></tr>
@@ -123,15 +125,32 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a79217ccf3a2e7cbd4812287075ad1789"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d28/class_vector_queue.html">VectorQueue</a>&lt; <a class="el" href="../../d1/da9/class_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df2/class_event_base.html#a79217ccf3a2e7cbd4812287075ad1789">_pending_events</a></td></tr>
 <tr class="memdesc:a79217ccf3a2e7cbd4812287075ad1789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Events.  <a href="../../da/df2/class_event_base.html#a79217ccf3a2e7cbd4812287075ad1789">More...</a><br /></td></tr>
 <tr class="separator:a79217ccf3a2e7cbd4812287075ad1789"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36e977f1eaa5fdef9bbc0c8a81d66f78"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df2/class_event_base.html#a36e977f1eaa5fdef9bbc0c8a81d66f78">_size</a></td></tr>
+<tr class="memitem:a36e977f1eaa5fdef9bbc0c8a81d66f78"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df2/class_event_base.html#a36e977f1eaa5fdef9bbc0c8a81d66f78">_size</a> = 0</td></tr>
 <tr class="memdesc:a36e977f1eaa5fdef9bbc0c8a81d66f78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max size of _belief_base vector.  <a href="../../da/df2/class_event_base.html#a36e977f1eaa5fdef9bbc0c8a81d66f78">More...</a><br /></td></tr>
 <tr class="separator:a36e977f1eaa5fdef9bbc0c8a81d66f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Collection of agent events. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8c4fff3365a3dd5670b113bce3d1e968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4fff3365a3dd5670b113bce3d1e968">&#9670;&nbsp;</a></span>EventBase() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventBase::EventBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a2fa66181a443235fe976b33d1ac2bfd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fa66181a443235fe976b33d1ac2bfd0">&#9670;&nbsp;</a></span>EventBase()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa66181a443235fe976b33d1ac2bfd0">&#9670;&nbsp;</a></span>EventBase() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,7 +349,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::uint8_t EventBase::_size</td>
+          <td class="memname">std::uint8_t EventBase::_size = 0</td>
         </tr>
       </table>
   </td>

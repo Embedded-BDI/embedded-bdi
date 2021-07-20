@@ -1,5 +1,6 @@
 var class_belief_base =
 [
+    [ "BeliefBase", "d4/db8/class_belief_base.html#a2ec99174b56488ad99fadac3ffd37342", null ],
     [ "BeliefBase", "d4/db8/class_belief_base.html#a6d16cc2e053eacacb620dcb0eac2f20c", null ],
     [ "add_belief", "d4/db8/class_belief_base.html#a79c1185a450fc9fc280199a530e64f9e", null ],
     [ "change_belief_state", "d4/db8/class_belief_base.html#a1f09267963748e213777d819a5c6229f", null ],

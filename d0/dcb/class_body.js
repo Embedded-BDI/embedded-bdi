@@ -1,5 +1,6 @@
 var class_body =
 [
+    [ "Body", "d0/dcb/class_body.html#a7727b0d8c998bbc2942e4c802e31e2eb", null ],
     [ "Body", "d0/dcb/class_body.html#a8dd1cb6645d4bc0941a334c3a288eba9", null ],
     [ "add_instruction", "d0/dcb/class_body.html#a2b4aa174ba642e191f67092b49b4904a", null ],
     [ "get_size", "d0/dcb/class_body.html#a2d5d6e77895fe4e1e9a61638d2bb04ff", null ],

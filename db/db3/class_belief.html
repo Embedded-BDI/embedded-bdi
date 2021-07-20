@@ -116,10 +116,10 @@ Public Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af56f7633b09dfe4dc959b335d6c770d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d75/class_proposition.html">Proposition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/db3/class_belief.html#af56f7633b09dfe4dc959b335d6c770d7">_proposition</a></td></tr>
 <tr class="separator:af56f7633b09dfe4dc959b335d6c770d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9ff6216e29fee2795431ca5fd1e4a40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/db3/class_belief.html#aa9ff6216e29fee2795431ca5fd1e4a40">_belief_state</a></td></tr>
+<tr class="memitem:aa9ff6216e29fee2795431ca5fd1e4a40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/db3/class_belief.html#aa9ff6216e29fee2795431ca5fd1e4a40">_belief_state</a> = false</td></tr>
 <tr class="memdesc:aa9ff6216e29fee2795431ca5fd1e4a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of <a class="el" href="../../db/db3/class_belief.html">Belief</a>.  <a href="../../db/db3/class_belief.html#aa9ff6216e29fee2795431ca5fd1e4a40">More...</a><br /></td></tr>
 <tr class="separator:aa9ff6216e29fee2795431ca5fd1e4a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa556ad165f33f10a21c52a9bc316bd50"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/db3/class_belief.html#aa556ad165f33f10a21c52a9bc316bd50">_update</a> )(bool var)</td></tr>
+<tr class="memitem:aa556ad165f33f10a21c52a9bc316bd50"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/db3/class_belief.html#aa556ad165f33f10a21c52a9bc316bd50">_update</a> )(bool var) = nullptr</td></tr>
 <tr class="separator:aa556ad165f33f10a21c52a9bc316bd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -271,7 +271,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Belief::_belief_state</td>
+          <td class="memname">bool Belief::_belief_state = false</td>
         </tr>
       </table>
   </td>
@@ -317,7 +317,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool(* Belief::_update) (bool var)</td>
+          <td class="memname">bool(* Belief::_update) (bool var) = nullptr</td>
         </tr>
       </table>
   </td>

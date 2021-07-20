@@ -1,5 +1,6 @@
 var class_plan_base =
 [
+    [ "PlanBase", "d1/d0c/class_plan_base.html#a13b155f6205721241076f17605a77f01", null ],
     [ "PlanBase", "d1/d0c/class_plan_base.html#a8dbcb3c6f458019006472611d77abd72", null ],
     [ "add_plan", "d1/d0c/class_plan_base.html#ab1b299989828629021585b438d144d4b", null ],
     [ "get_size", "d1/d0c/class_plan_base.html#a6bd0ee1e2e34034f7682b3f951071bd8", null ],

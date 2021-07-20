@@ -101,6 +101,8 @@ Collaboration diagram for Body:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a7727b0d8c998bbc2942e4c802e31e2eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dcb/class_body.html#a7727b0d8c998bbc2942e4c802e31e2eb">Body</a> ()</td></tr>
+<tr class="separator:a7727b0d8c998bbc2942e4c802e31e2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dd1cb6645d4bc0941a334c3a288eba9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dcb/class_body.html#a8dd1cb6645d4bc0941a334c3a288eba9">Body</a> (std::uint8_t size)</td></tr>
 <tr class="separator:a8dd1cb6645d4bc0941a334c3a288eba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5bf62db9d9672f005e4ba4d47469e5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d51/class_body_return.html">BodyReturn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dcb/class_body.html#ac5bf62db9d9672f005e4ba4d47469e5f">run_body</a> (std::uint8_t index, <a class="el" href="../../d4/db8/class_belief_base.html">BeliefBase</a> *beliefs, <a class="el" href="../../da/df2/class_event_base.html">EventBase</a> *events)</td></tr>
@@ -115,15 +117,32 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a99b1d21ae9b7b880e7194ee6d5d9af47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d28/class_vector_queue.html">VectorQueue</a>&lt; <a class="el" href="../../d2/d3e/class_body_instruction.html">BodyInstruction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dcb/class_body.html#a99b1d21ae9b7b880e7194ee6d5d9af47">_body</a></td></tr>
 <tr class="memdesc:a99b1d21ae9b7b880e7194ee6d5d9af47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of BodyInstructions.  <a href="../../d0/dcb/class_body.html#a99b1d21ae9b7b880e7194ee6d5d9af47">More...</a><br /></td></tr>
 <tr class="separator:a99b1d21ae9b7b880e7194ee6d5d9af47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6c7842b1aabc87486d6735e14d1e968"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dcb/class_body.html#af6c7842b1aabc87486d6735e14d1e968">_size</a></td></tr>
+<tr class="memitem:af6c7842b1aabc87486d6735e14d1e968"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dcb/class_body.html#af6c7842b1aabc87486d6735e14d1e968">_size</a> = 0</td></tr>
 <tr class="memdesc:af6c7842b1aabc87486d6735e14d1e968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max size of _body vector.  <a href="../../d0/dcb/class_body.html#af6c7842b1aabc87486d6735e14d1e968">More...</a><br /></td></tr>
 <tr class="separator:af6c7842b1aabc87486d6735e14d1e968"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents plan body with collection of body instructions. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7727b0d8c998bbc2942e4c802e31e2eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7727b0d8c998bbc2942e4c802e31e2eb">&#9670;&nbsp;</a></span>Body() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Body::Body </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a8dd1cb6645d4bc0941a334c3a288eba9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dd1cb6645d4bc0941a334c3a288eba9">&#9670;&nbsp;</a></span>Body()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd1cb6645d4bc0941a334c3a288eba9">&#9670;&nbsp;</a></span>Body() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +284,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::uint8_t Body::_size</td>
+          <td class="memname">std::uint8_t Body::_size = 0</td>
         </tr>
       </table>
   </td>
