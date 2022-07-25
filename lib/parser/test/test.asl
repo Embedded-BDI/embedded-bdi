@@ -6,4 +6,4 @@
 
 +!hello <- say_hello.
 
-+!hello : am_i_host <- .broadcast(tell,happy).
++!hello : i_am_host <- .broadcast(tell,happy).

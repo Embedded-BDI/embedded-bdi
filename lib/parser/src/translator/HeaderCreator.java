@@ -274,23 +274,27 @@ public class HeaderCreator
 
         for (BodyInstruction body : plan.getBodyInstruction())
         {
-          String argument;
+          String inst_id = "inst_" + plan.getBodyInstruction().indexOf(body) + "_" + plan_count;
+
+          String argument = "not_implemented";
+          String arg_terms = "";
           if (body.getType() == BodyInstruction.BodyType.INTERNAL_ACTION) {
-            argument = "internal_action_" + body.getProposition().substring(1);
+            if (body.getProposition().equals(".broadcast")) {
+               argument = "internal_action_broadcast";
+               // JH: for .broadcast
+               // TODO: remove comments when C side is ready for call .add_arg
+               arg_terms += "    // ToBeUncommented: " + inst_id + ".add_arg(CENUMFOR_ILF."+ body.getArgs().get(0).toUpperCase()+");\n";
+               arg_terms += "    // ToBeUncommented: " + inst_id + ".add_arg(belief_"+ body.getArgs().get(1)+");\n";
+
+             } else {
+               System.out.println("*** translation not implemented for "+body.getProposition());
+             }
           } else if (body.getOperator() == null) {
             argument = "action_" + body.getProposition();
           } else {
             argument = "EventOperator::" + body.getOperator();
           }
 
-          String inst_id = "inst_" + plan.getBodyInstruction().indexOf(body) + "_" + plan_count;
-
-          // JH: for .broadcast
-          // TODO: remove comments when C side is ready for call .add_arg
-          String args = "";
-          for (String a: body.getArgs()) {
-            args += "    // ToBeUncommented: " + inst_id + ".add_arg("+a+");\n";
-          }
 
           text = "    Proposition prop_" + plan_count + "_body_"              +
                  plan.getBodyInstruction().indexOf(body) + "("                +
@@ -299,7 +303,7 @@ public class HeaderCreator
                  "(BodyType::" + body.getType() + ", " + "prop_" +
                  plan_count+ "_body_"+ plan.getBodyInstruction().indexOf(body)+
                  ", " + argument + ");\n"                                     +
-                 args+
+                 arg_terms+
                  "    body_" + plan_count         +
                  ".add_instruction(inst_"                                     +
                  plan.getBodyInstruction().indexOf(body) + "_" + plan_count   +

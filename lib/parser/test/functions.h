@@ -80,4 +80,14 @@ inline bool update_belief_8_revert_state(bool var)
   return !var;
 }
 
+inline bool update_happy(bool var)
+{
+  return !var;
+}
+
+inline bool update_i_am_host(bool var)
+{
+  return !var;
+}
+
 #endif
