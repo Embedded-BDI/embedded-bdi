@@ -1,17 +1,21 @@
 package translator;
 
+import java.util.*;
+
 public class BodyInstruction
 {
   enum BodyType
   {
     ACTION,
     BELIEF,
-    GOAL
+    GOAL,
+    INTERNAL_ACTION
   };
 
   private BodyType type;
   private String proposition;
   private EventOperatorType operator;
+  private List<String> args = new ArrayList<String>();
 
   public BodyType getType()
   {
@@ -42,4 +46,23 @@ public class BodyInstruction
   {
     this.operator = operator;
   }
+
+  public void addArg(String a) {
+    args.add(a);
+  }
+
+  public List<String> getArgs() {
+    return args;
+  }
+
+  public String getArgsStr() {
+    String r = "";
+    String v = "";
+    for (String a: args) {
+        r = r +v + a;
+        v = ", ";
+    }
+    return r;
+  }
+
 }

@@ -71,6 +71,7 @@ public class HeaderCreator
 
       for (PlanSkeleton plan : plans)
       {
+
         for (BodyInstruction body : plan.getBodyInstruction())
         {
           if (body.getType() == BodyInstruction.BodyType.ACTION)
@@ -84,6 +85,14 @@ public class HeaderCreator
               System.exit(-2);
             }
           }
+
+          // JH: support for .broadcast
+          if (body.getType() == BodyInstruction.BodyType.INTERNAL_ACTION) {
+              if (body.getProposition().equals(".broadcast")) {
+                 System.out.println("*** generating: "+body.getProposition()+"("+body.getArgsStr()+")");
+                 action_functions.add("action_broadcast(" + body.getArgsStr() + ")");
+              }
+          }
         }
       }
     }
@@ -94,7 +103,7 @@ public class HeaderCreator
   }
 
   private void define_propositions()
-  {    
+  {
     for (String belief : beliefs.keySet())
     {
       prop_map.put(belief, prop_map.size());
@@ -176,7 +185,7 @@ public class HeaderCreator
              "{\n"                                                            +
              "private:\n";
       out.append(text);
-    
+
       for (int i = 0; i < plans.size(); i++)
       {
         text = "  Body body_" + i + ";\n" + "  Context context_" + i + ";\n";
@@ -216,7 +225,7 @@ public class HeaderCreator
                "---------------------\n\n";
         out.append(text);
 
-        text = "    Belief belief_" + belief + "(" + prop_map.get(belief)     + 
+        text = "    Belief belief_" + belief + "(" + prop_map.get(belief)     +
                ", " +  function_name + ", " + beliefs.get(belief) + ");\n"    +
                "    belief_base.add_belief(belief_" + belief + ");\n";
         out.append(text);
@@ -266,25 +275,33 @@ public class HeaderCreator
         for (BodyInstruction body : plan.getBodyInstruction())
         {
           String argument;
-          if (body.getOperator() == null)
-          {
+          if (body.getType() == BodyInstruction.BodyType.INTERNAL_ACTION) {
+            argument = "internal_action_" + body.getProposition().substring(1);
+          } else if (body.getOperator() == null) {
             argument = "action_" + body.getProposition();
-          }
-          else
-          {
+          } else {
             argument = "EventOperator::" + body.getOperator();
+          }
+
+          String inst_id = "inst_" + plan.getBodyInstruction().indexOf(body) + "_" + plan_count;
+
+          // JH: for .broadcast
+          // TODO: remove comments when C side is ready for call .add_arg
+          String args = "";
+          for (String a: body.getArgs()) {
+            args += "    // ToBeUncommented: " + inst_id + ".add_arg("+a+");\n";
           }
 
           text = "    Proposition prop_" + plan_count + "_body_"              +
                  plan.getBodyInstruction().indexOf(body) + "("                +
                  prop_map.get(body.getProposition()) + ");\n"                 +
-                 "    BodyInstruction inst_"                                  + 
-                 plan.getBodyInstruction().indexOf(body) + "_"                +
-                 plan_count + "(BodyType::" + body.getType() + ", " + "prop_" +
+                 "    BodyInstruction " + inst_id                             +
+                 "(BodyType::" + body.getType() + ", " + "prop_" +
                  plan_count+ "_body_"+ plan.getBodyInstruction().indexOf(body)+
                  ", " + argument + ");\n"                                     +
+                 args+
                  "    body_" + plan_count         +
-                 ".add_instruction(inst_"                                     + 
+                 ".add_instruction(inst_"                                     +
                  plan.getBodyInstruction().indexOf(body) + "_" + plan_count   +
                  ");\n\n";
           out.append(text);
@@ -300,9 +317,9 @@ public class HeaderCreator
         context_count++;
       }
 
-      text = "  }\n\n";  
+      text = "  }\n\n";
       out.append(text);
-             
+
       text = "  BeliefBase * get_belief_base()\n  {\n"                        +
              "    return &belief_base;\n"                                     +
              "  }\n\n"                                                        +

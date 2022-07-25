@@ -6,10 +6,7 @@ import java.util.TreeMap;
 import java.io.FileInputStream;
 
 import jason.asSemantics.Agent;
-import jason.asSyntax.Literal;
-import jason.asSyntax.Plan;
-import jason.asSyntax.PlanBody;
-import jason.asSyntax.Term;
+import jason.asSyntax.*;
 import jason.asSyntax.parser.as2j;
 import jason.util.Config;
 
@@ -126,7 +123,7 @@ public class As2Json
   private ArrayList<String> getEvents(Agent ag)
   {
     ArrayList<String> events = new ArrayList<String>();
-    
+
     for (Literal lit : ag.getInitialGoals())
     {
       events.add(lit.toString());
@@ -152,7 +149,7 @@ public class As2Json
       // Parse plan operator
       String operator = plan.getTrigger().getOperator().toString();
       operator += plan.getTrigger().getType().toString();
-      
+
       switch (operator)
       {
         case "+":
@@ -224,10 +221,22 @@ public class As2Json
           case action:
             instruction.setType(BodyInstruction.BodyType.ACTION);
             break;
+          case internalAction:
+            instruction.setType(BodyInstruction.BodyType.INTERNAL_ACTION);
+            break;
           default:
             break;
         }
         instruction.setProposition(body_term.toString());
+
+        // JH: added to support .broadcast
+        if (body_term.isLiteral() && ((Literal)body_term).hasTerm()) {
+            instruction.setProposition( ((Literal)body_term).getFunctor());
+            for (Term t: ((Literal)body_term).getTerms()) {
+               //System.out.println("****"+t);
+               instruction.addArg(t.toString());
+            }
+        }
         plan_s.addBodyInstruction(instruction);
 
         plan_body = plan_body.getBodyNext();

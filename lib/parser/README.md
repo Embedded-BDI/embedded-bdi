@@ -24,3 +24,14 @@ java -cp lib/jason-2.6.jar:src                                      \
          $EVENT_BASE_SIZE $INTENTION_BASE_SIZE $INTETION_STACK_SIZE
 ```
 
+### Test:
+
+```
+cd test
+java -cp ../lib/jason-2.6.jar:../src                                      \
+         translator.As2Json                                         \
+         test.asl                                             \
+         functions.h                                    \
+         configuration.h                                \
+         $EVENT_BASE_SIZE $INTENTION_BASE_SIZE $INTETION_STACK_SIZE
+```

@@ -46,3 +46,4 @@ docs/.settings
 # OSX
 .DS_Store
 /.project
+lib/parser/test/configuration.h
